@@ -1,5 +1,5 @@
 forecast_source,mean_brier_score,sample_size
 naive_50_50,0.25,9
-cassandra_aggregated,0.42054597765544444,9
-manifold,0.0003034497247499999,4
+cassandra_aggregated,0.641687244762111,9
+manifold,0.49787130071475,4
 manual,0.75674,5

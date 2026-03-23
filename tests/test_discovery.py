@@ -10,7 +10,12 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from cassandra_risk.discovery import apply_curated_decisions, build_query_pack, collapse_duplicate_candidates
+from cassandra_risk.discovery import (
+    apply_curated_decisions,
+    build_query_pack,
+    build_selection_audit,
+    collapse_duplicate_candidates,
+)
 from cassandra_risk.events import merge_seeds_with_shortlist
 
 
@@ -59,7 +64,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(collapsed[0]["market_id"], "a")
         self.assertIn("b", collapsed[0]["duplicate_market_ids"])
 
-    def test_merge_seeds_with_shortlist_replaces_without_mutating_inputs(self) -> None:
+    def test_merge_seeds_with_shortlist_supports_parallel_proxies_without_mutating_inputs(self) -> None:
         seeds = [
             {
                 "event_id": "oct_selloff_2023",
@@ -82,13 +87,73 @@ class DiscoveryTests(unittest.TestCase):
                 "question": "Approved market",
                 "market_id": "market-1",
                 "selection_reason": "approved",
+            },
+            {
+                "event_id": "oct_selloff_2023",
+                "source": "Manifold",
+                "category": "Monetary",
+                "question": "Parallel approved market",
+                "market_id": "market-2",
+                "selection_reason": "parallel-approved",
             }
         ]
         merged, audit = merge_seeds_with_shortlist(seeds, shortlist)
-        merged_by_event = {row["event_id"]: row for row in merged}
-        self.assertEqual(merged_by_event["oct_selloff_2023"]["source"], "Manifold")
+        oct_rows = [row for row in merged if row["event_id"] == "oct_selloff_2023"]
+        self.assertEqual(len(oct_rows), 2)
+        self.assertEqual({row["market_id"] for row in oct_rows}, {"market-1", "market-2"})
         self.assertEqual(seeds[0]["source"], "Manual")
-        self.assertEqual(audit[0]["event_id"], "oct_selloff_2023")
+        oct_audit = [row for row in audit if row["event_id"] == "oct_selloff_2023"]
+        self.assertEqual(oct_audit[0]["merge_action"], "replaced_existing_event")
+        self.assertEqual(oct_audit[1]["merge_action"], "added_parallel_proxy")
+
+    def test_build_selection_audit_reports_multiple_approved_markets(self) -> None:
+        seeds = [
+            {
+                "event_id": "us_debt_ceiling_2023",
+                "category": "Sovereign",
+                "manifold_search_terms": ["US debt ceiling May 2023"],
+            }
+        ]
+        catalog_rows = [
+            {
+                "market_id": "market-1",
+                "question": "Will the US debt ceiling be raised by the end of May 2023?",
+                "category_guess": "Sovereign",
+                "event_id_guess": "us_debt_ceiling_2023",
+                "pre_event_eligible": True,
+                "search_rank": 1,
+                "candidate_score": 12.0,
+                "status": "approved",
+                "reject_reason": "",
+            },
+            {
+                "market_id": "market-2",
+                "question": "Will the US debt ceiling be raised by the end of June 2023?",
+                "category_guess": "Sovereign",
+                "event_id_guess": "us_debt_ceiling_2023",
+                "pre_event_eligible": True,
+                "search_rank": 2,
+                "candidate_score": 11.0,
+                "status": "approved",
+                "reject_reason": "",
+            },
+        ]
+        shortlist = [
+            {
+                "event_id": "us_debt_ceiling_2023",
+                "market_id": "market-1",
+                "selection_reason": "primary approved proxy",
+            },
+            {
+                "event_id": "us_debt_ceiling_2023",
+                "market_id": "market-2",
+                "selection_reason": "secondary approved proxy",
+            },
+        ]
+        rows = build_selection_audit(seeds, catalog_rows, shortlist)
+        self.assertEqual(rows[0]["status"], "approved")
+        self.assertEqual(rows[0]["approved_market_count"], 2)
+        self.assertEqual(rows[0]["approved_market_ids"], "market-1 | market-2")
 
     @patch("cassandra_risk.discovery.candidate_history_summary")
     def test_apply_curated_decisions_rejects_post_event_market_even_if_shortlisted(self, mock_history) -> None:

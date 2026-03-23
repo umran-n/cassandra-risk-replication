@@ -29,37 +29,58 @@ def load_curated_shortlist(path: Path) -> list[dict]:
 
 
 def merge_seeds_with_shortlist(seeds: list[dict], shortlist: list[dict]) -> tuple[list[dict], list[dict]]:
-    merged = {seed["event_id"]: seed.copy() for seed in seeds}
-    merge_audit: list[dict] = []
-    approved_event_ids = {entry["event_id"] for entry in shortlist}
-
-    for seed in seeds:
-        if seed["event_id"] in approved_event_ids:
-            continue
-        merge_audit.append(
-            {
-                "event_id": seed["event_id"],
-                "merge_action": "manual_retained",
-                "source": seed["source"],
-                "market_id": seed.get("market_id"),
-                "selection_reason": "No approved curated shortlist entry for this event.",
-            }
-        )
-
+    seeds_by_event: dict[str, dict] = {seed["event_id"]: seed.copy() for seed in seeds}
+    shortlist_by_event: dict[str, list[dict]] = defaultdict(list)
     for entry in shortlist:
-        previous = merged.get(entry["event_id"])
-        merged[entry["event_id"]] = entry.copy()
-        merge_audit.append(
-            {
-                "event_id": entry["event_id"],
-                "merge_action": "replaced_existing_event" if previous is not None else "added_curated_event",
-                "source": entry["source"],
-                "market_id": entry.get("market_id"),
-                "selection_reason": entry.get("selection_reason", "Approved curated shortlist entry."),
-            }
-        )
+        shortlist_by_event[entry["event_id"]].append(entry.copy())
 
-    merged_rows = sorted(merged.values(), key=lambda item: item["event_id"])
+    merged_rows: list[dict] = []
+    merge_audit: list[dict] = []
+    base_event_ids = set(seeds_by_event)
+
+    for event_id, seed in sorted(seeds_by_event.items()):
+        approved_entries = shortlist_by_event.get(event_id, [])
+        if not approved_entries:
+            merged_rows.append(seed.copy())
+            merge_audit.append(
+                {
+                    "event_id": event_id,
+                    "merge_action": "manual_retained",
+                    "source": seed["source"],
+                    "market_id": seed.get("market_id"),
+                    "selection_reason": "No approved curated shortlist entry for this event.",
+                }
+            )
+            continue
+
+        for index, entry in enumerate(approved_entries):
+            merged_rows.append(entry.copy())
+            merge_audit.append(
+                {
+                    "event_id": event_id,
+                    "merge_action": "replaced_existing_event" if index == 0 else "added_parallel_proxy",
+                    "source": entry["source"],
+                    "market_id": entry.get("market_id"),
+                    "selection_reason": entry.get("selection_reason", "Approved curated shortlist entry."),
+                }
+            )
+
+    for event_id, approved_entries in sorted(shortlist_by_event.items()):
+        if event_id in base_event_ids:
+            continue
+        for index, entry in enumerate(approved_entries):
+            merged_rows.append(entry.copy())
+            merge_audit.append(
+                {
+                    "event_id": event_id,
+                    "merge_action": "added_curated_event" if index == 0 else "added_parallel_proxy",
+                    "source": entry["source"],
+                    "market_id": entry.get("market_id"),
+                    "selection_reason": entry.get("selection_reason", "Approved curated shortlist entry."),
+                }
+            )
+
+    merged_rows.sort(key=lambda item: (item["event_id"], item.get("market_id") or "", item["source"]))
     merge_audit.sort(key=lambda row: row["event_id"])
     return merged_rows, merge_audit
 

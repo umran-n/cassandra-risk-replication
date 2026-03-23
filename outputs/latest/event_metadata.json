@@ -43,9 +43,20 @@
     "analysis_bucket": "drawdown",
     "event_date": "2023-03-10"
   },
+  "china_taiwan_2024": {
+    "event_id": "china_taiwan_2024",
+    "question": "Will China inspecting ships in the Taiwan strait escalate to an armed conflict before 2024?",
+    "category": "Kinetic",
+    "source": "Manifold",
+    "resolution_date": "2024-08-05",
+    "resolved_outcome": "NO",
+    "provenance": "archive_recovered",
+    "analysis_bucket": "false_positive",
+    "event_date": "2024-08-05"
+  },
   "us_debt_ceiling_2023": {
     "event_id": "us_debt_ceiling_2023",
-    "question": "Will the US debt ceiling be raised by the end of May 2023?",
+    "question": "Will the US debt ceiling be raised by the end of June 2023? (M$10,000 subsidy)",
     "category": "Sovereign",
     "source": "Manifold",
     "resolution_date": "2023-05-31",
@@ -56,7 +67,7 @@
   },
   "oct_selloff_2023": {
     "event_id": "oct_selloff_2023",
-    "question": "Will the 10-year Treasury rate hit 5% by the end of 2023?",
+    "question": "Will the Real-time Sahm Rule Recession Indicator read above 0.5 percentage points by the end of 2023?",
     "category": "Monetary",
     "source": "Manifold",
     "resolution_date": "2023-10-27",
@@ -64,17 +75,6 @@
     "provenance": "archive_recovered",
     "analysis_bucket": "drawdown",
     "event_date": "2023-10-27"
-  },
-  "china_taiwan_2024": {
-    "event_id": "china_taiwan_2024",
-    "question": "[ACX 2024] Will there be 10 or more armed forces conflict deaths between China and Taiwan in 2024?",
-    "category": "Kinetic",
-    "source": "Manifold",
-    "resolution_date": "2024-08-05",
-    "resolved_outcome": "NO",
-    "provenance": "archive_recovered",
-    "analysis_bucket": "false_positive",
-    "event_date": "2024-08-05"
   },
   "aug_volatility_2024": {
     "event_id": "aug_volatility_2024",

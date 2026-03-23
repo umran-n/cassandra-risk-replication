@@ -67,5 +67,57 @@
     ],
     "selection_reason": "Approved pre-event Manifold proxy recovered during the V3 extension.",
     "paper_peak_probability": 0.38
+  },
+  {
+    "market_id": "3szs86zpyB4QQY4zzP2S",
+    "question": "Will the US debt ceiling be raised by the end of June 2023? (M$10,000 subsidy)",
+    "source": "Manifold",
+    "category": "Sovereign",
+    "event_id": "us_debt_ceiling_2023",
+    "event_date": "2023-05-31",
+    "resolution_date": "2023-05-31",
+    "resolved_outcome": "NO",
+    "analysis_bucket": "false_positive",
+    "provenance": "archive_recovered",
+    "search_terms": [
+      "US debt ceiling May 2023",
+      "US debt ceiling 2023"
+    ],
+    "selection_reason": "Approved during the V4.1 shortlist expansion as an additional pre-event debt-ceiling proxy.",
+    "paper_peak_probability": 0.55
+  },
+  {
+    "market_id": "bB0Zbz10f5aqWn3JIAju",
+    "question": "Will China inspecting ships in the Taiwan strait escalate to an armed conflict before 2024?",
+    "source": "Manifold",
+    "category": "Kinetic",
+    "event_id": "china_taiwan_2024",
+    "event_date": "2024-08-05",
+    "resolution_date": "2024-08-05",
+    "resolved_outcome": "NO",
+    "analysis_bucket": "false_positive",
+    "provenance": "archive_recovered",
+    "search_terms": [
+      "China Taiwan armed conflict 2024"
+    ],
+    "selection_reason": "Approved during the V4.1 shortlist expansion as an additional pre-event China-Taiwan proxy.",
+    "paper_peak_probability": 0.38
+  },
+  {
+    "market_id": "rK52OtlkjovFyTcxPrxJ",
+    "question": "Will the Real-time Sahm Rule Recession Indicator read above 0.5 percentage points by the end of 2023?",
+    "source": "Manifold",
+    "category": "Monetary",
+    "event_id": "oct_selloff_2023",
+    "event_date": "2023-10-27",
+    "resolution_date": "2023-10-27",
+    "resolved_outcome": "YES",
+    "analysis_bucket": "drawdown",
+    "provenance": "archive_recovered",
+    "search_terms": [
+      "10 year treasury 5% end of 2023"
+    ],
+    "selection_reason": "Approved during the V4.1 shortlist expansion as an additional pre-event higher-for-longer proxy.",
+    "paper_peak_probability": 0.31
   }
 ]

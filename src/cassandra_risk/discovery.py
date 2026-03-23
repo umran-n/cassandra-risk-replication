@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import math
 import re
+from collections import defaultdict
 from pathlib import Path
 
 from .clients import fetch_manifold_bets, fetch_manifold_search_markets
@@ -385,31 +386,44 @@ def apply_curated_decisions(
 
 
 def build_selection_audit(seeds: list[dict], catalog_rows: list[dict], shortlist: list[dict]) -> list[dict]:
-    shortlist_by_event = {entry["event_id"]: entry for entry in shortlist}
+    shortlist_by_event: dict[str, list[dict]] = defaultdict(list)
+    for entry in shortlist:
+        shortlist_by_event[entry["event_id"]].append(entry)
     rows: list[dict] = []
     for seed in seeds:
         linked = [row for row in catalog_rows if row.get("event_id_guess") == seed["event_id"]]
         linked.sort(key=lambda row: (-row["candidate_score"], row["search_rank"]))
-        approved = shortlist_by_event.get(seed["event_id"])
+        approved_entries = shortlist_by_event.get(seed["event_id"], [])
         top = linked[0] if linked else None
-        if approved is not None:
+        if approved_entries:
             status = "approved"
-            approved_market_id = approved["market_id"]
-            selection_reason = approved.get("selection_reason", "")
+            approved_market_id = approved_entries[0]["market_id"]
+            approved_market_ids = " | ".join(entry["market_id"] for entry in approved_entries)
+            approved_market_count = len(approved_entries)
+            selection_reason = " || ".join(
+                f"{entry['market_id']}: {entry.get('selection_reason', '')}".strip()
+                for entry in approved_entries
+            )
             rejection_reason = ""
         elif not linked:
             status = "no_candidates"
             approved_market_id = None
+            approved_market_ids = ""
+            approved_market_count = 0
             selection_reason = ""
             rejection_reason = "no_candidates_found_for_event"
         elif any(row["status"] == "pending" for row in linked):
             status = "pending"
             approved_market_id = None
+            approved_market_ids = ""
+            approved_market_count = 0
             selection_reason = ""
             rejection_reason = top["reject_reason"] or "requires_manual_review"
         else:
             status = "rejected"
             approved_market_id = None
+            approved_market_ids = ""
+            approved_market_count = 0
             selection_reason = ""
             rejection_reason = top["reject_reason"] or "all_candidates_rejected"
         rows.append(
@@ -419,6 +433,8 @@ def build_selection_audit(seeds: list[dict], catalog_rows: list[dict], shortlist
                 "search_terms": " | ".join(seed.get("manifold_search_terms", [])),
                 "candidate_count": len(linked),
                 "approved_market_id": approved_market_id,
+                "approved_market_ids": approved_market_ids,
+                "approved_market_count": approved_market_count,
                 "top_market_id": top["market_id"] if top else None,
                 "top_question": top["question"] if top else None,
                 "category_guess": top["category_guess"] if top else None,
