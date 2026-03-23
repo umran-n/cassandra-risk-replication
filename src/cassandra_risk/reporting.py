@@ -39,7 +39,8 @@ def render_report(
         "cagr",
         "total_return",
         "volatility",
-        "max_drawdown",
+        "max_drawdown_daily",
+        "max_drawdown_monthly",
         "downside_deviation",
         "cvar_95",
         "avg_position"
@@ -66,17 +67,29 @@ def render_report(
         reconstructed = row["reconstructed"]
         paper = row["paper"]
         delta = row["delta"]
+        if paper is None:
+            paper_rendered = "n/a"
+            delta_rendered = "n/a"
+        elif metric in percentage_metrics:
+            paper_rendered = as_pct(paper)
+            delta_rendered = as_pct(delta)
+        elif "days" in metric:
+            paper_rendered = str(int(round(paper)))
+            delta_rendered = f"{delta:.1f}"
+        else:
+            paper_rendered = as_num(paper)
+            delta_rendered = as_num(delta)
         if metric in percentage_metrics:
             lines.append(
-                f"| {row['strategy']} | {metric} | {as_pct(reconstructed)} | {as_pct(paper)} | {as_pct(delta)} |"
+                f"| {row['strategy']} | {metric} | {as_pct(reconstructed)} | {paper_rendered} | {delta_rendered} |"
             )
         elif "days" in metric:
             lines.append(
-                f"| {row['strategy']} | {metric} | {int(round(reconstructed))} | {int(round(paper))} | {delta:.1f} |"
+                f"| {row['strategy']} | {metric} | {int(round(reconstructed))} | {paper_rendered} | {delta_rendered} |"
             )
         else:
             lines.append(
-                f"| {row['strategy']} | {metric} | {as_num(reconstructed)} | {as_num(paper)} | {as_num(delta)} |"
+                f"| {row['strategy']} | {metric} | {as_num(reconstructed)} | {paper_rendered} | {delta_rendered} |"
             )
     lines.append("")
     lines.append("## Robustness view")

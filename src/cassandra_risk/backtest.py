@@ -129,8 +129,25 @@ def max_drawdown(equity: list[float]) -> float:
     return worst
 
 
-def downside_deviation(returns: list[float]) -> float:
-    downside = [min(value, 0.0) for value in returns[1:]]
+def annual_to_daily_rate(annual_rate: float) -> float:
+    return (1.0 + annual_rate) ** (1.0 / TRADING_DAYS) - 1.0
+
+
+def monthly_resampled_equity(dates: list[str], equity: list[float]) -> list[float]:
+    by_month: dict[str, float] = {}
+    ordered_months: list[str] = []
+    for day, value in zip(dates, equity):
+        month_key = day[:7]
+        if month_key not in by_month:
+            ordered_months.append(month_key)
+        by_month[month_key] = value
+    return [by_month[month_key] for month_key in ordered_months]
+
+
+def downside_deviation(returns: list[float], target_returns: list[float] | None = None) -> float:
+    if target_returns is None:
+        target_returns = [0.0] * len(returns)
+    downside = [min(value - target_returns[idx], 0.0) for idx, value in enumerate(returns[1:], start=1)]
     if not downside:
         return 0.0
     squared = sum(value * value for value in downside) / len(downside)
@@ -160,26 +177,36 @@ def count_cash_days(positions: list[float], threshold: float = 0.1) -> tuple[int
     return total, longest
 
 
-def summarize_strategy(result: dict) -> dict:
+def summarize_strategy(result: dict, risk_free_annual_rates: list[float] | None = None) -> dict:
     returns = result["daily_returns"]
     equity = result["equity"]
     positions = result["positions"]
+    dates = result.get("dates")
     total_return = equity[-1] - 1.0
     periods = max(len(returns) - 1, 1)
     cagr = equity[-1] ** (TRADING_DAYS / periods) - 1.0
     vol = stddev(returns[1:]) * math.sqrt(TRADING_DAYS)
     avg_daily = mean(returns[1:])
     sharpe = 0.0 if vol == 0 else (avg_daily * TRADING_DAYS) / vol
-    dd = downside_deviation(returns)
-    sortino = 0.0 if dd == 0 else (avg_daily * TRADING_DAYS) / dd
-    mdd = max_drawdown(equity)
-    calmar = 0.0 if mdd == 0 else cagr / abs(mdd)
+    if risk_free_annual_rates is None:
+        risk_free_annual_rates = [0.0] * len(returns)
+    risk_free_daily_rates = [annual_to_daily_rate(value) for value in risk_free_annual_rates]
+    avg_excess_daily = mean(
+        [returns[idx] - risk_free_daily_rates[idx] for idx in range(1, len(returns))]
+    )
+    dd = downside_deviation(returns, risk_free_daily_rates)
+    sortino = 0.0 if dd == 0 else (avg_excess_daily * TRADING_DAYS) / dd
+    mdd_daily = max_drawdown(equity)
+    mdd_monthly = mdd_daily if dates is None else max_drawdown(monthly_resampled_equity(dates, equity))
+    calmar = 0.0 if mdd_daily == 0 else cagr / abs(mdd_daily)
     cash_days, longest_cash = count_cash_days(positions)
     return {
         "cagr": cagr,
         "total_return": total_return,
         "volatility": vol,
-        "max_drawdown": mdd,
+        "max_drawdown": mdd_daily,
+        "max_drawdown_daily": mdd_daily,
+        "max_drawdown_monthly": mdd_monthly,
         "downside_deviation": dd,
         "cvar_95": cvar_95(returns),
         "sharpe": sharpe,
@@ -197,7 +224,8 @@ def metrics_table(results: dict[str, dict]) -> list[dict]:
         "cagr",
         "total_return",
         "volatility",
-        "max_drawdown",
+        "max_drawdown_daily",
+        "max_drawdown_monthly",
         "downside_deviation",
         "cvar_95",
         "sharpe",
@@ -224,16 +252,23 @@ def compare_to_paper(results: dict[str, dict], paper_metrics: dict) -> list[dict
     }
     for strategy, paper_key in mapping.items():
         for metric, value in results[strategy].items():
-            if metric not in paper_metrics[paper_key]:
+            if metric == "max_drawdown":
                 continue
-            paper_value = paper_metrics[paper_key][metric]
+            if metric == "max_drawdown_daily":
+                paper_value = None
+            elif metric == "max_drawdown_monthly":
+                paper_value = paper_metrics[paper_key].get("max_drawdown")
+            elif metric not in paper_metrics[paper_key]:
+                continue
+            else:
+                paper_value = paper_metrics[paper_key][metric]
             rows.append(
                 {
                     "strategy": strategy,
                     "metric": metric,
                     "reconstructed": value,
                     "paper": paper_value,
-                    "delta": value - paper_value
+                    "delta": None if paper_value is None else value - paper_value
                 }
             )
     return rows
@@ -243,7 +278,8 @@ def bootstrap_confidence_intervals(
     strategy_returns: dict[str, list[float]],
     block_size: int,
     resamples: int,
-    seed: int
+    seed: int,
+    risk_free_annual_rates: list[float] | None = None
 ) -> list[dict]:
     rng = random.Random(seed)
     strategy_names = list(strategy_returns.keys())
@@ -258,6 +294,11 @@ def bootstrap_confidence_intervals(
             block_start = rng.randint(1, max(1, observations - block_size))
             sample_indices.extend(range(block_start, min(block_start + block_size, observations)))
         sample_indices = sample_indices[:observations]
+        sampled_risk_free = None
+        if risk_free_annual_rates is not None:
+            sampled_risk_free = [risk_free_annual_rates[0]] + [
+                risk_free_annual_rates[idx] for idx in sample_indices[1:]
+            ]
         for strategy in strategy_names:
             sampled = [0.0] + [strategy_returns[strategy][idx] for idx in sample_indices[1:]]
             equity = [1.0]
@@ -268,7 +309,8 @@ def bootstrap_confidence_intervals(
                     "daily_returns": sampled,
                     "equity": equity,
                     "positions": [1.0] * len(sampled)
-                }
+                },
+                sampled_risk_free,
             )
             for metric in ("cagr", "max_drawdown", "sharpe", "sortino", "cvar_95"):
                 metrics[strategy][metric].append(summary[metric])

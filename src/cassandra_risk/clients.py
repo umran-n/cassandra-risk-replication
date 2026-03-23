@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import csv
+import io
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -87,3 +89,29 @@ def fetch_manifold_bets(market_id: str, raw_dir: Path, refresh: bool = False) ->
     with output_path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)
     return payload
+
+
+def fetch_fred_tb3ms(raw_dir: Path, refresh: bool = False) -> list[dict]:
+    output_path = raw_dir / "fred_tb3ms.json"
+    if output_path.exists() and not refresh:
+        with output_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+
+    request = urllib.request.Request(
+        "https://fred.stlouisfed.org/graph/fredgraph.csv?id=TB3MS",
+        headers={"User-Agent": USER_AGENT, "Accept": "text/csv"},
+    )
+    with urllib.request.urlopen(request, timeout=30) as response:
+        body = response.read().decode("utf-8")
+
+    rows = []
+    for row in csv.DictReader(io.StringIO(body)):
+        value = row.get("TB3MS", ".")
+        if not value or value == ".":
+            continue
+        rows.append({"date": row["DATE"], "annual_rate": float(value) / 100.0})
+
+    ensure_dir(output_path.parent)
+    with output_path.open("w", encoding="utf-8") as handle:
+        json.dump(rows, handle, indent=2)
+    return rows

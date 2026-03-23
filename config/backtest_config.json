@@ -14,6 +14,10 @@
     "lookback_days": 21,
     "max_position": 1.0
   },
+  "risk_free_rate": {
+    "fred_series": "TB3MS",
+    "fallback_annual_rate": 0.0431
+  },
   "cassandra": {
     "base_exposure": 1.0,
     "horizon_normalizer_days": 30,
@@ -28,9 +32,9 @@
     },
     "category_lambdas": {
       "Kinetic": 0.1,
-      "Sovereign": 0.1,
-      "Trade": 0.1,
-      "Monetary": 0.1,
+      "Sovereign": 0.15,
+      "Trade": 0.12,
+      "Monetary": 0.12,
       "Technology": 0.1,
       "None": 0.0
     },
