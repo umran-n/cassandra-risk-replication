@@ -1,5 +1,5 @@
 - The current curated shortlist has 7 approved Manifold markets. Hypothesis: the remaining divergence versus the paper is still dominated by incomplete public event coverage rather than by arithmetic or risk-free-rate conventions.
 - 5 event definitions are still retained from manual/paper seeds. Hypothesis: these unresolved events are where the biggest remaining gap in false-positive drag and de-risking behavior still lives.
 - The shortlist and override workflow should reduce discretionary event selection over time. Hypothesis: as the catalog grows, Cassandra's exposure path should become more realistic even if headline returns decline.
-- Cassandra average position moved from 78.90% in V2 to 78.90% in V3. Hypothesis: the extra Manifold coverage changes the path, but not enough to close the gap to the paper's 73% average exposure.
+- Cassandra average position moved from 78.72% in V2 to 78.72% in V3. Hypothesis: the extra Manifold coverage changes the path, but not enough to close the gap to the paper's 73% average exposure.
 - Sortino in V2/V3 uses fallback 4.31% annualized. Hypothesis for any remaining Sortino gap: the paper may still be using different excess-return timing or monthly aggregation conventions than this daily implementation.

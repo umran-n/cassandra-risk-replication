@@ -11,10 +11,54 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from cassandra_risk.backtest import compute_cassandra_signal, compute_vol_target_positions, simulate_strategy
-from cassandra_risk.events import resolve_event_sources
+from cassandra_risk.events import aggregate_daily_probabilities, resolve_event_sources
 
 
 class BacktestTests(unittest.TestCase):
+    def test_aggregate_daily_probabilities_defaults_to_weighted_average(self) -> None:
+        rows = [
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.2,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.25,
+            },
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.8,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.5,
+            },
+        ]
+        daily = aggregate_daily_probabilities(rows)
+        self.assertAlmostEqual(daily["2024-01-02"]["event-1"]["probability"], 0.4, places=6)
+
+    def test_aggregate_daily_probabilities_supports_max_mode(self) -> None:
+        rows = [
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.2,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.25,
+            },
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.8,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.5,
+            },
+        ]
+        daily = aggregate_daily_probabilities(rows, {"cassandra": {"multi_proxy_aggregation": "max"}})
+        self.assertAlmostEqual(daily["2024-01-02"]["event-1"]["probability"], 0.8, places=6)
+
     def test_rsi_matches_paper_example(self) -> None:
         config = {
             "cassandra": {

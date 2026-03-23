@@ -21,6 +21,7 @@
   "cassandra": {
     "base_exposure": 1.0,
     "horizon_normalizer_days": 30,
+    "multi_proxy_aggregation": "max",
     "rebalancing_thresholds": [0.8, 0.5, 0.3],
     "category_weights": {
       "Kinetic": 10.0,

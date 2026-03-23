@@ -8,19 +8,19 @@ This run uses Yahoo Finance SPY prices, recovered Manifold market histories wher
 
 | Metric | Buy & Hold | Vol Target | Cassandra |
 | --- | ---: | ---: | ---: |
-| cagr | 13.99% | 11.46% | 15.95% |
-| total_return | 92.73% | 72.22% | 109.98% |
+| cagr | 13.99% | 11.46% | 15.99% |
+| total_return | 92.73% | 72.22% | 110.31% |
 | volatility | 20.97% | 12.09% | 14.43% |
 | max_drawdown_daily | -33.72% | -15.14% | -20.27% |
 | max_drawdown_monthly | -23.93% | -14.78% | -19.67% |
-| downside_deviation | 15.13% | 8.80% | 10.07% |
+| downside_deviation | 15.13% | 8.80% | 10.06% |
 | cvar_95 | -3.18% | -1.81% | -2.12% |
-| sharpe | 0.730 | 0.958 | 1.098 |
-| sortino | 0.733 | 0.836 | 1.155 |
-| calmar | 0.415 | 0.757 | 0.787 |
-| avg_position | 100.00% | 77.29% | 78.90% |
-| days_in_90pct_cash | 0 | 0 | 2 |
-| max_consecutive_cash_days | 0 | 0 | 1 |
+| sharpe | 0.730 | 0.958 | 1.101 |
+| sortino | 0.733 | 0.836 | 1.159 |
+| calmar | 0.415 | 0.757 | 0.789 |
+| avg_position | 100.00% | 77.29% | 78.72% |
+| days_in_90pct_cash | 0 | 0 | 5 |
+| max_consecutive_cash_days | 0 | 0 | 4 |
 
 ## Paper comparison
 
@@ -52,28 +52,28 @@ This run uses Yahoo Finance SPY prices, recovered Manifold market histories wher
 | vol_target | avg_position | 77.29% | 82.00% | -4.71% |
 | vol_target | days_in_90pct_cash | 0 | 12 | -12.0 |
 | vol_target | max_consecutive_cash_days | 0 | 31 | -31.0 |
-| cassandra | cagr | 15.95% | 10.90% | 5.05% |
-| cassandra | total_return | 109.98% | 67.30% | 42.68% |
+| cassandra | cagr | 15.99% | 10.90% | 5.09% |
+| cassandra | total_return | 110.31% | 67.30% | 43.01% |
 | cassandra | volatility | 14.43% | 14.80% | -0.37% |
 | cassandra | max_drawdown_daily | -20.27% | n/a | n/a |
 | cassandra | max_drawdown_monthly | -19.67% | -14.10% | -5.57% |
-| cassandra | downside_deviation | 10.07% | 8.70% | 1.37% |
+| cassandra | downside_deviation | 10.06% | 8.70% | 1.36% |
 | cassandra | cvar_95 | -2.12% | -1.80% | -0.32% |
-| cassandra | sharpe | 1.098 | 0.680 | 0.418 |
-| cassandra | sortino | 1.155 | 0.920 | 0.235 |
-| cassandra | calmar | 0.787 | 0.770 | 0.017 |
-| cassandra | avg_position | 78.90% | 73.00% | 5.90% |
-| cassandra | days_in_90pct_cash | 2 | 48 | -46.0 |
-| cassandra | max_consecutive_cash_days | 1 | 57 | -56.0 |
+| cassandra | sharpe | 1.101 | 0.680 | 0.421 |
+| cassandra | sortino | 1.159 | 0.920 | 0.239 |
+| cassandra | calmar | 0.789 | 0.770 | 0.019 |
+| cassandra | avg_position | 78.72% | 73.00% | 5.72% |
+| cassandra | days_in_90pct_cash | 5 | 48 | -43.0 |
+| cassandra | max_consecutive_cash_days | 4 | 57 | -53.0 |
 | cassandra | paranoia_tax | 0.020 | -0.012 | 0.032 |
 
 ## Robustness view
 
 | Scenario | CAGR | Max Drawdown | Sortino | Avg Position |
 | --- | ---: | ---: | ---: | ---: |
-| lower_hazard | 15.84% | -20.51% | 1.139 | 78.99% |
-| base | 15.95% | -20.27% | 1.155 | 78.90% |
-| higher_hazard | 16.05% | -20.08% | 1.168 | 78.87% |
+| lower_hazard | 15.87% | -20.51% | 1.142 | 78.82% |
+| base | 15.99% | -20.27% | 1.159 | 78.72% |
+| higher_hazard | 16.09% | -20.08% | 1.172 | 78.68% |
 
 ## Bootstrap confidence intervals
 
@@ -89,10 +89,10 @@ This run uses Yahoo Finance SPY prices, recovered Manifold market histories wher
 | vol_target | sharpe | 0.167 | 1.876 |
 | vol_target | sortino | -0.226 | 2.174 |
 | vol_target | cvar_95 | -2.04% | -1.59% |
-| cassandra | cagr | 4.34% | 30.13% |
-| cassandra | max_drawdown | -0.293 | -0.100 |
-| cassandra | sharpe | 0.357 | 1.928 |
-| cassandra | sortino | 0.105 | 2.455 |
+| cassandra | cagr | 4.37% | 30.19% |
+| cassandra | max_drawdown | -0.293 | -0.099 |
+| cassandra | sharpe | 0.362 | 1.932 |
+| cassandra | sortino | 0.108 | 2.460 |
 | cassandra | cvar_95 | -2.43% | -1.80% |
 
 ## Brier score summary
@@ -112,12 +112,12 @@ This run uses Yahoo Finance SPY prices, recovered Manifold market histories wher
 | china_taiwan_2024 | false_positive | 4.53% | 46.08% | -53.92% | 3.07% | 1.53% |
 | china_taiwan_2024 | false_positive | 4.53% | 46.08% | -53.92% | 3.07% | 1.53% |
 | eu_banking_contagion_2024 | false_positive | 29.00% | 27.46% | -72.54% | 1.67% | 1.04% |
-| oct_selloff_2023 | drawdown | 46.30% | 27.63% | -72.37% | 5.85% | 2.17% |
-| oct_selloff_2023 | drawdown | 46.30% | 27.63% | -72.37% | 5.85% | 2.17% |
+| oct_selloff_2023 | drawdown | 84.73% | 18.22% | -81.78% | 5.85% | 2.17% |
+| oct_selloff_2023 | drawdown | 84.73% | 18.22% | -81.78% | 5.85% | 2.17% |
 | svb_contagion_2023 | drawdown | 42.00% | 23.11% | -76.89% | 1.44% | 1.06% |
 | ukraine_invasion_2022 | drawdown | 98.24% | 9.27% | -90.73% | 1.73% | 1.99% |
-| us_debt_ceiling_2023 | false_positive | 99.34% | 9.51% | -90.49% | 2.08% | 1.79% |
-| us_debt_ceiling_2023 | false_positive | 99.34% | 9.51% | -90.49% | 2.08% | 1.79% |
+| us_debt_ceiling_2023 | false_positive | 99.34% | 9.51% | -90.49% | 2.08% | 1.93% |
+| us_debt_ceiling_2023 | false_positive | 99.34% | 9.51% | -90.49% | 2.08% | 1.93% |
 
 ## Replication gaps
 

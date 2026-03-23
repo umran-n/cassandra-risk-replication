@@ -251,7 +251,7 @@ def run_version(
     resolved_seeds, shortlist_merge_audit = merge_seeds_with_shortlist(base_seeds, shortlist)
     event_rows = build_event_panel(config, resolved_seeds, raw_dir, refresh=refresh)
     event_metadata = build_event_metadata(event_rows)
-    daily_events = aggregate_daily_probabilities(event_rows)
+    daily_events = aggregate_daily_probabilities(event_rows, config)
     risk_free_annual_rates, risk_free_source = risk_free_inputs(
         version,
         dates,

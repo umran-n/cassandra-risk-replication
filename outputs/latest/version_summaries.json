@@ -33,21 +33,21 @@
       "max_consecutive_cash_days": 0
     },
     "cassandra": {
-      "cagr": 0.15973054698897426,
-      "total_return": 1.1016076394874217,
-      "volatility": 0.1442000703121958,
+      "cagr": 0.16009857483743284,
+      "total_return": 1.1049523188626722,
+      "volatility": 0.1441339997086855,
       "max_drawdown": -0.2019439573136198,
       "max_drawdown_daily": -0.2019439573136198,
       "max_drawdown_monthly": -0.19592742374673466,
-      "downside_deviation": 0.09931736400028177,
+      "downside_deviation": 0.09926120523388868,
       "cvar_95": -0.021193504066815003,
-      "sharpe": 1.1000813580586222,
-      "sortino": 1.5972212993967412,
-      "calmar": 0.7909647266192376,
-      "avg_position": 0.7877126453428526,
-      "days_in_90pct_cash": 2,
-      "max_consecutive_cash_days": 1,
-      "paranoia_tax": 0.01986389395158561
+      "sharpe": 1.1027222077745678,
+      "sortino": 1.6012274080254378,
+      "calmar": 0.7927871522731382,
+      "avg_position": 0.7858972059855218,
+      "days_in_90pct_cash": 5,
+      "max_consecutive_cash_days": 4,
+      "paranoia_tax": 0.020231921800044184
     }
   },
   "v2": {
@@ -84,21 +84,21 @@
       "max_consecutive_cash_days": 0
     },
     "cassandra": {
-      "cagr": 0.1595361446647925,
-      "total_return": 1.099842606720808,
-      "volatility": 0.1443361536155104,
+      "cagr": 0.1598915438661317,
+      "total_return": 1.1030702737497355,
+      "volatility": 0.14426837076202592,
       "max_drawdown": -0.20268394783484522,
       "max_drawdown_daily": -0.20268394783484522,
       "max_drawdown_monthly": -0.19667299304635633,
-      "downside_deviation": 0.100683392116445,
+      "downside_deviation": 0.10062390582357889,
       "cvar_95": -0.021217647578943243,
-      "sharpe": 1.09801865134074,
-      "sortino": 1.154939305010912,
-      "calmar": 0.787117807645965,
-      "avg_position": 0.7890344342521883,
-      "days_in_90pct_cash": 2,
-      "max_consecutive_cash_days": 1,
-      "paranoia_tax": 0.019669491627403834
+      "sharpe": 1.1005922081044812,
+      "sortino": 1.158572229600253,
+      "calmar": 0.7888712726101899,
+      "avg_position": 0.7871953198365979,
+      "days_in_90pct_cash": 5,
+      "max_consecutive_cash_days": 4,
+      "paranoia_tax": 0.020024890828743036
     }
   },
   "v3": {
@@ -135,21 +135,21 @@
       "max_consecutive_cash_days": 0
     },
     "cassandra": {
-      "cagr": 0.1595361446647925,
-      "total_return": 1.099842606720808,
-      "volatility": 0.1443361536155104,
+      "cagr": 0.1598915438661317,
+      "total_return": 1.1030702737497355,
+      "volatility": 0.14426837076202592,
       "max_drawdown": -0.20268394783484522,
       "max_drawdown_daily": -0.20268394783484522,
       "max_drawdown_monthly": -0.19667299304635633,
-      "downside_deviation": 0.100683392116445,
+      "downside_deviation": 0.10062390582357889,
       "cvar_95": -0.021217647578943243,
-      "sharpe": 1.09801865134074,
-      "sortino": 1.154939305010912,
-      "calmar": 0.787117807645965,
-      "avg_position": 0.7890344342521883,
-      "days_in_90pct_cash": 2,
-      "max_consecutive_cash_days": 1,
-      "paranoia_tax": 0.019669491627403834
+      "sharpe": 1.1005922081044812,
+      "sortino": 1.158572229600253,
+      "calmar": 0.7888712726101899,
+      "avg_position": 0.7871953198365979,
+      "days_in_90pct_cash": 5,
+      "max_consecutive_cash_days": 4,
+      "paranoia_tax": 0.020024890828743036
     }
   }
 }

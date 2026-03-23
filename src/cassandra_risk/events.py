@@ -296,7 +296,10 @@ def build_search_audit_row(
     }
 
 
-def aggregate_daily_probabilities(rows: list[dict]) -> dict[str, dict[str, dict]]:
+def aggregate_daily_probabilities(rows: list[dict], config: dict | None = None) -> dict[str, dict[str, dict]]:
+    aggregation_mode = "weighted_average"
+    if config is not None:
+        aggregation_mode = config.get("cassandra", {}).get("multi_proxy_aggregation", aggregation_mode)
     grouped: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
         grouped[row["date"]][row["event_id"]].append(row)
@@ -305,15 +308,21 @@ def aggregate_daily_probabilities(rows: list[dict]) -> dict[str, dict[str, dict]
     for day, events in grouped.items():
         daily[day] = {}
         for event_id, event_rows in events.items():
-            numerator = 0.0
-            denominator = 0.0
-            for row in event_rows:
-                brier = max(float(row.get("source_brier", 0.25)), 1e-6)
-                weight = 1.0 / brier
-                numerator += weight * float(row["probability"])
-                denominator += weight
-            template = event_rows[0].copy()
-            template["probability"] = numerator / denominator if denominator else 0.0
+            if aggregation_mode == "max":
+                template = max(event_rows, key=lambda row: float(row["probability"])).copy()
+                template["probability"] = max(float(row["probability"]) for row in event_rows)
+            elif aggregation_mode == "weighted_average":
+                numerator = 0.0
+                denominator = 0.0
+                for row in event_rows:
+                    brier = max(float(row.get("source_brier", 0.25)), 1e-6)
+                    weight = 1.0 / brier
+                    numerator += weight * float(row["probability"])
+                    denominator += weight
+                template = event_rows[0].copy()
+                template["probability"] = numerator / denominator if denominator else 0.0
+            else:
+                raise ValueError(f"Unsupported multi_proxy_aggregation mode: {aggregation_mode}")
             daily[day][event_id] = template
     return daily
 
