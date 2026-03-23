@@ -1,0 +1,101 @@
+{
+  "covid_crash_2020": {
+    "event_id": "covid_crash_2020",
+    "question": "Will COVID-19 trigger a global market panic by March 2020?",
+    "category": "Sovereign",
+    "source": "Manual",
+    "resolution_date": "2020-03-16",
+    "resolved_outcome": "YES",
+    "provenance": "manual_reconstructed",
+    "analysis_bucket": "background",
+    "event_date": "2020-03-16"
+  },
+  "ukraine_invasion_2022": {
+    "event_id": "ukraine_invasion_2022",
+    "question": "Will Russia invade any parts of Ukraine besides Donetsk and Luhansk oblast before March 8?",
+    "category": "Kinetic",
+    "source": "Manifold",
+    "resolution_date": "2022-02-24",
+    "resolved_outcome": "YES",
+    "provenance": "archive_recovered",
+    "analysis_bucket": "drawdown",
+    "event_date": "2022-02-24"
+  },
+  "rate_hike_shock_2022": {
+    "event_id": "rate_hike_shock_2022",
+    "question": "Will aggressive Fed tightening trigger an equity selloff by mid-2022?",
+    "category": "Monetary",
+    "source": "Manual",
+    "resolution_date": "2022-06-15",
+    "resolved_outcome": "YES",
+    "provenance": "manual_reconstructed",
+    "analysis_bucket": "background",
+    "event_date": "2022-06-15"
+  },
+  "svb_contagion_2023": {
+    "event_id": "svb_contagion_2023",
+    "question": "Will a major US bank failure trigger a March 2023 equity drawdown?",
+    "category": "Sovereign",
+    "source": "Manual",
+    "resolution_date": "2023-03-10",
+    "resolved_outcome": "YES",
+    "provenance": "manual_reconstructed",
+    "analysis_bucket": "drawdown",
+    "event_date": "2023-03-10"
+  },
+  "us_debt_ceiling_2023": {
+    "event_id": "us_debt_ceiling_2023",
+    "question": "Will the US debt ceiling be raised by the end of May 2023?",
+    "category": "Sovereign",
+    "source": "Manifold",
+    "resolution_date": "2023-05-31",
+    "resolved_outcome": "NO",
+    "provenance": "archive_recovered",
+    "analysis_bucket": "false_positive",
+    "event_date": "2023-05-31"
+  },
+  "oct_selloff_2023": {
+    "event_id": "oct_selloff_2023",
+    "question": "Will the 10-year Treasury rate hit 5% by the end of 2023?",
+    "category": "Monetary",
+    "source": "Manifold",
+    "resolution_date": "2023-10-27",
+    "resolved_outcome": "YES",
+    "provenance": "archive_recovered",
+    "analysis_bucket": "drawdown",
+    "event_date": "2023-10-27"
+  },
+  "china_taiwan_2024": {
+    "event_id": "china_taiwan_2024",
+    "question": "[ACX 2024] Will there be 10 or more armed forces conflict deaths between China and Taiwan in 2024?",
+    "category": "Kinetic",
+    "source": "Manifold",
+    "resolution_date": "2024-08-05",
+    "resolved_outcome": "NO",
+    "provenance": "archive_recovered",
+    "analysis_bucket": "false_positive",
+    "event_date": "2024-08-05"
+  },
+  "aug_volatility_2024": {
+    "event_id": "aug_volatility_2024",
+    "question": "Will the August 2024 volatility spike produce a short equity drawdown?",
+    "category": "Technology",
+    "source": "Manual",
+    "resolution_date": "2024-08-05",
+    "resolved_outcome": "YES",
+    "provenance": "manual_reconstructed",
+    "analysis_bucket": "drawdown",
+    "event_date": "2024-08-05"
+  },
+  "eu_banking_contagion_2024": {
+    "event_id": "eu_banking_contagion_2024",
+    "question": "Will EU banking contagion trigger a November 2024 equity drawdown?",
+    "category": "Sovereign",
+    "source": "Manual",
+    "resolution_date": "2024-11-15",
+    "resolved_outcome": "NO",
+    "provenance": "manual_reconstructed",
+    "analysis_bucket": "false_positive",
+    "event_date": "2024-11-15"
+  }
+}
