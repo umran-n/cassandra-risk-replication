@@ -1,0 +1,109 @@
+{
+  "sample": {
+    "start": "2020-01-01",
+    "end": "2025-01-10"
+  },
+  "market_data": {
+    "symbol": "SPY",
+    "provider": "Yahoo Finance",
+    "chart_url_template": "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?period1={period1}&period2={period2}&interval=1d&events=div%2Csplits&includeAdjustedClose=true"
+  },
+  "transaction_cost_bps": 5.0,
+  "vol_target": {
+    "target_vol": 0.12,
+    "lookback_days": 21,
+    "max_position": 1.0
+  },
+  "cassandra": {
+    "base_exposure": 1.0,
+    "horizon_normalizer_days": 30,
+    "rebalancing_thresholds": [0.8, 0.5, 0.3],
+    "category_weights": {
+      "Kinetic": 10.0,
+      "Sovereign": 8.0,
+      "Trade": 6.0,
+      "Monetary": 5.0,
+      "Technology": 3.0,
+      "None": 0.0
+    },
+    "category_lambdas": {
+      "Kinetic": 0.1,
+      "Sovereign": 0.1,
+      "Trade": 0.1,
+      "Monetary": 0.1,
+      "Technology": 0.1,
+      "None": 0.0
+    },
+    "source_brier_scores": {
+      "Manifold": 0.21,
+      "Manual": 0.25
+    },
+    "robustness_scenarios": [
+      {
+        "name": "lower_hazard",
+        "lambda_scale": 0.5,
+        "probability_scale": 0.85
+      },
+      {
+        "name": "base",
+        "lambda_scale": 1.0,
+        "probability_scale": 1.0
+      },
+      {
+        "name": "higher_hazard",
+        "lambda_scale": 1.5,
+        "probability_scale": 1.15
+      }
+    ]
+  },
+  "bootstrap": {
+    "block_size": 21,
+    "resamples": 10000,
+    "seed": 20260323
+  },
+  "paper_metrics": {
+    "buy_and_hold": {
+      "cagr": 0.123,
+      "total_return": 0.782,
+      "volatility": 0.182,
+      "max_drawdown": -0.254,
+      "downside_deviation": 0.131,
+      "cvar_95": -0.032,
+      "sharpe": 0.45,
+      "sortino": 0.61,
+      "calmar": 0.48,
+      "avg_position": 1.0,
+      "days_in_90pct_cash": 0,
+      "max_consecutive_cash_days": 0
+    },
+    "vol_target": {
+      "cagr": 0.101,
+      "total_return": 0.615,
+      "volatility": 0.125,
+      "max_drawdown": -0.182,
+      "downside_deviation": 0.092,
+      "cvar_95": -0.021,
+      "sharpe": 0.52,
+      "sortino": 0.74,
+      "calmar": 0.55,
+      "avg_position": 0.82,
+      "days_in_90pct_cash": 12,
+      "max_consecutive_cash_days": 31
+    },
+    "cassandra": {
+      "cagr": 0.109,
+      "total_return": 0.673,
+      "volatility": 0.148,
+      "max_drawdown": -0.141,
+      "downside_deviation": 0.087,
+      "cvar_95": -0.018,
+      "sharpe": 0.68,
+      "sortino": 0.92,
+      "calmar": 0.77,
+      "avg_position": 0.73,
+      "days_in_90pct_cash": 48,
+      "max_consecutive_cash_days": 57,
+      "paranoia_tax": -0.012
+    }
+  }
+}
