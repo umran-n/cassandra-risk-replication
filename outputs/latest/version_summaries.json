@@ -33,21 +33,21 @@
       "max_consecutive_cash_days": 0
     },
     "cassandra": {
-      "cagr": 0.1887777634608072,
-      "total_return": 1.3790163122100592,
-      "volatility": 0.1492448743514962,
+      "cagr": 0.17880545476129983,
+      "total_return": 1.2806633614418201,
+      "volatility": 0.1475482414853936,
       "max_drawdown": -0.2019439573136198,
       "max_drawdown_daily": -0.2019439573136198,
       "max_drawdown_monthly": -0.19592742374673466,
-      "downside_deviation": 0.10228343127469428,
-      "cvar_95": -0.02149199281861703,
-      "sharpe": 1.2337187920136377,
-      "sortino": 1.8001567194657586,
-      "calmar": 0.9348027342439099,
-      "avg_position": 0.8746278584153167,
+      "downside_deviation": 0.10119126114168628,
+      "cvar_95": -0.021236271863666358,
+      "sharpe": 1.1890605278338144,
+      "sortino": 1.7337840038965404,
+      "calmar": 0.8854211690207409,
+      "avg_position": 0.8401315936288738,
       "days_in_90pct_cash": 1,
       "max_consecutive_cash_days": 1,
-      "paranoia_tax": 0.04891111042341856
+      "paranoia_tax": 0.038938801723911176
     }
   },
   "v2": {
@@ -84,21 +84,21 @@
       "max_consecutive_cash_days": 0
     },
     "cassandra": {
-      "cagr": 0.18839833377006432,
-      "total_return": 1.3752130802790523,
-      "volatility": 0.14936610691944358,
+      "cagr": 0.17843923814756701,
+      "total_return": 1.2771144982652305,
+      "volatility": 0.14766587315090726,
       "max_drawdown": -0.20268394783484522,
       "max_drawdown_daily": -0.20268394783484522,
       "max_drawdown_monthly": -0.19667299304635633,
-      "downside_deviation": 0.10367045909934358,
-      "cvar_95": -0.02151676887966545,
-      "sharpe": 1.230700512024127,
-      "sortino": 1.3661014302405263,
-      "calmar": 0.9295177826493621,
-      "avg_position": 0.8754459768350689,
+      "downside_deviation": 0.10256815802964292,
+      "cvar_95": -0.021260415375794595,
+      "sharpe": 1.18612588474567,
+      "sortino": 1.2962086399556272,
+      "calmar": 0.8803816979772184,
+      "avg_position": 0.8408894064296923,
       "days_in_90pct_cash": 1,
       "max_consecutive_cash_days": 1,
-      "paranoia_tax": 0.048531680732675664
+      "paranoia_tax": 0.03857258511017836
     }
   },
   "v3": {

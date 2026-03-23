@@ -29,7 +29,8 @@ from cassandra_risk.events import (  # noqa: E402
     aggregate_daily_probabilities,
     build_event_metadata,
     build_event_panel,
-    resolve_event_sources,
+    load_curated_shortlist,
+    merge_seeds_with_shortlist,
 )
 from cassandra_risk.reporting import render_report  # noqa: E402
 from cassandra_risk.utils import ensure_dir, parse_date, write_csv, write_json  # noqa: E402
@@ -93,31 +94,30 @@ def risk_free_inputs(
     return [fallback_annual_rate] * len(dates), "fallback 4.31% annualized"
 
 
-def build_replication_gaps(search_audit_rows: list[dict]) -> list[str]:
-    selected = sum(1 for row in search_audit_rows if row["replacement_status"] == "selected_pre_event_manifold_proxy")
-    post_event_rejects = sum(1 for row in search_audit_rows if row["replacement_status"] == "post_event_market_rejected")
-    no_match = sum(1 for row in search_audit_rows if row["replacement_status"] == "no_manifold_match")
-    reviewed_manual = sum(1 for row in search_audit_rows if row["replacement_status"] == "search_results_reviewed_manual_kept")
+def build_replication_gaps(shortlist: list[dict], merge_audit_rows: list[dict]) -> list[str]:
+    approved_count = len(shortlist)
+    replaced = sum(1 for row in merge_audit_rows if row["merge_action"] == "replaced_existing_event")
+    retained = sum(1 for row in merge_audit_rows if row["merge_action"] == "manual_retained")
     return [
         (
-            f"V3 searched all nine kill-list events through Manifold and upgraded {selected} manual reconstructions to "
-            "public market histories, but several events still have no clean public market coverage."
+            f"The curated Manifold shortlist currently contains {approved_count} approved markets and replaces {replaced} "
+            "paper/manual event definitions in the backtest event panel."
         ),
         (
-            f"{post_event_rejects} candidate markets were intentionally rejected because they were created only after the "
-            "target event window had already started, which would otherwise introduce look-ahead bias."
+            "The shortlist is semi-automatic rather than fully automatic: discovery and scoring are systematic, but approval "
+            "still happens through checked-in curated review files."
         ),
         (
-            "The 2020 COVID crash and the mid-2022 rate-hike shock remain manually reconstructed because public Manifold "
-            "coverage for those windows was not recoverable via search."
+            f"{retained} event definitions still come directly from paper/manual seeds because they do not yet have an approved "
+            "curated Manifold replacement."
         ),
         (
-            f"{no_match} kill-list events returned no usable Manifold match at all, and another {reviewed_manual} returned "
-            "search hits that were judged too weak or off-target to replace the manual series."
+            "Catalog review decisions remain deterministic and auditable through the curated shortlist and override files, "
+            "with no LLM dependency in the selection loop."
         ),
         (
-            "Even with broader Manifold coverage, the paper's full historical event panel remains unpublished, so the "
-            "public replication can only approximate the production Cassandra signal rather than exactly reproduce it."
+            "The paper's full production event universe remains unpublished, so even the improved public Manifold pipeline "
+            "still approximates, rather than exactly reproduces, the live Cassandra framework."
         ),
     ]
 
@@ -201,27 +201,25 @@ def render_version_markdown(path: Path, rows: list[dict]) -> None:
 def build_gap_hypotheses(
     v2_summary: dict,
     v3_summary: dict,
-    search_audit_rows: list[dict],
+    shortlist: list[dict],
+    merge_audit_rows: list[dict],
     risk_free_source: str,
 ) -> list[str]:
-    selected = sum(1 for row in search_audit_rows if row["replacement_status"] == "selected_pre_event_manifold_proxy")
-    post_event_rejects = sum(1 for row in search_audit_rows if row["replacement_status"] == "post_event_market_rejected")
-    no_match = sum(1 for row in search_audit_rows if row["replacement_status"] == "no_manifold_match")
-    reviewed_manual = sum(1 for row in search_audit_rows if row["replacement_status"] == "search_results_reviewed_manual_kept")
+    approved_count = len(shortlist)
+    retained = sum(1 for row in merge_audit_rows if row["merge_action"] == "manual_retained")
     return [
         (
-            f"Only {selected} additional manual events were upgraded in V3. Hypothesis: the remaining divergence versus the "
-            "paper is still dominated by missing public event coverage rather than by arithmetic or risk-free-rate conventions."
+            f"The current curated shortlist has {approved_count} approved Manifold markets. Hypothesis: the remaining "
+            "divergence versus the paper is still dominated by incomplete public event coverage rather than by arithmetic or "
+            "risk-free-rate conventions."
         ),
         (
-            f"{post_event_rejects} candidate markets were found but rejected for being post-event. Hypothesis: public Manifold "
-            "coverage is often too late for fast-moving banking and crisis events, which leaves the replication underexposed to "
-            "the paper's intended forward-looking signal."
+            f"{retained} event definitions are still retained from manual/paper seeds. Hypothesis: these unresolved events are "
+            "where the biggest remaining gap in false-positive drag and de-risking behavior still lives."
         ),
         (
-            f"{no_match} kill-list events still have no usable Manifold match, and {reviewed_manual} more only returned weak "
-            "or off-target search hits. Hypothesis: the paper's production Dredger saw a broader event universe than what "
-            "survives in public Manifold search, so false positives and de-risking spells are still understated here."
+            "The shortlist and override workflow should reduce discretionary event selection over time. Hypothesis: as the "
+            "catalog grows, Cassandra's exposure path should become more realistic even if headline returns decline."
         ),
         (
             f"Cassandra average position moved from {v2_summary['cassandra']['avg_position'] * 100:.2f}% in V2 to "
@@ -239,6 +237,7 @@ def run_version(
     version: str,
     base_config: dict,
     base_seeds: list[dict],
+    shortlist: list[dict],
     dates: list[str],
     price_returns: list[float],
     price_rows: list[dict],
@@ -249,13 +248,7 @@ def run_version(
     fred_fetch_succeeded: bool,
 ) -> dict:
     config = configure_version(base_config, version)
-    enable_manifold_search = version == "v3"
-    resolved_seeds, search_audit_rows = resolve_event_sources(
-        base_seeds,
-        raw_dir,
-        refresh=refresh,
-        enable_manifold_search=enable_manifold_search,
-    )
+    resolved_seeds, shortlist_merge_audit = merge_seeds_with_shortlist(base_seeds, shortlist)
     event_rows = build_event_panel(config, resolved_seeds, raw_dir, refresh=refresh)
     event_metadata = build_event_metadata(event_rows)
     daily_events = aggregate_daily_probabilities(event_rows)
@@ -332,8 +325,9 @@ def run_version(
 
     return {
         "config": config,
+        "shortlist": shortlist,
         "resolved_seeds": resolved_seeds,
-        "search_audit_rows": search_audit_rows,
+        "shortlist_merge_audit": shortlist_merge_audit,
         "event_rows": event_rows,
         "event_metadata": event_metadata,
         "daily_events": daily_events,
@@ -384,8 +378,11 @@ def write_version_outputs(version: str, output_dir: Path, result: dict) -> None:
         write_csv(output_dir / "event_analysis.csv", result["event_analysis_rows"])
         write_csv(output_dir / "robustness.csv", result["robustness_rows"])
         write_csv(output_dir / "threshold_events.csv", result["threshold_events"])
-        write_csv(output_dir / "manifold_search_audit.csv", result["search_audit_rows"])
+        write_csv(output_dir / "shortlist_merge_audit.csv", result["shortlist_merge_audit"])
         write_json(output_dir / "event_metadata.json", result["event_metadata"])
+        legacy_search_audit = output_dir / "manifold_search_audit.csv"
+        if legacy_search_audit.exists():
+            legacy_search_audit.unlink()
 
 
 def main() -> int:
@@ -395,6 +392,7 @@ def main() -> int:
 
     base_config = load_json(ROOT / "config" / "backtest_config.json")
     base_seeds = load_json(ROOT / "data" / "seeds" / "event_seeds.json")
+    shortlist = load_curated_shortlist(ROOT / "data" / "curated" / "manifold_shortlist.json")
 
     raw_dir = ensure_dir(ROOT / "data" / "raw")
     processed_dir = ensure_dir(ROOT / "data" / "processed")
@@ -417,6 +415,7 @@ def main() -> int:
             version=version,
             base_config=base_config,
             base_seeds=base_seeds,
+            shortlist=shortlist,
             dates=dates,
             price_returns=price_returns,
             price_rows=price_rows,
@@ -462,7 +461,8 @@ def main() -> int:
             for item in build_gap_hypotheses(
                 version_results["v2"]["summaries"],
                 v3_result["summaries"],
-                v3_result["search_audit_rows"],
+                shortlist,
+                v3_result["shortlist_merge_audit"],
                 v3_result["risk_free_source"],
             )
         ),
@@ -477,7 +477,7 @@ def main() -> int:
         bootstrap_rows=v3_result["bootstrap_rows"],
         brier_rows=v3_result["brier_rows"],
         event_rows=v3_result["event_analysis_rows"],
-        replication_gaps=build_replication_gaps(v3_result["search_audit_rows"]),
+        replication_gaps=build_replication_gaps(shortlist, v3_result["shortlist_merge_audit"]),
     )
 
     print("Completed Cassandra-Risk closest-public replication.")

@@ -1,0 +1,20 @@
+[
+  {
+    "market_id": "OzQ1HmGeNw89a7uSdPVy",
+    "approved": false,
+    "forced_category": "Sovereign",
+    "forced_event_id": "svb_contagion_2023",
+    "forced_analysis_bucket": "drawdown",
+    "reject_reason": "created_after_event_window",
+    "notes": "Rejected because the market was created on 2023-03-11, after the 2023-03-10 SVB event window."
+  },
+  {
+    "market_id": "L5f8JDzueLshQQvWwaiI",
+    "approved": false,
+    "forced_category": "Sovereign",
+    "forced_event_id": "eu_banking_contagion_2024",
+    "forced_analysis_bucket": "false_positive",
+    "reject_reason": "off_target_question_not_event_specific",
+    "notes": "Rejected because the question is too generic to serve as a clean proxy for the November 2024 EU banking contagion event."
+  }
+]

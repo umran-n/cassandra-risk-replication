@@ -108,18 +108,18 @@ This run uses Yahoo Finance SPY prices, recovered Manifold market histories wher
 
 | Event | Bucket | Peak Prob | RSI Low | Position Cut | SPY 5D Drawdown | Cassandra Avoided |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| ukraine_invasion_2022 | drawdown | 98.24% | 9.27% | -90.73% | 1.73% | 1.99% |
-| svb_contagion_2023 | drawdown | 42.00% | 23.11% | -76.89% | 1.44% | 1.06% |
-| us_debt_ceiling_2023 | false_positive | 48.14% | 21.11% | -78.89% | 2.08% | 0.12% |
-| oct_selloff_2023 | drawdown | 84.73% | 19.53% | -80.47% | 5.85% | 0.00% |
-| china_taiwan_2024 | false_positive | 4.53% | 46.08% | -53.92% | 3.07% | 1.53% |
 | aug_volatility_2024 | drawdown | 25.00% | 46.08% | -53.92% | 3.07% | 1.53% |
+| china_taiwan_2024 | false_positive | 4.53% | 46.08% | -53.92% | 3.07% | 1.53% |
 | eu_banking_contagion_2024 | false_positive | 29.00% | 27.46% | -72.54% | 1.67% | 1.04% |
+| oct_selloff_2023 | drawdown | 84.73% | 19.53% | -80.47% | 5.85% | 0.00% |
+| svb_contagion_2023 | drawdown | 42.00% | 23.11% | -76.89% | 1.44% | 1.06% |
+| ukraine_invasion_2022 | drawdown | 98.24% | 9.27% | -90.73% | 1.73% | 1.99% |
+| us_debt_ceiling_2023 | false_positive | 48.14% | 21.11% | -78.89% | 2.08% | 0.12% |
 
 ## Replication gaps
 
-- V3 searched all nine kill-list events through Manifold and upgraded 2 manual reconstructions to public market histories, but several events still have no clean public market coverage.
-- 1 candidate markets were intentionally rejected because they were created only after the target event window had already started, which would otherwise introduce look-ahead bias.
-- The 2020 COVID crash and the mid-2022 rate-hike shock remain manually reconstructed because public Manifold coverage for those windows was not recoverable via search.
-- 2 kill-list events returned no usable Manifold match at all, and another 2 returned search hits that were judged too weak or off-target to replace the manual series.
-- Even with broader Manifold coverage, the paper's full historical event panel remains unpublished, so the public replication can only approximate the production Cassandra signal rather than exactly reproduce it.
+- The curated Manifold shortlist currently contains 4 approved markets and replaces 4 paper/manual event definitions in the backtest event panel.
+- The shortlist is semi-automatic rather than fully automatic: discovery and scoring are systematic, but approval still happens through checked-in curated review files.
+- 5 event definitions still come directly from paper/manual seeds because they do not yet have an approved curated Manifold replacement.
+- Catalog review decisions remain deterministic and auditable through the curated shortlist and override files, with no LLM dependency in the selection loop.
+- The paper's full production event universe remains unpublished, so even the improved public Manifold pipeline still approximates, rather than exactly reproduces, the live Cassandra framework.

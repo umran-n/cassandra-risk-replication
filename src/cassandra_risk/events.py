@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from collections import defaultdict
 from datetime import timedelta
 from pathlib import Path
@@ -17,6 +18,50 @@ def build_event_panel(config: dict, seeds: list[dict], raw_dir: Path, refresh: b
             rows.extend(build_manual_event_rows(seed))
     rows.sort(key=lambda row: (row["date"], row["event_id"], row["source"]))
     return rows
+
+
+def load_curated_shortlist(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    return list(payload)
+
+
+def merge_seeds_with_shortlist(seeds: list[dict], shortlist: list[dict]) -> tuple[list[dict], list[dict]]:
+    merged = {seed["event_id"]: seed.copy() for seed in seeds}
+    merge_audit: list[dict] = []
+    approved_event_ids = {entry["event_id"] for entry in shortlist}
+
+    for seed in seeds:
+        if seed["event_id"] in approved_event_ids:
+            continue
+        merge_audit.append(
+            {
+                "event_id": seed["event_id"],
+                "merge_action": "manual_retained",
+                "source": seed["source"],
+                "market_id": seed.get("market_id"),
+                "selection_reason": "No approved curated shortlist entry for this event.",
+            }
+        )
+
+    for entry in shortlist:
+        previous = merged.get(entry["event_id"])
+        merged[entry["event_id"]] = entry.copy()
+        merge_audit.append(
+            {
+                "event_id": entry["event_id"],
+                "merge_action": "replaced_existing_event" if previous is not None else "added_curated_event",
+                "source": entry["source"],
+                "market_id": entry.get("market_id"),
+                "selection_reason": entry.get("selection_reason", "Approved curated shortlist entry."),
+            }
+        )
+
+    merged_rows = sorted(merged.values(), key=lambda item: item["event_id"])
+    merge_audit.sort(key=lambda row: row["event_id"])
+    return merged_rows, merge_audit
 
 
 def resolve_event_sources(

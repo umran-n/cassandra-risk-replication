@@ -9,7 +9,8 @@ The implementation is explicit about what comes from the paper, what is recovere
 ## What this run does
 
 - Downloads `SPY` daily adjusted-close data from Yahoo Finance.
-- Recovers a subset of historical prediction-market series from the public Manifold API.
+- Builds a semi-automated Manifold discovery catalog for systemic-risk markets.
+- Recovers approved historical prediction-market series from the public Manifold API.
 - Reconstructs the missing historical event panel from paper-explicit dates, peak probabilities, and categories.
 - Runs three strategies over `2020-01-01` to `2025-01-10`:
   - Buy & Hold
@@ -27,7 +28,12 @@ This is not an exact paper replication. The paper references archived 2020-2022 
 ## Run
 
 ```powershell
+python scripts/build_manifold_catalog.py --refresh
 python scripts/run_backtest.py --refresh
 ```
 
-Outputs are written under `outputs/latest/`.
+Catalog artifacts are written under `data/processed/` and `outputs/latest/`.
+Backtest outputs are written under `outputs/latest/`.
+
+Approved Manifold markets live in `data/curated/manifold_shortlist.json`.
+Review overrides live in `data/curated/manifold_overrides.json`.
