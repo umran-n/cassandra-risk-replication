@@ -1,0 +1,13 @@
+event_id,merge_action,source,market_id,selection_reason
+aug_volatility_2024,manual_retained,Manual,,No approved curated shortlist entry for this event.
+china_taiwan_2024,replaced_existing_event,Manifold,UjzOb7pBZuVnZvuKzR8n,Approved pre-event Manifold proxy recovered during the V3 extension.
+china_taiwan_2024,added_parallel_proxy,Manifold,bB0Zbz10f5aqWn3JIAju,Approved during the V4.1 shortlist expansion as an additional pre-event China-Taiwan proxy.
+covid_crash_2020,manual_retained,Manual,,No approved curated shortlist entry for this event.
+eu_banking_contagion_2024,manual_retained,Manual,,No approved curated shortlist entry for this event.
+oct_selloff_2023,replaced_existing_event,Manifold,EHCpVy2PXpeA0LdG0jEx,Approved pre-event Manifold proxy recovered during the V3 extension.
+oct_selloff_2023,added_parallel_proxy,Manifold,rK52OtlkjovFyTcxPrxJ,Approved during the V4.1 shortlist expansion as an additional pre-event higher-for-longer proxy.
+rate_hike_shock_2022,manual_retained,Manual,,No approved curated shortlist entry for this event.
+svb_contagion_2023,manual_retained,Manual,,No approved curated shortlist entry for this event.
+ukraine_invasion_2022,replaced_existing_event,Manifold,Ec5AX7QQHNOvWN8rv1l9,Bootstrap approved shortlist entry carried forward from the V3 Manifold extension.
+us_debt_ceiling_2023,replaced_existing_event,Manifold,69D7abJaaEexCxQ2BOZB,Bootstrap approved shortlist entry carried forward from the V3 Manifold extension.
+us_debt_ceiling_2023,added_parallel_proxy,Manifold,3szs86zpyB4QQY4zzP2S,Approved during the V4.1 shortlist expansion as an additional pre-event debt-ceiling proxy.

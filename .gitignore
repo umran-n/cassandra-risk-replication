@@ -3,4 +3,8 @@ __pycache__/
 .pytest_cache/
 data/raw/
 data/processed/
-outputs/
+outputs/*
+!outputs/latest/
+outputs/latest/*
+!outputs/latest/*.csv
+!outputs/latest/*.json
