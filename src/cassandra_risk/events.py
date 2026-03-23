@@ -4,7 +4,7 @@ from collections import defaultdict
 from datetime import timedelta
 from pathlib import Path
 
-from .clients import fetch_manifold_bets, fetch_manifold_market
+from .clients import fetch_manifold_bets, fetch_manifold_market, fetch_manifold_search_markets
 from .utils import date_range, epoch_millis_to_date, format_date, parse_date, smoothstep
 
 
@@ -17,6 +17,66 @@ def build_event_panel(config: dict, seeds: list[dict], raw_dir: Path, refresh: b
             rows.extend(build_manual_event_rows(seed))
     rows.sort(key=lambda row: (row["date"], row["event_id"], row["source"]))
     return rows
+
+
+def resolve_event_sources(
+    seeds: list[dict],
+    raw_dir: Path,
+    refresh: bool = False,
+    enable_manifold_search: bool = False,
+) -> tuple[list[dict], list[dict]]:
+    resolved_seeds: list[dict] = []
+    audit_rows: list[dict] = []
+    for seed in seeds:
+        resolved_seed = seed.copy()
+        search_terms = collect_search_terms(seed)
+        search_hits = collect_manifold_candidates(search_terms, raw_dir, refresh=refresh)
+        selected_market_id = seed.get("market_id") or seed.get("manifold_selected_market_id")
+        selected_hit = search_hits.get(selected_market_id) if selected_market_id else None
+        event_date = parse_date(seed["event_date"])
+        created_date = None
+        pre_event_match = False
+        if selected_hit is not None:
+            created_date = epoch_millis_to_date(int(selected_hit["market"]["createdTime"]))
+            pre_event_match = created_date <= event_date
+
+        replacement_status = "manual_kept"
+        selection_reason = "No vetted Manifold replacement configured for this seed."
+        if seed["source"] == "Manifold" and seed.get("market_id"):
+            replacement_status = "existing_manifold_seed"
+            selection_reason = "Existing Manifold market retained."
+        elif enable_manifold_search and selected_hit is not None and pre_event_match:
+            resolved_seed["source"] = "Manifold"
+            resolved_seed["market_id"] = selected_market_id
+            resolved_seed["provenance"] = "archive_recovered"
+            if selected_hit["matched_terms"]:
+                resolved_seed["search_term"] = selected_hit["matched_terms"][0]
+            replacement_status = "selected_pre_event_manifold_proxy"
+            selection_reason = "Manual reconstruction replaced with a pre-event Manifold market recovered via search."
+        elif enable_manifold_search and selected_hit is not None and not pre_event_match:
+            replacement_status = "post_event_market_rejected"
+            selection_reason = "A matching Manifold market exists, but it was created after the event window and was rejected."
+        elif enable_manifold_search and search_hits:
+            replacement_status = "search_results_reviewed_manual_kept"
+            selection_reason = "Search returned candidates, but none were pre-vetted as acceptable replacements."
+        elif enable_manifold_search:
+            replacement_status = "no_manifold_match"
+            selection_reason = "No usable Manifold market was found with the configured search terms."
+
+        resolved_seeds.append(resolved_seed)
+        audit_rows.append(
+            build_search_audit_row(
+                seed=seed,
+                search_terms=search_terms,
+                search_hits=search_hits,
+                selected_market_id=selected_market_id,
+                selected_hit=selected_hit,
+                replacement_status=replacement_status,
+                selection_reason=selection_reason,
+                pre_event_match=pre_event_match,
+            )
+        )
+    return resolved_seeds, audit_rows
 
 
 def build_manual_event_rows(seed: dict) -> list[dict]:
@@ -100,6 +160,74 @@ def build_manifold_event_rows(config: dict, seed: dict, raw_dir: Path, refresh: 
         )
         current += timedelta(days=1)
     return rows
+
+
+def collect_search_terms(seed: dict) -> list[str]:
+    terms = list(seed.get("manifold_search_terms", []))
+    if seed.get("search_term") and seed["search_term"] not in terms:
+        terms.append(seed["search_term"])
+    return terms
+
+
+def collect_manifold_candidates(search_terms: list[str], raw_dir: Path, refresh: bool = False) -> dict[str, dict]:
+    hits: dict[str, dict] = {}
+    for term in search_terms:
+        results = fetch_manifold_search_markets(term, raw_dir, refresh=refresh)
+        for rank, market in enumerate(results, start=1):
+            hit = hits.setdefault(
+                market["id"],
+                {
+                    "market": market,
+                    "matched_terms": [],
+                    "best_rank": rank,
+                },
+            )
+            if term not in hit["matched_terms"]:
+                hit["matched_terms"].append(term)
+            hit["best_rank"] = min(hit["best_rank"], rank)
+    return hits
+
+
+def build_search_audit_row(
+    seed: dict,
+    search_terms: list[str],
+    search_hits: dict[str, dict],
+    selected_market_id: str | None,
+    selected_hit: dict | None,
+    replacement_status: str,
+    selection_reason: str,
+    pre_event_match: bool,
+) -> dict:
+    candidate_ids = sorted(
+        search_hits.items(),
+        key=lambda item: (item[1]["best_rank"], item[1]["market"]["createdTime"]),
+    )
+    top_candidates = []
+    for market_id, hit in candidate_ids[:5]:
+        market = hit["market"]
+        created_date = format_date(epoch_millis_to_date(int(market["createdTime"])))
+        top_candidates.append(f"{market_id}:{created_date}:{market['question']}")
+
+    selected_created_date = None
+    selected_question = None
+    if selected_hit is not None:
+        selected_created_date = format_date(epoch_millis_to_date(int(selected_hit["market"]["createdTime"])))
+        selected_question = selected_hit["market"]["question"]
+
+    return {
+        "event_id": seed["event_id"],
+        "category": seed["category"],
+        "original_source": seed["source"],
+        "search_terms": " | ".join(search_terms),
+        "candidate_count": len(search_hits),
+        "top_candidates": " || ".join(top_candidates),
+        "selected_market_id": selected_market_id,
+        "selected_question": selected_question,
+        "selected_created_date": selected_created_date,
+        "pre_event_match": pre_event_match,
+        "replacement_status": replacement_status,
+        "selection_reason": selection_reason,
+    }
 
 
 def aggregate_daily_probabilities(rows: list[dict]) -> dict[str, dict[str, dict]]:

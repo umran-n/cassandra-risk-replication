@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-import csv
+import copy
 import sys
 from pathlib import Path
 
@@ -19,15 +19,18 @@ from cassandra_risk.backtest import (  # noqa: E402
     compute_price_returns,
     compute_vol_target_positions,
     event_window_analysis,
-    max_drawdown,
     metrics_table,
-    monthly_resampled_equity,
     simulate_strategy,
-    summarize_strategy
+    summarize_strategy,
 )
 from cassandra_risk.clients import fetch_fred_tb3ms, fetch_spy_prices  # noqa: E402
 from cassandra_risk.config import load_json  # noqa: E402
-from cassandra_risk.events import aggregate_daily_probabilities, build_event_metadata, build_event_panel  # noqa: E402
+from cassandra_risk.events import (  # noqa: E402
+    aggregate_daily_probabilities,
+    build_event_metadata,
+    build_event_panel,
+    resolve_event_sources,
+)
 from cassandra_risk.reporting import render_report  # noqa: E402
 from cassandra_risk.utils import ensure_dir, parse_date, write_csv, write_json  # noqa: E402
 
@@ -41,22 +44,12 @@ def series_rows(name: str, result: dict, extra: dict | None = None) -> list[dict
             "strategy": name,
             "position": result["positions"][idx],
             "daily_return": result["daily_returns"][idx],
-            "equity": result["equity"][idx]
+            "equity": result["equity"][idx],
         }
         for key, values in extra.items():
             row[key] = values[idx]
         rows.append(row)
     return rows
-
-
-def build_replication_gaps() -> list[str]:
-    return [
-        "The paper does not publish the full archived 2020-2022 prediction-market history, so several events are manually reconstructed from dates, categories, and peak probabilities disclosed in the paper.",
-        "Metaculus historical question access was not publicly available from this environment, so the recovered archive subset comes from Manifold only.",
-        "Category-level decay parameters are not fully disclosed in the paper; the base run uses a documented uniform lambda of 0.10 with sensitivity scenarios around that choice.",
-        "The paper's Brier-score section is replicated structurally rather than exactly because the underlying 47-event resolved forecast panel is not published.",
-        "Some paper events, especially the October 2023 and August/November 2024 episodes, required manual question reconstruction because no unambiguous public market identifiers were recoverable."
-    ]
 
 
 def build_daily_risk_free_series(dates: list[str], fred_rows: list[dict], fallback_annual_rate: float) -> list[float]:
@@ -76,37 +69,60 @@ def build_daily_risk_free_series(dates: list[str], fred_rows: list[dict], fallba
     return annual_rates
 
 
-def load_previous_summary(v1_dir: Path) -> dict | None:
-    summary_path = v1_dir / "summary.json"
-    equity_path = v1_dir / "equity_curves.csv"
-    if not summary_path.exists():
-        return None
-    summary = load_json(summary_path)
-    if not equity_path.exists():
-        return summary
-
-    curves: dict[str, dict[str, list[float] | list[str]]] = {}
-    with equity_path.open("r", encoding="utf-8", newline="") as handle:
-        for row in csv.DictReader(handle):
-            bucket = curves.setdefault(row["strategy"], {"dates": [], "equity": []})
-            bucket["dates"].append(row["date"])
-            bucket["equity"].append(float(row["equity"]))
-
-    for strategy in ("buy_hold", "vol_target", "cassandra"):
-        if strategy not in summary or strategy not in curves:
-            continue
-        dates = curves[strategy]["dates"]
-        equity = curves[strategy]["equity"]
-        summary[strategy]["max_drawdown_daily"] = summary[strategy].get("max_drawdown")
-        summary[strategy]["max_drawdown_monthly"] = max_drawdown(monthly_resampled_equity(dates, equity))
-    summary.get("cassandra", {}).setdefault(
-        "paranoia_tax",
-        summary["cassandra"]["cagr"] - summary["buy_hold"]["cagr"],
-    )
-    return summary
+def configure_version(base_config: dict, version: str) -> dict:
+    config = copy.deepcopy(base_config)
+    if version == "v1":
+        config["cassandra"]["category_lambdas"] = {
+            category: (0.0 if category == "None" else 0.10)
+            for category in config["cassandra"]["category_lambdas"]
+        }
+    return config
 
 
-def build_v1_v2_paper_comparison(v1_summary: dict | None, v2_summary: dict, paper_metrics: dict) -> list[dict]:
+def risk_free_inputs(
+    version: str,
+    dates: list[str],
+    fred_rows: list[dict],
+    fallback_annual_rate: float,
+    fred_fetch_succeeded: bool,
+) -> tuple[list[float], str]:
+    if version == "v1":
+        return [0.0] * len(dates), "0% annualized baseline"
+    if fred_fetch_succeeded:
+        return build_daily_risk_free_series(dates, fred_rows, fallback_annual_rate), "FRED TB3MS"
+    return [fallback_annual_rate] * len(dates), "fallback 4.31% annualized"
+
+
+def build_replication_gaps(search_audit_rows: list[dict]) -> list[str]:
+    selected = sum(1 for row in search_audit_rows if row["replacement_status"] == "selected_pre_event_manifold_proxy")
+    post_event_rejects = sum(1 for row in search_audit_rows if row["replacement_status"] == "post_event_market_rejected")
+    no_match = sum(1 for row in search_audit_rows if row["replacement_status"] == "no_manifold_match")
+    reviewed_manual = sum(1 for row in search_audit_rows if row["replacement_status"] == "search_results_reviewed_manual_kept")
+    return [
+        (
+            f"V3 searched all nine kill-list events through Manifold and upgraded {selected} manual reconstructions to "
+            "public market histories, but several events still have no clean public market coverage."
+        ),
+        (
+            f"{post_event_rejects} candidate markets were intentionally rejected because they were created only after the "
+            "target event window had already started, which would otherwise introduce look-ahead bias."
+        ),
+        (
+            "The 2020 COVID crash and the mid-2022 rate-hike shock remain manually reconstructed because public Manifold "
+            "coverage for those windows was not recoverable via search."
+        ),
+        (
+            f"{no_match} kill-list events returned no usable Manifold match at all, and another {reviewed_manual} returned "
+            "search hits that were judged too weak or off-target to replace the manual series."
+        ),
+        (
+            "Even with broader Manifold coverage, the paper's full historical event panel remains unpublished, so the "
+            "public replication can only approximate the production Cassandra signal rather than exactly reproduce it."
+        ),
+    ]
+
+
+def build_version_comparison(version_summaries: dict[str, dict], paper_metrics: dict) -> list[dict]:
     rows = []
     metric_order = [
         "cagr",
@@ -131,56 +147,25 @@ def build_v1_v2_paper_comparison(v1_summary: dict | None, v2_summary: dict, pape
     }
     for strategy, paper_key in mapping.items():
         for metric in metric_order:
-            v1_value = None if v1_summary is None else v1_summary.get(strategy, {}).get(metric)
-            v2_value = v2_summary.get(strategy, {}).get(metric)
+            paper_value = paper_metrics[paper_key].get("max_drawdown") if metric == "max_drawdown_monthly" else paper_metrics[paper_key].get(metric)
             if metric == "max_drawdown_daily":
                 paper_value = None
-            elif metric == "max_drawdown_monthly":
-                paper_value = paper_metrics[paper_key].get("max_drawdown")
-            else:
-                paper_value = paper_metrics[paper_key].get(metric)
-            if v1_value is None and v2_value is None and paper_value is None:
-                continue
-            rows.append(
-                {
-                    "strategy": strategy,
-                    "metric": metric,
-                    "v1": v1_value,
-                    "v2": v2_value,
-                    "paper": paper_value,
-                    "v2_minus_v1": None if v1_value is None or v2_value is None else v2_value - v1_value,
-                    "v2_minus_paper": None if paper_value is None or v2_value is None else v2_value - paper_value,
-                }
-            )
+            row = {
+                "strategy": strategy,
+                "metric": metric,
+                "v1": version_summaries["v1"][strategy].get(metric),
+                "v2": version_summaries["v2"][strategy].get(metric),
+                "v3": version_summaries["v3"][strategy].get(metric),
+                "paper": paper_value,
+            }
+            row["v2_minus_v1"] = row["v2"] - row["v1"] if row["v1"] is not None and row["v2"] is not None else None
+            row["v3_minus_v2"] = row["v3"] - row["v2"] if row["v2"] is not None and row["v3"] is not None else None
+            row["v3_minus_paper"] = row["v3"] - row["paper"] if row["paper"] is not None else None
+            rows.append(row)
     return rows
 
 
-def build_gap_hypotheses(v2_summary: dict, paper_metrics: dict, risk_free_source: str) -> list[str]:
-    return [
-        (
-            "Buy & Hold still diverges from the paper on CAGR and drawdown. "
-            f"Hypothesis: the paper likely used a different baseline construction, sample window, or month-end aggregation convention than raw Yahoo adjusted-close SPY."
-        ),
-        (
-            "Cassandra average position remains materially above the paper's 73%. "
-            "Hypothesis: the missing Metaculus archive and the manual event reconstructions still understate the amount of time the model should spend de-risked."
-        ),
-        (
-            "Cassandra CAGR remains well above the paper despite the lambda and Sortino fixes. "
-            "Hypothesis: the hybrid event panel is still too sparse and too concentrated in high-value protective episodes, so it captures downside without enough false-positive drag."
-        ),
-        (
-            f"Sortino now uses {risk_free_source}. "
-            "Hypothesis for any remaining Sortino gap: the paper may use a different excess-return convention, monthly risk-free interpolation, or downside-target definition than this implementation."
-        ),
-        (
-            "The paper's reported MDD now lines up better conceptually with monthly-resampled drawdown. "
-            "Hypothesis for any residual gap: the paper likely computed MDD from monthly portfolio series rather than from daily equity paths."
-        ),
-    ]
-
-
-def render_v1_v2_paper_markdown(path: Path, rows: list[dict]) -> None:
+def render_version_markdown(path: Path, rows: list[dict]) -> None:
     percentage_metrics = {
         "cagr",
         "total_return",
@@ -192,23 +177,215 @@ def render_v1_v2_paper_markdown(path: Path, rows: list[dict]) -> None:
         "avg_position",
         "paranoia_tax",
     }
-    with path.open("w", encoding="utf-8") as handle:
-        handle.write("| Strategy | Metric | V1 | V2 | Paper |\n")
-        handle.write("| --- | --- | ---: | ---: | ---: |\n")
-        for row in rows:
-            def render(metric: str, value: float | None) -> str:
-                if value is None:
-                    return "n/a"
-                if metric in percentage_metrics:
-                    return f"{value * 100:.2f}%"
-                if "days" in metric:
-                    return str(int(round(value)))
-                return f"{value:.3f}"
 
+    def render(metric: str, value: float | None) -> str:
+        if value is None:
+            return "n/a"
+        if metric in percentage_metrics:
+            return f"{value * 100:.2f}%"
+        if "days" in metric:
+            return str(int(round(value)))
+        return f"{value:.3f}"
+
+    with path.open("w", encoding="utf-8") as handle:
+        handle.write("| Strategy | Metric | V1 | V2 | V3 | Paper |\n")
+        handle.write("| --- | --- | ---: | ---: | ---: | ---: |\n")
+        for row in rows:
             handle.write(
                 f"| {row['strategy']} | {row['metric']} | {render(row['metric'], row['v1'])} | "
-                f"{render(row['metric'], row['v2'])} | {render(row['metric'], row['paper'])} |\n"
+                f"{render(row['metric'], row['v2'])} | {render(row['metric'], row['v3'])} | "
+                f"{render(row['metric'], row['paper'])} |\n"
             )
+
+
+def build_gap_hypotheses(
+    v2_summary: dict,
+    v3_summary: dict,
+    search_audit_rows: list[dict],
+    risk_free_source: str,
+) -> list[str]:
+    selected = sum(1 for row in search_audit_rows if row["replacement_status"] == "selected_pre_event_manifold_proxy")
+    post_event_rejects = sum(1 for row in search_audit_rows if row["replacement_status"] == "post_event_market_rejected")
+    no_match = sum(1 for row in search_audit_rows if row["replacement_status"] == "no_manifold_match")
+    reviewed_manual = sum(1 for row in search_audit_rows if row["replacement_status"] == "search_results_reviewed_manual_kept")
+    return [
+        (
+            f"Only {selected} additional manual events were upgraded in V3. Hypothesis: the remaining divergence versus the "
+            "paper is still dominated by missing public event coverage rather than by arithmetic or risk-free-rate conventions."
+        ),
+        (
+            f"{post_event_rejects} candidate markets were found but rejected for being post-event. Hypothesis: public Manifold "
+            "coverage is often too late for fast-moving banking and crisis events, which leaves the replication underexposed to "
+            "the paper's intended forward-looking signal."
+        ),
+        (
+            f"{no_match} kill-list events still have no usable Manifold match, and {reviewed_manual} more only returned weak "
+            "or off-target search hits. Hypothesis: the paper's production Dredger saw a broader event universe than what "
+            "survives in public Manifold search, so false positives and de-risking spells are still understated here."
+        ),
+        (
+            f"Cassandra average position moved from {v2_summary['cassandra']['avg_position'] * 100:.2f}% in V2 to "
+            f"{v3_summary['cassandra']['avg_position'] * 100:.2f}% in V3. Hypothesis: the extra Manifold coverage changes the "
+            "path, but not enough to close the gap to the paper's 73% average exposure."
+        ),
+        (
+            f"Sortino in V2/V3 uses {risk_free_source}. Hypothesis for any remaining Sortino gap: the paper may still be using "
+            "different excess-return timing or monthly aggregation conventions than this daily implementation."
+        ),
+    ]
+
+
+def run_version(
+    version: str,
+    base_config: dict,
+    base_seeds: list[dict],
+    dates: list[str],
+    price_returns: list[float],
+    price_rows: list[dict],
+    raw_dir: Path,
+    refresh: bool,
+    fred_rows: list[dict],
+    fallback_annual_rate: float,
+    fred_fetch_succeeded: bool,
+) -> dict:
+    config = configure_version(base_config, version)
+    enable_manifold_search = version == "v3"
+    resolved_seeds, search_audit_rows = resolve_event_sources(
+        base_seeds,
+        raw_dir,
+        refresh=refresh,
+        enable_manifold_search=enable_manifold_search,
+    )
+    event_rows = build_event_panel(config, resolved_seeds, raw_dir, refresh=refresh)
+    event_metadata = build_event_metadata(event_rows)
+    daily_events = aggregate_daily_probabilities(event_rows)
+    risk_free_annual_rates, risk_free_source = risk_free_inputs(
+        version,
+        dates,
+        fred_rows,
+        fallback_annual_rate,
+        fred_fetch_succeeded,
+    )
+
+    buy_hold_positions = compute_buy_hold_positions(dates)
+    vol_target_positions = compute_vol_target_positions(config, price_returns)
+    cassandra_rsi, cassandra_hazard, threshold_events = compute_cassandra_signal(dates, daily_events, config)
+
+    transaction_cost_bps = float(config["transaction_cost_bps"])
+    buy_hold_result = simulate_strategy(dates, price_returns, buy_hold_positions, transaction_cost_bps)
+    vol_target_result = simulate_strategy(dates, price_returns, vol_target_positions, transaction_cost_bps)
+    cassandra_result = simulate_strategy(dates, price_returns, cassandra_rsi, transaction_cost_bps)
+
+    summaries = {
+        "buy_hold": summarize_strategy(buy_hold_result, risk_free_annual_rates),
+        "vol_target": summarize_strategy(vol_target_result, risk_free_annual_rates),
+        "cassandra": summarize_strategy(cassandra_result, risk_free_annual_rates),
+    }
+    summaries["cassandra"]["paranoia_tax"] = summaries["cassandra"]["cagr"] - summaries["buy_hold"]["cagr"]
+    metrics_rows = metrics_table(summaries)
+    comparison_rows = compare_to_paper(summaries, config["paper_metrics"])
+    brier_rows = brier_score_summary(event_rows)
+    event_analysis_rows = event_window_analysis(
+        resolved_seeds,
+        dates,
+        price_returns,
+        cassandra_result["positions"],
+        cassandra_rsi,
+        daily_events,
+    )
+
+    robustness_rows = []
+    if version == "v3":
+        for scenario in config["cassandra"]["robustness_scenarios"]:
+            scenario_rsi, _, _ = compute_cassandra_signal(
+                dates,
+                daily_events,
+                config,
+                lambda_scale=float(scenario["lambda_scale"]),
+                probability_scale=float(scenario["probability_scale"]),
+            )
+            scenario_result = simulate_strategy(dates, price_returns, scenario_rsi, transaction_cost_bps)
+            summary = summarize_strategy(scenario_result, risk_free_annual_rates)
+            robustness_rows.append(
+                {
+                    "scenario": scenario["name"],
+                    "cagr": summary["cagr"],
+                    "max_drawdown": summary["max_drawdown"],
+                    "sortino": summary["sortino"],
+                    "avg_position": summary["avg_position"],
+                }
+            )
+
+    bootstrap_rows = []
+    if version == "v3":
+        bootstrap_rows = bootstrap_confidence_intervals(
+            {
+                "buy_hold": buy_hold_result["daily_returns"],
+                "vol_target": vol_target_result["daily_returns"],
+                "cassandra": cassandra_result["daily_returns"],
+            },
+            block_size=int(config["bootstrap"]["block_size"]),
+            resamples=int(config["bootstrap"]["resamples"]),
+            seed=int(config["bootstrap"]["seed"]),
+            risk_free_annual_rates=risk_free_annual_rates,
+        )
+
+    return {
+        "config": config,
+        "resolved_seeds": resolved_seeds,
+        "search_audit_rows": search_audit_rows,
+        "event_rows": event_rows,
+        "event_metadata": event_metadata,
+        "daily_events": daily_events,
+        "risk_free_annual_rates": risk_free_annual_rates,
+        "risk_free_source": risk_free_source,
+        "metrics_rows": metrics_rows,
+        "comparison_rows": comparison_rows,
+        "brier_rows": brier_rows,
+        "event_analysis_rows": event_analysis_rows,
+        "robustness_rows": robustness_rows,
+        "bootstrap_rows": bootstrap_rows,
+        "threshold_events": threshold_events,
+        "price_rows": price_rows,
+        "buy_hold_result": buy_hold_result,
+        "vol_target_result": vol_target_result,
+        "cassandra_result": cassandra_result,
+        "cassandra_rsi": cassandra_rsi,
+        "cassandra_hazard": cassandra_hazard,
+        "summaries": summaries,
+    }
+
+
+def write_version_outputs(version: str, output_dir: Path, result: dict) -> None:
+    write_csv(output_dir / "metrics.csv", result["metrics_rows"])
+    write_csv(output_dir / "paper_comparison.csv", result["comparison_rows"])
+    write_csv(
+        output_dir / "equity_curves.csv",
+        series_rows("buy_hold", result["buy_hold_result"])
+        + series_rows("vol_target", result["vol_target_result"])
+        + series_rows(
+            "cassandra",
+            result["cassandra_result"],
+            {"rsi": result["cassandra_rsi"], "hazard": result["cassandra_hazard"]},
+        ),
+    )
+    write_json(output_dir / "summary.json", result["summaries"])
+    write_json(
+        output_dir / "risk_free_summary.json",
+        {
+            "source": result["risk_free_source"],
+            "fallback_annual_rate": float(result["config"]["risk_free_rate"]["fallback_annual_rate"]),
+            "observations": len(result["risk_free_annual_rates"]),
+        },
+    )
+    if version == "v3":
+        write_csv(output_dir / "bootstrap_intervals.csv", result["bootstrap_rows"])
+        write_csv(output_dir / "brier_scores.csv", result["brier_rows"])
+        write_csv(output_dir / "event_analysis.csv", result["event_analysis_rows"])
+        write_csv(output_dir / "robustness.csv", result["robustness_rows"])
+        write_csv(output_dir / "threshold_events.csv", result["threshold_events"])
+        write_csv(output_dir / "manifold_search_audit.csv", result["search_audit_rows"])
+        write_json(output_dir / "event_metadata.json", result["event_metadata"])
 
 
 def main() -> int:
@@ -216,160 +393,105 @@ def main() -> int:
     parser.add_argument("--refresh", action="store_true", help="Refresh raw data from public APIs")
     args = parser.parse_args()
 
-    config = load_json(ROOT / "config" / "backtest_config.json")
-    seeds = load_json(ROOT / "data" / "seeds" / "event_seeds.json")
+    base_config = load_json(ROOT / "config" / "backtest_config.json")
+    base_seeds = load_json(ROOT / "data" / "seeds" / "event_seeds.json")
 
     raw_dir = ensure_dir(ROOT / "data" / "raw")
     processed_dir = ensure_dir(ROOT / "data" / "processed")
-    output_dir = ensure_dir(ROOT / "outputs" / "latest")
-    v1_dir = ROOT / "outputs" / "v1"
+    output_root = ensure_dir(ROOT / "outputs")
 
-    previous_summary = load_previous_summary(v1_dir)
-
-    price_rows = fetch_spy_prices(config, raw_dir, refresh=args.refresh)
-    event_rows = build_event_panel(config, seeds, raw_dir, refresh=args.refresh)
-    event_metadata = build_event_metadata(event_rows)
-    daily_events = aggregate_daily_probabilities(event_rows)
-
+    price_rows = fetch_spy_prices(base_config, raw_dir, refresh=args.refresh)
     dates, _, price_returns = compute_price_returns(price_rows)
-    fallback_annual_rate = float(config["risk_free_rate"]["fallback_annual_rate"])
+
+    fallback_annual_rate = float(base_config["risk_free_rate"]["fallback_annual_rate"])
     try:
         fred_rows = fetch_fred_tb3ms(raw_dir, refresh=args.refresh)
-        risk_free_annual_rates = build_daily_risk_free_series(dates, fred_rows, fallback_annual_rate)
-        risk_free_source = "FRED TB3MS"
+        fred_fetch_succeeded = True
     except Exception:
         fred_rows = []
-        risk_free_annual_rates = [fallback_annual_rate] * len(dates)
-        risk_free_source = "fallback 4.31% annualized"
+        fred_fetch_succeeded = False
 
-    buy_hold_positions = compute_buy_hold_positions(dates)
-    vol_target_positions = compute_vol_target_positions(config, price_returns)
-    base_rsi, base_hazard, threshold_events = compute_cassandra_signal(dates, daily_events, config)
-
-    transaction_cost_bps = float(config["transaction_cost_bps"])
-    buy_hold_result = simulate_strategy(dates, price_returns, buy_hold_positions, transaction_cost_bps)
-    vol_target_result = simulate_strategy(dates, price_returns, vol_target_positions, transaction_cost_bps)
-    cassandra_result = simulate_strategy(dates, price_returns, base_rsi, transaction_cost_bps)
-
-    summaries = {
-        "buy_hold": summarize_strategy(buy_hold_result, risk_free_annual_rates),
-        "vol_target": summarize_strategy(vol_target_result, risk_free_annual_rates),
-        "cassandra": summarize_strategy(cassandra_result, risk_free_annual_rates)
-    }
-    summaries["cassandra"]["paranoia_tax"] = summaries["cassandra"]["cagr"] - summaries["buy_hold"]["cagr"]
-
-    metrics_rows = metrics_table(summaries)
-    comparison_rows = compare_to_paper(summaries, config["paper_metrics"])
-    v1_v2_paper_rows = build_v1_v2_paper_comparison(previous_summary, summaries, config["paper_metrics"])
-    brier_rows = brier_score_summary(event_rows)
-    event_analysis_rows = event_window_analysis(
-        seeds,
-        dates,
-        price_returns,
-        cassandra_result["positions"],
-        base_rsi,
-        daily_events
-    )
-
-    robustness_rows = []
-    for scenario in config["cassandra"]["robustness_scenarios"]:
-        rsi_values, _, _ = compute_cassandra_signal(
-            dates,
-            daily_events,
-            config,
-            lambda_scale=float(scenario["lambda_scale"]),
-            probability_scale=float(scenario["probability_scale"])
-        )
-        scenario_result = simulate_strategy(dates, price_returns, rsi_values, transaction_cost_bps)
-        summary = summarize_strategy(scenario_result, risk_free_annual_rates)
-        robustness_rows.append(
-            {
-                "scenario": scenario["name"],
-                "cagr": summary["cagr"],
-                "max_drawdown": summary["max_drawdown"],
-                "sortino": summary["sortino"],
-                "avg_position": summary["avg_position"]
-            }
+    version_results = {}
+    for version in ("v1", "v2", "v3"):
+        version_results[version] = run_version(
+            version=version,
+            base_config=base_config,
+            base_seeds=base_seeds,
+            dates=dates,
+            price_returns=price_returns,
+            price_rows=price_rows,
+            raw_dir=raw_dir,
+            refresh=args.refresh,
+            fred_rows=fred_rows,
+            fallback_annual_rate=fallback_annual_rate,
+            fred_fetch_succeeded=fred_fetch_succeeded,
         )
 
-    bootstrap_rows = bootstrap_confidence_intervals(
-        {
-            "buy_hold": buy_hold_result["daily_returns"],
-            "vol_target": vol_target_result["daily_returns"],
-            "cassandra": cassandra_result["daily_returns"]
-        },
-        block_size=int(config["bootstrap"]["block_size"]),
-        resamples=int(config["bootstrap"]["resamples"]),
-        seed=int(config["bootstrap"]["seed"]),
-        risk_free_annual_rates=risk_free_annual_rates
-    )
+    for version, folder in (("v1", "v1"), ("v2", "v2"), ("v3", "latest")):
+        write_version_outputs(version, ensure_dir(output_root / folder), version_results[version])
 
-    normalized_event_rows = [
-        {
-            "date": row["date"],
-            "event_id": row["event_id"],
-            "question": row["question"],
-            "source": row["source"],
-            "category": row["category"],
-            "probability": row["probability"],
-            "resolution_date": row["resolution_date"],
-            "resolved_outcome": row["resolved_outcome"],
-            "provenance": row["provenance"]
-        }
-        for row in event_rows
-    ]
-    write_csv(processed_dir / "event_panel.csv", normalized_event_rows)
-    write_csv(processed_dir / "spy_prices.csv", price_rows)
-    write_csv(output_dir / "metrics.csv", metrics_rows)
-    write_csv(output_dir / "paper_comparison.csv", comparison_rows)
-    write_csv(output_dir / "bootstrap_intervals.csv", bootstrap_rows)
-    write_csv(output_dir / "brier_scores.csv", brier_rows)
-    write_csv(output_dir / "event_analysis.csv", event_analysis_rows)
-    write_csv(output_dir / "robustness.csv", robustness_rows)
-    write_csv(output_dir / "v1_v2_paper_comparison.csv", v1_v2_paper_rows)
-    write_csv(output_dir / "threshold_events.csv", threshold_events)
+    version_summaries = {version: result["summaries"] for version, result in version_results.items()}
+    comparison_rows = build_version_comparison(version_summaries, base_config["paper_metrics"])
+    latest_dir = ensure_dir(output_root / "latest")
+    write_csv(latest_dir / "v1_v2_v3_paper_comparison.csv", comparison_rows)
+    render_version_markdown(latest_dir / "v1_v2_v3_paper_comparison.md", comparison_rows)
+
+    v3_result = version_results["v3"]
     write_csv(
-        output_dir / "equity_curves.csv",
-        series_rows("buy_hold", buy_hold_result)
-        + series_rows("vol_target", vol_target_result)
-        + series_rows("cassandra", cassandra_result, {"rsi": base_rsi, "hazard": base_hazard})
+        processed_dir / "event_panel.csv",
+        [
+            {
+                "date": row["date"],
+                "event_id": row["event_id"],
+                "question": row["question"],
+                "source": row["source"],
+                "category": row["category"],
+                "probability": row["probability"],
+                "resolution_date": row["resolution_date"],
+                "resolved_outcome": row["resolved_outcome"],
+                "provenance": row["provenance"],
+            }
+            for row in v3_result["event_rows"]
+        ],
     )
-    write_json(output_dir / "event_metadata.json", event_metadata)
-    write_json(output_dir / "summary.json", summaries)
-    write_json(
-        output_dir / "risk_free_summary.json",
-        {
-            "source": risk_free_source,
-            "fallback_annual_rate": fallback_annual_rate,
-            "observations": len(risk_free_annual_rates),
-        },
-    )
-    render_v1_v2_paper_markdown(output_dir / "v1_v2_paper_comparison.md", v1_v2_paper_rows)
-    (output_dir / "gap_hypotheses.md").write_text(
-        "\n".join(f"- {item}" for item in build_gap_hypotheses(summaries, config["paper_metrics"], risk_free_source)),
+    write_csv(processed_dir / "spy_prices.csv", price_rows)
+    write_json(latest_dir / "version_summaries.json", version_summaries)
+    (latest_dir / "gap_hypotheses.md").write_text(
+        "\n".join(
+            f"- {item}"
+            for item in build_gap_hypotheses(
+                version_results["v2"]["summaries"],
+                v3_result["summaries"],
+                v3_result["search_audit_rows"],
+                v3_result["risk_free_source"],
+            )
+        ),
         encoding="utf-8",
     )
 
     render_report(
-        output_dir / "report.md",
-        metrics_rows=metrics_rows,
-        comparison_rows=comparison_rows,
-        robustness_rows=robustness_rows,
-        bootstrap_rows=bootstrap_rows,
-        brier_rows=brier_rows,
-        event_rows=event_analysis_rows,
-        replication_gaps=build_replication_gaps()
+        latest_dir / "report.md",
+        metrics_rows=v3_result["metrics_rows"],
+        comparison_rows=v3_result["comparison_rows"],
+        robustness_rows=v3_result["robustness_rows"],
+        bootstrap_rows=v3_result["bootstrap_rows"],
+        brier_rows=v3_result["brier_rows"],
+        event_rows=v3_result["event_analysis_rows"],
+        replication_gaps=build_replication_gaps(v3_result["search_audit_rows"]),
     )
 
     print("Completed Cassandra-Risk closest-public replication.")
-    print(f"Outputs written to: {output_dir}")
-    print(f"Risk-free source: {risk_free_source}")
+    print(f"Outputs written to: {latest_dir}")
     print("Headline metrics:")
-    for name, summary in summaries.items():
-        print(
-            f"  {name}: CAGR={summary['cagr']:.4f}, MDD={summary['max_drawdown']:.4f}, "
-            f"Sortino={summary['sortino']:.3f}, AvgPos={summary['avg_position']:.3f}"
-        )
+    for version in ("v1", "v2", "v3"):
+        summaries = version_results[version]["summaries"]
+        print(f"  {version}:")
+        for name, summary in summaries.items():
+            print(
+                f"    {name}: CAGR={summary['cagr']:.4f}, DailyMDD={summary['max_drawdown_daily']:.4f}, "
+                f"MonthlyMDD={summary['max_drawdown_monthly']:.4f}, Sortino={summary['sortino']:.3f}, "
+                f"AvgPos={summary['avg_position']:.3f}"
+            )
     return 0
 
 

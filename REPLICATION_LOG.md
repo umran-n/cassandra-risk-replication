@@ -59,28 +59,48 @@ Most important V1 -> V2 shifts:
 - Cassandra still runs too much average exposure relative to the paper (`87.49%` here vs `73.00%` in the paper).
 - Cassandra CAGR remains far above the paper, implying the public reconstruction still understates false positives and/or overstates the effectiveness of protective events.
 
-## V3 Planned Metaculus Pass
+## V3 Manifold Extension
 
-Planned V3 objective:
+V3 pivoted fully to Manifold after Metaculus historical export access was unavailable on the tested account.
 
-- Replace as much of the manual reconstructed panel as possible with real Metaculus historical question metadata and probability histories.
+What changed in V3:
 
-Priority data needed from Metaculus:
+- Search all nine kill-list events through Manifold `/v0/search-markets`
+- Recover full bet histories using paginated `fetch_manifold_bets()`
+- Replace manual reconstructions only where a defensible pre-event Manifold market existed
+- Keep post-event or weak/off-target matches manual to avoid look-ahead bias
 
-- Historical question metadata
-- Open / close / resolve timestamps
-- Resolved outcomes
-- Historical probability paths or forecast snapshots over time
-- Question identifiers matching the paper's `2020-2025` event set
+Manual events upgraded in V3:
 
-Expected V3 improvements:
+- `oct_selloff_2023` -> `EHCpVy2PXpeA0LdG0jEx`
+- `china_taiwan_2024` -> `UjzOb7pBZuVnZvuKzR8n`
 
-- Lower reliance on manual interpolation
-- Better false-positive accounting
-- Better Brier-score validation
-- More realistic Cassandra exposure path
-- Cleaner reconciliation of paper vs replication results
+Manual events searched but still kept manual:
 
-Operational note:
+- `covid_crash_2020`
+- `rate_hike_shock_2022`
+- `svb_contagion_2023`
+- `aug_volatility_2024`
+- `eu_banking_contagion_2024`
 
-- If direct API access does not expose the full historical paths, a manual export plus API access is still sufficient for a materially stronger V3 pass.
+Headline V3 results:
+
+| Strategy | CAGR | Daily MDD | Monthly MDD | Sortino | Avg Position |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Buy & Hold | 13.99% | -33.72% | -23.93% | 0.733 | 100.00% |
+| Vol Target | 11.46% | -15.14% | -14.78% | 0.836 | 77.29% |
+| Cassandra | 17.84% | -20.27% | -19.67% | 1.296 | 84.09% |
+
+Most important V2 -> V3 shifts:
+
+- Cassandra CAGR fell from `18.84%` to `17.84%`
+- Cassandra Sortino fell from `1.366` to `1.296`
+- Cassandra average position fell from `87.54%` to `84.09%`
+- Drawdown changed little, which suggests the added Manifold replacements mainly reduced over-optimism rather than improving crash capture
+
+Remaining V3 gaps:
+
+- Only two additional manual events were upgraded, so the panel is still materially sparser than the paper's production Dredger universe
+- The best SVB-related Manifold candidate was created on `2023-03-11`, after the `2023-03-10` event window, so it was rejected
+- Some searches returned weak or off-target results rather than event-aligned markets, especially for `covid_crash_2020` and `eu_banking_contagion_2024`
+- Cassandra remains materially above the paper on CAGR and average exposure, which still points to missing false positives and incomplete public event coverage

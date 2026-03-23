@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -10,6 +11,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from cassandra_risk.backtest import compute_cassandra_signal, compute_vol_target_positions, simulate_strategy
+from cassandra_risk.events import resolve_event_sources
 
 
 class BacktestTests(unittest.TestCase):
@@ -49,6 +51,71 @@ class BacktestTests(unittest.TestCase):
             transaction_cost_bps=5.0
         )
         self.assertLess(result["daily_returns"][2], 0.0)
+
+    @patch("cassandra_risk.events.fetch_manifold_search_markets")
+    def test_pre_event_market_replaces_manual_seed_in_v3(self, mock_search) -> None:
+        mock_search.return_value = [
+            {
+                "id": "market-1",
+                "question": "Will the 10-year Treasury rate hit 5% by the end of 2023?",
+                "createdTime": 1696809600000,
+            }
+        ]
+        seeds = [
+            {
+                "event_id": "oct_selloff_2023",
+                "source": "Manual",
+                "category": "Monetary",
+                "provenance": "manual_reconstructed",
+                "event_date": "2023-10-27",
+                "resolution_date": "2023-10-27",
+                "resolved_outcome": "YES",
+                "manifold_search_terms": ["10 year treasury 5% end of 2023"],
+                "manifold_selected_market_id": "market-1",
+            }
+        ]
+
+        resolved_seeds, audit_rows = resolve_event_sources(
+            seeds,
+            ROOT,
+            refresh=False,
+            enable_manifold_search=True,
+        )
+        self.assertEqual(resolved_seeds[0]["source"], "Manifold")
+        self.assertEqual(resolved_seeds[0]["market_id"], "market-1")
+        self.assertEqual(audit_rows[0]["replacement_status"], "selected_pre_event_manifold_proxy")
+
+    @patch("cassandra_risk.events.fetch_manifold_search_markets")
+    def test_post_event_market_is_rejected(self, mock_search) -> None:
+        mock_search.return_value = [
+            {
+                "id": "market-2",
+                "question": "Will another top 20 bank fail before June 1, 2023?",
+                "createdTime": 1678492800000,
+            }
+        ]
+        seeds = [
+            {
+                "event_id": "svb_contagion_2023",
+                "source": "Manual",
+                "category": "Sovereign",
+                "provenance": "manual_reconstructed",
+                "event_date": "2023-03-10",
+                "resolution_date": "2023-03-10",
+                "resolved_outcome": "YES",
+                "manifold_search_terms": ["Silicon Valley Bank another bank fail March 2023"],
+                "manifold_selected_market_id": "market-2",
+            }
+        ]
+
+        resolved_seeds, audit_rows = resolve_event_sources(
+            seeds,
+            ROOT,
+            refresh=False,
+            enable_manifold_search=True,
+        )
+        self.assertEqual(resolved_seeds[0]["source"], "Manual")
+        self.assertEqual(audit_rows[0]["replacement_status"], "post_event_market_rejected")
 
 
 if __name__ == "__main__":
