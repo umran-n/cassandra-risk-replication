@@ -25,6 +25,12 @@ def _fetch_json(url: str) -> Any:
         return json.load(response)
 
 
+def _cache_key(prefix: str, params: dict[str, Any]) -> str:
+    stable = "&".join(f"{key}={params[key]}" for key in sorted(params))
+    digest = hashlib.sha1(stable.encode("utf-8")).hexdigest()[:16]
+    return f"{prefix}_{digest}.json"
+
+
 def fetch_spy_prices(config: dict, raw_dir: Path, refresh: bool = False) -> list[dict]:
     output_path = raw_dir / "spy_prices.json"
     if output_path.exists() and not refresh:
@@ -162,3 +168,55 @@ def fetch_fred_tb3ms(raw_dir: Path, refresh: bool = False) -> list[dict]:
     with output_path.open("w", encoding="utf-8") as handle:
         json.dump(rows, handle, indent=2)
     return rows
+
+
+def fetch_polymarket_events_page(
+    raw_dir: Path,
+    refresh: bool = False,
+    **params: Any,
+) -> list[dict]:
+    defaults = {
+        "closed": "true",
+        "limit": "100",
+        "offset": "0",
+        "order": "closedTime",
+        "ascending": "true",
+    }
+    query_params = defaults | {key: str(value).lower() if isinstance(value, bool) else str(value) for key, value in params.items()}
+    output_path = raw_dir / _cache_key("polymarket_events", query_params)
+    if output_path.exists() and not refresh:
+        with output_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+
+    url = "https://gamma-api.polymarket.com/events?" + urllib.parse.urlencode(query_params)
+    payload = _fetch_json(url)
+    ensure_dir(output_path.parent)
+    with output_path.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2)
+    return list(payload)
+
+
+def fetch_polymarket_price_history(
+    market_token_id: str,
+    raw_dir: Path,
+    refresh: bool = False,
+    interval: str = "max",
+    fidelity: int = 60,
+) -> list[dict]:
+    params = {
+        "market": market_token_id,
+        "interval": interval,
+        "fidelity": fidelity,
+    }
+    output_path = raw_dir / _cache_key("polymarket_prices_history", params)
+    if output_path.exists() and not refresh:
+        with output_path.open("r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+        return list(payload.get("history", []))
+
+    url = "https://clob.polymarket.com/prices-history?" + urllib.parse.urlencode(params)
+    payload = _fetch_json(url)
+    ensure_dir(output_path.parent)
+    with output_path.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2)
+    return list(payload.get("history", []))
