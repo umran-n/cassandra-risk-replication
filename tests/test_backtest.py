@@ -10,7 +10,12 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from cassandra_risk.backtest import compute_cassandra_signal, compute_vol_target_positions, simulate_strategy
+from cassandra_risk.backtest import (
+    build_hazard_attribution,
+    compute_cassandra_signal,
+    compute_vol_target_positions,
+    simulate_strategy,
+)
 from cassandra_risk.events import aggregate_daily_probabilities, resolve_event_sources
 
 
@@ -59,6 +64,41 @@ class BacktestTests(unittest.TestCase):
         daily = aggregate_daily_probabilities(rows, {"cassandra": {"multi_proxy_aggregation": "max"}})
         self.assertAlmostEqual(daily["2024-01-02"]["event-1"]["probability"], 0.8, places=6)
 
+    def test_family_policy_overrides_global_aggregation_mode(self) -> None:
+        rows = [
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.2,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.25,
+                "proxy_family_id": "family-1",
+                "proxy_relation": "orthogonal",
+                "aggregation_policy": "max",
+                "quality_score": 0.5,
+                "question": "proxy a",
+                "source": "Manifold",
+            },
+            {
+                "date": "2024-01-02",
+                "event_id": "event-1",
+                "category": "Sovereign",
+                "probability": 0.8,
+                "resolution_date": "2024-02-01",
+                "source_brier": 0.5,
+                "proxy_family_id": "family-1",
+                "proxy_relation": "orthogonal",
+                "aggregation_policy": "max",
+                "quality_score": 0.6,
+                "question": "proxy b",
+                "source": "Manifold",
+            },
+        ]
+        daily = aggregate_daily_probabilities(rows, {"cassandra": {"multi_proxy_aggregation": "weighted_average"}})
+        self.assertAlmostEqual(daily["2024-01-02"]["event-1"]["probability"], 0.8, places=6)
+        self.assertEqual(daily["2024-01-02"]["event-1"]["family_aggregation_policy"], "max")
+
     def test_rsi_matches_paper_example(self) -> None:
         config = {
             "cassandra": {
@@ -95,6 +135,49 @@ class BacktestTests(unittest.TestCase):
             transaction_cost_bps=5.0
         )
         self.assertLess(result["daily_returns"][2], 0.0)
+
+    def test_daily_rsi_decomposition_sums_to_total_hazard(self) -> None:
+        config = {
+            "cassandra": {
+                "category_weights": {"Kinetic": 10.0, "Sovereign": 8.0, "None": 0.0},
+                "category_lambdas": {"Kinetic": 0.1, "Sovereign": 0.15, "None": 0.0},
+                "horizon_normalizer_days": 30,
+                "rebalancing_thresholds": [0.8, 0.5, 0.3],
+            }
+        }
+        daily_events = {
+            "2024-01-02": {
+                "ukraine": {
+                    "event_id": "ukraine",
+                    "category": "Kinetic",
+                    "question": "proxy a",
+                    "probability": 0.6,
+                    "resolution_date": "2024-01-17",
+                    "proxy_family_id": "family-a",
+                    "proxy_relation": "substitute",
+                },
+                "svb": {
+                    "event_id": "svb",
+                    "category": "Sovereign",
+                    "question": "proxy b",
+                    "probability": 0.3,
+                    "resolution_date": "2024-02-01",
+                    "proxy_family_id": "family-b",
+                    "proxy_relation": "substitute",
+                },
+            }
+        }
+        attribution_rows, decomposition_rows = build_hazard_attribution(["2024-01-02"], daily_events, config)
+        self.assertEqual(len(decomposition_rows), 1)
+        total_from_events = sum(row["hazard_contribution"] for row in attribution_rows)
+        total_from_components = (
+            decomposition_rows[0]["probability_component_hazard"]
+            + decomposition_rows[0]["severity_component_hazard"]
+            + decomposition_rows[0]["velocity_component_hazard"]
+            + decomposition_rows[0]["persistence_component_hazard"]
+        )
+        self.assertAlmostEqual(total_from_events, decomposition_rows[0]["total_hazard"], places=9)
+        self.assertAlmostEqual(total_from_components, decomposition_rows[0]["total_hazard"], places=9)
 
     @patch("cassandra_risk.events.fetch_manifold_search_markets")
     def test_pre_event_market_replaces_manual_seed_in_v3(self, mock_search) -> None:

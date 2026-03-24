@@ -10,6 +10,12 @@
     "resolved_outcome": "YES",
     "analysis_bucket": "drawdown",
     "provenance": "archive_recovered",
+    "proxy_family_id": "ukraine_invasion_2022_invasion",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "weighted_average",
+    "event_window_start": "2022-02-22",
+    "event_window_end": "2022-02-24",
+    "quality_score": 0.85,
     "search_terms": [
       "Ukraine invade before March 2022"
     ],
@@ -27,6 +33,12 @@
     "resolved_outcome": "NO",
     "analysis_bucket": "false_positive",
     "provenance": "archive_recovered",
+    "proxy_family_id": "us_debt_ceiling_2023_deadline",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-24",
+    "event_window_end": "2023-05-31",
+    "quality_score": 0.79,
     "search_terms": [
       "US debt ceiling May 2023",
       "US debt ceiling 2023"
@@ -45,6 +57,12 @@
     "resolved_outcome": "YES",
     "analysis_bucket": "drawdown",
     "provenance": "archive_recovered",
+    "proxy_family_id": "oct_selloff_2023_rates",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-10-09",
+    "event_window_end": "2023-10-27",
+    "quality_score": 0.74,
     "search_terms": [
       "10 year treasury 5% end of 2023"
     ],
@@ -62,6 +80,12 @@
     "resolved_outcome": "NO",
     "analysis_bucket": "false_positive",
     "provenance": "archive_recovered",
+    "proxy_family_id": "china_taiwan_2024_conflict",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2024-01-01",
+    "event_window_end": "2024-08-05",
+    "quality_score": 0.77,
     "search_terms": [
       "China Taiwan armed conflict 2024"
     ],
@@ -79,6 +103,12 @@
     "resolved_outcome": "NO",
     "analysis_bucket": "false_positive",
     "provenance": "archive_recovered",
+    "proxy_family_id": "us_debt_ceiling_2023_deadline",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-24",
+    "event_window_end": "2023-05-31",
+    "quality_score": 0.76,
     "search_terms": [
       "US debt ceiling May 2023",
       "US debt ceiling 2023"
@@ -97,6 +127,12 @@
     "resolved_outcome": "NO",
     "analysis_bucket": "false_positive",
     "provenance": "archive_recovered",
+    "proxy_family_id": "china_taiwan_2024_conflict",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-06",
+    "event_window_end": "2024-08-05",
+    "quality_score": 0.73,
     "search_terms": [
       "China Taiwan armed conflict 2024"
     ],
@@ -114,6 +150,12 @@
     "resolved_outcome": "YES",
     "analysis_bucket": "drawdown",
     "provenance": "archive_recovered",
+    "proxy_family_id": "oct_selloff_2023_rates",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-05-25",
+    "event_window_end": "2023-10-27",
+    "quality_score": 0.36,
     "search_terms": [
       "10 year treasury 5% end of 2023"
     ],

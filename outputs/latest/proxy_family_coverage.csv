@@ -1,0 +1,10 @@
+event_id,category,proxy_count,proxy_family_count,proxy_family_ids,proxy_relations,family_aggregation_policies,event_aggregation_policy,source_types,market_ids,event_window_start,event_window_end,quality_score_min,quality_score_max
+aug_volatility_2024,Technology,1,1,aug_volatility_2024,substitute,aug_volatility_2024:weighted_average(substitute),max,Manual,,2024-07-15,2024-08-16,0.5,0.5
+china_taiwan_2024,Kinetic,2,1,china_taiwan_2024_conflict,orthogonal,china_taiwan_2024_conflict:max(orthogonal),max,Manifold,UjzOb7pBZuVnZvuKzR8n | bB0Zbz10f5aqWn3JIAju,2023-04-06,2024-08-05,0.73,0.77
+covid_crash_2020,Sovereign,1,1,covid_crash_2020,substitute,covid_crash_2020:weighted_average(substitute),max,Manual,,2020-01-20,2020-04-15,0.5,0.5
+eu_banking_contagion_2024,Sovereign,1,1,eu_banking_contagion_2024,substitute,eu_banking_contagion_2024:weighted_average(substitute),max,Manual,,2024-10-20,2024-11-30,0.5,0.5
+oct_selloff_2023,Monetary,2,1,oct_selloff_2023_rates,orthogonal,oct_selloff_2023_rates:max(orthogonal),max,Manifold,EHCpVy2PXpeA0LdG0jEx | rK52OtlkjovFyTcxPrxJ,2023-05-25,2023-10-27,0.36,0.74
+rate_hike_shock_2022,Monetary,1,1,rate_hike_shock_2022,substitute,rate_hike_shock_2022:weighted_average(substitute),max,Manual,,2022-04-01,2022-07-15,0.5,0.5
+svb_contagion_2023,Sovereign,1,1,svb_contagion_2023,substitute,svb_contagion_2023:weighted_average(substitute),max,Manual,,2023-02-15,2023-03-24,0.5,0.5
+ukraine_invasion_2022,Kinetic,1,1,ukraine_invasion_2022_invasion,substitute,ukraine_invasion_2022_invasion:weighted_average(substitute),max,Manifold,Ec5AX7QQHNOvWN8rv1l9,2022-02-22,2022-02-24,0.85,0.85
+us_debt_ceiling_2023,Sovereign,2,1,us_debt_ceiling_2023_deadline,orthogonal,us_debt_ceiling_2023_deadline:max(orthogonal),max,Manifold,3szs86zpyB4QQY4zzP2S | 69D7abJaaEexCxQ2BOZB,2023-04-24,2023-05-31,0.76,0.79

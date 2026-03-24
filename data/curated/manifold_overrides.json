@@ -5,6 +5,12 @@
     "forced_category": "Sovereign",
     "forced_event_id": "svb_contagion_2023",
     "forced_analysis_bucket": "drawdown",
+    "proxy_family_id": "svb_contagion_2023_bank_failure",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-02-15",
+    "event_window_end": "2023-03-10",
+    "quality_score": 0.41,
     "reject_reason": "post_event_question",
     "notes": "Rejected because the market was created on 2023-03-11, after the 2023-03-10 SVB event window."
   },
@@ -14,6 +20,12 @@
     "forced_category": "Sovereign",
     "forced_event_id": "eu_banking_contagion_2024",
     "forced_analysis_bucket": "false_positive",
+    "proxy_family_id": "eu_banking_contagion_2024_banks",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "weighted_average",
+    "event_window_start": "2024-10-20",
+    "event_window_end": "2024-11-15",
+    "quality_score": 0.60,
     "reject_reason": "off_target_question_not_event_specific",
     "notes": "Rejected because the question is too generic to serve as a clean proxy for the November 2024 EU banking contagion event."
   },
@@ -23,6 +35,12 @@
     "forced_category": "Sovereign",
     "forced_event_id": "us_debt_ceiling_2023",
     "forced_analysis_bucket": "false_positive",
+    "proxy_family_id": "us_debt_ceiling_2023_deadline",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-24",
+    "event_window_end": "2023-05-31",
+    "quality_score": 0.76,
     "notes": "Approved during the V4.1 shortlist expansion."
   },
   {
@@ -31,6 +49,12 @@
     "forced_category": "Kinetic",
     "forced_event_id": "china_taiwan_2024",
     "forced_analysis_bucket": "false_positive",
+    "proxy_family_id": "china_taiwan_2024_conflict",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-06",
+    "event_window_end": "2024-08-05",
+    "quality_score": 0.73,
     "notes": "Approved during the V4.1 shortlist expansion."
   },
   {
@@ -39,6 +63,12 @@
     "forced_category": "Monetary",
     "forced_event_id": "oct_selloff_2023",
     "forced_analysis_bucket": "drawdown",
+    "proxy_family_id": "oct_selloff_2023_rates",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-05-25",
+    "event_window_end": "2023-10-27",
+    "quality_score": 0.36,
     "notes": "Approved during the V4.1 shortlist expansion."
   },
   {
@@ -47,6 +77,12 @@
     "forced_category": "Sovereign",
     "forced_event_id": "svb_contagion_2023",
     "forced_analysis_bucket": "drawdown",
+    "proxy_family_id": "svb_contagion_2023_bank_failure",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-03-10",
+    "event_window_end": "2023-03-10",
+    "quality_score": 0.45,
     "notes": "Hold pending created_date verification."
   },
   {
@@ -55,6 +91,12 @@
     "forced_category": "Sovereign",
     "forced_event_id": "svb_contagion_2023",
     "forced_analysis_bucket": "drawdown",
+    "proxy_family_id": "svb_contagion_2023_bank_failure",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-03-10",
+    "event_window_end": "2023-03-10",
+    "quality_score": 0.44,
     "notes": "Hold pending created_date verification."
   },
   {

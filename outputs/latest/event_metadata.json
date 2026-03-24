@@ -8,7 +8,13 @@
     "resolved_outcome": "YES",
     "provenance": "manual_reconstructed",
     "analysis_bucket": "background",
-    "event_date": "2020-03-16"
+    "event_date": "2020-03-16",
+    "proxy_family_id": "covid_crash_2020",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "",
+    "event_window_start": "2020-01-20",
+    "event_window_end": "2020-04-15",
+    "quality_score": 0.5
   },
   "ukraine_invasion_2022": {
     "event_id": "ukraine_invasion_2022",
@@ -19,7 +25,13 @@
     "resolved_outcome": "YES",
     "provenance": "archive_recovered",
     "analysis_bucket": "drawdown",
-    "event_date": "2022-02-24"
+    "event_date": "2022-02-24",
+    "proxy_family_id": "ukraine_invasion_2022_invasion",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "weighted_average",
+    "event_window_start": "2022-02-22",
+    "event_window_end": "2022-02-24",
+    "quality_score": 0.85
   },
   "rate_hike_shock_2022": {
     "event_id": "rate_hike_shock_2022",
@@ -30,7 +42,13 @@
     "resolved_outcome": "YES",
     "provenance": "manual_reconstructed",
     "analysis_bucket": "background",
-    "event_date": "2022-06-15"
+    "event_date": "2022-06-15",
+    "proxy_family_id": "rate_hike_shock_2022",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "",
+    "event_window_start": "2022-04-01",
+    "event_window_end": "2022-07-15",
+    "quality_score": 0.5
   },
   "svb_contagion_2023": {
     "event_id": "svb_contagion_2023",
@@ -41,7 +59,13 @@
     "resolved_outcome": "YES",
     "provenance": "manual_reconstructed",
     "analysis_bucket": "drawdown",
-    "event_date": "2023-03-10"
+    "event_date": "2023-03-10",
+    "proxy_family_id": "svb_contagion_2023",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "",
+    "event_window_start": "2023-02-15",
+    "event_window_end": "2023-03-24",
+    "quality_score": 0.5
   },
   "china_taiwan_2024": {
     "event_id": "china_taiwan_2024",
@@ -52,7 +76,13 @@
     "resolved_outcome": "NO",
     "provenance": "archive_recovered",
     "analysis_bucket": "false_positive",
-    "event_date": "2024-08-05"
+    "event_date": "2024-08-05",
+    "proxy_family_id": "china_taiwan_2024_conflict",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-06",
+    "event_window_end": "2024-08-05",
+    "quality_score": 0.73
   },
   "us_debt_ceiling_2023": {
     "event_id": "us_debt_ceiling_2023",
@@ -63,7 +93,13 @@
     "resolved_outcome": "NO",
     "provenance": "archive_recovered",
     "analysis_bucket": "false_positive",
-    "event_date": "2023-05-31"
+    "event_date": "2023-05-31",
+    "proxy_family_id": "us_debt_ceiling_2023_deadline",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-04-24",
+    "event_window_end": "2023-05-31",
+    "quality_score": 0.76
   },
   "oct_selloff_2023": {
     "event_id": "oct_selloff_2023",
@@ -74,7 +110,13 @@
     "resolved_outcome": "YES",
     "provenance": "archive_recovered",
     "analysis_bucket": "drawdown",
-    "event_date": "2023-10-27"
+    "event_date": "2023-10-27",
+    "proxy_family_id": "oct_selloff_2023_rates",
+    "proxy_relation": "orthogonal",
+    "aggregation_policy": "max",
+    "event_window_start": "2023-05-25",
+    "event_window_end": "2023-10-27",
+    "quality_score": 0.36
   },
   "aug_volatility_2024": {
     "event_id": "aug_volatility_2024",
@@ -85,7 +127,13 @@
     "resolved_outcome": "YES",
     "provenance": "manual_reconstructed",
     "analysis_bucket": "drawdown",
-    "event_date": "2024-08-05"
+    "event_date": "2024-08-05",
+    "proxy_family_id": "aug_volatility_2024",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "",
+    "event_window_start": "2024-07-15",
+    "event_window_end": "2024-08-16",
+    "quality_score": 0.5
   },
   "eu_banking_contagion_2024": {
     "event_id": "eu_banking_contagion_2024",
@@ -96,6 +144,12 @@
     "resolved_outcome": "NO",
     "provenance": "manual_reconstructed",
     "analysis_bucket": "false_positive",
-    "event_date": "2024-11-15"
+    "event_date": "2024-11-15",
+    "proxy_family_id": "eu_banking_contagion_2024",
+    "proxy_relation": "substitute",
+    "aggregation_policy": "",
+    "event_window_start": "2024-10-20",
+    "event_window_end": "2024-11-30",
+    "quality_score": 0.5
   }
 }

@@ -9,9 +9,31 @@ from .clients import fetch_manifold_bets, fetch_manifold_market, fetch_manifold_
 from .utils import date_range, epoch_millis_to_date, format_date, parse_date, smoothstep
 
 
+def normalize_proxy_metadata(seed: dict) -> dict:
+    normalized = seed.copy()
+    normalized["proxy_family_id"] = normalized.get("proxy_family_id") or normalized["event_id"]
+    normalized["proxy_relation"] = normalized.get("proxy_relation") or "substitute"
+    normalized["aggregation_policy"] = normalized.get("aggregation_policy") or ""
+    normalized["event_window_start"] = (
+        normalized.get("event_window_start")
+        or normalized.get("start_date")
+        or normalized.get("event_date")
+    )
+    normalized["event_window_end"] = (
+        normalized.get("event_window_end")
+        or normalized.get("end_date")
+        or normalized.get("event_date")
+    )
+    default_quality = 0.5 if normalized.get("source") == "Manual" else 1.0
+    normalized["quality_score"] = float(normalized.get("quality_score", default_quality))
+    normalized["market_id"] = normalized.get("market_id")
+    return normalized
+
+
 def build_event_panel(config: dict, seeds: list[dict], raw_dir: Path, refresh: bool = False) -> list[dict]:
     rows: list[dict] = []
     for seed in seeds:
+        seed = normalize_proxy_metadata(seed)
         if seed["source"] == "Manifold" and seed.get("market_id"):
             rows.extend(build_manifold_event_rows(config, seed, raw_dir, refresh=refresh))
         else:
@@ -25,7 +47,7 @@ def load_curated_shortlist(path: Path) -> list[dict]:
         return []
     with path.open("r", encoding="utf-8") as handle:
         payload = json.load(handle)
-    return list(payload)
+    return [normalize_proxy_metadata(entry) for entry in payload]
 
 
 def merge_seeds_with_shortlist(seeds: list[dict], shortlist: list[dict]) -> tuple[list[dict], list[dict]]:
@@ -176,7 +198,14 @@ def build_manual_event_rows(seed: dict) -> list[dict]:
                 "provenance": seed["provenance"],
                 "analysis_bucket": seed["analysis_bucket"],
                 "event_date": seed["event_date"],
-                "source_brier": 0.25
+                "source_brier": 0.25,
+                "market_id": seed.get("market_id"),
+                "proxy_family_id": seed["proxy_family_id"],
+                "proxy_relation": seed["proxy_relation"],
+                "aggregation_policy": seed["aggregation_policy"],
+                "event_window_start": seed["event_window_start"],
+                "event_window_end": seed["event_window_end"],
+                "quality_score": seed["quality_score"],
             }
         )
     return rows
@@ -221,7 +250,14 @@ def build_manifold_event_rows(config: dict, seed: dict, raw_dir: Path, refresh: 
                 "provenance": seed["provenance"],
                 "analysis_bucket": seed["analysis_bucket"],
                 "event_date": seed["event_date"],
-                "source_brier": float(config["cassandra"]["source_brier_scores"]["Manifold"])
+                "source_brier": float(config["cassandra"]["source_brier_scores"]["Manifold"]),
+                "market_id": seed.get("market_id"),
+                "proxy_family_id": seed["proxy_family_id"],
+                "proxy_relation": seed["proxy_relation"],
+                "aggregation_policy": seed["aggregation_policy"],
+                "event_window_start": seed["event_window_start"],
+                "event_window_end": seed["event_window_end"],
+                "quality_score": seed["quality_score"],
             }
         )
         current += timedelta(days=1)
@@ -296,34 +332,92 @@ def build_search_audit_row(
     }
 
 
+def resolve_proxy_aggregation_policy(rows: list[dict], config: dict | None = None) -> str:
+    explicit = {row["aggregation_policy"] for row in rows if row.get("aggregation_policy")}
+    if len(explicit) > 1:
+        raise ValueError(f"Conflicting aggregation policies for proxy family: {sorted(explicit)}")
+    if explicit:
+        return next(iter(explicit))
+
+    config = config or {}
+    cassandra = config.get("cassandra", {})
+    global_default = cassandra.get("multi_proxy_aggregation", "weighted_average")
+    if not any(row.get("proxy_relation") for row in rows):
+        return global_default
+    relation_defaults = cassandra.get(
+        "proxy_relation_aggregation_defaults",
+        {
+            "orthogonal": "max",
+            "nested": "weighted_average",
+            "substitute": "weighted_average",
+        },
+    )
+    proxy_relation = rows[0].get("proxy_relation") or "substitute"
+    return relation_defaults.get(proxy_relation, global_default)
+
+
+def aggregate_probability_rows(rows: list[dict], policy: str, level: str) -> dict:
+    if policy == "max":
+        dominant = max(
+            rows,
+            key=lambda row: (float(row["probability"]), float(row.get("quality_score", 0.0))),
+        )
+        template = dominant.copy()
+        template["probability"] = max(float(row["probability"]) for row in rows)
+    elif policy == "weighted_average":
+        dominant = max(
+            rows,
+            key=lambda row: (float(row["probability"]), float(row.get("quality_score", 0.0))),
+        )
+        numerator = 0.0
+        denominator = 0.0
+        for row in rows:
+            brier = max(float(row.get("source_brier", 0.25)), 1e-6)
+            weight = 1.0 / brier
+            numerator += weight * float(row["probability"])
+            denominator += weight
+        template = dominant.copy()
+        template["probability"] = numerator / denominator if denominator else 0.0
+    else:
+        raise ValueError(f"Unsupported aggregation policy: {policy}")
+
+    dominant = max(
+        rows,
+        key=lambda row: (float(row["probability"]), float(row.get("quality_score", 0.0))),
+    )
+    template[f"{level}_aggregation_policy"] = policy
+    template[f"{level}_proxy_count"] = len(rows)
+    template[f"{level}_quality_score"] = max(float(row.get("quality_score", 0.0)) for row in rows)
+    template[f"dominant_{level}_market_id"] = dominant.get("market_id")
+    template[f"dominant_{level}_question"] = dominant.get("question")
+    template[f"dominant_{level}_probability"] = float(dominant["probability"])
+    template[f"dominant_{level}_quality_score"] = float(dominant.get("quality_score", 0.0))
+    template[f"{level}_market_ids"] = " | ".join(sorted(str(row.get("market_id") or "") for row in rows if row.get("market_id")))
+    return template
+
+
 def aggregate_daily_probabilities(rows: list[dict], config: dict | None = None) -> dict[str, dict[str, dict]]:
-    aggregation_mode = "weighted_average"
-    if config is not None:
-        aggregation_mode = config.get("cassandra", {}).get("multi_proxy_aggregation", aggregation_mode)
-    grouped: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
+    grouped: dict[str, dict[str, dict[str, list[dict]]]] = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     for row in rows:
-        grouped[row["date"]][row["event_id"]].append(row)
+        grouped[row["date"]][row["event_id"]][row.get("proxy_family_id") or row["event_id"]].append(row)
 
     daily: dict[str, dict[str, dict]] = {}
     for day, events in grouped.items():
         daily[day] = {}
-        for event_id, event_rows in events.items():
-            if aggregation_mode == "max":
-                template = max(event_rows, key=lambda row: float(row["probability"])).copy()
-                template["probability"] = max(float(row["probability"]) for row in event_rows)
-            elif aggregation_mode == "weighted_average":
-                numerator = 0.0
-                denominator = 0.0
-                for row in event_rows:
-                    brier = max(float(row.get("source_brier", 0.25)), 1e-6)
-                    weight = 1.0 / brier
-                    numerator += weight * float(row["probability"])
-                    denominator += weight
-                template = event_rows[0].copy()
-                template["probability"] = numerator / denominator if denominator else 0.0
-            else:
-                raise ValueError(f"Unsupported multi_proxy_aggregation mode: {aggregation_mode}")
-            daily[day][event_id] = template
+        for event_id, family_groups in events.items():
+            family_rows: list[dict] = []
+            for proxy_family_id, proxy_rows in family_groups.items():
+                family_policy = resolve_proxy_aggregation_policy(proxy_rows, config)
+                aggregated_family = aggregate_probability_rows(proxy_rows, family_policy, "family")
+                aggregated_family["proxy_family_id"] = proxy_family_id
+                family_rows.append(aggregated_family)
+
+            cassandra = (config or {}).get("cassandra", {})
+            event_policy = cassandra.get("multi_family_aggregation", cassandra.get("multi_proxy_aggregation", "weighted_average"))
+            aggregated_event = aggregate_probability_rows(family_rows, event_policy, "event")
+            aggregated_event["proxy_family_count"] = len(family_rows)
+            aggregated_event["family_rows"] = family_rows
+            daily[day][event_id] = aggregated_event
     return daily
 
 
@@ -341,7 +435,13 @@ def build_event_metadata(rows: list[dict]) -> dict[str, dict]:
                 "resolved_outcome": row["resolved_outcome"],
                 "provenance": row["provenance"],
                 "analysis_bucket": row["analysis_bucket"],
-                "event_date": row["event_date"]
+                "event_date": row["event_date"],
+                "proxy_family_id": row.get("proxy_family_id"),
+                "proxy_relation": row.get("proxy_relation"),
+                "aggregation_policy": row.get("aggregation_policy"),
+                "event_window_start": row.get("event_window_start"),
+                "event_window_end": row.get("event_window_end"),
+                "quality_score": row.get("quality_score"),
             }
         )
     return metadata

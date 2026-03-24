@@ -8,3 +8,4 @@ outputs/*
 outputs/latest/*
 !outputs/latest/*.csv
 !outputs/latest/*.json
+!outputs/latest/*.md

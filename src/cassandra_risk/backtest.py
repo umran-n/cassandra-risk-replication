@@ -55,9 +55,6 @@ def compute_cassandra_signal(
     lambda_scale: float = 1.0,
     probability_scale: float = 1.0,
 ) -> tuple[list[float], list[float], list[dict]]:
-    weights = config["cassandra"]["category_weights"]
-    lambdas = config["cassandra"]["category_lambdas"]
-    horizon_normalizer = float(config["cassandra"]["horizon_normalizer_days"])
     thresholds = list(config["cassandra"]["rebalancing_thresholds"])
     rsi_values: list[float] = []
     hazard_values: list[float] = []
@@ -67,15 +64,14 @@ def compute_cassandra_signal(
     for day_string in dates:
         hazard = 0.0
         event_rows = daily_events.get(day_string, {})
-        current_date = parse_date(day_string)
         for row in event_rows.values():
-            category = row["category"]
-            probability = clamp(float(row["probability"]) * probability_scale, 0.0, 1.0)
-            resolution_date = parse_date(row["resolution_date"])
-            days_to_resolution = max((resolution_date - current_date).days, 1)
-            decay_rate = float(lambdas.get(category, 0.1)) * lambda_scale
-            decay = math.exp(-decay_rate * days_to_resolution / horizon_normalizer)
-            hazard += float(weights.get(category, 0.0)) * decay * probability
+            hazard += hazard_components_for_row(
+                row,
+                day_string,
+                config,
+                lambda_scale=lambda_scale,
+                probability_scale=probability_scale,
+            )["hazard_contribution"]
         rsi = 1.0 / (1.0 + hazard)
         rsi_values.append(rsi)
         hazard_values.append(hazard)
@@ -95,6 +91,184 @@ def compute_cassandra_signal(
                     )
         previous_rsi = rsi
     return rsi_values, hazard_values, threshold_events
+
+
+def hazard_components_for_row(
+    row: dict,
+    day_string: str,
+    config: dict,
+    lambda_scale: float = 1.0,
+    probability_scale: float = 1.0,
+) -> dict:
+    weights = config["cassandra"]["category_weights"]
+    lambdas = config["cassandra"]["category_lambdas"]
+    horizon_normalizer = float(config["cassandra"]["horizon_normalizer_days"])
+    max_weight = max(float(value) for value in weights.values() if float(value) > 0.0)
+
+    category = row["category"]
+    weight = float(weights.get(category, 0.0))
+    severity = 0.0 if max_weight <= 0 else weight / max_weight
+    probability = clamp(float(row["probability"]) * probability_scale, 0.0, 1.0)
+    current_date = parse_date(day_string)
+    resolution_date = parse_date(row["resolution_date"])
+    days_to_resolution = max((resolution_date - current_date).days, 1)
+    horizon_units = days_to_resolution / horizon_normalizer
+    decay_rate = float(lambdas.get(category, 0.1)) * lambda_scale
+
+    # Split the original decay term into a short-horizon urgency term and a tail persistence term.
+    velocity = math.exp(-decay_rate * min(horizon_units, 1.0))
+    persistence = math.exp(-decay_rate * max(horizon_units - 1.0, 0.0))
+    decay = velocity * persistence
+    hazard = max_weight * probability * severity * velocity * persistence
+
+    return {
+        "category_weight": weight,
+        "severity_scale_weight": max_weight,
+        "probability_factor": probability,
+        "severity_factor": severity,
+        "velocity_factor": velocity,
+        "persistence_factor": persistence,
+        "decay_factor": decay,
+        "days_to_resolution": days_to_resolution,
+        "horizon_units": horizon_units,
+        "decay_rate": decay_rate,
+        "hazard_contribution": hazard,
+    }
+
+
+def build_hazard_attribution(
+    dates: list[str],
+    daily_events: dict[str, dict[str, dict]],
+    config: dict,
+    lambda_scale: float = 1.0,
+    probability_scale: float = 1.0,
+) -> tuple[list[dict], list[dict]]:
+    attribution_rows: list[dict] = []
+    decomposition_rows: list[dict] = []
+
+    for day_string in dates:
+        event_rows = daily_events.get(day_string, {})
+        category_totals: dict[str, float] = defaultdict(float)
+        day_rows: list[dict] = []
+
+        for event_id, row in event_rows.items():
+            components = hazard_components_for_row(
+                row,
+                day_string,
+                config,
+                lambda_scale=lambda_scale,
+                probability_scale=probability_scale,
+            )
+            factor_sum = sum(
+                (
+                    components["probability_factor"],
+                    components["severity_factor"],
+                    components["velocity_factor"],
+                    components["persistence_factor"],
+                )
+            )
+            factor_sum = factor_sum if factor_sum > 0 else 1.0
+
+            probability_hazard = components["hazard_contribution"] * components["probability_factor"] / factor_sum
+            severity_hazard = components["hazard_contribution"] * components["severity_factor"] / factor_sum
+            velocity_hazard = components["hazard_contribution"] * components["velocity_factor"] / factor_sum
+            persistence_hazard = components["hazard_contribution"] * components["persistence_factor"] / factor_sum
+
+            category_totals[row["category"]] += components["hazard_contribution"]
+            day_rows.append(
+                {
+                    "date": day_string,
+                    "event_id": event_id,
+                    "category": row["category"],
+                    "question": row["question"],
+                    "event_probability": float(row["probability"]),
+                    "hazard_contribution": components["hazard_contribution"],
+                    "probability_factor": components["probability_factor"],
+                    "severity_factor": components["severity_factor"],
+                    "velocity_factor": components["velocity_factor"],
+                    "persistence_factor": components["persistence_factor"],
+                    "probability_component_hazard": probability_hazard,
+                    "severity_component_hazard": severity_hazard,
+                    "velocity_component_hazard": velocity_hazard,
+                    "persistence_component_hazard": persistence_hazard,
+                    "category_weight": components["category_weight"],
+                    "severity_scale_weight": components["severity_scale_weight"],
+                    "days_to_resolution": components["days_to_resolution"],
+                    "horizon_units": components["horizon_units"],
+                    "decay_rate": components["decay_rate"],
+                    "decay_factor": components["decay_factor"],
+                    "proxy_family_id": row.get("proxy_family_id"),
+                    "proxy_relation": row.get("proxy_relation"),
+                    "aggregation_policy": row.get("aggregation_policy"),
+                    "family_aggregation_policy": row.get("family_aggregation_policy"),
+                    "event_aggregation_policy": row.get("event_aggregation_policy"),
+                    "event_window_start": row.get("event_window_start"),
+                    "event_window_end": row.get("event_window_end"),
+                    "quality_score": row.get("quality_score"),
+                    "proxy_family_count": row.get("proxy_family_count", 1),
+                    "family_proxy_count": row.get("family_proxy_count", 1),
+                    "dominant_family_market_id": row.get("dominant_family_market_id"),
+                    "dominant_family_question": row.get("dominant_family_question"),
+                    "dominant_family_probability": row.get("dominant_family_probability"),
+                    "dominant_event_market_id": row.get("dominant_event_market_id"),
+                    "dominant_event_question": row.get("dominant_event_question"),
+                    "dominant_event_probability": row.get("dominant_event_probability"),
+                }
+            )
+
+        total_hazard = sum(row["hazard_contribution"] for row in day_rows)
+        rsi = 1.0 / (1.0 + total_hazard)
+        rsi_drag = 1.0 - rsi
+        ranked = sorted(day_rows, key=lambda item: item["hazard_contribution"], reverse=True)
+        dominant_event_id = ranked[0]["event_id"] if ranked else ""
+        dominant_category = max(category_totals, key=category_totals.get) if category_totals else ""
+
+        probability_total = sum(row["probability_component_hazard"] for row in day_rows)
+        severity_total = sum(row["severity_component_hazard"] for row in day_rows)
+        velocity_total = sum(row["velocity_component_hazard"] for row in day_rows)
+        persistence_total = sum(row["persistence_component_hazard"] for row in day_rows)
+
+        for rank, row in enumerate(ranked, start=1):
+            row["total_hazard"] = total_hazard
+            row["rsi"] = rsi
+            row["rsi_drag"] = rsi_drag
+            row["event_rank_by_hazard"] = rank
+            row["event_hazard_share"] = 0.0 if total_hazard == 0 else row["hazard_contribution"] / total_hazard
+            row["category_hazard_share"] = 0.0 if total_hazard == 0 else category_totals[row["category"]] / total_hazard
+            row["dominant_event_flag"] = rank == 1
+            row["dominant_category_flag"] = row["category"] == dominant_category
+            attribution_rows.append(row)
+
+        probability_share = 0.0 if total_hazard == 0 else probability_total / total_hazard
+        severity_share = 0.0 if total_hazard == 0 else severity_total / total_hazard
+        velocity_share = 0.0 if total_hazard == 0 else velocity_total / total_hazard
+        persistence_share = 0.0 if total_hazard == 0 else persistence_total / total_hazard
+
+        decomposition_rows.append(
+            {
+                "date": day_string,
+                "total_hazard": total_hazard,
+                "rsi": rsi,
+                "rsi_drag": rsi_drag,
+                "active_event_count": len(day_rows),
+                "dominant_event_id": dominant_event_id,
+                "dominant_category": dominant_category,
+                "probability_component_hazard": probability_total,
+                "severity_component_hazard": severity_total,
+                "velocity_component_hazard": velocity_total,
+                "persistence_component_hazard": persistence_total,
+                "probability_share_of_hazard": probability_share,
+                "severity_share_of_hazard": severity_share,
+                "velocity_share_of_hazard": velocity_share,
+                "persistence_share_of_hazard": persistence_share,
+                "probability_rsi_drag": rsi_drag * probability_share,
+                "severity_rsi_drag": rsi_drag * severity_share,
+                "velocity_rsi_drag": rsi_drag * velocity_share,
+                "persistence_rsi_drag": rsi_drag * persistence_share,
+            }
+        )
+
+    return attribution_rows, decomposition_rows
 
 
 def simulate_strategy(dates: list[str], returns: list[float], positions: list[float], transaction_cost_bps: float) -> dict:
