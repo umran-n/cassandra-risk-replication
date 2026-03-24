@@ -1,0 +1,140 @@
+event_id,title,theme,resolution_date,peak_probability,min_probability,probability_range,total_volume_usd,num_traders,num_history_points,suggested_action
+,Will Republicans have between 220 and 224 seats in House after election?,electoral,2024-12-04,0.9825,0.06,0.9225,347290.68,,111,REVIEW_CAP
+,Will Republicans have between 215 and 219 seats in House after election?,electoral,2024-12-04,0.375,0.006,0.369,344808.7,,111,REVIEW_CAP
+,Will Nigel Farage win election to UK parliament?,electoral,2024-07-05,0.9725,0.69,0.2825,326337.44,,32,REVIEW_CAP
+,Will Republicans have 230 or more seats in House after election?,electoral,2024-12-04,0.3,0.0005,0.2995,247672.6,,111,REVIEW_CAP
+,Will U.S. Supreme Court vote to reinstate Trump on Colorado's 2024 ballot?,electoral,2024-03-04,0.92,0.235,0.685,244342.63,,75,REVIEW_CAP
+,Will Republicans have between 225 and 229 seats in House after election?,electoral,2024-12-04,0.335,0.0005,0.3345,185403.96,,111,REVIEW_CAP
+,Will Fischer win Nebraska senate election by 7+ points?,electoral,2024-12-02,0.95,0.0155,0.9345,172535.87,,33,REVIEW_CAP
+,Will Republicans have fewer than 200 seats in House after election?,electoral,2024-12-04,0.21,0.0005,0.2095,125095.79,,111,REVIEW_CAP
+,Will Republicans have between 210 and 214 seats in House after election?,electoral,2024-12-04,0.5,0.0005,0.4995,117571.68,,111,REVIEW_CAP
+,Will Republicans have between 205 and 209 seats in House after election?,electoral,2024-12-04,0.56,0.0005,0.5595,112828.85,,111,REVIEW_CAP
+,"Will Donald Trump be President of the USA on November 30, 2023?",electoral,2023-12-01,0.5,0.0005,0.4995,110640.79,,127,REVIEW_CAP
+,Will Cyril Ramaphosa be the next President of South Africa?,electoral,2024-06-15,0.9995,0.275,0.7245,97507.33,,64,REVIEW_CAP
+,Will Republicans have between 200 and 204 seats in House after election?,electoral,2024-12-04,0.515,0.0005,0.5145,89222.38,,111,REVIEW_CAP
+,Will VB win the most seats in the Belgian federal elections?,electoral,2024-06-11,0.965,0.0005,0.9645,70561.55,,35,REVIEW_CAP
+,Will the N-VA win the most seats in the Belgian federal elections?,electoral,2024-06-11,0.995,0.0215,0.9735,38209.94,,35,REVIEW_CAP
+,Jeremy Corbyn elected to parliament in UK election?,electoral,2024-07-05,0.83,0.325,0.505,37952.52,,42,REVIEW_CAP
+,Will Garvey win the California Senate Primary by between 0-2% of the vote?,electoral,2024-04-13,0.72,0.006,0.714,37592.34,,37,REVIEW_CAP
+,Trump sentenced to house arrest?,electoral,2024-11-05,0.435,0.0025,0.4325,36124.71,,158,REVIEW_CAP
+,Will another non-ANC candidate be the next President of South Africa?,electoral,2024-06-15,0.499,0.0005,0.4985,32786.53,,64,REVIEW_CAP
+,Labour wins 30-35% of votes?,electoral,2024-07-06,0.974,0.035,0.939,31262.22,,44,REVIEW_CAP
+,Trump eligible to vote in the election?,electoral,2024-11-07,0.995,0.68,0.315,30504.35,,160,REVIEW_CAP
+,Will John Steenhuisen be the next President of South Africa?,electoral,2024-06-15,0.5,0.0005,0.4995,26523.76,,64,REVIEW_CAP
+,Labour wins 35-40% of votes?,electoral,2024-07-06,0.79,0.075,0.715,16268.76,,44,REVIEW_CAP
+,Will the EPP win the most seats in European Parliament?,electoral,2024-06-16,0.9995,0.5,0.4995,14337.49,,34,REVIEW_CAP
+,Labour wins 40-45% of votes?,electoral,2024-07-05,0.51,0.275,0.235,13284.33,,43,REVIEW_CAP
+,Will another ANC candidate be the next President of South Africa?,electoral,2024-06-15,0.525,0.0005,0.5245,12264.37,,64,REVIEW_CAP
+,Labour wins 45-50% of votes?,electoral,2024-07-05,0.34,0.065,0.275,10973.51,,43,REVIEW_CAP
+,Will Peter Obi be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,2023-05-29,0.71,0.03,0.68,7709.79,,130,REVIEW_CAP|LOW_LIQUIDITY
+,Will Atiku Abubakar be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,2023-05-29,0.63,0.03,0.6,5108.39,,130,REVIEW_CAP|LOW_LIQUIDITY
+,Will the S&D win the most seats in European Parliament?,electoral,2024-06-16,0.5,0.0005,0.4995,3949.23,,34,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 180-189 seats in the European Parliament?,electoral,2024-07-17,0.595,0.155,0.44,3576.69,,65,REVIEW_CAP|LOW_LIQUIDITY
+,Will the ECR win the most seats in European Parliament?,electoral,2024-06-16,0.5,0.0005,0.4995,3325.27,,34,REVIEW_CAP|LOW_LIQUIDITY
+,Will ID win the most seats in European Parliament?,electoral,2024-06-16,0.5,0.0005,0.4995,2959.08,,34,REVIEW_CAP|LOW_LIQUIDITY
+,Will Bola Tinubu be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,2023-05-29,0.955,0.2,0.755,2917.23,,129,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 190-199 seats in the European Parliament?,electoral,2024-07-17,0.5245,0.04,0.4845,2825.52,,65,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win less than 150 seats in the European Parliament?,electoral,2024-06-20,0.5,0.0005,0.4995,2696.75,,38,REVIEW_CAP|LOW_LIQUIDITY
+,Will another party win the most seats in European Parliament?,electoral,2024-06-16,0.5,0.0005,0.4995,2015.69,,34,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 160-169 seats in the European Parliament?,electoral,2024-06-20,0.575,0.13,0.445,1927.01,,38,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 150-159 seats in the European Parliament?,electoral,2024-06-20,0.52,0.0005,0.5195,1914.19,,38,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 170-179 seats in the European Parliament?,electoral,2024-06-20,0.66,0.32,0.34,1886.1,,38,REVIEW_CAP|LOW_LIQUIDITY
+,Will the EPP win 200 or more seats in the European Parliament?,electoral,2024-06-20,0.5,0.0005,0.4995,843.28,,38,REVIEW_CAP|LOW_LIQUIDITY
+,US debt ceiling hike by July 1?,fiscal_debt,2023-06-03,0.995,0.18,0.815,108835.7,,37,REVIEW
+,Israel x Hezbollah Ceasefire in 2024?,geopolitical,2024-12-05,0.9995,0.25,0.7495,40061277.63,,72,REVIEW
+,Will Israel invade Syria in 2024?,geopolitical,2024-12-21,0.9995,0.017,0.9825,16819559.74,,99,REVIEW
+,Will Israel invade Lebanon before November?,geopolitical,2024-10-06,0.9995,0.09,0.9095,5313533.73,,60,REVIEW
+,Israel x Hamas ceasefire in 2024?,geopolitical,2025-01-01,0.67,0.003,0.667,3950958.94,,147,REVIEW
+,Russia x Ukraine Ceasefire in 2024?,geopolitical,2025-01-01,0.215,0.001,0.214,3514408.22,,107,REVIEW
+,Another Iran strike on Israel in 2024?,geopolitical,2025-01-01,0.67,0.0005,0.6695,3168665.69,,67,REVIEW
+,Another Iran strike on Israel in October?,geopolitical,2024-11-01,0.585,0.0055,0.5795,1770275.94,,30,REVIEW
+,Another Israeli military action against Iran in 2024?,geopolitical,2025-01-01,0.695,0.003,0.692,1660869.0,,65,REVIEW
+,Will Israel invade Lebanon before September?,geopolitical,2024-09-01,0.645,0.0005,0.6445,1345780.16,,95,REVIEW
+,Iran strike on Israel before December?,geopolitical,2024-12-01,0.53,0.0025,0.5275,1317271.58,,31,REVIEW
+,U.S. military action against Iran before November?,geopolitical,2024-11-01,0.1555,0.0045,0.151,1070645.35,,39,REVIEW
+,Israel x Hamas ceasefire before September?,geopolitical,2024-09-01,0.715,0.002,0.713,972382.17,,95,REVIEW
+,Israel military action against Iran by end of 2024?,geopolitical,2024-10-26,0.9885,0.215,0.7735,934236.52,,150,REVIEW
+,Israel withdraws from Gaza in 2024?,geopolitical,2025-01-01,0.3,0.0015,0.2985,501887.1,,75,REVIEW
+,U.S. military action against Iran in 2024?,geopolitical,2025-01-01,0.195,0.0035,0.1915,495157.12,,71,REVIEW
+,Iran military response before October?,geopolitical,2024-10-01,0.52,0.007,0.513,467982.23,,42,REVIEW
+,Will Israel invade Lebanon before March?,geopolitical,2024-03-01,0.22,0.003,0.217,408699.99,,42,REVIEW
+,Ceasefire between Russia and Ukraine before October?,geopolitical,2024-10-01,0.195,0.0015,0.1935,315612.94,,130,REVIEW
+,Israel declares war on Iran in October?,geopolitical,2024-11-01,0.15,0.002,0.148,269771.9,,31,REVIEW
+,Will Ukraine sever the land bridge between Crimea and Russia before Nov 1?,geopolitical,2023-11-01,0.36,0.0025,0.3575,249080.32,,147,REVIEW
+,Israel x Hamas ceasefire before October?,geopolitical,2024-10-01,0.32,0.002,0.318,244511.73,,43,REVIEW
+,Israel military action against Iran in August?,geopolitical,2024-09-01,0.765,0.0045,0.7605,242109.13,,31,REVIEW
+,Israel x Hamas ceasefire before March?,geopolitical,2024-03-01,0.725,0.0085,0.7165,208098.23,,33,REVIEW
+,Will Israel invade Lebanon before May?,geopolitical,2024-05-01,0.185,0.0025,0.1825,186815.83,,43,REVIEW
+, Israel and Hamas ceasefire in 2023?,geopolitical,2023-11-26,0.9795,0.185,0.7945,162833.31,,48,REVIEW
+,Next Israel x Hamas ceasefire in November?,geopolitical,2024-12-01,0.233,0.0025,0.2305,136123.34,,174,REVIEW
+,Israel military action against Yemen before November?,geopolitical,2024-11-01,0.685,0.0025,0.6825,124334.2,,31,REVIEW
+,Another Israel x Hamas ceasefire before February?,geopolitical,2024-02-01,0.775,0.0005,0.7745,123245.33,,50,REVIEW
+,Next Israel x Hamas ceasefire in October?,geopolitical,2024-11-01,0.5165,0.002,0.5145,122919.97,,144,REVIEW
+,Next Israel x Hamas ceasefire in September?,geopolitical,2024-10-01,0.535,0.0015,0.5335,100482.37,,113,REVIEW
+,Will another nation declare war in the Israel-Hamas conflict?,geopolitical,2024-01-01,0.305,0.0205,0.2845,97301.03,,85,REVIEW
+,Israel x Hamas ceasefire before April?,geopolitical,2024-04-01,0.755,0.0035,0.7515,85164.36,,39,REVIEW
+,Next Israel x Hamas ceasefire in August?,geopolitical,2024-09-01,0.365,0.004,0.361,82951.01,,83,REVIEW
+,Israel x Hamas ceasefire before May?,geopolitical,2024-05-01,0.835,0.009,0.826,70167.0,,40,REVIEW
+,US/Iran declare war before March?,geopolitical,2024-03-01,0.165,0.0015,0.1635,61994.34,,32,REVIEW
+,Will Russia & Ukraine declare a ceasefire by EOY?,geopolitical,2024-01-01,0.465,0.0135,0.4515,57909.82,,173,REVIEW
+,Israel withdraws from Gaza before September?,geopolitical,2024-09-01,0.45,0.004,0.446,55824.48,,93,REVIEW
+,Belarus x Ukraine military clash by Sep 30?,geopolitical,2024-10-01,0.19,0.005,0.185,55669.49,,36,REVIEW
+,US call for Gaza ceasefire before February?,geopolitical,2024-02-01,0.625,0.024,0.601,49269.22,,50,REVIEW
+,Will the US publicly state that Iran was directly involved with the recent attack on Israel in 2023?,geopolitical,2024-01-01,0.5,0.0225,0.4775,46876.16,,84,REVIEW
+,Another Israel x Hamas ceasefire in 2023?,geopolitical,2024-01-01,0.375,0.005,0.37,44345.96,,31,REVIEW
+,Next Israel x Hamas ceasefire in July?,geopolitical,2024-08-01,0.565,0.0015,0.5635,27059.76,,52,REVIEW
+,Will Iran close the Strait of Hormuz in 2023?,geopolitical,2024-01-01,0.25,0.035,0.215,1629.33,,74,REVIEW|LOW_LIQUIDITY
+,No change in Fed interest rates after 2024 September meeting?,monetary_policy,2024-09-18,0.155,0.013,0.142,23499210.73,,55,REVIEW
+,Fed decreases interest rates by 50+ bps after September 2024 meeting?,monetary_policy,2024-09-18,0.59,0.065,0.525,10906333.42,,55,REVIEW
+,Fed decreases interest rates by 50 bps after December 2024 meeting?,monetary_policy,2024-12-18,0.41,0.0025,0.4075,9192309.53,,134,REVIEW
+,Fed decreases interest rates by 50 bps after November 2024 meeting?,monetary_policy,2024-11-07,0.515,0.021,0.494,8393267.79,,97,REVIEW
+,No change in Fed interest rates after 2024 November meeting?,monetary_policy,2024-11-07,0.225,0.023,0.202,7995206.76,,97,REVIEW
+,Fed decreases interest rates by 25 bps after December 2024 meeting?,monetary_policy,2024-12-18,0.9715,0.415,0.5565,7490697.07,,134,REVIEW
+,No change in Fed interest rates after December 2024 meeting?,monetary_policy,2024-12-18,0.405,0.0265,0.3785,7400313.75,,134,REVIEW
+,Fed decreases interest rates by 25 bps after September 2024 meeting?,monetary_policy,2024-09-18,0.905,0.375,0.53,6660914.25,,55,REVIEW
+,Fed decreases interest rates by 25 bps after November 2024 meeting?,monetary_policy,2024-11-07,0.9535,0.315,0.6385,5010507.07,,97,REVIEW
+,Fed rate cut by March 20?,monetary_policy,2024-03-21,0.63,0.0035,0.6265,1907759.26,,94,REVIEW
+,Fed rate cut by July 31?,monetary_policy,2024-08-01,0.9105,0.001,0.9095,1727507.99,,170,REVIEW
+,Fed rate cut by May 1?,monetary_policy,2024-05-02,0.885,0.0005,0.8845,1608415.7,,148,REVIEW
+,Fed rate cut by June 12?,monetary_policy,2024-06-13,0.9695,0.0005,0.969,1253483.92,,134,REVIEW
+,Fed emergency rate cut in 2024?,monetary_policy,2025-01-01,0.27,0.0005,0.2695,835804.64,,152,REVIEW
+,Increase in ECB interest rates after 2024 December meeting?,monetary_policy,2024-12-12,0.165,0.0015,0.1635,399674.02,,43,REVIEW
+,"Will Jerome Powell say ""inflation"" 50 or more times during December FOMC Press Conference?",monetary_policy,2024-12-18,0.62,0.325,0.295,387258.68,,33,REVIEW
+,Will the Fed increase interest rates by 0 bps after its June meeting?,monetary_policy,2023-06-14,0.94,0.33,0.61,243878.27,,41,REVIEW
+,>50 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,2024-12-12,0.25,0.0025,0.2475,237073.15,,43,REVIEW
+,No change in ECB interest rates after 2024 December meeting?,monetary_policy,2024-12-12,0.5,0.006,0.494,203799.68,,43,REVIEW
+,Will the Fed raise interest rates by 25+ bps after its 2024 March meeting?,monetary_policy,2024-03-20,0.3,0.0015,0.2985,197105.48,,49,REVIEW
+,26-50 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,2024-12-12,0.355,0.026,0.329,182466.84,,43,REVIEW
+,Will the Fed increase interest rates by 25 bps after its March meeting?,monetary_policy,2023-03-22,0.96,0.45,0.51,173828.12,,92,REVIEW
+,Will the Fed increase interest rates by 25 bps after its May meeting?,monetary_policy,2023-05-03,0.955,0.35,0.605,161929.81,,51,REVIEW
+,Will the Fed increase interest rates by 25 bps after its June meeting?,monetary_policy,2023-06-14,0.63,0.06,0.57,141462.93,,41,REVIEW
+,"Will Jerome Powell say ""inflation"" 40 or more times during December FOMC Press Conference?",monetary_policy,2024-12-18,0.86,0.42,0.44,138906.98,,33,REVIEW
+,Will the Fed raise interest rates by 25 bps after its July meeting?,monetary_policy,2023-07-26,0.985,0.5,0.485,133986.71,,44,REVIEW
+,1-25 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,2024-12-12,0.9615,0.585,0.3765,133816.72,,43,REVIEW
+,Will the Fed increase interest rates by 50 bps after its March meeting?,monetary_policy,2023-03-22,0.55,0.01,0.54,131282.01,,92,REVIEW
+,Will the Fed increase interest rates by 0 bps after its March meeting?,monetary_policy,2023-03-22,0.5,0.01,0.49,119684.59,,92,REVIEW
+,Will the Fed raise rates again in 2023?,monetary_policy,2024-01-01,0.505,0.001,0.504,96772.63,,118,REVIEW
+,Will the Fed raise interest rates by 0 bps after its July meeting?,monetary_policy,2023-07-26,0.335,0.015,0.32,90868.7,,44,REVIEW
+,"Will Jerome Powell say ""cut"" 7 or more times during December FOMC Press Conference?",monetary_policy,2024-12-18,0.65,0.5,0.15,87622.85,,33,REVIEW
+,No change in Fed raise interest rates after its 2024 March meeting?,monetary_policy,2024-03-21,0.996,0.515,0.481,63023.46,,50,REVIEW
+,Will the Fed increase interest rates by 0 bps after its May meeting?,monetary_policy,2023-05-03,0.68,0.04,0.64,59840.96,,51,REVIEW
+,Will the Fed decrease interest rates by 25 bps after its January meeting?,monetary_policy,2024-01-31,0.51,0.0065,0.5035,58887.6,,54,REVIEW
+,Will the Fed raise interest rates by 0 bps after its September meeting?,monetary_policy,2023-09-20,0.98,0.5,0.48,56371.17,,63,REVIEW
+,Will the Fed increase interest rates by 50 bps after its February meeting?,monetary_policy,2023-02-01,0.5,0.02,0.48,44782.06,,125,REVIEW
+,Will the Fed raise interest rates by 25 bps after its September meeting?,monetary_policy,2023-09-20,0.5,0.015,0.485,33764.27,,63,REVIEW
+,Will the Fed decrease interest rates by 25 bps after its March meeting?,monetary_policy,2023-03-22,0.5,0.01,0.49,29991.06,,92,REVIEW
+,Will the Fed raise interest rates by 0 bps after its December meeting?,monetary_policy,2023-12-13,0.991,0.5,0.491,29458.06,,51,REVIEW
+,Will the Fed raise interest rates by 25 bps after its December meeting?,monetary_policy,2023-12-13,0.185,0.0075,0.1775,27152.23,,51,REVIEW
+,Will the Fed increase interest rates by 25 bps after its February meeting?,monetary_policy,2023-02-01,0.98,0.5,0.48,26746.53,,124,REVIEW
+,Will the Fed raise interest rates by 25 bps after its November meeting?,monetary_policy,2023-11-01,0.45,0.015,0.435,19316.12,,43,REVIEW
+,Will the Fed raise interest rates by 0 bps after its November meeting?,monetary_policy,2023-11-01,0.99,0.55,0.44,19162.75,,43,REVIEW
+,Will the Fed decrease interest rates by 25 bps after its July meeting?,monetary_policy,2023-07-26,0.5,0.005,0.495,17999.66,,44,REVIEW
+,Will the Fed increase interest rates by 50 bps after its May meeting?,monetary_policy,2023-05-03,0.5,0.01,0.49,17386.71,,51,REVIEW
+,Will the Fed decrease interest rates by 50+ bps after its March 2024 meeting?,monetary_policy,2024-03-20,0.485,0.0015,0.4835,13322.49,,49,REVIEW
+,Will the Fed raise interest rates by 25 bps after its January meeting?,monetary_policy,2024-01-31,0.51,0.002,0.508,13148.33,,54,REVIEW
+,Will the Fed increase interest rates by 0 bps after its February meeting?,monetary_policy,2023-02-01,0.5,0.01,0.49,11578.31,,124,REVIEW
+,Will the Fed raise interest rates by 0 bps after its January meeting?,monetary_policy,2024-01-31,0.9925,0.5,0.4925,11073.9,,54,REVIEW
+,Will the Fed decrease interest rates by 25 bps after its May meeting?,monetary_policy,2023-05-03,0.5,0.005,0.495,9782.96,,51,REVIEW|LOW_LIQUIDITY
+,Will the Fed decrease interest rates by 25 bps after its 2024 March meeting?,monetary_policy,2024-03-21,0.49,0.0045,0.4855,8974.82,,50,REVIEW|LOW_LIQUIDITY
+,Will the Fed increase interest rates by 75 bps after its February meeting?,monetary_policy,2023-02-01,0.99,0.01,0.98,5413.84,,125,REVIEW|LOW_LIQUIDITY
+,"Will the Ethereum Merge (EIP-3675) occur by October 1, 2022?",trade_technology,2022-09-15,0.5,0.5,0.0,622044.37,,78,REVIEW
