@@ -6,11 +6,13 @@ from datetime import timedelta
 from pathlib import Path
 
 from .clients import fetch_manifold_bets, fetch_manifold_market, fetch_manifold_search_markets
+from .taxonomy import infer_structural_theme
 from .utils import date_range, epoch_millis_to_date, format_date, parse_date, smoothstep
 
 
 def normalize_proxy_metadata(seed: dict) -> dict:
     normalized = seed.copy()
+    normalized["structural_theme"] = infer_structural_theme(normalized)
     normalized["proxy_family_id"] = normalized.get("proxy_family_id") or normalized["event_id"]
     normalized["proxy_relation"] = normalized.get("proxy_relation") or "substitute"
     normalized["aggregation_policy"] = normalized.get("aggregation_policy") or ""
@@ -192,6 +194,7 @@ def build_manual_event_rows(seed: dict) -> list[dict]:
                 "question": seed["question"],
                 "source": seed["source"],
                 "category": seed["category"],
+                "structural_theme": seed["structural_theme"],
                 "probability": round(float(probability), 6),
                 "resolution_date": seed["resolution_date"],
                 "resolved_outcome": seed["resolved_outcome"],
@@ -244,6 +247,7 @@ def build_manifold_event_rows(config: dict, seed: dict, raw_dir: Path, refresh: 
                 "question": market["question"],
                 "source": "Manifold",
                 "category": seed["category"],
+                "structural_theme": seed["structural_theme"],
                 "probability": round(float(running_probability), 6),
                 "resolution_date": seed["resolution_date"],
                 "resolved_outcome": seed["resolved_outcome"],
@@ -430,6 +434,7 @@ def build_event_metadata(rows: list[dict]) -> dict[str, dict]:
                 "event_id": row["event_id"],
                 "question": row["question"],
                 "category": row["category"],
+                "structural_theme": row.get("structural_theme"),
                 "source": row["source"],
                 "resolution_date": row["resolution_date"],
                 "resolved_outcome": row["resolved_outcome"],

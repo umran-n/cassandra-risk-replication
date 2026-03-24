@@ -1,425 +1,469 @@
 [
-  {
-    "market_id": "OzQ1HmGeNw89a7uSdPVy",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "svb_contagion_2023",
-    "forced_analysis_bucket": "drawdown",
-    "proxy_family_id": "svb_contagion_2023_bank_failure",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-02-15",
-    "event_window_end": "2023-03-10",
-    "quality_score": 0.41,
-    "reject_reason": "post_event_question",
-    "notes": "Rejected because the market was created on 2023-03-11, after the 2023-03-10 SVB event window."
-  },
-  {
-    "market_id": "L5f8JDzueLshQQvWwaiI",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "eu_banking_contagion_2024",
-    "forced_analysis_bucket": "false_positive",
-    "proxy_family_id": "eu_banking_contagion_2024_banks",
-    "proxy_relation": "substitute",
-    "aggregation_policy": "weighted_average",
-    "event_window_start": "2024-10-20",
-    "event_window_end": "2024-11-15",
-    "quality_score": 0.60,
-    "reject_reason": "off_target_question_not_event_specific",
-    "notes": "Rejected because the question is too generic to serve as a clean proxy for the November 2024 EU banking contagion event."
-  },
-  {
-    "market_id": "3szs86zpyB4QQY4zzP2S",
-    "approved": true,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "proxy_family_id": "us_debt_ceiling_2023_deadline",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-04-24",
-    "event_window_end": "2023-05-31",
-    "quality_score": 0.76,
-    "notes": "Approved during the V4.1 shortlist expansion."
-  },
-  {
-    "market_id": "bB0Zbz10f5aqWn3JIAju",
-    "approved": true,
-    "forced_category": "Kinetic",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "proxy_family_id": "china_taiwan_2024_conflict",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-04-06",
-    "event_window_end": "2024-08-05",
-    "quality_score": 0.73,
-    "notes": "Approved during the V4.1 shortlist expansion."
-  },
-  {
-    "market_id": "rK52OtlkjovFyTcxPrxJ",
-    "approved": true,
-    "forced_category": "Monetary",
-    "forced_event_id": "oct_selloff_2023",
-    "forced_analysis_bucket": "drawdown",
-    "proxy_family_id": "oct_selloff_2023_rates",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-05-25",
-    "event_window_end": "2023-10-27",
-    "quality_score": 0.36,
-    "notes": "Approved during the V4.1 shortlist expansion."
-  },
-  {
-    "market_id": "wLedWs2PNHgpQburcbVE",
-    "approved": null,
-    "forced_category": "Sovereign",
-    "forced_event_id": "svb_contagion_2023",
-    "forced_analysis_bucket": "drawdown",
-    "proxy_family_id": "svb_contagion_2023_bank_failure",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-03-10",
-    "event_window_end": "2023-03-10",
-    "quality_score": 0.45,
-    "notes": "Hold pending created_date verification."
-  },
-  {
-    "market_id": "hdfx3aGXOksmbFTe8TR6",
-    "approved": null,
-    "forced_category": "Sovereign",
-    "forced_event_id": "svb_contagion_2023",
-    "forced_analysis_bucket": "drawdown",
-    "proxy_family_id": "svb_contagion_2023_bank_failure",
-    "proxy_relation": "orthogonal",
-    "aggregation_policy": "max",
-    "event_window_start": "2023-03-10",
-    "event_window_end": "2023-03-10",
-    "quality_score": 0.44,
-    "notes": "Hold pending created_date verification."
-  },
-  {
-    "market_id": "Y9mpPth1JfCkwGsF2vqv",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "k4hz8D7NElcyzgN2wn7H",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "oXoSAEJeTXRMz1rQ5jyG",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "0bqpJ0HTg15PsB4dX2I2",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "XiHhlCfjZZoczUwXmfMS",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "uTxCOBPwVZ8nQ8WC0hsM",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "QoEPB5mLhTOH0ZPxYcSF",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "Tzh9jRZ3BD7YoY96VOL9",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "xfcdXj9OaOWMRkSdQ12l",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "d0oaakAPYFQu24WUBxZa",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "foaWsnh0kjClEhD68CgF",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "w0d82HLfVxInDOx1w1LM",
-    "approved": false,
-    "forced_category": "Kinetic",
-    "forced_event_id": "ukraine_invasion_2022",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "mirPHs2eozyjPRcnx2zX",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "NYgnfg9Ra1KM8jNwfAAu",
-    "approved": false,
-    "forced_category": "Kinetic",
-    "forced_event_id": "ukraine_invasion_2022",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "rkqHc8LDcoTv64cRB0oI",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "GTr5HLb37ykXzZCTqolw",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "BB322NXLeeWNupydL4uE",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "hzvnPY1tN8pDHJPNXWxx",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "l2BNW80HLel9X1XZGNoq",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "CCfqjqZmuhAoA183u6Wq",
-    "approved": false,
-    "forced_category": "Kinetic",
-    "forced_event_id": "ukraine_invasion_2022",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "2Pd3HkJjl8jNJeaVY8uY",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "JWIjAdttyjlqiGcAwx3U",
-    "approved": false,
-    "forced_category": "Kinetic",
-    "forced_event_id": "ukraine_invasion_2022",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "EuEPJ7QQOJrvx3c8mW75",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "eu_banking_contagion_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an unapproved event-linked proxy set."
-  },
-  {
-    "market_id": "2vn2B4gs0KM4RXZLpMAc",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "womjddp6e9",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "eu_banking_contagion_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an unapproved event-linked proxy set."
-  },
-  {
-    "market_id": "cBrilG9EFcwzNfCIilXM",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "us_debt_ceiling_2023",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "YvCzCRAsa75Vo6n1gBVo",
-    "approved": false,
-    "forced_category": "Monetary",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "d0uvrhtakg",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "DBJ8sGERgrtTDXkHeN06",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "kfKJTiWibDRZ9HUj9AIe",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "oct_selloff_2023",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "BG9PNor3G6D5PndWEMwY",
-    "approved": false,
-    "forced_category": "Trade",
-    "forced_event_id": "china_taiwan_2024",
-    "forced_analysis_bucket": "false_positive",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "jrWrXdzw804EZSNWty1k",
-    "approved": false,
-    "forced_category": "Monetary",
-    "forced_event_id": "oct_selloff_2023",
-    "forced_analysis_bucket": "drawdown",
-    "reject_reason": "near_duplicate",
-    "notes": "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy."
-  },
-  {
-    "market_id": "OStPSUOqQI",
-    "approved": false,
-    "forced_category": "Sovereign",
-    "reject_reason": "no_event_link",
-    "notes": "Rejected during the V4.1 shortlist expansion because no event link could be established."
-  },
-  {
-    "market_id": "9t61v9e7x4",
-    "approved": false,
-    "forced_category": "Trade",
-    "reject_reason": "no_event_link",
-    "notes": "Rejected during the V4.1 shortlist expansion because no event link could be established."
-  },
-  {
-    "market_id": "tkwd3verck",
-    "approved": false,
-    "forced_category": "Trade",
-    "reject_reason": "no_event_link",
-    "notes": "Rejected during the V4.1 shortlist expansion because no event link could be established."
-  },
-  {
-    "market_id": "Y4PVDYVZgmG2PonHBlUN",
-    "approved": false,
-    "forced_category": "Monetary",
-    "reject_reason": "no_event_link",
-    "notes": "Rejected during the V4.1 shortlist expansion because no event link could be established."
-  },
-  {
-    "market_id": "NzllSZZPz9",
-    "approved": false,
-    "forced_category": "Monetary",
-    "reject_reason": "no_event_link",
-    "notes": "Rejected during the V4.1 shortlist expansion because no event link could be established."
-  }
+    {
+        "market_id":  "OzQ1HmGeNw89a7uSdPVy",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "svb_contagion_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "proxy_family_id":  "svb_contagion_2023_bank_failure",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-02-15",
+        "event_window_end":  "2023-03-10",
+        "quality_score":  0.41,
+        "reject_reason":  "post_event_question",
+        "notes":  "Rejected because the market was created on 2023-03-11, after the 2023-03-10 SVB event window.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "L5f8JDzueLshQQvWwaiI",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "eu_banking_contagion_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "proxy_family_id":  "eu_banking_contagion_2024_banks",
+        "proxy_relation":  "substitute",
+        "aggregation_policy":  "weighted_average",
+        "event_window_start":  "2024-10-20",
+        "event_window_end":  "2024-11-15",
+        "quality_score":  0.60,
+        "reject_reason":  "off_target_question_not_event_specific",
+        "notes":  "Rejected because the question is too generic to serve as a clean proxy for the November 2024 EU banking contagion event.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "3szs86zpyB4QQY4zzP2S",
+        "approved":  true,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "proxy_family_id":  "us_debt_ceiling_2023_deadline",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-04-24",
+        "event_window_end":  "2023-05-31",
+        "quality_score":  0.76,
+        "notes":  "Approved during the V4.1 shortlist expansion.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "bB0Zbz10f5aqWn3JIAju",
+        "approved":  true,
+        "forced_category":  "Kinetic",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "proxy_family_id":  "china_taiwan_2024_conflict",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-04-06",
+        "event_window_end":  "2024-08-05",
+        "quality_score":  0.73,
+        "notes":  "Approved during the V4.1 shortlist expansion.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "rK52OtlkjovFyTcxPrxJ",
+        "approved":  true,
+        "forced_category":  "Monetary",
+        "forced_event_id":  "oct_selloff_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "proxy_family_id":  "oct_selloff_2023_rates",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-05-25",
+        "event_window_end":  "2023-10-27",
+        "quality_score":  0.36,
+        "notes":  "Approved during the V4.1 shortlist expansion.",
+        "structural_theme":  "monetary_policy"
+    },
+    {
+        "market_id":  "wLedWs2PNHgpQburcbVE",
+        "approved":  null,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "svb_contagion_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "proxy_family_id":  "svb_contagion_2023_bank_failure",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-03-10",
+        "event_window_end":  "2023-03-10",
+        "quality_score":  0.45,
+        "notes":  "Hold pending created_date verification.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "hdfx3aGXOksmbFTe8TR6",
+        "approved":  null,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "svb_contagion_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "proxy_family_id":  "svb_contagion_2023_bank_failure",
+        "proxy_relation":  "orthogonal",
+        "aggregation_policy":  "max",
+        "event_window_start":  "2023-03-10",
+        "event_window_end":  "2023-03-10",
+        "quality_score":  0.44,
+        "notes":  "Hold pending created_date verification.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "Y9mpPth1JfCkwGsF2vqv",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "k4hz8D7NElcyzgN2wn7H",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "oXoSAEJeTXRMz1rQ5jyG",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "0bqpJ0HTg15PsB4dX2I2",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "XiHhlCfjZZoczUwXmfMS",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "uTxCOBPwVZ8nQ8WC0hsM",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "QoEPB5mLhTOH0ZPxYcSF",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "Tzh9jRZ3BD7YoY96VOL9",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "xfcdXj9OaOWMRkSdQ12l",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "d0oaakAPYFQu24WUBxZa",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "foaWsnh0kjClEhD68CgF",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "w0d82HLfVxInDOx1w1LM",
+        "approved":  false,
+        "forced_category":  "Kinetic",
+        "forced_event_id":  "ukraine_invasion_2022",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "mirPHs2eozyjPRcnx2zX",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "NYgnfg9Ra1KM8jNwfAAu",
+        "approved":  false,
+        "forced_category":  "Kinetic",
+        "forced_event_id":  "ukraine_invasion_2022",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "rkqHc8LDcoTv64cRB0oI",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "GTr5HLb37ykXzZCTqolw",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "BB322NXLeeWNupydL4uE",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "hzvnPY1tN8pDHJPNXWxx",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "l2BNW80HLel9X1XZGNoq",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "CCfqjqZmuhAoA183u6Wq",
+        "approved":  false,
+        "forced_category":  "Kinetic",
+        "forced_event_id":  "ukraine_invasion_2022",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "2Pd3HkJjl8jNJeaVY8uY",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "JWIjAdttyjlqiGcAwx3U",
+        "approved":  false,
+        "forced_category":  "Kinetic",
+        "forced_event_id":  "ukraine_invasion_2022",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "EuEPJ7QQOJrvx3c8mW75",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "eu_banking_contagion_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an unapproved event-linked proxy set.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "2vn2B4gs0KM4RXZLpMAc",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "womjddp6e9",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "eu_banking_contagion_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an unapproved event-linked proxy set.",
+        "structural_theme":  "systemic_credit"
+    },
+    {
+        "market_id":  "cBrilG9EFcwzNfCIilXM",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "us_debt_ceiling_2023",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "YvCzCRAsa75Vo6n1gBVo",
+        "approved":  false,
+        "forced_category":  "Monetary",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "d0uvrhtakg",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "DBJ8sGERgrtTDXkHeN06",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "kfKJTiWibDRZ9HUj9AIe",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "oct_selloff_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "monetary_policy"
+    },
+    {
+        "market_id":  "BG9PNor3G6D5PndWEMwY",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "forced_event_id":  "china_taiwan_2024",
+        "forced_analysis_bucket":  "false_positive",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "geopolitical"
+    },
+    {
+        "market_id":  "jrWrXdzw804EZSNWty1k",
+        "approved":  false,
+        "forced_category":  "Monetary",
+        "forced_event_id":  "oct_selloff_2023",
+        "forced_analysis_bucket":  "drawdown",
+        "reject_reason":  "near_duplicate",
+        "notes":  "Rejected during the V4.1 shortlist expansion as a near-duplicate of an approved proxy.",
+        "structural_theme":  "monetary_policy"
+    },
+    {
+        "market_id":  "OStPSUOqQI",
+        "approved":  false,
+        "forced_category":  "Sovereign",
+        "reject_reason":  "no_event_link",
+        "notes":  "Rejected during the V4.1 shortlist expansion because no event link could be established.",
+        "structural_theme":  "fiscal_debt"
+    },
+    {
+        "market_id":  "9t61v9e7x4",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "reject_reason":  "no_event_link",
+        "notes":  "Rejected during the V4.1 shortlist expansion because no event link could be established.",
+        "structural_theme":  "trade_technology"
+    },
+    {
+        "market_id":  "tkwd3verck",
+        "approved":  false,
+        "forced_category":  "Trade",
+        "reject_reason":  "no_event_link",
+        "notes":  "Rejected during the V4.1 shortlist expansion because no event link could be established.",
+        "structural_theme":  "trade_technology"
+    },
+    {
+        "market_id":  "Y4PVDYVZgmG2PonHBlUN",
+        "approved":  false,
+        "forced_category":  "Monetary",
+        "reject_reason":  "no_event_link",
+        "notes":  "Rejected during the V4.1 shortlist expansion because no event link could be established.",
+        "structural_theme":  "monetary_policy"
+    },
+    {
+        "market_id":  "NzllSZZPz9",
+        "approved":  false,
+        "forced_category":  "Monetary",
+        "reject_reason":  "no_event_link",
+        "notes":  "Rejected during the V4.1 shortlist expansion because no event link could be established.",
+        "structural_theme":  "monetary_policy"
+    }
 ]

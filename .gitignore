@@ -8,4 +8,9 @@ outputs/*
 outputs/latest/*
 !outputs/latest/*.csv
 !outputs/latest/*.json
+!outputs/ablation/
+outputs/ablation/*
+!outputs/ablation/*.csv
+!outputs/ablation/*.json
+!outputs/ablation/*.md
 !outputs/latest/*.md

@@ -149,6 +149,7 @@ def build_hazard_attribution(
     for day_string in dates:
         event_rows = daily_events.get(day_string, {})
         category_totals: dict[str, float] = defaultdict(float)
+        theme_totals: dict[str, float] = defaultdict(float)
         day_rows: list[dict] = []
 
         for event_id, row in event_rows.items():
@@ -175,11 +176,13 @@ def build_hazard_attribution(
             persistence_hazard = components["hazard_contribution"] * components["persistence_factor"] / factor_sum
 
             category_totals[row["category"]] += components["hazard_contribution"]
+            theme_totals[row.get("structural_theme", "")] += components["hazard_contribution"]
             day_rows.append(
                 {
                     "date": day_string,
                     "event_id": event_id,
                     "category": row["category"],
+                    "structural_theme": row.get("structural_theme", ""),
                     "question": row["question"],
                     "event_probability": float(row["probability"]),
                     "hazard_contribution": components["hazard_contribution"],
@@ -222,6 +225,7 @@ def build_hazard_attribution(
         ranked = sorted(day_rows, key=lambda item: item["hazard_contribution"], reverse=True)
         dominant_event_id = ranked[0]["event_id"] if ranked else ""
         dominant_category = max(category_totals, key=category_totals.get) if category_totals else ""
+        dominant_theme = max(theme_totals, key=theme_totals.get) if theme_totals else ""
 
         probability_total = sum(row["probability_component_hazard"] for row in day_rows)
         severity_total = sum(row["severity_component_hazard"] for row in day_rows)
@@ -235,8 +239,10 @@ def build_hazard_attribution(
             row["event_rank_by_hazard"] = rank
             row["event_hazard_share"] = 0.0 if total_hazard == 0 else row["hazard_contribution"] / total_hazard
             row["category_hazard_share"] = 0.0 if total_hazard == 0 else category_totals[row["category"]] / total_hazard
+            row["theme_hazard_share"] = 0.0 if total_hazard == 0 else theme_totals[row["structural_theme"]] / total_hazard
             row["dominant_event_flag"] = rank == 1
             row["dominant_category_flag"] = row["category"] == dominant_category
+            row["dominant_theme_flag"] = row["structural_theme"] == dominant_theme
             attribution_rows.append(row)
 
         probability_share = 0.0 if total_hazard == 0 else probability_total / total_hazard
@@ -253,6 +259,7 @@ def build_hazard_attribution(
                 "active_event_count": len(day_rows),
                 "dominant_event_id": dominant_event_id,
                 "dominant_category": dominant_category,
+                "dominant_theme": dominant_theme,
                 "probability_component_hazard": probability_total,
                 "severity_component_hazard": severity_total,
                 "velocity_component_hazard": velocity_total,

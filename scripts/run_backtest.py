@@ -427,6 +427,7 @@ def proxy_family_coverage_rows(resolved_seeds: list[dict], config: dict) -> list
             {
                 "event_id": event_id,
                 "category": first["category"],
+                "structural_theme": first.get("structural_theme", ""),
                 "proxy_count": len(seeds),
                 "proxy_family_count": len(family_groups),
                 "proxy_family_ids": " | ".join(sorted(family_groups)),
@@ -740,6 +741,7 @@ def main() -> int:
                 "resolution_date": row["resolution_date"],
                 "resolved_outcome": row["resolved_outcome"],
                 "provenance": row["provenance"],
+                "structural_theme": row.get("structural_theme", ""),
             }
             for row in v3_result["event_rows"]
         ],
