@@ -13,4 +13,5 @@ outputs/ablation/*
 !outputs/ablation/*.csv
 !outputs/ablation/*.json
 !outputs/ablation/*.md
+!outputs/ablation/*.png
 !outputs/latest/*.md

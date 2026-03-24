@@ -21,6 +21,7 @@ from cassandra_risk.ablation import (  # noqa: E402
     render_ablation_report,
     summarize_ablation_run,
 )
+from cassandra_risk.ablation_figures import render_ablation_figures  # noqa: E402
 from cassandra_risk.clients import fetch_fred_tb3ms, fetch_spy_prices  # noqa: E402
 from cassandra_risk.config import load_json  # noqa: E402
 from cassandra_risk.events import load_curated_shortlist  # noqa: E402
@@ -218,6 +219,7 @@ def main() -> int:
         baseline_result["summaries"]["buy_hold"]["sortino"],
         baseline_result["summaries"]["vol_target"]["sortino"],
     )
+    render_ablation_figures(output_dir / "ablation_summary.csv", output_dir)
 
     print("Completed Cassandra-Risk ablation harness.")
     print(f"Outputs written to: {output_dir}")

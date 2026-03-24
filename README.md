@@ -30,10 +30,12 @@ This is not an exact paper replication. The paper references archived 2020-2022 
 ```powershell
 python scripts/build_manifold_catalog.py --refresh
 python scripts/run_backtest.py --refresh
+python scripts/run_ablation.py
 ```
 
 Catalog artifacts are written under `data/processed/` and `outputs/latest/`.
 Backtest outputs are written under `outputs/latest/`.
+Ablation summaries, report artifacts, and figure PNGs are written under `outputs/ablation/`.
 
 Approved Manifold markets live in `data/curated/manifold_shortlist.json`.
 Review overrides live in `data/curated/manifold_overrides.json`.

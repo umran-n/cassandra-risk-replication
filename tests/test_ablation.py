@@ -13,6 +13,7 @@ from cassandra_risk.ablation import (  # noqa: E402
     dominant_proxy_by_event_from_attribution_rows,
     prepare_ablation_inputs,
 )
+from cassandra_risk.ablation_figures import figure1_rows, figure3_rows  # noqa: E402
 from cassandra_risk.events import normalize_proxy_metadata  # noqa: E402
 from cassandra_risk.taxonomy import infer_structural_theme  # noqa: E402
 
@@ -101,6 +102,39 @@ class AblationTests(unittest.TestCase):
         ]
         dominant = dominant_proxy_by_event_from_attribution_rows(attribution_rows)
         self.assertEqual(dominant["us_debt_ceiling_2023"], "market-a")
+
+    def test_figure1_rows_include_expected_structural_runs(self) -> None:
+        rows = [
+            {"run_id": "aggregation_per_family", "Sortino": 1.159},
+            {"run_id": "no_manual_events", "Sortino": 0.521},
+            {"run_id": "aggregation_max", "Sortino": 1.159},
+            {"run_id": "aggregation_weighted_average", "Sortino": 1.155},
+            {"run_id": "top_event_removal_ukraine", "Sortino": 1.203},
+            {"run_id": "top_event_removal_debt_ceiling", "Sortino": 1.180},
+        ]
+        figure_rows = figure1_rows(rows)
+        self.assertEqual([row["label"] for row in figure_rows], [
+            "PER FAMILY",
+            "NO MANUAL",
+            "REMOVE UKRAINE",
+            "REMOVE DEBT",
+            "FORCE MAX",
+            "FORCE WAVG",
+        ])
+
+    def test_figure3_rows_compute_proxy_deltas(self) -> None:
+        rows = [
+            {"run_id": "single_proxy_china_taiwan_2024_all_combined", "Sortino": 1.158},
+            {"run_id": "single_proxy_china_taiwan_2024_dominant_only", "Sortino": 1.175},
+            {"run_id": "single_proxy_oct_selloff_2023_all_combined", "Sortino": 1.159},
+            {"run_id": "single_proxy_oct_selloff_2023_dominant_only", "Sortino": 1.143},
+            {"run_id": "single_proxy_us_debt_ceiling_2023_all_combined", "Sortino": 1.159},
+            {"run_id": "single_proxy_us_debt_ceiling_2023_dominant_only", "Sortino": 1.159},
+        ]
+        figure_rows = figure3_rows(rows)
+        self.assertAlmostEqual(figure_rows[0]["delta"], 0.017, places=3)
+        self.assertAlmostEqual(figure_rows[1]["delta"], -0.016, places=3)
+        self.assertAlmostEqual(figure_rows[2]["delta"], 0.0, places=6)
 
 
 if __name__ == "__main__":
