@@ -74,6 +74,19 @@
     "resamples": 10000,
     "seed": 20260323
   },
+  "becker_calibration": {
+    "enabled": false,
+    "longshot_lower": 0.2,
+    "longshot_upper": 0.8,
+    "efficiency_gaps": {
+      "monetary_policy": 0.0017,
+      "geopolitical": 0.0732,
+      "electoral": 0.0102,
+      "trade_technology": 0.0269,
+      "fiscal_debt": 0.0102,
+      "systemic_credit": 0.0102
+    }
+  },
   "paper_metrics": {
     "buy_and_hold": {
       "cagr": 0.123,

@@ -21,3 +21,9 @@ outputs/expansion/*
 !outputs/expansion/*.json
 !outputs/expansion/*.md
 !outputs/expansion/*.png
+!outputs/becker/
+outputs/becker/*
+!outputs/becker/*.csv
+!outputs/becker/*.json
+!outputs/becker/*.md
+!outputs/becker/*.png
