@@ -5,6 +5,7 @@ import copy
 import sys
 from collections import defaultdict
 from pathlib import Path
+from typing import Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -527,6 +528,7 @@ def run_version(
     include_bootstrap: bool = True,
     include_brier: bool = True,
     include_event_analysis: bool = True,
+    daily_events_transform: Callable[[dict[str, dict[str, dict]], dict, list[str]], dict[str, dict[str, dict]]] | None = None,
 ) -> dict:
     config = configure_version(base_config, version)
     resolved_seeds, shortlist_merge_audit = merge_seeds_with_shortlist(base_seeds, shortlist)
@@ -549,6 +551,8 @@ def run_version(
     event_rows = build_event_panel(config, resolved_seeds, raw_dir, refresh=refresh)
     event_metadata = build_event_metadata(event_rows)
     daily_events = aggregate_daily_probabilities(event_rows, config)
+    if daily_events_transform is not None:
+        daily_events = daily_events_transform(daily_events, config, dates)
     risk_free_annual_rates, risk_free_source = risk_free_inputs(
         version,
         dates,
