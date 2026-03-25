@@ -39,3 +39,44 @@ Ablation summaries, report artifacts, and figure PNGs are written under `outputs
 
 Approved Manifold markets live in `data/curated/manifold_shortlist.json`.
 Review overrides live in `data/curated/manifold_overrides.json`.
+
+## Unified Signal API
+
+The repo now includes a unified signal foundation that normalizes live source catalogs from:
+
+- Metaculus
+- Kalshi
+- Polymarket
+- Manifold
+
+The live signal layer is governed separately from the historical backtest layer:
+
+- governed families come from the checked-in curated universe and seed files
+- live source markets are linked into those families by explicit market IDs or text similarity
+- high-quality unlinked markets are preserved as discovered candidates rather than silently entering the governed RSI
+- the current live engine applies the validated monetary Becker rule plus the current theme caps
+
+Build the live signal book:
+
+```powershell
+python scripts/sync_sources.py --refresh
+python scripts/build_signal_book.py --refresh
+```
+
+Serve it as a local API:
+
+```powershell
+python api/app.py --host 127.0.0.1 --port 8765
+```
+
+Available endpoints:
+
+- `/health`
+- `/v1/sources/status`
+- `/v1/events/families`
+- `/v1/candidates/discovered`
+- `/v1/signals/latest`
+- `/v1/rsi/latest`
+- `/v1/graph/link-audit`
+
+Generated outputs are written under `outputs/signals/`.

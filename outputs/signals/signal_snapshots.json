@@ -1,0 +1,78 @@
+[
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
+    "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "selected_source": "polymarket",
+    "selected_market_id": "1628472",
+    "selected_probability_raw": 0.001,
+    "selected_probability_governed": 0.00041898158666396477,
+    "quality_score": 0.656671,
+    "source_priority": 3,
+    "candidate_count": 21,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "none",
+    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+  },
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
+    "title": "Will there be no change in Fed interest rates after the April 2026 meeting?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "selected_source": "polymarket",
+    "selected_market_id": "669662",
+    "selected_probability_raw": 0.952,
+    "selected_probability_governed": 0.9262039730535064,
+    "quality_score": 0.6594,
+    "source_priority": 3,
+    "candidate_count": 3,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "becker",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+  },
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
+    "title": "Will the Fed decrease interest rates by 25 bps after the April 2026 meeting?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "selected_source": "polymarket",
+    "selected_market_id": "669661",
+    "selected_probability_raw": 0.013,
+    "selected_probability_governed": 0.014280340329743254,
+    "quality_score": 0.6489,
+    "source_priority": 3,
+    "candidate_count": 6,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "becker",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+  },
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
+    "title": "Will the Fed increase interest rates by 25+ bps after the April 2026 meeting?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "selected_source": "polymarket",
+    "selected_market_id": "669663",
+    "selected_probability_raw": 0.029,
+    "selected_probability_governed": 0.029818975179136505,
+    "quality_score": 0.642214,
+    "source_priority": 3,
+    "candidate_count": 5,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "becker",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+  }
+]

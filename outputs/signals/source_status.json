@@ -1,0 +1,54 @@
+[
+  {
+    "source": "kalshi",
+    "display_name": "Kalshi",
+    "enabled": true,
+    "has_credentials": true,
+    "reachable": true,
+    "auth_mode": "public_market_data",
+    "quality_tier": "A",
+    "role": "regulated_market",
+    "notes": "Public live catalog fetched from Kalshi /trade-api/v2/events with nested markets.",
+    "market_count": 519,
+    "fetched_at": "2026-03-25T21:12:11Z"
+  },
+  {
+    "source": "manifold",
+    "display_name": "Manifold",
+    "enabled": true,
+    "has_credentials": true,
+    "reachable": true,
+    "auth_mode": "public_get",
+    "quality_tier": "C",
+    "role": "longtail_coverage",
+    "notes": "Public live catalog fetched from /v0/markets.",
+    "market_count": 10,
+    "fetched_at": "2026-03-25T21:12:20Z"
+  },
+  {
+    "source": "metaculus",
+    "display_name": "Metaculus",
+    "enabled": true,
+    "has_credentials": false,
+    "reachable": false,
+    "auth_mode": "token",
+    "quality_tier": "A",
+    "role": "primary_calibrated",
+    "notes": "Missing credentials in env var METACULUS_API_TOKEN.",
+    "market_count": 0,
+    "fetched_at": "2026-03-25T21:12:08Z"
+  },
+  {
+    "source": "polymarket",
+    "display_name": "Polymarket",
+    "enabled": true,
+    "has_credentials": true,
+    "reachable": true,
+    "auth_mode": "public",
+    "quality_tier": "B",
+    "role": "liquidity_coverage",
+    "notes": "Public live catalog fetched from Gamma /events ordered by 24h volume.",
+    "market_count": 270,
+    "fetched_at": "2026-03-25T21:12:18Z"
+  }
+]

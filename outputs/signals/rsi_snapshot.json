@@ -1,0 +1,65 @@
+{
+  "asof": "2026-03-25",
+  "rsi": 0.19150438203798828,
+  "total_hazard": 4.221812625685152,
+  "event_count": 4,
+  "dominant_theme": "monetary_policy",
+  "dominant_event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
+  "theme_hazard_shares": {
+    "geopolitical": 0.0009727698308764427,
+    "monetary_policy": 0.9990272301691235
+  },
+  "signal_count_by_source": {
+    "polymarket": 4
+  },
+  "events": [
+    {
+      "event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
+      "title": "Will there be no change in Fed interest rates after the April 2026 meeting?",
+      "source": "polymarket",
+      "market_id": "669662",
+      "structural_theme": "monetary_policy",
+      "category": "Monetary",
+      "selected_probability_governed": 0.9262039730535064,
+      "hazard_contribution": 4.026015258165797,
+      "theme_cap_applied": true,
+      "calibration_applied": "becker"
+    },
+    {
+      "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
+      "title": "Will the Fed increase interest rates by 25+ bps after the April 2026 meeting?",
+      "source": "polymarket",
+      "market_id": "669663",
+      "structural_theme": "monetary_policy",
+      "category": "Monetary",
+      "selected_probability_governed": 0.029818975179136505,
+      "hazard_contribution": 0.12961685821567448,
+      "theme_cap_applied": true,
+      "calibration_applied": "becker"
+    },
+    {
+      "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
+      "title": "Will the Fed decrease interest rates by 25 bps after the April 2026 meeting?",
+      "source": "polymarket",
+      "market_id": "669661",
+      "structural_theme": "monetary_policy",
+      "category": "Monetary",
+      "selected_probability_governed": 0.014280340329743254,
+      "hazard_contribution": 0.06207365734979997,
+      "theme_cap_applied": true,
+      "calibration_applied": "becker"
+    },
+    {
+      "event_family_id": "geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
+      "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+      "source": "polymarket",
+      "market_id": "1628472",
+      "structural_theme": "geopolitical",
+      "category": "Kinetic",
+      "selected_probability_governed": 0.00041898158666396477,
+      "hazard_contribution": 0.004106851953879775,
+      "theme_cap_applied": true,
+      "calibration_applied": "none"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "sources": {
+    "metaculus": {
+      "display_name": "Metaculus",
+      "base_url": "https://www.metaculus.com",
+      "api_base_url": "https://www.metaculus.com/api",
+      "auth_mode": "token",
+      "token_env_var": "METACULUS_API_TOKEN",
+      "quality_tier": "A",
+      "role": "primary_calibrated",
+      "priority": 1,
+      "enabled": true,
+      "supports_live": true,
+      "supports_historical": true,
+      "default_limit": 100
+    },
+    "kalshi": {
+      "display_name": "Kalshi",
+      "base_url": "https://kalshi.com",
+      "api_base_url": "https://api.elections.kalshi.com/trade-api/v2",
+      "auth_mode": "public_market_data",
+      "quality_tier": "A",
+      "role": "regulated_market",
+      "priority": 2,
+      "enabled": true,
+      "supports_live": true,
+      "supports_historical": false,
+      "default_limit": 200
+    },
+    "polymarket": {
+      "display_name": "Polymarket",
+      "base_url": "https://polymarket.com",
+      "api_base_url": "https://gamma-api.polymarket.com",
+      "clob_api_base_url": "https://clob.polymarket.com",
+      "auth_mode": "public",
+      "quality_tier": "B",
+      "role": "liquidity_coverage",
+      "priority": 3,
+      "enabled": true,
+      "supports_live": true,
+      "supports_historical": true,
+      "default_limit": 200
+    },
+    "manifold": {
+      "display_name": "Manifold",
+      "base_url": "https://manifold.markets",
+      "api_base_url": "https://api.manifold.markets/v0",
+      "auth_mode": "public_get",
+      "quality_tier": "C",
+      "role": "longtail_coverage",
+      "priority": 4,
+      "enabled": true,
+      "supports_live": true,
+      "supports_historical": true,
+      "default_limit": 200
+    }
+  },
+  "selection_policy": {
+    "source_priority": [
+      "metaculus",
+      "kalshi",
+      "polymarket",
+      "manifold"
+    ],
+    "minimum_quality_score": 0.4,
+    "minimum_text_overlap_score": 0.3,
+    "max_unlinked_candidates_per_theme": 8
+  },
+  "theme_policies": {
+    "monetary_policy": {
+      "becker_enabled": true,
+      "becker_gap": 0.0017,
+      "longshot_threshold": [
+        0.2,
+        0.8
+      ],
+      "max_bucket_events": 15,
+      "bucket_cap": 0.3
+    },
+    "geopolitical": {
+      "becker_enabled": false,
+      "longshot_threshold": [
+        0.15,
+        0.85
+      ],
+      "max_bucket_events": 8,
+      "bucket_cap": 0.25
+    },
+    "electoral": {
+      "becker_enabled": false,
+      "longshot_threshold": [
+        0.2,
+        0.8
+      ],
+      "max_bucket_events": 8
+    },
+    "fiscal_debt": {
+      "becker_enabled": false,
+      "longshot_threshold": [
+        0.2,
+        0.8
+      ],
+      "max_bucket_events": 10
+    },
+    "systemic_credit": {
+      "becker_enabled": false,
+      "longshot_threshold": [
+        0.2,
+        0.8
+      ],
+      "max_bucket_events": 8
+    },
+    "trade_technology": {
+      "becker_enabled": false,
+      "longshot_threshold": [
+        0.2,
+        0.8
+      ],
+      "max_bucket_events": 8
+    }
+  }
+}

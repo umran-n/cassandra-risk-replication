@@ -33,3 +33,9 @@ outputs/monte_carlo/*
 !outputs/monte_carlo/*.json
 !outputs/monte_carlo/*.md
 !outputs/monte_carlo/*.png
+!outputs/signals/
+outputs/signals/*
+!outputs/signals/*.csv
+!outputs/signals/*.json
+!outputs/signals/*.md
+!outputs/signals/*.png
