@@ -325,6 +325,27 @@ def monthly_resampled_equity(dates: list[str], equity: list[float]) -> list[floa
     return [by_month[month_key] for month_key in ordered_months]
 
 
+def monthly_drawdown_episodes(dates: list[str], equity: list[float]) -> list[float]:
+    grouped: dict[str, list[float]] = {}
+    ordered_months: list[str] = []
+    for day, value in zip(dates, equity):
+        month_key = day[:7]
+        if month_key not in grouped:
+            grouped[month_key] = []
+            ordered_months.append(month_key)
+        grouped[month_key].append(value)
+    return [max_drawdown(grouped[month_key]) for month_key in ordered_months]
+
+
+def monthly_drawdown_episode_stats(dates: list[str], equity: list[float]) -> dict:
+    episodes = monthly_drawdown_episodes(dates, equity)
+    return {
+        "monthly_mdd_mean": mean(episodes),
+        "monthly_mdd_worst": min(episodes) if episodes else 0.0,
+        "monthly_mdd_episode_count": len(episodes),
+    }
+
+
 def downside_deviation(returns: list[float], target_returns: list[float] | None = None) -> float:
     if target_returns is None:
         target_returns = [0.0] * len(returns)
