@@ -2,6 +2,11 @@
 
 ## SSRN Preprint Draft
 
+**Author:** Umran Nayani  
+**Citation:** Nayani, U. (2026b). *Cassandra-Risk Paper 2: Beyond the Backtest — Expansion, Calibration, and the Boundary Conditions of Forecast-Based Risk Overlays.* ResearchGate.  
+**DOI:** 10.13140/RG.2.2.17209.12644  
+**License:** CC BY-NC-ND 4.0
+
 ## Abstract
 
 When does a promising risk framework earn the right to become infrastructure? The answer is not when it produces a strong backtest result. It is when the framework survives deliberate stress, generates informative failure modes, and yields boundary conditions that are theoretically principled rather than empirically tuned. This paper reports that second stage for Cassandra-Risk.

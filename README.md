@@ -6,6 +6,17 @@ This repository implements a closest-public replication of the backtest describe
 
 The implementation is explicit about what comes from the paper, what is recovered from public APIs, and what is manually reconstructed because the paper does not publish the full historical event panel.
 
+## Companion Papers
+
+Paper 1 — Nayani (2026a)  
+`Beyond Value-at-Risk: Quantifying Regime Fragility via Prediction Market Event Forecasting`  
+DOI: `10.13140/RG.2.2.21272.05124`
+
+Paper 2 — Nayani (2026b)  
+`Cassandra-Risk Paper 2: Beyond the Backtest — Expansion, Calibration, and the Boundary Conditions of Forecast-Based Risk Overlays`  
+DOI: `10.13140/RG.2.2.17209.12644`  
+License: `CC BY-NC-ND 4.0`
+
 ## What this run does
 
 - Downloads `SPY` daily adjusted-close data from Yahoo Finance.
