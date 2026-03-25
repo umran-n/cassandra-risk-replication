@@ -1,0 +1,97 @@
+title,theme,total_volume_usd,drop_reason
+Will Republicans have between 220 and 224 seats in House after election?,electoral,347290.68,ELECTORAL_CAP
+Will Republicans have between 215 and 219 seats in House after election?,electoral,344808.7,ELECTORAL_CAP
+Will Republicans have 230 or more seats in House after election?,electoral,247672.6,ELECTORAL_CAP
+Will Republicans have between 225 and 229 seats in House after election?,electoral,185403.96,ELECTORAL_CAP
+Will Fischer win Nebraska senate election by 7+ points?,electoral,172535.87,ELECTORAL_CAP
+Will Republicans have fewer than 200 seats in House after election?,electoral,125095.79,ELECTORAL_CAP
+Will Republicans have between 210 and 214 seats in House after election?,electoral,117571.68,ELECTORAL_CAP
+Will Republicans have between 205 and 209 seats in House after election?,electoral,112828.85,ELECTORAL_CAP
+"Will Donald Trump be President of the USA on November 30, 2023?",electoral,110640.79,ELECTORAL_CAP
+Will Republicans have between 200 and 204 seats in House after election?,electoral,89222.38,ELECTORAL_CAP
+Will VB win the most seats in the Belgian federal elections?,electoral,70561.55,ELECTORAL_CAP
+Will the N-VA win the most seats in the Belgian federal elections?,electoral,38209.94,ELECTORAL_CAP
+Jeremy Corbyn elected to parliament in UK election?,electoral,37952.52,ELECTORAL_CAP
+Will Garvey win the California Senate Primary by between 0-2% of the vote?,electoral,37592.34,ELECTORAL_CAP
+Will another non-ANC candidate be the next President of South Africa?,electoral,32786.53,ELECTORAL_CAP
+Labour wins 30-35% of votes?,electoral,31262.22,ELECTORAL_CAP
+Trump eligible to vote in the election?,electoral,30504.35,ELECTORAL_CAP
+Will John Steenhuisen be the next President of South Africa?,electoral,26523.76,ELECTORAL_CAP
+Labour wins 35-40% of votes?,electoral,16268.76,ELECTORAL_CAP
+Will the EPP win the most seats in European Parliament?,electoral,14337.49,ELECTORAL_CAP
+Labour wins 40-45% of votes?,electoral,13284.33,ELECTORAL_CAP
+Will another ANC candidate be the next President of South Africa?,electoral,12264.37,ELECTORAL_CAP
+Labour wins 45-50% of votes?,electoral,10973.51,ELECTORAL_CAP
+Will Peter Obi be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,7709.79,LOW_LIQUIDITY
+Will Atiku Abubakar be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,5108.39,LOW_LIQUIDITY
+Will the S&D win the most seats in European Parliament?,electoral,3949.23,LOW_LIQUIDITY
+Will the EPP win 180-189 seats in the European Parliament?,electoral,3576.69,LOW_LIQUIDITY
+Will the ECR win the most seats in European Parliament?,electoral,3325.27,LOW_LIQUIDITY
+Will ID win the most seats in European Parliament?,electoral,2959.08,LOW_LIQUIDITY
+Will Bola Tinubu be elected as President of Nigeria in the upcoming 2023 Presidential Election?,electoral,2917.23,LOW_LIQUIDITY
+Will the EPP win 190-199 seats in the European Parliament?,electoral,2825.52,LOW_LIQUIDITY
+Will the EPP win less than 150 seats in the European Parliament?,electoral,2696.75,LOW_LIQUIDITY
+Will another party win the most seats in European Parliament?,electoral,2015.69,LOW_LIQUIDITY
+Will the EPP win 160-169 seats in the European Parliament?,electoral,1927.01,LOW_LIQUIDITY
+Will the EPP win 150-159 seats in the European Parliament?,electoral,1914.19,LOW_LIQUIDITY
+Will the EPP win 170-179 seats in the European Parliament?,electoral,1886.1,LOW_LIQUIDITY
+Will the EPP win 200 or more seats in the European Parliament?,electoral,843.28,LOW_LIQUIDITY
+Russia x Ukraine Ceasefire in 2024?,geopolitical,3514408.22,VARIANT_DUPLICATE
+Another Iran strike on Israel in 2024?,geopolitical,3168665.69,VARIANT_DUPLICATE
+Another Israeli military action against Iran in 2024?,geopolitical,1660869,VARIANT_DUPLICATE
+U.S. military action against Iran before November?,geopolitical,1070645.35,VARIANT_DUPLICATE
+Israel x Hamas ceasefire before September?,geopolitical,972382.17,VARIANT_DUPLICATE
+Israel withdraws from Gaza in 2024?,geopolitical,501887.1,VARIANT_DUPLICATE
+U.S. military action against Iran in 2024?,geopolitical,495157.12,VARIANT_DUPLICATE
+Ceasefire between Russia and Ukraine before October?,geopolitical,315612.94,VARIANT_DUPLICATE
+Israel declares war on Iran in October?,geopolitical,269771.9,VARIANT_DUPLICATE
+Israel x Hamas ceasefire before October?,geopolitical,244511.73,VARIANT_DUPLICATE
+Israel military action against Iran in August?,geopolitical,242109.13,VARIANT_DUPLICATE
+Israel x Hamas ceasefire before March?,geopolitical,208098.23,VARIANT_DUPLICATE
+Next Israel x Hamas ceasefire in November?,geopolitical,136123.34,VARIANT_DUPLICATE
+Israel military action against Yemen before November?,geopolitical,124334.2,VARIANT_DUPLICATE
+Next Israel x Hamas ceasefire in October?,geopolitical,122919.97,VARIANT_DUPLICATE
+Next Israel x Hamas ceasefire in September?,geopolitical,100482.37,VARIANT_DUPLICATE
+Next Israel x Hamas ceasefire in August?,geopolitical,82951.01,VARIANT_DUPLICATE
+Israel x Hamas ceasefire before May?,geopolitical,70167,VARIANT_DUPLICATE
+US/Iran declare war before March?,geopolitical,61994.34,VARIANT_DUPLICATE
+Will Russia & Ukraine declare a ceasefire by EOY?,geopolitical,57909.82,VARIANT_DUPLICATE
+Israel withdraws from Gaza before September?,geopolitical,55824.48,VARIANT_DUPLICATE
+Belarus x Ukraine military clash by Sep 30?,geopolitical,55669.49,VARIANT_DUPLICATE
+US call for Gaza ceasefire before February?,geopolitical,49269.22,VARIANT_DUPLICATE
+Will the US publicly state that Iran was directly involved with the recent attack on Israel in 2023?,geopolitical,46876.16,VARIANT_DUPLICATE
+Another Israel x Hamas ceasefire in 2023?,geopolitical,44345.96,VARIANT_DUPLICATE
+Will Iran close the Strait of Hormuz in 2023?,geopolitical,1629.33,LOW_LIQUIDITY
+Fed decreases interest rates by 50+ bps after September 2024 meeting?,monetary_policy,10906333.42,VARIANT_DUPLICATE
+No change in Fed interest rates after 2024 November meeting?,monetary_policy,7995206.76,VARIANT_DUPLICATE
+Fed decreases interest rates by 25 bps after December 2024 meeting?,monetary_policy,7490697.07,VARIANT_DUPLICATE
+No change in Fed interest rates after December 2024 meeting?,monetary_policy,7400313.75,VARIANT_DUPLICATE
+Fed decreases interest rates by 25 bps after September 2024 meeting?,monetary_policy,6660914.25,VARIANT_DUPLICATE
+Fed decreases interest rates by 25 bps after November 2024 meeting?,monetary_policy,5010507.07,VARIANT_DUPLICATE
+"Will Jerome Powell say ""inflation"" 50 or more times during December FOMC Press Conference?",monetary_policy,387258.68,VARIANT_DUPLICATE
+>50 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,237073.15,VARIANT_DUPLICATE
+No change in ECB interest rates after 2024 December meeting?,monetary_policy,203799.68,VARIANT_DUPLICATE
+26-50 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,182466.84,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 25 bps after its June meeting?,monetary_policy,141462.93,VARIANT_DUPLICATE
+"Will Jerome Powell say ""inflation"" 40 or more times during December FOMC Press Conference?",monetary_policy,138906.98,VARIANT_DUPLICATE
+1-25 bps decrease in ECB interest rates after 2024 December meeting?,monetary_policy,133816.72,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 50 bps after its March meeting?,monetary_policy,131282.01,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 0 bps after its March meeting?,monetary_policy,119684.59,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 0 bps after its July meeting?,monetary_policy,90868.7,VARIANT_DUPLICATE
+"Will Jerome Powell say ""cut"" 7 or more times during December FOMC Press Conference?",monetary_policy,87622.85,VARIANT_DUPLICATE
+No change in Fed raise interest rates after its 2024 March meeting?,monetary_policy,63023.46,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 0 bps after its May meeting?,monetary_policy,59840.96,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 25 bps after its September meeting?,monetary_policy,33764.27,VARIANT_DUPLICATE
+Will the Fed decrease interest rates by 25 bps after its March meeting?,monetary_policy,29991.06,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 25 bps after its December meeting?,monetary_policy,27152.23,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 25 bps after its February meeting?,monetary_policy,26746.53,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 0 bps after its November meeting?,monetary_policy,19162.75,VARIANT_DUPLICATE
+Will the Fed decrease interest rates by 25 bps after its July meeting?,monetary_policy,17999.66,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 50 bps after its May meeting?,monetary_policy,17386.71,VARIANT_DUPLICATE
+Will the Fed decrease interest rates by 50+ bps after its March 2024 meeting?,monetary_policy,13322.49,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 25 bps after its January meeting?,monetary_policy,13148.33,VARIANT_DUPLICATE
+Will the Fed increase interest rates by 0 bps after its February meeting?,monetary_policy,11578.31,VARIANT_DUPLICATE
+Will the Fed raise interest rates by 0 bps after its January meeting?,monetary_policy,11073.9,VARIANT_DUPLICATE
+Will the Fed decrease interest rates by 25 bps after its May meeting?,monetary_policy,9782.96,LOW_LIQUIDITY
+Will the Fed decrease interest rates by 25 bps after its 2024 March meeting?,monetary_policy,8974.82,LOW_LIQUIDITY
+Will the Fed increase interest rates by 75 bps after its February meeting?,monetary_policy,5413.84,LOW_LIQUIDITY
