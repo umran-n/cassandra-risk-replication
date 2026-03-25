@@ -23,6 +23,8 @@ The central result is not that the public reconstruction exactly reproduces the 
 
 ## 1. Introduction
 
+When does a promising risk framework earn the right to become infrastructure? The answer is not when it produces a strong backtest result. It is when the framework survives deliberate stress, generates informative failure modes, and yields boundary conditions that are theoretically principled rather than empirically tuned. This paper reports the second stage of that process for Cassandra-Risk. Paper 1 established that a small, hand-curated event universe drawn from prediction-market probabilities could generate directionally robust risk-adjusted outperformance over passive benchmarks. Paper 2 asks whether that result survives expansion to a governed 38-event universe, cross-platform data sources, and a multi-layer calibration architecture, and what the failure modes reveal about the framework's informational structure.
+
 Risk management tends to fail in the same way alpha models fail: by being too attached to the last regime. Measures derived from recent returns are valuable for sizing and for portfolio hygiene, but they are reactive by construction. In tranquil periods they can understate latent fragility; in crisis periods they can de-risk only after damage is already visible in price space. Cassandra-Risk is motivated by the proposition that some classes of fragility are forecastable in event space before they are fully visible in realized volatility.
 
 The key idea is simple. Instead of asking only how much the market has moved, we also ask what classes of destabilizing events the forecasting ecosystem currently considers plausible. Forecast probabilities for war escalation, sovereign stress, trade shocks, monetary tightening, and technology-linked fragility are mapped into a common hazard language. That hazard is transformed into an RSI, and the portfolio's position is set equal to the RSI. When event-space fragility rises, exposure falls.
@@ -357,6 +359,12 @@ These results suggest calibration benefit is contingent on two conditions: first
 
 This is not a null result on the value of calibration. It is a boundary-condition result on when calibration works. In the current public evidence, calibration helps when the event family is homogeneous and the correction constant is empirically anchored; it harms when the family is heterogeneous and the constant is only estimated at a coarse level. Geopolitical calibration is therefore intentionally deferred pending horizon-stratified empirical gap estimation from contract-resolution history. The current architecture applies Becker correction exclusively to the monetary-policy bucket, where both the empirical and structural preconditions for calibration benefit are presently strongest.
 
+### 6.8 Interpreting the V5 expansion degradation
+
+The performance degradation on expansion from the smaller governed universe to the 38-event universe, with Sortino collapsing from 1.159 to 0.231, is the most important diagnostic result in this paper, and it should not be read as pure model fragility. If prediction-market probabilities were noise, expansion would have had no systematic effect: Sortino would drift randomly as the event count grew. Instead, it fell sharply and in a predictable direction. Monetary-policy contracts, which comprised 20 of 38 admitted events, carry a documented optimism bias in FOMC forward-guidance markets; this bias dragged RSI downward during monetary pivot quarters, producing chronic over-de-risking precisely when re-risking was correct. The failure was coherent, causally locatable, and asymmetric in timing, which is the fingerprint of a signal responding to real informational content rather than of random noise entering a fragile aggregator.
+
+The subsequent diagnostic and remediation work, including Becker calibration, top-5 removal, and bucket capping, should therefore not be read as a model-repair narrative. It is a calibration narrative. The architecture was already sensitive to what was in it. The work was to govern what that should be. In that sense, the V5 expansion drop is not merely a problem to be fixed. It is independent evidence that the RSI is informationally sensitive to event composition in economically interpretable ways.
+
 ## 7. Interpretation of the Public Evidence
 
 ### 7.1 What it shows
@@ -420,6 +428,12 @@ This creates a useful symmetry: Cassandra is meant to detect fragility in the ma
 ## 9. Limitations
 
 The public replication has real limitations, and they matter.
+
+### 9.1 Regime-class generalization versus path dependence
+
+Block-bootstrap analysis addresses one form of uncertainty: path dependence within the regime classes already observed. By resampling contiguous 20-day blocks from the existing return sequence, it asks how much Cassandra's performance varies under alternative orderings of COVID-crash, rate-hike-cycle, SVB-contagion, and carry-trade-unwind regimes. It does not ask whether Cassandra generalizes to a regime class it has never encountered. This distinction matters. The RSI architecture, including its hazard weights, Becker efficiency-gap constants, and admission thresholds, was shaped by a sample containing several structurally distinct stress episodes. A genuinely novel regime type, one whose fragility signal does not map cleanly onto the existing kill-list taxonomy, could produce RSI behavior that is both miscalibrated and systematically biased in a direction the bootstrap cannot detect.
+
+This is the precise boundary between a serious research model and deployable infrastructure: not sample size, not confidence-interval width, but regime-class generalization. Addressing that boundary requires either a longer forward out-of-sample window or cross-platform validation on a structurally independent signal source. That is the motivation for the next-stage ingestion and validation agenda rather than an issue that can be closed by additional reshuffling of the current sample alone.
 
 1. The production Cassandra system is broader than the public replication. The live Dredger is intended to ingest a much larger, continuously refreshed event universe than the current public shortlist.
 2. Metaculus historical access was not available in a usable public form during this replication cycle, which forced a Manifold-only pivot for recoverable forecast histories.
