@@ -4,10 +4,10 @@
 
 Author metadata, affiliation, and contact details to be added before submission.
 
-Draft date: 2026-03-25
+Draft date: 2026-03-26
 
 Code and public replication package: [https://github.com/umran-n/cassandra-risk-replication](https://github.com/umran-n/cassandra-risk-replication)
-Referenced public replication tag: `v0.4.0-ablation`
+Referenced public replication tag: `v0.5.7-geo-subbucket-calibration`
 
 ## Abstract
 
@@ -349,6 +349,14 @@ The structural-theme runs are also informative. `systemic_credit` is the stronge
 
 The single-proxy runs add a final nuance. Keeping only the dominant `china_taiwan_2024` proxy modestly improves Sortino to 1.175, while keeping only the dominant `oct_selloff_2023` proxy reduces Sortino to 1.143. This is exactly the kind of asymmetry the governance layer is meant to expose: some event families benefit from proxy plurality, while others are cleaner when a single dominant market carries the signal.
 
+### 6.7 Boundary conditions of calibration benefit
+
+Three geopolitical calibration variants were tested against the monetary-calibrated baseline. The relevant comparison is not the original V4 public baseline, but the current governed architecture: `V5_Becker_top5_cap_geo`, which combines the monetary Becker layer, targeted monetary top-5 removal, a 30% monetary cap, governed geopolitical admission, and a 25% geopolitical cap. Adding the governed geopolitical set without further probability correction improved the stack modestly to a Sortino of 0.330. However, applying a flat bucket-level geopolitical Becker correction of 0.0732 degraded performance to 0.318, and sub-bucket theme splitting degraded further to 0.316.
+
+These results suggest calibration benefit is contingent on two conditions: first, the gap constant must be empirically derived from a structurally homogeneous event population; second, the correction dimension must match the dominant source of miscalibration. For monetary-policy events, these conditions are plausibly satisfied. The FOMC-style contracts in the public universe are structurally homogeneous recurring meetings with empirically grounded efficiency-gap priors, and calibration improves realized downside-adjusted performance. For geopolitical events, by contrast, the public add-on set is structurally heterogeneous, and the currently tested gap constants are theory-driven rather than estimated from event-family settlement history. Under those conditions, raw market prices appear to carry more useful signal than the corrected probabilities.
+
+This is not a null result on the value of calibration. It is a boundary-condition result on when calibration works. In the current public evidence, calibration helps when the event family is homogeneous and the correction constant is empirically anchored; it harms when the family is heterogeneous and the constant is only estimated at a coarse level. Geopolitical calibration is therefore intentionally deferred pending horizon-stratified empirical gap estimation from contract-resolution history. The current architecture applies Becker correction exclusively to the monetary-policy bucket, where both the empirical and structural preconditions for calibration benefit are presently strongest.
+
 ## 7. Interpretation of the Public Evidence
 
 ### 7.1 What it shows
@@ -448,7 +456,7 @@ The public replication package, scripts, configuration files, selection audits, 
 
 [https://github.com/umran-n/cassandra-risk-replication](https://github.com/umran-n/cassandra-risk-replication)
 
-The repository tag referenced in this draft is `v0.4.0-ablation`, which captures the Phase 4 structural-theme and ablation-harness milestone.
+The repository tag referenced in this draft is `v0.5.7-geo-subbucket-calibration`, which captures the current governed expansion and calibration-architecture milestone.
 
 Key public artifacts currently included in the repository:
 
@@ -463,6 +471,11 @@ Key public artifacts currently included in the repository:
 - `outputs/ablation/fig1_sortino_comparison.png`
 - `outputs/ablation/fig2_theme_isolation.png`
 - `outputs/ablation/fig3_proxy_delta.png`
+- `outputs/becker/becker_stack_summary.csv`
+- `outputs/becker/risk_decomposition.csv`
+- `outputs/expansion/geopolitical_expansion_summary.csv`
+- `outputs/expansion/geopolitical_subbucket_summary.csv`
+- `docs/adr/ADR-005-calibration-architecture.md`
 - `REPLICATION_LOG.md`
 
 ## References
