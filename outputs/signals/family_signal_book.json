@@ -167,7 +167,7 @@
     "selected_source": "polymarket",
     "selected_market_id": "562828",
     "selected_probability_raw": 0.47,
-    "selected_quality_score": 0.679455,
+    "selected_quality_score": 0.679475,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.47,
@@ -180,7 +180,7 @@
     "title": "Trump sentenced to house arrest?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -189,14 +189,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_cyril_ramaphosa_be_the_next_president_of_south_africa_2024",
     "title": "Will Cyril Ramaphosa be the next President of South Africa?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -205,14 +205,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_nigel_farage_win_election_to_uk_parliament_2024",
     "title": "Will Nigel Farage win election to UK parliament?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -221,14 +221,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_u_s_supreme_court_vote_to_reinstate_trump_on_colorado_s_2024_ballot_2024",
     "title": "Will U.S. Supreme Court vote to reinstate Trump on Colorado's 2024 ballot?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -237,7 +237,7 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "discovered_kalshi_KXGREENLAND-29",
@@ -253,7 +253,7 @@
     "selected_source": "kalshi",
     "selected_market_id": "KXGREENLAND-29",
     "selected_probability_raw": 0.27,
-    "selected_quality_score": 0.575762,
+    "selected_quality_score": 0.575773,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.27,
@@ -398,7 +398,7 @@
     "title": "US debt ceiling hike by July 1?",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -407,14 +407,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for fiscal-debt stress coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_debt_ceiling_2023",
     "title": "US debt ceiling resolution risk in 2023",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -423,14 +423,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus fiscal-debt anchor requested for 2023 debt-ceiling coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_debt_default_risk_2023",
     "title": "US debt default risk in 2023",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -439,14 +439,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus fiscal-debt anchor requested for debt-default risk monitoring."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_government_shutdown_2025",
     "title": "US government shutdown risk in 2025",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -455,14 +455,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus fiscal-debt anchor requested for 2025 shutdown coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "us_debt_ceiling_2023",
     "title": "Will the US debt ceiling be raised by the end of May 2023?",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -471,14 +471,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Used as a public proxy for the paper's May 2023 debt-ceiling false positive."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "china_taiwan_2024",
     "title": "Will China-Taiwan escalation trigger an August 2024 risk-off move?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -487,7 +487,29 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper lists China-Taiwan escalation as an August 2024 false positive; no matching public archive was cleanly recoverable."
+    "notes": "Bootstrap imported from legacy governed universe."
+  },
+  {
+    "event_family_id": "discovered_polymarket_1466015",
+    "title": "US x Iran ceasefire by March 31?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "1466015",
+    "selected_probability_raw": 0.15,
+    "selected_quality_score": 0.679331,
+    "selection_state": "candidate_only",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "selected_probability_governed": 0.06125930914721147,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "discovered_polymarket_1466016",
@@ -503,13 +525,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "1466016",
     "selected_probability_raw": 0.5,
-    "selected_quality_score": 0.700727,
+    "selected_quality_score": 0.702397,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.252292446122823,
+    "selected_probability_governed": 0.20419769715737157,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.504584892245646
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "discovered_polymarket_1466148",
@@ -544,6 +566,28 @@
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
   },
   {
+    "event_family_id": "discovered_polymarket_1484895",
+    "title": "US x Iran ceasefire by June 30?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "1484895",
+    "selected_probability_raw": 0.66,
+    "selected_quality_score": 0.659568,
+    "selection_state": "candidate_only",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "selected_probability_governed": 0.2695409602477305,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.40839539431474314
+  },
+  {
     "event_family_id": "discovered_polymarket_1484914",
     "title": "Iran x Israel/US conflict ends by May 15?",
     "structural_theme": "geopolitical",
@@ -557,67 +601,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "1484914",
     "selected_probability_raw": 0.55,
-    "selected_quality_score": 0.731771,
+    "selected_quality_score": 0.731506,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.2775216907351053,
+    "selected_probability_governed": 0.22461746687310874,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.504584892245646
-  },
-  {
-    "event_family_id": "discovered_polymarket_1628471",
-    "title": "Will Iran conduct a military action against Israel on March 18, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 0,
-    "source_options": [],
-    "selected_source": "",
-    "selected_market_id": "",
-    "selected_probability_raw": "",
-    "selected_quality_score": "",
-    "selection_state": "no_live_candidate",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
-  },
-  {
-    "event_family_id": "discovered_polymarket_1628473",
-    "title": "Will Iran conduct a military action against Israel on March 20, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 0,
-    "source_options": [],
-    "selected_source": "",
-    "selected_market_id": "",
-    "selected_probability_raw": "",
-    "selected_quality_score": "",
-    "selection_state": "no_live_candidate",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
-  },
-  {
-    "event_family_id": "discovered_polymarket_561829",
-    "title": "Russia x Ukraine ceasefire by March 31, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 1,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "561829",
-    "selected_probability_raw": 0.005,
-    "selected_quality_score": 0.729895,
-    "selection_state": "candidate_only",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.00252292446122823,
-    "calibration_applied": "none",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.504584892245646
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "discovered_polymarket_567621",
@@ -636,17 +626,39 @@
     "selected_quality_score": 0.7634,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.05197224390130153,
+    "selected_probability_governed": 0.04206472561441854,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.504584892245646
+    "theme_cap_scale": 0.40839539431474314
+  },
+  {
+    "event_family_id": "discovered_polymarket_701290",
+    "title": "Will China invade Taiwan by March 31, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "701290",
+    "selected_probability_raw": 0.003,
+    "selected_quality_score": 0.653276,
+    "selection_state": "candidate_only",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "selected_probability_governed": 0.0012251861829442295,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "geopolitical_another_iran_strike_on_israel_in_october_2024",
     "title": "Another Iran strike on Israel in October?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -655,30 +667,36 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
     "title": "Another Israeli military action against Iran in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
-    "candidate_count": 0,
-    "source_options": [],
-    "selected_source": "",
-    "selected_market_id": "",
-    "selected_probability_raw": "",
-    "selected_quality_score": "",
-    "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a high-volume Israel-Iran escalation contract to capture late-2024 strike follow-through risk."
+    "candidate_count": 16,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "1628472",
+    "selected_probability_raw": 0.002,
+    "selected_quality_score": 0.65568,
+    "selection_state": "selected",
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "selected_probability_governed": 0.0008167907886294863,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "geopolitical_iran_strike_on_israel_before_december_2024",
     "title": "Iran strike on Israel before December?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -687,14 +705,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add an Iran retaliation contract to extend the October strike arc into late-2024 commodity and sanctions risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
     "title": "Israel military action against Iran by end of 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -703,14 +721,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_withdraws_from_gaza_in_2024_2025",
     "title": "Israel withdraws from Gaza in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -719,14 +737,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Gaza withdrawal contract to capture military de-escalation and occupation unwind risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_before_september_2024",
     "title": "Israel x Hamas ceasefire before September?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -735,14 +753,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a high-volume Gaza ceasefire contract to broaden de-escalation coverage inside the 2024 conflict arc."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_in_2024_2025",
     "title": "Israel x Hamas ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -751,14 +769,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hezbollah_ceasefire_in_2024_2024",
     "title": "Israel x Hezbollah Ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -767,30 +785,36 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
     "title": "Russia x Ukraine Ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
-    "candidate_count": 0,
-    "source_options": [],
-    "selected_source": "",
-    "selected_market_id": "",
-    "selected_probability_raw": "",
-    "selected_quality_score": "",
-    "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Russia-Ukraine ceasefire contract to capture de-escalation/endgame risk absent from the current approved set."
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "561829",
+    "selected_probability_raw": 0.005,
+    "selected_quality_score": 0.729895,
+    "selection_state": "selected",
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "selected_probability_governed": 0.0020419769715737156,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.40839539431474314
   },
   {
     "event_family_id": "geopolitical_u_s_military_action_against_iran_before_november_2024",
     "title": "U.S. military action against Iran before November?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -799,14 +823,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a U.S.-Iran escalation contract to capture great-power intervention risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_lebanon_before_november_2024",
     "title": "Will Israel invade Lebanon before November?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -815,14 +839,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Lebanon escalation contract to capture a distinct northern-front spillover channel."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_syria_in_2024_2024",
     "title": "Will Israel invade Syria in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -831,14 +855,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_ukraine_sever_the_land_bridge_between_crimea_and_russia_before_nov_1_2023",
     "title": "Will Ukraine sever the land bridge between Crimea and Russia before Nov 1?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -847,14 +871,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe after Phase 5 manual review."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "ukraine_invasion_2022",
     "title": "Will Russia invade any parts of Ukraine besides Donetsk and Luhansk oblast before March 8?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -863,7 +887,7 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Recovered from Manifold; the paper's narrative cites analogous pre-invasion crowd probabilities."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "discovered_polymarket_1168140",
@@ -879,13 +903,35 @@
     "selected_source": "polymarket",
     "selected_market_id": "1168140",
     "selected_probability_raw": 0.086,
-    "selected_quality_score": 0.525799,
+    "selected_quality_score": 0.525836,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.06312379864410941,
+    "selected_probability_governed": 0.08190027894476483,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
+  },
+  {
+    "event_family_id": "discovered_polymarket_1654959",
+    "title": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "1654959",
+    "selected_probability_raw": 0.054,
+    "selected_quality_score": 0.525131,
+    "selection_state": "candidate_only",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "selected_probability_governed": 0.05201796318484704,
+    "calibration_applied": "becker",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_616902",
@@ -901,35 +947,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "616902",
     "selected_probability_raw": 0.283,
-    "selected_quality_score": 0.600748,
+    "selected_quality_score": 0.600896,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.20464543398604607,
+    "selected_probability_governed": 0.26551821164510486,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
-  },
-  {
-    "event_family_id": "discovered_polymarket_616903",
-    "title": "Will 1 Fed rate cut happen in 2026?",
-    "structural_theme": "monetary_policy",
-    "category": "Monetary",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 1,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "616903",
-    "selected_probability_raw": 0.25,
-    "selected_quality_score": 0.637617,
-    "selection_state": "candidate_only",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.18085376626000801,
-    "calibration_applied": "becker",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_669660",
@@ -948,10 +972,10 @@
     "selected_quality_score": 0.6462,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.004105610915197015,
+    "selected_probability_governed": 0.005326844809975406,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_669661",
@@ -970,10 +994,10 @@
     "selected_quality_score": 0.6489,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.010583216885443465,
+    "selected_probability_governed": 0.01373124611745225,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_669662",
@@ -988,14 +1012,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "669662",
-    "selected_probability_raw": 0.953,
-    "selected_quality_score": 0.6591,
+    "selected_probability_raw": 0.952,
+    "selected_quality_score": 0.6594,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.6871331737778542,
+    "selected_probability_governed": 0.8905904491975413,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_669663",
@@ -1011,13 +1035,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "669663",
     "selected_probability_raw": 0.029,
-    "selected_quality_score": 0.642146,
+    "selected_quality_score": 0.642868,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.022098960832548368,
+    "selected_probability_governed": 0.028672403997411222,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "discovered_polymarket_906974",
@@ -1032,21 +1056,21 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "906974",
-    "selected_probability_raw": 0.86,
-    "selected_quality_score": 0.551231,
+    "selected_probability_raw": 0.85,
+    "selected_quality_score": 0.554111,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.6201979120853073,
+    "selected_probability_governed": 0.7953405677128031,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.7221873465508956
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_december_2024_meeting_2024",
     "title": "Fed decreases interest rates by 50 bps after December 2024 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1055,14 +1079,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_november_2024_meeting_2024",
     "title": "Fed decreases interest rates by 50 bps after November 2024 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1071,30 +1095,36 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
     "title": "Fed emergency rate cut in 2024?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
-    "candidate_count": 0,
-    "source_options": [],
-    "selected_source": "",
-    "selected_market_id": "",
-    "selected_probability_raw": "",
-    "selected_quality_score": "",
-    "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "616903",
+    "selected_probability_raw": 0.25,
+    "selected_quality_score": 0.637005,
+    "selection_state": "selected",
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "selected_probability_governed": 0.23464959687257633,
+    "calibration_applied": "becker",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.9370054781774038
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_july_31_2024",
     "title": "Fed rate cut by July 31?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1103,14 +1133,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_june_12_2024",
     "title": "Fed rate cut by June 12?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1119,14 +1149,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_march_20_2024",
     "title": "Fed rate cut by March 20?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1135,14 +1165,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_may_1_2024",
     "title": "Fed rate cut by May 1?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1151,14 +1181,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_increase_in_ecb_interest_rates_after_2024_december_meeting_2024",
     "title": "Increase in ECB interest rates after 2024 December meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1167,14 +1197,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
     "title": "No change in Fed interest rates after 2024 September meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1183,14 +1213,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
     "title": "Will the Fed decrease interest rates by 25 bps after its January meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1199,14 +1229,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
     "title": "Will the Fed increase interest rates by 0 bps after its June meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1215,14 +1245,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_march_meeting_2023",
     "title": "Will the Fed increase interest rates by 25 bps after its March meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1231,14 +1261,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_may_meeting_2023",
     "title": "Will the Fed increase interest rates by 25 bps after its May meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1247,14 +1277,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_50_bps_after_its_february_meeting_2023",
     "title": "Will the Fed increase interest rates by 50 bps after its February meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1263,14 +1293,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_december_meeting_2023",
     "title": "Will the Fed raise interest rates by 0 bps after its December meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1279,14 +1309,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_september_meeting_2023",
     "title": "Will the Fed raise interest rates by 0 bps after its September meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1295,14 +1325,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_2024_march_meeting_2024",
     "title": "Will the Fed raise interest rates by 25+ bps after its 2024 March meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1311,14 +1341,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_july_meeting_2023",
     "title": "Will the Fed raise interest rates by 25 bps after its July meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1327,14 +1357,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_november_meeting_2023",
     "title": "Will the Fed raise interest rates by 25 bps after its November meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1343,14 +1373,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_rates_again_in_2023_2024",
     "title": "Will the Fed raise rates again in 2023?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1359,14 +1389,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "oct_selloff_2023",
     "title": "Will a higher-for-longer rate scare trigger the October 2023 selloff?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1375,14 +1405,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper reports a 31% peak probability but does not publish the underlying market identifier."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "rate_hike_shock_2022",
     "title": "Will aggressive Fed tightening trigger an equity selloff by mid-2022?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1391,14 +1421,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual reconstruction to capture the rate-hike regime the paper includes in-sample."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "covid_crash_2020",
     "title": "Will COVID-19 trigger a global market panic by March 2020?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1407,14 +1437,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper calibration example references the March 2020 COVID crash but does not publish a full historical market series."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "eu_banking_contagion_2024",
     "title": "Will EU banking contagion trigger a November 2024 equity drawdown?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1423,14 +1453,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper lists EU banking contagion as a November 2024 false positive."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_svb_contagion_2023",
     "title": "SVB contagion risk in 2023",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1439,14 +1469,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus systemic-credit anchor added to restore theme balance and land the final universe inside the 38-42 target range."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "svb_contagion_2023",
     "title": "Will a major US bank failure trigger a March 2023 equity drawdown?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1455,14 +1485,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper cites ~30% Manifold risk by March 8 and reports 42% peak probability in Table 3; this series is reconstructed from that disclosure."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "aug_volatility_2024",
     "title": "Will the August 2024 volatility spike produce a short equity drawdown?",
     "structural_theme": "trade_technology",
     "category": "Technology",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1471,14 +1501,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Paper reports a 25% peak probability for the August 2024 volatility event but does not expose the full underlying history."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_eu_ai_act_enforcement_2024",
     "title": "EU AI Act enforcement in 2024",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1487,14 +1517,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus trade-technology anchor requested for EU AI Act enforcement coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_sec_crypto_action_2024",
     "title": "SEC crypto enforcement action in 2024",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1503,14 +1533,14 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Manual Metaculus trade-technology anchor requested for US crypto-regulatory enforcement coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "trade_technology_will_the_ethereum_merge_eip_3675_occur_by_october_1_2022_2022",
     "title": "Will the Ethereum Merge (EIP-3675) occur by October 1, 2022?",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "discovered": false,
     "candidate_count": 0,
     "source_options": [],
@@ -1519,6 +1549,6 @@
     "selected_probability_raw": "",
     "selected_quality_score": "",
     "selection_state": "no_live_candidate",
-    "notes": "Approved from the final curated Polymarket universe for trade-technology regime coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   }
 ]

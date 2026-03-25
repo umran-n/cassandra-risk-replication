@@ -1,1 +1,59 @@
-[]
+[
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
+    "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "selected_source": "polymarket",
+    "selected_market_id": "1628472",
+    "selected_probability_raw": 0.002,
+    "selected_probability_governed": 0.0008167907886294863,
+    "quality_score": 0.65568,
+    "source_priority": 3,
+    "candidate_count": 16,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "none",
+    "notes": "Bootstrap imported from legacy governed universe."
+  },
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
+    "title": "Russia x Ukraine ceasefire by March 31, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "selected_source": "polymarket",
+    "selected_market_id": "561829",
+    "selected_probability_raw": 0.005,
+    "selected_probability_governed": 0.0020419769715737156,
+    "quality_score": 0.729895,
+    "source_priority": 3,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "none",
+    "notes": "Bootstrap imported from legacy governed universe."
+  },
+  {
+    "asof": "2026-03-25",
+    "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
+    "title": "Will 1 Fed rate cut happen in 2026?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "selected_source": "polymarket",
+    "selected_market_id": "616903",
+    "selected_probability_raw": 0.25,
+    "selected_probability_governed": 0.23464959687257633,
+    "quality_score": 0.637005,
+    "source_priority": 3,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "calibration_applied": "becker",
+    "notes": "Bootstrap imported from legacy governed universe."
+  }
+]

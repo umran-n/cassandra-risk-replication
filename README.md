@@ -66,12 +66,19 @@ The live signal layer is governed separately from the historical backtest layer:
 - live source markets are linked into those families by explicit market IDs or text similarity
 - high-quality unlinked markets are preserved as discovered candidates rather than silently entering the governed RSI
 - the current live engine applies the validated monetary Becker rule plus the current theme caps
+- reviewed promotions are written into `data/governed/signal_registry.json` with a full decision audit
 
 Build the live signal book:
 
 ```powershell
 python scripts/sync_sources.py --refresh
 python scripts/build_signal_book.py --refresh
+```
+
+Review and promote discovered candidates from the CLI:
+
+```powershell
+python scripts/review_queue.py --theme monetary_policy
 ```
 
 Serve it as a local API:
@@ -93,6 +100,11 @@ Available endpoints:
 - `/v1/signals/latest/{event_family_id}`
 - `/v1/rsi/latest`
 - `/v1/graph/link-audit`
+- `/v1/admin/promotion/queue`
+- `/v1/admin/promotion/audit`
+- `POST /v1/admin/promotion/decide`
+- `POST /v1/admin/promotion/decide/batch`
 - `POST /v1/admin/refresh`
 
 Generated outputs are written under `outputs/signals/`.
+Governed promotion state is written under `data/governed/`.

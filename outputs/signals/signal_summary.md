@@ -2,11 +2,11 @@
 
 - Governed families loaded: `54`
 - Discovered candidate families: `31`
-- Selected live signals: `0`
-- Current governed RSI: `1.0000`
-- Current total hazard: `0.0000`
-- Dominant theme: ``
-- Dominant event family: ``
+- Selected live signals: `3`
+- Current governed RSI: `0.7096`
+- Current total hazard: `0.4093`
+- Dominant theme: `monetary_policy`
+- Dominant event family: `monetary_policy_fed_emergency_rate_cut_in_2024_2025`
 
 ## Source Status
 
@@ -21,3 +21,6 @@
 
 | Event Family | Theme | Source | Probability | Calibration | Theme Cap |
 | --- | --- | --- | ---: | --- | --- |
+| geopolitical_another_israeli_military_action_against_iran_in_2024_2025 | geopolitical | polymarket | 0.001 | none | True |
+| geopolitical_russia_x_ukraine_ceasefire_in_2024_2025 | geopolitical | polymarket | 0.002 | none | True |
+| monetary_policy_fed_emergency_rate_cut_in_2024_2025 | monetary_policy | polymarket | 0.235 | becker | True |

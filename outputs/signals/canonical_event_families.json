@@ -4,7 +4,7 @@
     "title": "Trump sentenced to house arrest?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_electoral_trump_sentenced_to_house_arrest_2024",
     "source_candidates": [
       {
@@ -17,14 +17,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_cyril_ramaphosa_be_the_next_president_of_south_africa_2024",
     "title": "Will Cyril Ramaphosa be the next President of South Africa?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_electoral_will_cyril_ramaphosa_be_the_next_president_of_south_africa_2024",
     "source_candidates": [
       {
@@ -37,14 +37,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_nigel_farage_win_election_to_uk_parliament_2024",
     "title": "Will Nigel Farage win election to UK parliament?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_electoral_will_nigel_farage_win_election_to_uk_parliament_2024",
     "source_candidates": [
       {
@@ -57,14 +57,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "electoral_will_u_s_supreme_court_vote_to_reinstate_trump_on_colorado_s_2024_ballot_2024",
     "title": "Will U.S. Supreme Court vote to reinstate Trump on Colorado's 2024 ballot?",
     "structural_theme": "electoral",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_electoral_will_u_s_supreme_court_vote_to_reinstate_trump_on_colorado_s_2024_ballot_2024",
     "source_candidates": [
       {
@@ -77,14 +77,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "fiscal_debt_us_debt_ceiling_hike_by_july_1_2023",
     "title": "US debt ceiling hike by July 1?",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_fiscal_debt_us_debt_ceiling_hike_by_july_1_2023",
     "source_candidates": [
       {
@@ -97,14 +97,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for fiscal-debt stress coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_debt_ceiling_2023",
     "title": "US debt ceiling resolution risk in 2023",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_debt_ceiling_2023",
     "source_candidates": [
       {
@@ -117,14 +117,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus fiscal-debt anchor requested for 2023 debt-ceiling coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_debt_default_risk_2023",
     "title": "US debt default risk in 2023",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_debt_default_risk_2023",
     "source_candidates": [
       {
@@ -137,14 +137,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus fiscal-debt anchor requested for debt-default risk monitoring."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_government_shutdown_2025",
     "title": "US government shutdown risk in 2025",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_government_shutdown_2025",
     "source_candidates": [
       {
@@ -157,14 +157,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus fiscal-debt anchor requested for 2025 shutdown coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "us_debt_ceiling_2023",
     "title": "Will the US debt ceiling be raised by the end of May 2023?",
     "structural_theme": "fiscal_debt",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "us_debt_ceiling_2023",
     "source_candidates": [
       {
@@ -193,14 +193,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Used as a public proxy for the paper's May 2023 debt-ceiling false positive."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "china_taiwan_2024",
     "title": "Will China-Taiwan escalation trigger an August 2024 risk-off move?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "china_taiwan_2024",
     "source_candidates": [
       {
@@ -229,14 +229,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper lists China-Taiwan escalation as an August 2024 false positive; no matching public archive was cleanly recoverable."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_another_iran_strike_on_israel_in_october_2024",
     "title": "Another Iran strike on Israel in October?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_another_iran_strike_on_israel_in_october_2024",
     "source_candidates": [
       {
@@ -249,14 +249,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
     "title": "Another Israeli military action against Iran in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
     "source_candidates": [
       {
@@ -269,14 +269,1060 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a high-volume Israel-Iran escalation contract to capture late-2024 strike follow-through risk."
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "1628471",
+        "title": "Will Iran conduct a military action against Israel on March 18, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.999,
+        "volume_usd": 2274740.0892680017,
+        "liquidity_usd": 302094.10411,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-18",
+        "raw_category": "unknown",
+        "quality_score": 0.673428,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-18-2026-626",
+          "clob_token_ids": "[\"67863450962354908706151330688432182721364900716461056355309025936872379537377\", \"31855710274413367904629212441568310992491875009341938893502321526665872215029\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628473",
+        "title": "Will Iran conduct a military action against Israel on March 20, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.999,
+        "volume_usd": 2274740.0892680017,
+        "liquidity_usd": 302094.10411,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-21",
+        "raw_category": "unknown",
+        "quality_score": 0.673428,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-20-2026-353",
+          "clob_token_ids": "[\"113823394432370600831336896678335063900546792274513346993578910025664405921884\", \"33986155414156038047955263015855380514020994060964527465471815486012738630614\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628474",
+        "title": "Will Iran conduct a military action against Israel on March 21, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.999,
+        "volume_usd": 2274740.0892680017,
+        "liquidity_usd": 302094.10411,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-21",
+        "raw_category": "unknown",
+        "quality_score": 0.673428,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-21-2026-151",
+          "clob_token_ids": "[\"62675643947828852688759072597062255185731715929564858891093911160568120592229\", \"68690579390076779694836630573808526217302302176030380588285295276217647271706\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628475",
+        "title": "Will Iran conduct a military action against Israel on March 22, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.999,
+        "volume_usd": 2274740.0892680017,
+        "liquidity_usd": 302094.10411,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-23",
+        "raw_category": "unknown",
+        "quality_score": 0.673428,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-22-2026-392",
+          "clob_token_ids": "[\"34156941154914364887643811504270716671169008864364980759719428994499752788994\", \"41280504073763292277846284699263258150404427030069797151393351783175622875622\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628472",
+        "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.002,
+        "volume_usd": 2010008.434754002,
+        "liquidity_usd": 241932.03319,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.65568,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-19-2026-486",
+          "clob_token_ids": "[\"61978156977463968203677464223236627230213014273375724231198127091393648614541\", \"74463621037990195576442478405944263736947440920888927246090384014050008329320\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551473",
+        "title": "Military action against Iran ends on March 15, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.002,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-16",
+        "raw_category": "unknown",
+        "quality_score": 0.529303,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-15-2026",
+          "clob_token_ids": "[\"103883019216878719363804110440712658546174964163230977822829713370819659175238\", \"81277081867696674558952165695497981472324204118245098833629535510831290820122\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551469",
+        "title": "Military action against Iran ends on March 11, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-15",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-11-2026",
+          "clob_token_ids": "[\"96615825336665263213401648658192910590844503202376234287919465570832943923162\", \"86840868424885917024709754955906648468710264080047402038448345678247352153618\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551470",
+        "title": "Military action against Iran ends on March 12, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-15",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-12-2026",
+          "clob_token_ids": "[\"19910896253672838406271734801216806842117594995616612357603002432338080695345\", \"71453269116673385562606132522600637508956589825916355627539338067260040435664\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551471",
+        "title": "Military action against Iran ends on March 13, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-15",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-13-2026",
+          "clob_token_ids": "[\"5639650416873557569520547912599202358380238391493369962480781348967855901237\", \"71016614359853055539610269557324597573259803378614790490874094111088740996318\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551474",
+        "title": "Military action against Iran ends on March 16, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-18",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-16-2026",
+          "clob_token_ids": "[\"75228503120935890162478876236088675127871162306337341378741593830890311813985\", \"99123304514046147928515125029887675511366810919635932837793183722558938680366\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551475",
+        "title": "Military action against Iran ends on March 17, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-18",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-17-2026",
+          "clob_token_ids": "[\"99860583797115409091436139068882553183259590007510036555151083216494782601636\", \"56113604409851537030925743113360349510035818616685482611448390079883243076639\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551476",
+        "title": "Military action against Iran ends on March 18, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-22",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-18-2026",
+          "clob_token_ids": "[\"3277632695362084336744893155367763571205580394931073076323803545042639271547\", \"38556312006301401724863332667828163749341606774729453905456231893075941661504\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551477",
+        "title": "Military action against Iran ends on March 19, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-22",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-19-2026",
+          "clob_token_ids": "[\"9188676476928967425246154039445402696276263015355212325959024486101275528331\", \"87834048298995867793226339206857941148209811246820924055066618019534734893503\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551478",
+        "title": "Military action against Iran ends on March 20, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-22",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-20-2026",
+          "clob_token_ids": "[\"43313074921597792256624343858602268313694485248651310380118184340675991485080\", \"34149406569404233720919631236976581835974455992327889182601754651783144380424\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551479",
+        "title": "Military action against Iran ends on March 21, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-23",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-21-2026",
+          "clob_token_ids": "[\"18873973701180580886214605273839988673337475091282351069440843402400841866571\", \"39358671685995411909659951811833009796322965537013919025399963906596745260018\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551480",
+        "title": "Military action against Iran ends on March 22, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-23",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-22-2026",
+          "clob_token_ids": "[\"113774585106202968068176044374520853551237678671379049814858558164463285978093\", \"75754800626132098052480583429069538911417304104733129157327730174830984416299\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551481",
+        "title": "Military action against Iran ends on March 23, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 2865710.9251549994,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-23",
+        "raw_category": "unknown",
+        "quality_score": 0.529003,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-23-2026",
+          "clob_token_ids": "[\"4332006096607780902217079704220846736851740037774202704218408814125339360968\", \"1954900323141995062419220928310898748399949661183294042925945130396247589326\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628482",
+        "title": "Will Iran conduct a military action against Israel on March 29, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.63,
+        "volume_usd": 2504.8485299999998,
+        "liquidity_usd": 8430.3188,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.446655,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-29-2026-897",
+          "clob_token_ids": "[\"11767433686547682501754455675310044952530961758976385609060317335674339997515\", \"38315857135804197801739054239729134897411085891621766104192945170170059384555\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628477",
+        "title": "Will Iran conduct a military action against Israel on March 24, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.999,
+        "volume_usd": 88566.12630299985,
+        "liquidity_usd": 302094.10411,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-25",
+        "raw_category": "unknown",
+        "quality_score": 0.44557,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-24-2026-996",
+          "clob_token_ids": "[\"107265814750598168235386950519399859981878379286944542103444267791371817734074\", \"66203537358440388727715549029341056509775567390398987927225035341004316213254\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551490",
+        "title": "Military action against Iran continues through March 31, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.86,
+        "volume_usd": 529733.1623370011,
+        "liquidity_usd": 17536.854,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.424694,
+        "source_priority": 3,
+        "link_key": "2026 action against continues iran march military through",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-continues-through-march-31-2026",
+          "clob_token_ids": "[\"114452833153478251477218824496014511060529663635261152708245153427039308185854\", \"27040294992035591963997512090547410933796078166803169197205456299936506956431\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628483",
+        "title": "Will Iran conduct a military action against Israel on March 30, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.72,
+        "volume_usd": 2978.696309999999,
+        "liquidity_usd": 5326.0029,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.418842,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-30-2026-933",
+          "clob_token_ids": "[\"31960865729971962729690239733687234815188404077072398250514245462119074534686\", \"85528273570366870197006125890927090123393684572837178291061259412704786119950\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628484",
+        "title": "Will Iran conduct a military action against Israel on March 31, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.76,
+        "volume_usd": 2025.8524590000006,
+        "liquidity_usd": 3007.8958,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.405909,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-31-2026-112",
+          "clob_token_ids": "[\"88347196507844890727941396804337582411920989850841780247441414470889030250339\", \"108236539336374976012714697350618502151210581720545964716860494386260234751990\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628476",
+        "title": "Will Iran conduct a military action against Israel on March 23, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.16,
+        "volume_usd": 72886.51781500003,
+        "liquidity_usd": 10661.0189,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.40192,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-23-2026-964",
+          "clob_token_ids": "[\"71967812921131192042686598248572570290980946723618896698289377551610767294310\", \"51843811607915023898331331067197744203254345061649335903618195309694499044673\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628480",
+        "title": "Will Iran conduct a military action against Israel on March 27, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.78,
+        "volume_usd": 4246.576068000001,
+        "liquidity_usd": 7019.5086,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.401667,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-27-2026-182",
+          "clob_token_ids": "[\"65764090172139027843643016935378347746240630307395752099241914367448245523475\", \"15724908773144224083507133850237057449815641281532331519399284318375609514332\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628479",
+        "title": "Will Iran conduct a military action against Israel on March 26, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.81,
+        "volume_usd": 11606.911342000003,
+        "liquidity_usd": 10982.8997,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.395697,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-26-2026-528",
+          "clob_token_ids": "[\"68504441893963208380822713787671393458383802405602069668482661700656077660204\", \"112838135288674759829840753468774382662432577762626760757254630946075247439121\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628481",
+        "title": "Will Iran conduct a military action against Israel on March 28, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.83,
+        "volume_usd": 1136.851713,
+        "liquidity_usd": 5597.2485,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.385463,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-28-2026-519",
+          "clob_token_ids": "[\"51294630234591513278550122841193338812214627710572952342367483505195525414245\", \"19912088108896722211681096455737464399349798307453791367197011526843678422883\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1628478",
+        "title": "Will Iran conduct a military action against Israel on March 25, 2026?",
+        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.98,
+        "volume_usd": 81061.84706599996,
+        "liquidity_usd": 9945.3333,
+        "num_traders": null,
+        "open_time": "2026-03-17",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.361749,
+        "source_priority": 3,
+        "link_key": "2026 action against conduct iran israel march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "iran-military-action-against-israel-on",
+          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-25-2026-431",
+          "clob_token_ids": "[\"45035702514008715119023616656621398720875423668296655026668972971180145369851\", \"73620482906112895091775425586705732368873865369874989679015331552004420164237\"]"
+        },
+        "link_score": 0.322222,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551489",
+        "title": "Military action against Iran ends on March 31, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.055,
+        "volume_usd": 341320.7383350005,
+        "liquidity_usd": 20596.37422,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.353009,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-31-2026",
+          "clob_token_ids": "[\"84197343570735872148569090696309274228245499063488257095084651010365231404024\", \"55841239349448306497866308893071639263370393355386977038409897233843531058850\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551483",
+        "title": "Military action against Iran ends on March 25, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 280156.9281649999,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-25",
+        "raw_category": "unknown",
+        "quality_score": 0.349042,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-25-2026",
+          "clob_token_ids": "[\"53329682333409609152949256918235040019801827801285462920173781780364728706591\", \"103596266885236366785636254077726678397631480283155006197402857531617042908344\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551482",
+        "title": "Military action against Iran ends on March 24, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.002,
+        "volume_usd": 271505.2953,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-25",
+        "raw_category": "unknown",
+        "quality_score": 0.347179,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-24-2026",
+          "clob_token_ids": "[\"61539939537551299058540963524233836279297250117736212581106826286607436758041\", \"75138255918820374352109574816658593295368825524373213372020870751770785272476\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551488",
+        "title": "Military action against Iran ends on March 30, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.038,
+        "volume_usd": 261988.00987999976,
+        "liquidity_usd": 16470.73316,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.326838,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-30-2026",
+          "clob_token_ids": "[\"13938641740167232782179639120288822367279054920963999129857123782296238840735\", \"70890431850886212341747674009914919624558711254615444894196803326685820183850\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551486",
+        "title": "Military action against Iran ends on March 28, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.017,
+        "volume_usd": 267964.9713519997,
+        "liquidity_usd": 12584.94207,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.320867,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-28-2026",
+          "clob_token_ids": "[\"31927426220417613930388384600902481455625419467009089767955160068478599026093\", \"22765773349283176248137843733781137722773383331317154620787745612538887227030\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551485",
+        "title": "Military action against Iran ends on March 27, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.006,
+        "volume_usd": 277639.518411,
+        "liquidity_usd": 12158.80172,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.319858,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-27-2026",
+          "clob_token_ids": "[\"41787707930025582380536344244210024180149888736360803723853681190995198339957\", \"30097067267035750903649067205326044610616334725462098025621822906148557575472\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551487",
+        "title": "Military action against Iran ends on March 29, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.029,
+        "volume_usd": 238269.51123699933,
+        "liquidity_usd": 14937.80909,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.317749,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-29-2026",
+          "clob_token_ids": "[\"96691839854699648811903727671647254545702793916350123005618223697766599166551\", \"39218325415432615500086425405247840800124166182306396521684891391393590008507\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551484",
+        "title": "Military action against Iran ends on March 26, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.004,
+        "volume_usd": 264512.86164999916,
+        "liquidity_usd": 14726.90778,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.316746,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-26-2026",
+          "clob_token_ids": "[\"19719915093318320319955870986086188366819898272357798160029558964645934242519\", \"4556746236637945395070134360112003692470405097335924416673486623935597514158\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      },
+      {
+        "source": "polymarket",
+        "market_id": "1551472",
+        "title": "Military action against Iran ends on March 14, 2026?",
+        "url": "https://polymarket.com/event/military-action-against-iran-ends-on",
+        "status": "resolved",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.001,
+        "volume_usd": 132619.92848800006,
+        "liquidity_usd": 112341.7469,
+        "num_traders": null,
+        "open_time": "2026-03-11",
+        "close_time": "2026-03-31",
+        "resolution_time": "2026-03-15",
+        "raw_category": "unknown",
+        "quality_score": 0.312158,
+        "source_priority": 3,
+        "link_key": "2026 action against ends iran march military",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "military-action-against-iran-ends-on",
+          "slug": "military-action-against-iran-ends-on-march-14-2026",
+          "clob_token_ids": "[\"66638589557210489592270064648618731328925032772307840126025040632390806355213\", \"56509592451976342397569320074615417844065781549779740195950002805954668690710\"]"
+        },
+        "link_score": 0.335294,
+        "link_type": "title_similarity"
+      }
+    ]
   },
   {
     "event_family_id": "geopolitical_iran_strike_on_israel_before_december_2024",
     "title": "Iran strike on Israel before December?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_iran_strike_on_israel_before_december_2024",
     "source_candidates": [
       {
@@ -289,14 +1335,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add an Iran retaliation contract to extend the October strike arc into late-2024 commodity and sanctions risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
     "title": "Israel military action against Iran by end of 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
     "source_candidates": [
       {
@@ -309,14 +1355,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_withdraws_from_gaza_in_2024_2025",
     "title": "Israel withdraws from Gaza in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_israel_withdraws_from_gaza_in_2024_2025",
     "source_candidates": [
       {
@@ -329,14 +1375,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Gaza withdrawal contract to capture military de-escalation and occupation unwind risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_before_september_2024",
     "title": "Israel x Hamas ceasefire before September?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_israel_x_hamas_ceasefire_before_september_2024",
     "source_candidates": [
       {
@@ -349,14 +1395,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a high-volume Gaza ceasefire contract to broaden de-escalation coverage inside the 2024 conflict arc."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_in_2024_2025",
     "title": "Israel x Hamas ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_israel_x_hamas_ceasefire_in_2024_2025",
     "source_candidates": [
       {
@@ -369,14 +1415,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_israel_x_hezbollah_ceasefire_in_2024_2024",
     "title": "Israel x Hezbollah Ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_israel_x_hezbollah_ceasefire_in_2024_2024",
     "source_candidates": [
       {
@@ -389,14 +1435,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
     "title": "Russia x Ukraine Ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
     "source_candidates": [
       {
@@ -409,14 +1455,45 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Russia-Ukraine ceasefire contract to capture de-escalation/endgame risk absent from the current approved set."
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "561829",
+        "title": "Russia x Ukraine ceasefire by March 31, 2026?",
+        "url": "https://polymarket.com/event/russia-x-ukraine-ceasefire-by-march-31-2026",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.005,
+        "volume_usd": 28298696.94057836,
+        "liquidity_usd": 486316.86981,
+        "num_traders": null,
+        "open_time": "2025-07-10",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.729895,
+        "source_priority": 3,
+        "link_key": "2026 ceasefire march russia ukraine",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "russia-x-ukraine-ceasefire-by-march-31-2026",
+          "slug": "russia-x-ukraine-ceasefire-by-march-31-2026",
+          "clob_token_ids": "[\"24394670903706558879845790079760859552309100903651562795058188175118941818512\", \"82991837887127223585838300135823820957946688171642633953055760547186260528157\"]"
+        },
+        "link_score": 0.330769,
+        "link_type": "title_similarity"
+      }
+    ]
   },
   {
     "event_family_id": "geopolitical_u_s_military_action_against_iran_before_november_2024",
     "title": "U.S. military action against Iran before November?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_u_s_military_action_against_iran_before_november_2024",
     "source_candidates": [
       {
@@ -429,14 +1506,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a U.S.-Iran escalation contract to capture great-power intervention risk."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_lebanon_before_november_2024",
     "title": "Will Israel invade Lebanon before November?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_geo_expansion",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_will_israel_invade_lebanon_before_november_2024",
     "source_candidates": [
       {
@@ -449,14 +1526,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Phase 5.6 targeted geopolitical expansion: add a Lebanon escalation contract to capture a distinct northern-front spillover channel."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_syria_in_2024_2024",
     "title": "Will Israel invade Syria in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_will_israel_invade_syria_in_2024_2024",
     "source_candidates": [
       {
@@ -469,14 +1546,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "geopolitical_will_ukraine_sever_the_land_bridge_between_crimea_and_russia_before_nov_1_2023",
     "title": "Will Ukraine sever the land bridge between Crimea and Russia before Nov 1?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_geopolitical_will_ukraine_sever_the_land_bridge_between_crimea_and_russia_before_nov_1_2023",
     "source_candidates": [
       {
@@ -489,14 +1566,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe after Phase 5 manual review."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "ukraine_invasion_2022",
     "title": "Will Russia invade any parts of Ukraine besides Donetsk and Luhansk oblast before March 8?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "ukraine_invasion_2022",
     "source_candidates": [
       {
@@ -517,14 +1594,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Recovered from Manifold; the paper's narrative cites analogous pre-invasion crowd probabilities."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_december_2024_meeting_2024",
     "title": "Fed decreases interest rates by 50 bps after December 2024 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_decreases_interest_rates_by_50_bps_after_december_2024_meeting_2024",
     "source_candidates": [
       {
@@ -537,14 +1614,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_november_2024_meeting_2024",
     "title": "Fed decreases interest rates by 50 bps after November 2024 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_decreases_interest_rates_by_50_bps_after_november_2024_meeting_2024",
     "source_candidates": [
       {
@@ -557,14 +1634,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
     "title": "Fed emergency rate cut in 2024?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_emergency_rate_cut_in_2024_2025",
     "source_candidates": [
       {
@@ -577,14 +1654,45 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "616903",
+        "title": "Will 1 Fed rate cut happen in 2026?",
+        "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "monetary_policy",
+        "category": "Monetary",
+        "current_probability": 0.25,
+        "volume_usd": 827296.5777670016,
+        "liquidity_usd": 75603.1229,
+        "num_traders": null,
+        "open_time": "2025-09-29",
+        "close_time": "2026-12-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.637005,
+        "source_priority": 3,
+        "link_key": "2026 cut fed happen rate",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "how-many-fed-rate-cuts-in-2026",
+          "slug": "will-1-fed-rate-cut-happen-in-2026",
+          "clob_token_ids": "[\"113379839734351069617987084078322474966003108854908079701423911002443710490196\", \"48058805012599375970268777474956242772204241523361869981040579395242001094965\"]"
+        },
+        "link_score": 0.3,
+        "link_type": "title_similarity"
+      }
+    ]
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_july_31_2024",
     "title": "Fed rate cut by July 31?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_rate_cut_by_july_31_2024",
     "source_candidates": [
       {
@@ -597,14 +1705,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_june_12_2024",
     "title": "Fed rate cut by June 12?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_rate_cut_by_june_12_2024",
     "source_candidates": [
       {
@@ -617,14 +1725,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_march_20_2024",
     "title": "Fed rate cut by March 20?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_rate_cut_by_march_20_2024",
     "source_candidates": [
       {
@@ -637,14 +1745,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_may_1_2024",
     "title": "Fed rate cut by May 1?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_fed_rate_cut_by_may_1_2024",
     "source_candidates": [
       {
@@ -657,14 +1765,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_increase_in_ecb_interest_rates_after_2024_december_meeting_2024",
     "title": "Increase in ECB interest rates after 2024 December meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_increase_in_ecb_interest_rates_after_2024_december_meeting_2024",
     "source_candidates": [
       {
@@ -677,14 +1785,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
     "title": "No change in Fed interest rates after 2024 September meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
     "source_candidates": [
       {
@@ -697,14 +1805,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
     "title": "Will the Fed decrease interest rates by 25 bps after its January meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
     "source_candidates": [
       {
@@ -717,14 +1825,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
     "title": "Will the Fed increase interest rates by 0 bps after its June meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
     "source_candidates": [
       {
@@ -737,14 +1845,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_march_meeting_2023",
     "title": "Will the Fed increase interest rates by 25 bps after its March meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_march_meeting_2023",
     "source_candidates": [
       {
@@ -757,14 +1865,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_may_meeting_2023",
     "title": "Will the Fed increase interest rates by 25 bps after its May meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_may_meeting_2023",
     "source_candidates": [
       {
@@ -777,14 +1885,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_50_bps_after_its_february_meeting_2023",
     "title": "Will the Fed increase interest rates by 50 bps after its February meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_increase_interest_rates_by_50_bps_after_its_february_meeting_2023",
     "source_candidates": [
       {
@@ -797,14 +1905,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_december_meeting_2023",
     "title": "Will the Fed raise interest rates by 0 bps after its December meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_december_meeting_2023",
     "source_candidates": [
       {
@@ -817,14 +1925,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_september_meeting_2023",
     "title": "Will the Fed raise interest rates by 0 bps after its September meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_september_meeting_2023",
     "source_candidates": [
       {
@@ -837,14 +1945,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_2024_march_meeting_2024",
     "title": "Will the Fed raise interest rates by 25+ bps after its 2024 March meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_2024_march_meeting_2024",
     "source_candidates": [
       {
@@ -857,14 +1965,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_july_meeting_2023",
     "title": "Will the Fed raise interest rates by 25 bps after its July meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_july_meeting_2023",
     "source_candidates": [
       {
@@ -877,14 +1985,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_november_meeting_2023",
     "title": "Will the Fed raise interest rates by 25 bps after its November meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_november_meeting_2023",
     "source_candidates": [
       {
@@ -897,14 +2005,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_rates_again_in_2023_2024",
     "title": "Will the Fed raise rates again in 2023?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_monetary_policy_will_the_fed_raise_rates_again_in_2023_2024",
     "source_candidates": [
       {
@@ -917,14 +2025,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "oct_selloff_2023",
     "title": "Will a higher-for-longer rate scare trigger the October 2023 selloff?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "oct_selloff_2023",
     "source_candidates": [
       {
@@ -953,14 +2061,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper reports a 31% peak probability but does not publish the underlying market identifier."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "rate_hike_shock_2022",
     "title": "Will aggressive Fed tightening trigger an equity selloff by mid-2022?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "rate_hike_shock_2022",
     "source_candidates": [
       {
@@ -973,14 +2081,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual reconstruction to capture the rate-hike regime the paper includes in-sample."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "covid_crash_2020",
     "title": "Will COVID-19 trigger a global market panic by March 2020?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "covid_crash_2020",
     "source_candidates": [
       {
@@ -993,14 +2101,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper calibration example references the March 2020 COVID crash but does not publish a full historical market series."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "eu_banking_contagion_2024",
     "title": "Will EU banking contagion trigger a November 2024 equity drawdown?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "eu_banking_contagion_2024",
     "source_candidates": [
       {
@@ -1013,14 +2121,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper lists EU banking contagion as a November 2024 false positive."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_svb_contagion_2023",
     "title": "SVB contagion risk in 2023",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_svb_contagion_2023",
     "source_candidates": [
       {
@@ -1033,14 +2141,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus systemic-credit anchor added to restore theme balance and land the final universe inside the 38-42 target range."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "svb_contagion_2023",
     "title": "Will a major US bank failure trigger a March 2023 equity drawdown?",
     "structural_theme": "systemic_credit",
     "category": "Sovereign",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "svb_contagion_2023",
     "source_candidates": [
       {
@@ -1053,14 +2161,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper cites ~30% Manifold risk by March 8 and reports 42% peak probability in Table 3; this series is reconstructed from that disclosure."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "aug_volatility_2024",
     "title": "Will the August 2024 volatility spike produce a short equity drawdown?",
     "structural_theme": "trade_technology",
     "category": "Technology",
-    "governance_source": "seed_file",
+    "governance_source": "signal_registry",
     "proxy_family_id": "aug_volatility_2024",
     "source_candidates": [
       {
@@ -1073,14 +2181,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Paper reports a 25% peak probability for the August 2024 volatility event but does not expose the full underlying history."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_eu_ai_act_enforcement_2024",
     "title": "EU AI Act enforcement in 2024",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_eu_ai_act_enforcement_2024",
     "source_candidates": [
       {
@@ -1093,14 +2201,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus trade-technology anchor requested for EU AI Act enforcement coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "metaculus_sec_crypto_action_2024",
     "title": "SEC crypto enforcement action in 2024",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "metaculus_sec_crypto_action_2024",
     "source_candidates": [
       {
@@ -1113,14 +2221,14 @@
       }
     ],
     "discovered": false,
-    "notes": "Manual Metaculus trade-technology anchor requested for US crypto-regulatory enforcement coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "trade_technology_will_the_ethereum_merge_eip_3675_occur_by_october_1_2022_2022",
     "title": "Will the Ethereum Merge (EIP-3675) occur by October 1, 2022?",
     "structural_theme": "trade_technology",
     "category": "Trade",
-    "governance_source": "polymarket_approved",
+    "governance_source": "signal_registry",
     "proxy_family_id": "polymarket_trade_technology_will_the_ethereum_merge_eip_3675_occur_by_october_1_2022_2022",
     "source_candidates": [
       {
@@ -1133,7 +2241,7 @@
       }
     ],
     "discovered": false,
-    "notes": "Approved from the final curated Polymarket universe for trade-technology regime coverage."
+    "notes": "Bootstrap imported from legacy governed universe."
   },
   {
     "event_family_id": "discovered_kalshi_KXPRESPERSON-28-AOCA",
@@ -1242,8 +2350,8 @@
         "structural_theme": "electoral",
         "category": "Sovereign",
         "current_probability": 0.182,
-        "volume_usd": 2127265.0,
-        "liquidity_usd": 1299839.0,
+        "volume_usd": 2127270.0,
+        "liquidity_usd": 1299844.0,
         "num_traders": null,
         "open_time": "2025-05-10",
         "close_time": "2029-11-07",
@@ -1328,8 +2436,8 @@
         "structural_theme": "electoral",
         "category": "Sovereign",
         "current_probability": 0.192,
-        "volume_usd": 2041382.0,
-        "liquidity_usd": 1336863.0,
+        "volume_usd": 2041420.0,
+        "liquidity_usd": 1336875.0,
         "num_traders": null,
         "open_time": "2025-05-10",
         "close_time": "2029-11-07",
@@ -1458,13 +2566,13 @@
         "category": "Sovereign",
         "current_probability": 0.47,
         "volume_usd": 1112201.0227380046,
-        "liquidity_usd": 144851.3847,
+        "liquidity_usd": 144915.6347,
         "num_traders": null,
         "open_time": "2025-07-11",
         "close_time": "2026-11-03",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.679455,
+        "quality_score": 0.679475,
         "source_priority": 3,
         "link_key": "2026 balance house power senate",
         "matched_terms": [],
@@ -1499,14 +2607,14 @@
         "structural_theme": "fiscal_debt",
         "category": "Sovereign",
         "current_probability": 0.27,
-        "volume_usd": 3237983.0,
-        "liquidity_usd": 386707.0,
+        "volume_usd": 3238018.0,
+        "liquidity_usd": 386742.0,
         "num_traders": null,
         "open_time": "2024-12-21",
         "close_time": "2029-01-20",
         "resolution_time": "2029-01-20",
         "raw_category": "politics",
-        "quality_score": 0.575762,
+        "quality_score": 0.575773,
         "source_priority": 2,
         "link_key": "buy during greenland term trump",
         "matched_terms": [],
@@ -1780,6 +2888,48 @@
     ]
   },
   {
+    "event_family_id": "discovered_polymarket_1466015",
+    "title": "US x Iran ceasefire by March 31?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "proxy_family_id": "discovered_geopolitical_polymarket",
+    "source_candidates": [],
+    "discovered": true,
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "1466015",
+        "title": "US x Iran ceasefire by March 31?",
+        "url": "https://polymarket.com/event/us-x-iran-ceasefire-by",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.15,
+        "volume_usd": 30066219.65299315,
+        "liquidity_usd": 464438.2329,
+        "num_traders": null,
+        "open_time": "2026-02-28",
+        "close_time": null,
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.679331,
+        "source_priority": 3,
+        "link_key": "ceasefire iran march",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "us-x-iran-ceasefire-by",
+          "slug": "us-x-iran-ceasefire-by-march-31",
+          "clob_token_ids": "[\"5708561660601459805512817131601230493971589760294984590237789749933853841330\", \"51938013536033607392847872760095315790110510345353215258271180769721415981927\"]"
+        },
+        "link_score": 1.0,
+        "link_type": "autonomous_discovery"
+      }
+    ]
+  },
+  {
     "event_family_id": "discovered_polymarket_1466016",
     "title": "US x Iran ceasefire by April 30?",
     "structural_theme": "geopolitical",
@@ -1801,13 +2951,13 @@
         "category": "Kinetic",
         "current_probability": 0.5,
         "volume_usd": 5172422.179957017,
-        "liquidity_usd": 185756.2494,
+        "liquidity_usd": 191324.9321,
         "num_traders": null,
         "open_time": "2026-02-28",
         "close_time": null,
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.700727,
+        "quality_score": 0.702397,
         "source_priority": 3,
         "link_key": "april ceasefire iran",
         "matched_terms": [],
@@ -1842,14 +2992,14 @@
         "structural_theme": "geopolitical",
         "category": "Kinetic",
         "current_probability": 0.002,
-        "volume_usd": 7147680.942652981,
-        "liquidity_usd": 364865.49647,
+        "volume_usd": 7151028.265087981,
+        "liquidity_usd": 365159.82157,
         "num_traders": null,
         "open_time": "2026-02-28",
         "close_time": "2026-03-31",
         "resolution_time": "2026-03-09",
         "raw_category": "unknown",
-        "quality_score": 0.69256,
+        "quality_score": 0.692648,
         "source_priority": 3,
         "link_key": "conflict ends iran israel march",
         "matched_terms": [],
@@ -1884,14 +3034,14 @@
         "structural_theme": "geopolitical",
         "category": "Kinetic",
         "current_probability": 0.001,
-        "volume_usd": 7147680.942652981,
-        "liquidity_usd": 364865.49647,
+        "volume_usd": 7151028.265087981,
+        "liquidity_usd": 365159.82157,
         "num_traders": null,
         "open_time": "2026-02-28",
         "close_time": "2026-03-15",
         "resolution_time": "2026-03-17",
         "raw_category": "unknown",
-        "quality_score": 0.69226,
+        "quality_score": 0.692348,
         "source_priority": 3,
         "link_key": "conflict ends iran israel march",
         "matched_terms": [],
@@ -1899,6 +3049,48 @@
           "event_slug": "iran-x-israelus-conflict-ends-by",
           "slug": "iran-x-israelus-conflict-ends-by-march-15",
           "clob_token_ids": "[\"81325797569174911613409057281359521585771528908138546144994531752156467539030\", \"50117904418955490151864675911851947483651392080947916317224452636206986701067\"]"
+        },
+        "link_score": 1.0,
+        "link_type": "autonomous_discovery"
+      }
+    ]
+  },
+  {
+    "event_family_id": "discovered_polymarket_1484895",
+    "title": "US x Iran ceasefire by June 30?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "proxy_family_id": "discovered_geopolitical_polymarket",
+    "source_candidates": [],
+    "discovered": true,
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "1484895",
+        "title": "US x Iran ceasefire by June 30?",
+        "url": "https://polymarket.com/event/us-x-iran-ceasefire-by",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.66,
+        "volume_usd": 2076112.8899729955,
+        "liquidity_usd": 208561.581,
+        "num_traders": null,
+        "open_time": "2026-03-02",
+        "close_time": "2026-06-30",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.659568,
+        "source_priority": 3,
+        "link_key": "ceasefire iran june",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "us-x-iran-ceasefire-by",
+          "slug": "us-x-iran-ceasefire-by-june-30-752-741-257",
+          "clob_token_ids": "[\"91234452361450605263734013436205650165110345459845371466629272470861583403438\", \"11578806222441353507719115176638735578970248989819859302635595162497755626384\"]"
         },
         "link_score": 1.0,
         "link_type": "autonomous_discovery"
@@ -1926,14 +3118,14 @@
         "structural_theme": "geopolitical",
         "category": "Kinetic",
         "current_probability": 0.55,
-        "volume_usd": 1031666.3921299983,
-        "liquidity_usd": 47569.3536,
+        "volume_usd": 1031731.3921299983,
+        "liquidity_usd": 46686.2142,
         "num_traders": null,
         "open_time": "2026-03-02",
         "close_time": "2026-05-15",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.731771,
+        "quality_score": 0.731506,
         "source_priority": 3,
         "link_key": "conflict ends iran israel may",
         "matched_terms": [],
@@ -1941,132 +3133,6 @@
           "event_slug": "iran-x-israelus-conflict-ends-by",
           "slug": "iran-x-israelus-conflict-ends-by-may-15-562-372-916-721-496",
           "clob_token_ids": "[\"19426830997860641827867742428794225516264548638293070052741093336218482490309\", \"31869663470674113137413574637244458645080626094263106105850314096988098095887\"]"
-        },
-        "link_score": 1.0,
-        "link_type": "autonomous_discovery"
-      }
-    ]
-  },
-  {
-    "event_family_id": "discovered_polymarket_1628471",
-    "title": "Will Iran conduct a military action against Israel on March 18, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "proxy_family_id": "discovered_geopolitical_polymarket",
-    "source_candidates": [],
-    "discovered": true,
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "linked_markets": [
-      {
-        "source": "polymarket",
-        "market_id": "1628471",
-        "title": "Will Iran conduct a military action against Israel on March 18, 2026?",
-        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
-        "status": "resolved",
-        "outcome_type": "BINARY",
-        "structural_theme": "geopolitical",
-        "category": "Kinetic",
-        "current_probability": 0.999,
-        "volume_usd": 2274684.1152440016,
-        "liquidity_usd": 303314.53651,
-        "num_traders": null,
-        "open_time": "2026-03-17",
-        "close_time": "2026-03-31",
-        "resolution_time": "2026-03-18",
-        "raw_category": "unknown",
-        "quality_score": 0.673794,
-        "source_priority": 3,
-        "link_key": "2026 action against conduct iran israel march military",
-        "matched_terms": [],
-        "metadata": {
-          "event_slug": "iran-military-action-against-israel-on",
-          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-18-2026-626",
-          "clob_token_ids": "[\"67863450962354908706151330688432182721364900716461056355309025936872379537377\", \"31855710274413367904629212441568310992491875009341938893502321526665872215029\"]"
-        },
-        "link_score": 1.0,
-        "link_type": "autonomous_discovery"
-      }
-    ]
-  },
-  {
-    "event_family_id": "discovered_polymarket_1628473",
-    "title": "Will Iran conduct a military action against Israel on March 20, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "proxy_family_id": "discovered_geopolitical_polymarket",
-    "source_candidates": [],
-    "discovered": true,
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "linked_markets": [
-      {
-        "source": "polymarket",
-        "market_id": "1628473",
-        "title": "Will Iran conduct a military action against Israel on March 20, 2026?",
-        "url": "https://polymarket.com/event/iran-military-action-against-israel-on",
-        "status": "resolved",
-        "outcome_type": "BINARY",
-        "structural_theme": "geopolitical",
-        "category": "Kinetic",
-        "current_probability": 0.999,
-        "volume_usd": 2274684.1152440016,
-        "liquidity_usd": 303314.53651,
-        "num_traders": null,
-        "open_time": "2026-03-17",
-        "close_time": "2026-03-31",
-        "resolution_time": "2026-03-21",
-        "raw_category": "unknown",
-        "quality_score": 0.673794,
-        "source_priority": 3,
-        "link_key": "2026 action against conduct iran israel march military",
-        "matched_terms": [],
-        "metadata": {
-          "event_slug": "iran-military-action-against-israel-on",
-          "slug": "will-iran-conduct-a-military-action-against-israel-on-march-20-2026-353",
-          "clob_token_ids": "[\"113823394432370600831336896678335063900546792274513346993578910025664405921884\", \"33986155414156038047955263015855380514020994060964527465471815486012738630614\"]"
-        },
-        "link_score": 1.0,
-        "link_type": "autonomous_discovery"
-      }
-    ]
-  },
-  {
-    "event_family_id": "discovered_polymarket_561829",
-    "title": "Russia x Ukraine ceasefire by March 31, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "proxy_family_id": "discovered_geopolitical_polymarket",
-    "source_candidates": [],
-    "discovered": true,
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "linked_markets": [
-      {
-        "source": "polymarket",
-        "market_id": "561829",
-        "title": "Russia x Ukraine ceasefire by March 31, 2026?",
-        "url": "https://polymarket.com/event/russia-x-ukraine-ceasefire-by-march-31-2026",
-        "status": "open",
-        "outcome_type": "BINARY",
-        "structural_theme": "geopolitical",
-        "category": "Kinetic",
-        "current_probability": 0.005,
-        "volume_usd": 28298696.94057836,
-        "liquidity_usd": 486316.86981,
-        "num_traders": null,
-        "open_time": "2025-07-10",
-        "close_time": "2026-03-31",
-        "resolution_time": null,
-        "raw_category": "unknown",
-        "quality_score": 0.729895,
-        "source_priority": 3,
-        "link_key": "2026 ceasefire march russia ukraine",
-        "matched_terms": [],
-        "metadata": {
-          "event_slug": "russia-x-ukraine-ceasefire-by-march-31-2026",
-          "slug": "russia-x-ukraine-ceasefire-by-march-31-2026",
-          "clob_token_ids": "[\"24394670903706558879845790079760859552309100903651562795058188175118941818512\", \"82991837887127223585838300135823820957946688171642633953055760547186260528157\"]"
         },
         "link_score": 1.0,
         "link_type": "autonomous_discovery"
@@ -2116,6 +3182,48 @@
     ]
   },
   {
+    "event_family_id": "discovered_polymarket_701290",
+    "title": "Will China invade Taiwan by March 31, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "proxy_family_id": "discovered_geopolitical_polymarket",
+    "source_candidates": [],
+    "discovered": true,
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "701290",
+        "title": "Will China invade Taiwan by March 31, 2026?",
+        "url": "https://polymarket.com/event/will-china-invade-taiwan-by-march-31-2026",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "geopolitical",
+        "category": "Kinetic",
+        "current_probability": 0.003,
+        "volume_usd": 9441818.32274696,
+        "liquidity_usd": 232919.07015,
+        "num_traders": null,
+        "open_time": "2025-11-24",
+        "close_time": "2026-03-31",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.653276,
+        "source_priority": 3,
+        "link_key": "2026 china invade march taiwan",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "will-china-invade-taiwan-by-march-31-2026",
+          "slug": "will-china-invade-taiwan-by-march-31-2026",
+          "clob_token_ids": "[\"106549993070946237758310281255754864390927967486677098278324584793561067743644\", \"45508526462946448093261964971924605068149154773851783510479883418527084296876\"]"
+        },
+        "link_score": 1.0,
+        "link_type": "autonomous_discovery"
+      }
+    ]
+  },
+  {
     "event_family_id": "discovered_polymarket_1168140",
     "title": "Will the upper bound of the target federal funds rate be 4.0% at the end of 2026?",
     "structural_theme": "monetary_policy",
@@ -2136,14 +3244,14 @@
         "structural_theme": "monetary_policy",
         "category": "Monetary",
         "current_probability": 0.086,
-        "volume_usd": 1034050.293274,
-        "liquidity_usd": 16664.1734,
+        "volume_usd": 1042616.293274,
+        "liquidity_usd": 16785.39069,
         "num_traders": null,
         "open_time": "2026-01-12",
         "close_time": "2026-12-09",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.525799,
+        "quality_score": 0.525836,
         "source_priority": 3,
         "link_key": "2026 bound end federal funds rate target upper",
         "matched_terms": [],
@@ -2151,6 +3259,48 @@
           "event_slug": "what-will-the-fed-rate-be-at-the-end-of-2026",
           "slug": "will-the-upper-bound-of-the-target-federal-funds-rate-be-4pt0-at-the-end-of-2026-386",
           "clob_token_ids": "[\"45298643302120067019009097483686644753682404593036519073434032964867401216713\", \"91978458915370945988908089539242949184649677903154230672720974787942861020433\"]"
+        },
+        "link_score": 1.0,
+        "link_type": "autonomous_discovery"
+      }
+    ]
+  },
+  {
+    "event_family_id": "discovered_polymarket_1654959",
+    "title": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+    "structural_theme": "monetary_policy",
+    "category": "Monetary",
+    "governance_source": "autonomous_discovery",
+    "proxy_family_id": "discovered_monetary_policy_polymarket",
+    "source_candidates": [],
+    "discovered": true,
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "linked_markets": [
+      {
+        "source": "polymarket",
+        "market_id": "1654959",
+        "title": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+        "url": "https://polymarket.com/event/fed-decision-in-july-181",
+        "status": "open",
+        "outcome_type": "BINARY",
+        "structural_theme": "monetary_policy",
+        "category": "Monetary",
+        "current_probability": 0.054,
+        "volume_usd": 1071836.4553930005,
+        "liquidity_usd": 46436.05616,
+        "num_traders": null,
+        "open_time": "2026-03-20",
+        "close_time": "2026-07-29",
+        "resolution_time": null,
+        "raw_category": "unknown",
+        "quality_score": 0.525131,
+        "source_priority": 3,
+        "link_key": "2026 bps fed increase interest july meeting rates",
+        "matched_terms": [],
+        "metadata": {
+          "event_slug": "fed-decision-in-july-181",
+          "slug": "will-the-fed-increase-interest-rates-by-25-bps-after-the-july-2026-meeting",
+          "clob_token_ids": "[\"10547381015916960267379463101229159185405356924982461726471550099674011526491\", \"102979714187432523726496609637889951679226430871494531752837414533106422105296\"]"
         },
         "link_score": 1.0,
         "link_type": "autonomous_discovery"
@@ -2179,13 +3329,13 @@
         "category": "Monetary",
         "current_probability": 0.283,
         "volume_usd": 2476662.9981260034,
-        "liquidity_usd": 69493.97944,
+        "liquidity_usd": 69987.58686,
         "num_traders": null,
         "open_time": "2025-09-29",
         "close_time": "2026-12-31",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.600748,
+        "quality_score": 0.600896,
         "source_priority": 3,
         "link_key": "2026 cuts fed happen rate",
         "matched_terms": [],
@@ -2193,48 +3343,6 @@
           "event_slug": "how-many-fed-rate-cuts-in-2026",
           "slug": "will-no-fed-rate-cuts-happen-in-2026",
           "clob_token_ids": "[\"12403602920039269077597917340921667997547115084613238528792639013246536343316\", \"21294592205022969346730955103773391901993330222644504059576935265667917187903\"]"
-        },
-        "link_score": 1.0,
-        "link_type": "autonomous_discovery"
-      }
-    ]
-  },
-  {
-    "event_family_id": "discovered_polymarket_616903",
-    "title": "Will 1 Fed rate cut happen in 2026?",
-    "structural_theme": "monetary_policy",
-    "category": "Monetary",
-    "governance_source": "autonomous_discovery",
-    "proxy_family_id": "discovered_monetary_policy_polymarket",
-    "source_candidates": [],
-    "discovered": true,
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "linked_markets": [
-      {
-        "source": "polymarket",
-        "market_id": "616903",
-        "title": "Will 1 Fed rate cut happen in 2026?",
-        "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
-        "status": "open",
-        "outcome_type": "BINARY",
-        "structural_theme": "monetary_policy",
-        "category": "Monetary",
-        "current_probability": 0.25,
-        "volume_usd": 827200.5777670016,
-        "liquidity_usd": 77724.4091,
-        "num_traders": null,
-        "open_time": "2025-09-29",
-        "close_time": "2026-12-31",
-        "resolution_time": null,
-        "raw_category": "unknown",
-        "quality_score": 0.637617,
-        "source_priority": 3,
-        "link_key": "2026 cut fed happen rate",
-        "matched_terms": [],
-        "metadata": {
-          "event_slug": "how-many-fed-rate-cuts-in-2026",
-          "slug": "will-1-fed-rate-cut-happen-in-2026",
-          "clob_token_ids": "[\"113379839734351069617987084078322474966003108854908079701423911002443710490196\", \"48058805012599375970268777474956242772204241523361869981040579395242001094965\"]"
         },
         "link_score": 1.0,
         "link_type": "autonomous_discovery"
@@ -2263,7 +3371,7 @@
         "category": "Monetary",
         "current_probability": 0.004,
         "volume_usd": 8588864.462470721,
-        "liquidity_usd": 1525741.24086,
+        "liquidity_usd": 1526226.12088,
         "num_traders": null,
         "open_time": "2025-11-13",
         "close_time": "2026-04-29",
@@ -2304,8 +3412,8 @@
         "structural_theme": "monetary_policy",
         "category": "Monetary",
         "current_probability": 0.013,
-        "volume_usd": 6201087.436781964,
-        "liquidity_usd": 1045354.49531,
+        "volume_usd": 6201856.667550964,
+        "liquidity_usd": 1066104.26696,
         "num_traders": null,
         "open_time": "2025-11-13",
         "close_time": "2026-04-29",
@@ -2345,15 +3453,15 @@
         "outcome_type": "BINARY",
         "structural_theme": "monetary_policy",
         "category": "Monetary",
-        "current_probability": 0.953,
-        "volume_usd": 5363040.11033497,
-        "liquidity_usd": 586131.93584,
+        "current_probability": 0.952,
+        "volume_usd": 5364274.018270969,
+        "liquidity_usd": 592228.18775,
         "num_traders": null,
         "open_time": "2025-11-13",
         "close_time": "2026-04-29",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.6591,
+        "quality_score": 0.6594,
         "source_priority": 3,
         "link_key": "2026 april change fed interest meeting rates there",
         "matched_terms": [],
@@ -2388,14 +3496,14 @@
         "structural_theme": "monetary_policy",
         "category": "Monetary",
         "current_probability": 0.029,
-        "volume_usd": 7144592.88481604,
-        "liquidity_usd": 461487.98883,
+        "volume_usd": 7150339.877003039,
+        "liquidity_usd": 463893.08537,
         "num_traders": null,
         "open_time": "2025-11-13",
         "close_time": "2026-04-29",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.642146,
+        "quality_score": 0.642868,
         "source_priority": 3,
         "link_key": "2026 april bps fed increase interest meeting rates",
         "matched_terms": [],
@@ -2429,15 +3537,15 @@
         "outcome_type": "BINARY",
         "structural_theme": "monetary_policy",
         "category": "Monetary",
-        "current_probability": 0.86,
-        "volume_usd": 923752.6389480036,
-        "liquidity_usd": 110977.6292,
+        "current_probability": 0.85,
+        "volume_usd": 923777.6389480036,
+        "liquidity_usd": 110556.5992,
         "num_traders": null,
         "open_time": "2025-12-10",
         "close_time": "2026-06-17",
         "resolution_time": null,
         "raw_category": "unknown",
-        "quality_score": 0.551231,
+        "quality_score": 0.554111,
         "source_priority": 3,
         "link_key": "2026 change fed interest june meeting rates there",
         "matched_terms": [],

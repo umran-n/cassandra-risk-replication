@@ -25,6 +25,8 @@ from cassandra_risk.api_service import (  # noqa: E402
     registry_meta,
     signal_output_dir,
 )
+from cassandra_risk.promotion_store import apply_promotion_decision, latest_decisions_map, load_promotion_audit, load_signal_registry  # noqa: E402
+from cassandra_risk.promotion_workflow import build_promotion_queue, find_promotion_candidate  # noqa: E402
 
 
 OUTPUT_DIR = signal_output_dir(ROOT)
@@ -77,7 +79,7 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-    def _read_json_body(self) -> dict:
+    def _read_json_body(self):
         length = int(self.headers.get("Content-Length", "0") or 0)
         if length <= 0:
             return {}
@@ -137,6 +139,21 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
         if path == "/v1/graph/link-audit":
             payload = list_link_audit(ROOT, source=_query_value(query, "source"), status=_query_value(query, "status"))
             return self._send_json(payload)
+        if path == "/v1/admin/promotion/queue":
+            load_signal_registry(ROOT)
+            decisions = latest_decisions_map(ROOT)
+            payload = build_promotion_queue(
+                ROOT,
+                theme=_query_value(query, "theme"),
+                min_gates=_query_int(query, "min_gates") or 0,
+                include_rejected=bool(_query_bool(query, "include_rejected")),
+                decision_state=_query_value(query, "decision_state", "pending"),
+                decisions_map=decisions,
+            )
+            return self._send_json(payload)
+        if path == "/v1/admin/promotion/audit":
+            payload = load_promotion_audit(ROOT)
+            return self._send_json(payload)
 
         self._send_json(
             {
@@ -153,6 +170,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                     "/v1/signals/latest/{event_family_id}",
                     "/v1/rsi/latest",
                     "/v1/graph/link-audit",
+                    "/v1/admin/promotion/queue",
+                    "/v1/admin/promotion/audit",
                     "/v1/admin/refresh",
                 ],
             },
@@ -177,6 +196,65 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                     "selected_signals": len(payload["snapshots"]),
                     "rsi": payload["rsi_snapshot"]["rsi"],
                     "dominant_theme": payload["rsi_snapshot"]["dominant_theme"],
+                }
+            )
+        if path == "/v1/admin/promotion/decide":
+            body = self._read_json_body()
+            load_signal_registry(ROOT)
+            contract_id = str(body.get("contract_id") or "")
+            candidate = find_promotion_candidate(ROOT, contract_id, decisions_map=latest_decisions_map(ROOT))
+            if candidate is None:
+                return self._send_json({"error": "candidate_not_found", "contract_id": contract_id}, 404)
+            audit_row = apply_promotion_decision(
+                ROOT,
+                candidate=candidate,
+                decision=str(body.get("decision") or "REJECTED"),
+                reason=str(body.get("reason") or ""),
+                decided_by=str(body.get("decided_by") or "operator"),
+                proxy_family_id=str(body.get("proxy_family_id") or candidate.get("proxy_family_id") or ""),
+                aggregation_policy=str(body.get("aggregation_policy") or "max"),
+                event_family_id=str(body.get("event_family_id") or ""),
+            )
+            payload = build_live_signal_artifacts(ROOT, refresh=False)
+            return self._send_json(
+                {
+                    "status": "ok",
+                    "decision": audit_row,
+                    "selected_signals": len(payload["snapshots"]),
+                    "rsi": payload["rsi_snapshot"]["rsi"],
+                }
+            )
+        if path == "/v1/admin/promotion/decide/batch":
+            body = self._read_json_body()
+            if not isinstance(body, list):
+                return self._send_json({"error": "expected_array_body"}, 400)
+            load_signal_registry(ROOT)
+            decisions_map = latest_decisions_map(ROOT)
+            results = []
+            for item in body:
+                contract_id = str(item.get("contract_id") or "")
+                candidate = find_promotion_candidate(ROOT, contract_id, decisions_map=decisions_map)
+                if candidate is None:
+                    results.append({"contract_id": contract_id, "status": "candidate_not_found"})
+                    continue
+                audit_row = apply_promotion_decision(
+                    ROOT,
+                    candidate=candidate,
+                    decision=str(item.get("decision") or "REJECTED"),
+                    reason=str(item.get("reason") or ""),
+                    decided_by=str(item.get("decided_by") or "operator"),
+                    proxy_family_id=str(item.get("proxy_family_id") or candidate.get("proxy_family_id") or ""),
+                    aggregation_policy=str(item.get("aggregation_policy") or "max"),
+                    event_family_id=str(item.get("event_family_id") or ""),
+                )
+                results.append({"contract_id": contract_id, "status": "ok", "decision": audit_row["decision"]})
+            payload = build_live_signal_artifacts(ROOT, refresh=False)
+            return self._send_json(
+                {
+                    "status": "ok",
+                    "results": results,
+                    "selected_signals": len(payload["snapshots"]),
+                    "rsi": payload["rsi_snapshot"]["rsi"],
                 }
             )
 

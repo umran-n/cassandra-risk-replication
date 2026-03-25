@@ -32,7 +32,7 @@ def _base_family(record: dict, governance_source: str) -> EventFamily:
     title = _canonical_title(record)
     theme = _canonical_theme(record)
     category = str(record.get("category") or infer_category_from_theme(theme))
-    event_family_id = str(record.get("event_id") or record.get("proxy_family_id") or title.lower().replace(" ", "_"))
+    event_family_id = str(record.get("event_family_id") or record.get("event_id") or record.get("proxy_family_id") or title.lower().replace(" ", "_"))
     proxy_family_id = str(record.get("proxy_family_id") or event_family_id)
     notes = str(record.get("approval_reason") or record.get("notes") or "")
     family = EventFamily(
@@ -46,20 +46,23 @@ def _base_family(record: dict, governance_source: str) -> EventFamily:
         discovered=False,
         notes=notes,
     )
-    family.source_candidates.append(
-        {
-            "link_type": "governed_reference",
-            "source": str(record.get("source") or governance_source),
-            "market_id": str(record.get("market_id") or ""),
-            "title": title,
-            "resolution_date": record.get("resolution_date"),
-            "quality_score": record.get("quality_score"),
-        }
-    )
+    if record.get("source_candidates"):
+        family.source_candidates.extend([dict(candidate) for candidate in record.get("source_candidates", [])])
+    else:
+        family.source_candidates.append(
+            {
+                "link_type": "governed_reference",
+                "source": str(record.get("source") or governance_source),
+                "market_id": str(record.get("market_id") or ""),
+                "title": title,
+                "resolution_date": record.get("resolution_date"),
+                "quality_score": record.get("quality_score"),
+            }
+        )
     return family
 
 
-def load_governed_event_families(root: Path) -> list[dict]:
+def load_legacy_governed_event_families(root: Path) -> list[dict]:
     families: dict[str, EventFamily] = {}
 
     sources = [
@@ -82,6 +85,26 @@ def load_governed_event_families(root: Path) -> list[dict]:
     rows = [family.to_dict() for family in families.values()]
     rows.sort(key=lambda row: (row["structural_theme"], row["event_family_id"]))
     return rows
+
+
+def load_governed_event_families(root: Path) -> list[dict]:
+    signal_registry_path = root / "data" / "governed" / "signal_registry.json"
+    if signal_registry_path.exists():
+        families: dict[str, EventFamily] = {}
+        for record in _load_json_if_exists(signal_registry_path):
+            family = _base_family(record, "signal_registry")
+            existing = families.get(family.event_family_id)
+            if existing is None:
+                families[family.event_family_id] = family
+            else:
+                existing.source_candidates.extend(family.source_candidates)
+                if not existing.notes and family.notes:
+                    existing.notes = family.notes
+        if families:
+            rows = [family.to_dict() for family in families.values()]
+            rows.sort(key=lambda row: (row["structural_theme"], row["event_family_id"]))
+            return rows
+    return load_legacy_governed_event_families(root)
 
 
 def _known_source_market_ids(family: dict) -> set[tuple[str, str]]:

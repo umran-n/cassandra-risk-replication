@@ -1,11 +1,53 @@
 {
   "asof": "2026-03-25",
-  "rsi": 1.0,
-  "total_hazard": 0.0,
-  "event_count": 0,
-  "dominant_theme": "",
-  "dominant_event_family_id": "",
-  "theme_hazard_shares": {},
-  "signal_count_by_source": {},
-  "events": []
+  "rsi": 0.7095718536183392,
+  "total_hazard": 0.409300544970425,
+  "event_count": 3,
+  "dominant_theme": "monetary_policy",
+  "dominant_event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
+  "theme_hazard_shares": {
+    "geopolitical": 0.06846217040941832,
+    "monetary_policy": 0.9315378295905816
+  },
+  "signal_count_by_source": {
+    "polymarket": 3
+  },
+  "events": [
+    {
+      "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
+      "title": "Will 1 Fed rate cut happen in 2026?",
+      "source": "polymarket",
+      "market_id": "616903",
+      "structural_theme": "monetary_policy",
+      "category": "Monetary",
+      "selected_probability_governed": 0.23464959687257633,
+      "hazard_contribution": 0.38127894131199197,
+      "theme_cap_applied": true,
+      "calibration_applied": "becker"
+    },
+    {
+      "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
+      "title": "Russia x Ukraine ceasefire by March 31, 2026?",
+      "source": "polymarket",
+      "market_id": "561829",
+      "structural_theme": "geopolitical",
+      "category": "Kinetic",
+      "selected_probability_governed": 0.0020419769715737156,
+      "hazard_contribution": 0.020015431184595017,
+      "theme_cap_applied": true,
+      "calibration_applied": "none"
+    },
+    {
+      "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
+      "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+      "source": "polymarket",
+      "market_id": "1628472",
+      "structural_theme": "geopolitical",
+      "category": "Kinetic",
+      "selected_probability_governed": 0.0008167907886294863,
+      "hazard_contribution": 0.008006172473838008,
+      "theme_cap_applied": true,
+      "calibration_applied": "none"
+    }
+  ]
 }
