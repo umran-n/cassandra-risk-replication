@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from .final_curation import normalize_title, polymarket_event_id
+from .geopolitical_subbucket_calibration import calibration_metadata_for_channel
 from .utils import ensure_dir, write_csv
 
 
@@ -97,6 +98,7 @@ def build_geopolitical_expansion_rows(candidates: list[dict]) -> list[dict]:
                 "market_id": str(candidate.get("market_id")),
                 "quality_score": float(candidate.get("quality_score") or 0.0),
                 "channel": selection["channel"],
+                **calibration_metadata_for_channel(selection["channel"]),
             }
         )
     rows.sort(key=lambda row: (row["resolution_date"], row["title"]))
@@ -116,6 +118,8 @@ def selection_audit_rows(rows: list[dict]) -> list[dict]:
                 "event_id": row["event_id"],
                 "title": row["title"],
                 "channel": row["channel"],
+                "calibration_subbucket": row["calibration_subbucket"],
+                "horizon_profile": row["horizon_profile"],
                 "resolution_date": row["resolution_date"],
                 "peak_probability": row["peak_probability"],
                 "total_volume_usd": row["total_volume_usd"],
@@ -140,12 +144,12 @@ def render_geopolitical_expansion_summary(path: Path, rows: list[dict]) -> None:
         f"- Bucket cap: `{GEO_ADMISSION_POLICY['bucket_cap']:.2f}`",
         f"- Min volume floor: `${GEO_ADMISSION_POLICY['min_volume_usd']:,.0f}`",
         "",
-        "| Event | Channel | Resolution Date | Peak Probability | Volume (USD) | Quality Score |",
-        "| --- | --- | --- | ---: | ---: | ---: |",
+        "| Event | Channel | Sub-Bucket | Resolution Date | Peak Probability | Volume (USD) | Quality Score |",
+        "| --- | --- | --- | --- | ---: | ---: | ---: |",
     ]
     for row in rows:
         lines.append(
-            f"| {row['title']} | {row['channel']} | {row['resolution_date']} | "
+            f"| {row['title']} | {row['channel']} | {row['calibration_subbucket']} | {row['resolution_date']} | "
             f"{row['peak_probability']:.3f} | {row['total_volume_usd']:.2f} | {row['quality_score']:.3f} |"
         )
     lines.append("")

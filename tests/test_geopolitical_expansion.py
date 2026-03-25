@@ -38,6 +38,8 @@ class GeopoliticalExpansionTests(unittest.TestCase):
         self.assertTrue(all(row["source"] == "polymarket" for row in rows))
         self.assertTrue(all(row["approval_status"] == "APPROVED" for row in rows))
         self.assertTrue(all(row["proxy_family_id"].startswith("polymarket_geopolitical_") for row in rows))
+        self.assertTrue(all(row["calibration_subbucket"] for row in rows))
+        self.assertTrue(all(row["horizon_profile"] for row in rows))
 
 
 if __name__ == "__main__":

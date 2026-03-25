@@ -12,7 +12,12 @@
     "source": "polymarket",
     "market_id": "501863",
     "quality_score": 0.734008,
-    "channel": "gaza_ceasefire_2024"
+    "channel": "gaza_ceasefire_2024",
+    "calibration_subbucket": "ceasefire_deescalation",
+    "horizon_profile": "medium",
+    "subbucket_becker_gap": 0.0412,
+    "subbucket_longshot_lower": 0.2,
+    "subbucket_longshot_upper": 0.8
   },
   {
     "event_id": "geopolitical_will_israel_invade_lebanon_before_november_2024",
@@ -27,7 +32,12 @@
     "source": "polymarket",
     "market_id": "504664",
     "quality_score": 0.733333,
-    "channel": "lebanon_escalation"
+    "channel": "lebanon_escalation",
+    "calibration_subbucket": "conflict_escalation",
+    "horizon_profile": "open",
+    "subbucket_becker_gap": 0.0891,
+    "subbucket_longshot_lower": 0.1,
+    "subbucket_longshot_upper": 0.9
   },
   {
     "event_id": "geopolitical_u_s_military_action_against_iran_before_november_2024",
@@ -42,7 +52,12 @@
     "source": "polymarket",
     "market_id": "507749",
     "quality_score": 0.405963,
-    "channel": "us_iran_escalation"
+    "channel": "us_iran_escalation",
+    "calibration_subbucket": "great_power_intervention",
+    "horizon_profile": "open",
+    "subbucket_becker_gap": 0.0958,
+    "subbucket_longshot_lower": 0.05,
+    "subbucket_longshot_upper": 0.95
   },
   {
     "event_id": "geopolitical_iran_strike_on_israel_before_december_2024",
@@ -57,7 +72,12 @@
     "source": "polymarket",
     "market_id": "511520",
     "quality_score": 0.605553,
-    "channel": "iran_retaliation"
+    "channel": "iran_retaliation",
+    "calibration_subbucket": "conflict_escalation",
+    "horizon_profile": "open",
+    "subbucket_becker_gap": 0.0891,
+    "subbucket_longshot_lower": 0.1,
+    "subbucket_longshot_upper": 0.9
   },
   {
     "event_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
@@ -72,7 +92,12 @@
     "source": "polymarket",
     "market_id": "511043",
     "quality_score": 0.672365,
-    "channel": "israel_iran_escalation"
+    "channel": "israel_iran_escalation",
+    "calibration_subbucket": "conflict_escalation",
+    "horizon_profile": "open",
+    "subbucket_becker_gap": 0.0891,
+    "subbucket_longshot_lower": 0.1,
+    "subbucket_longshot_upper": 0.9
   },
   {
     "event_id": "geopolitical_israel_withdraws_from_gaza_in_2024_2025",
@@ -87,7 +112,12 @@
     "source": "polymarket",
     "market_id": "510132",
     "quality_score": 0.473629,
-    "channel": "gaza_withdrawal_2024"
+    "channel": "gaza_withdrawal_2024",
+    "calibration_subbucket": "ceasefire_deescalation",
+    "horizon_profile": "medium",
+    "subbucket_becker_gap": 0.0412,
+    "subbucket_longshot_lower": 0.2,
+    "subbucket_longshot_upper": 0.8
   },
   {
     "event_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
@@ -102,6 +132,11 @@
     "source": "polymarket",
     "market_id": "507115",
     "quality_score": 0.542919,
-    "channel": "ukraine_ceasefire_2024"
+    "channel": "ukraine_ceasefire_2024",
+    "calibration_subbucket": "ceasefire_deescalation",
+    "horizon_profile": "medium",
+    "subbucket_becker_gap": 0.0412,
+    "subbucket_longshot_lower": 0.2,
+    "subbucket_longshot_upper": 0.8
   }
 ]

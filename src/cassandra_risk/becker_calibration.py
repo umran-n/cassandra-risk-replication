@@ -32,6 +32,37 @@ def longshot_thresholds_for_theme(structural_theme: str | None, config: dict | N
     return lower, upper
 
 
+def calibration_params_for_row(row: dict, config: dict | None = None) -> dict | None:
+    settings = becker_config(config)
+    theme = row.get("structural_theme") or ""
+    if theme in set(settings.get("skip_themes", [])):
+        return None
+
+    subbucket = row.get("calibration_subbucket")
+    subbucket_gaps = settings.get("subbucket_efficiency_gaps", {})
+    if subbucket and subbucket in subbucket_gaps:
+        lower, upper = longshot_thresholds_for_theme(theme, config)
+        thresholds = settings.get("subbucket_longshot_thresholds", {}).get(subbucket)
+        if isinstance(thresholds, (list, tuple)) and len(thresholds) == 2:
+            lower, upper = float(thresholds[0]), float(thresholds[1])
+        return {
+            "gap": float(subbucket_gaps[subbucket]),
+            "lower": lower,
+            "upper": upper,
+            "key": str(subbucket),
+            "scope": "subbucket",
+        }
+
+    lower, upper = longshot_thresholds_for_theme(theme, config)
+    return {
+        "gap": efficiency_gap_for_theme(theme, config),
+        "lower": lower,
+        "upper": upper,
+        "key": theme,
+        "scope": "theme",
+    }
+
+
 def efficiency_gap_for_theme(structural_theme: str | None, config: dict | None = None) -> float:
     theme = structural_theme or ""
     gaps = copy.deepcopy(EFFICIENCY_GAPS)
@@ -79,15 +110,26 @@ def apply_becker_calibration(
         day_events: dict[str, dict] = {}
         for event_id, row in events.items():
             item = copy.deepcopy(row)
-            calibrated_probability, metadata = calibrate_probability(
-                float(item["probability"]),
-                item.get("structural_theme"),
-                config,
-            )
-            item["probability"] = calibrated_probability
-            item["becker_calibration"] = "enabled"
-            for key, value in metadata.items():
-                item[key] = value
+            params = calibration_params_for_row(item, config)
+            if params is None:
+                item["becker_calibration"] = "skipped"
+                item["becker_calibration_scope"] = "skipped"
+                item["becker_calibration_key"] = item.get("structural_theme") or ""
+            else:
+                original = clamp(float(item["probability"]), 0.0, 1.0)
+                calibrated = shrink_toward_center(original, float(params["gap"]))
+                longshot_applied = original < float(params["lower"]) or original > float(params["upper"])
+                if longshot_applied:
+                    calibrated = shrink_toward_center(calibrated, float(params["gap"]))
+                calibrated = clamp(calibrated, 0.0, 1.0)
+                item["probability"] = calibrated
+                item["becker_calibration"] = "enabled"
+                item["becker_efficiency_gap"] = float(params["gap"])
+                item["becker_original_probability"] = original
+                item["becker_longshot_compressed"] = longshot_applied
+                item["becker_calibrated_probability"] = calibrated
+                item["becker_calibration_scope"] = str(params["scope"])
+                item["becker_calibration_key"] = str(params["key"])
             day_events[event_id] = item
         updated[day_string] = day_events
     return updated

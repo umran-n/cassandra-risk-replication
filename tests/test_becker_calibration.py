@@ -70,6 +70,54 @@ class BeckerCalibrationTests(unittest.TestCase):
         self.assertAlmostEqual(calibrated, expected)
         self.assertFalse(metadata["becker_longshot_compressed"])
 
+    def test_apply_becker_calibration_respects_skip_themes(self) -> None:
+        config = {
+            "becker_calibration": {
+                "enabled": True,
+                "skip_themes": ["geopolitical"],
+            }
+        }
+        daily_events = {
+            "2024-01-02": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "probability": 0.90,
+                    "structural_theme": "geopolitical",
+                }
+            }
+        }
+        updated = apply_becker_calibration(daily_events, config)
+        self.assertAlmostEqual(updated["2024-01-02"]["event-1"]["probability"], 0.90)
+        self.assertEqual(updated["2024-01-02"]["event-1"]["becker_calibration"], "skipped")
+
+    def test_apply_becker_calibration_uses_subbucket_gap(self) -> None:
+        config = {
+            "becker_calibration": {
+                "enabled": True,
+                "subbucket_efficiency_gaps": {
+                    "great_power_intervention": 0.0958,
+                },
+                "subbucket_longshot_thresholds": {
+                    "great_power_intervention": [0.05, 0.95],
+                },
+            }
+        }
+        daily_events = {
+            "2024-01-02": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "probability": 0.90,
+                    "structural_theme": "geopolitical",
+                    "calibration_subbucket": "great_power_intervention",
+                }
+            }
+        }
+        updated = apply_becker_calibration(daily_events, config)
+        expected = 0.5 + (0.90 - 0.5) * (1.0 - 0.0958)
+        self.assertAlmostEqual(updated["2024-01-02"]["event-1"]["probability"], expected)
+        self.assertEqual(updated["2024-01-02"]["event-1"]["becker_calibration_scope"], "subbucket")
+        self.assertEqual(updated["2024-01-02"]["event-1"]["becker_calibration_key"], "great_power_intervention")
+
 
 if __name__ == "__main__":
     unittest.main()

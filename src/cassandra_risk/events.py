@@ -6,6 +6,7 @@ from datetime import timedelta
 from pathlib import Path
 
 from .clients import fetch_manifold_bets, fetch_manifold_market, fetch_manifold_search_markets
+from .geopolitical_subbucket_calibration import calibration_metadata_for_title
 from .taxonomy import infer_structural_theme
 from .utils import date_range, epoch_millis_to_date, format_date, parse_date, smoothstep
 
@@ -104,6 +105,9 @@ def load_polymarket_approved_universe(approved_path: Path, candidates_path: Path
                     }
                 )
                 continue
+            geopolitical_metadata = {}
+            if theme == "geopolitical":
+                geopolitical_metadata = calibration_metadata_for_title(title)
             seeds.append(
                 normalize_proxy_metadata(
                     {
@@ -126,6 +130,11 @@ def load_polymarket_approved_universe(approved_path: Path, candidates_path: Path
                         "event_window_end": candidate.get("event_window_end") or candidate.get("resolution_date"),
                         "quality_score": float(candidate.get("quality_score", 0.5)),
                         "probability_timeseries": candidate.get("probability_timeseries", []),
+                        "calibration_subbucket": entry.get("calibration_subbucket") or candidate.get("calibration_subbucket") or geopolitical_metadata.get("calibration_subbucket"),
+                        "horizon_profile": entry.get("horizon_profile") or candidate.get("horizon_profile") or geopolitical_metadata.get("horizon_profile"),
+                        "subbucket_becker_gap": entry.get("subbucket_becker_gap") or candidate.get("subbucket_becker_gap") or geopolitical_metadata.get("subbucket_becker_gap"),
+                        "subbucket_longshot_lower": entry.get("subbucket_longshot_lower") or candidate.get("subbucket_longshot_lower") or geopolitical_metadata.get("subbucket_longshot_lower"),
+                        "subbucket_longshot_upper": entry.get("subbucket_longshot_upper") or candidate.get("subbucket_longshot_upper") or geopolitical_metadata.get("subbucket_longshot_upper"),
                     }
                 )
             )
@@ -306,6 +315,8 @@ def build_manual_event_rows(seed: dict) -> list[dict]:
                 "event_window_start": seed["event_window_start"],
                 "event_window_end": seed["event_window_end"],
                 "quality_score": seed["quality_score"],
+                "calibration_subbucket": seed.get("calibration_subbucket"),
+                "horizon_profile": seed.get("horizon_profile"),
             }
         )
     return rows
@@ -336,6 +347,8 @@ def build_polymarket_event_rows(config: dict, seed: dict) -> list[dict]:
                 "event_window_start": seed["event_window_start"],
                 "event_window_end": seed["event_window_end"],
                 "quality_score": seed["quality_score"],
+                "calibration_subbucket": seed.get("calibration_subbucket"),
+                "horizon_profile": seed.get("horizon_profile"),
             }
         )
     return rows
@@ -389,6 +402,8 @@ def build_manifold_event_rows(config: dict, seed: dict, raw_dir: Path, refresh: 
                 "event_window_start": seed["event_window_start"],
                 "event_window_end": seed["event_window_end"],
                 "quality_score": seed["quality_score"],
+                "calibration_subbucket": seed.get("calibration_subbucket"),
+                "horizon_profile": seed.get("horizon_profile"),
             }
         )
         current += timedelta(days=1)
