@@ -523,6 +523,10 @@ def run_version(
     fred_fetch_succeeded: bool,
     extra_curated_seeds: list[dict] | None = None,
     extra_curated_audit: list[dict] | None = None,
+    include_robustness: bool = True,
+    include_bootstrap: bool = True,
+    include_brier: bool = True,
+    include_event_analysis: bool = True,
 ) -> dict:
     config = configure_version(base_config, version)
     resolved_seeds, shortlist_merge_audit = merge_seeds_with_shortlist(base_seeds, shortlist)
@@ -570,14 +574,18 @@ def run_version(
     summaries["cassandra"]["paranoia_tax"] = summaries["cassandra"]["cagr"] - summaries["buy_hold"]["cagr"]
     metrics_rows = metrics_table(summaries)
     comparison_rows = compare_to_paper(summaries, config["paper_metrics"])
-    brier_rows = brier_score_summary(event_rows)
-    event_analysis_rows = event_window_analysis(
-        resolved_seeds,
-        dates,
-        price_returns,
-        cassandra_result["positions"],
-        cassandra_rsi,
-        daily_events,
+    brier_rows = brier_score_summary(event_rows) if include_brier else []
+    event_analysis_rows = (
+        event_window_analysis(
+            resolved_seeds,
+            dates,
+            price_returns,
+            cassandra_result["positions"],
+            cassandra_rsi,
+            daily_events,
+        )
+        if include_event_analysis
+        else []
     )
     hazard_attribution_rows, daily_rsi_decomposition_rows = build_hazard_attribution(
         dates,
@@ -586,7 +594,7 @@ def run_version(
     )
 
     robustness_rows = []
-    if version == "v3":
+    if version == "v3" and include_robustness:
         for scenario in config["cassandra"]["robustness_scenarios"]:
             scenario_rsi, _, _ = compute_cassandra_signal(
                 dates,
@@ -608,7 +616,7 @@ def run_version(
             )
 
     bootstrap_rows = []
-    if version == "v3":
+    if version == "v3" and include_bootstrap:
         bootstrap_rows = bootstrap_confidence_intervals(
             {
                 "buy_hold": buy_hold_result["daily_returns"],
