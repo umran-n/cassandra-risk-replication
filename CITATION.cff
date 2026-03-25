@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: Cassandra-Risk Replication
+message: "If you use this repository, please cite the repository and the companion papers."
+type: software
+authors:
+  - family-names: Nayani
+    given-names: Umran
+repository-code: "https://github.com/umran-n/cassandra-risk-replication"
+license: MIT
+references:
+  - type: article
+    title: "Beyond Value-at-Risk: Quantifying Regime Fragility via Prediction Market Event Forecasting"
+    doi: 10.13140/RG.2.2.21272.05124
+    year: 2026
+  - type: article
+    title: "Cassandra-Risk Paper 2: Beyond the Backtest"
+    doi: 10.13140/RG.2.2.17209.12644
+    year: 2026
