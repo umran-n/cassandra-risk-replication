@@ -21,6 +21,17 @@ def becker_config(config: dict | None) -> dict:
     return config.get("becker_calibration", {})
 
 
+def longshot_thresholds_for_theme(structural_theme: str | None, config: dict | None = None) -> tuple[float, float]:
+    settings = becker_config(config)
+    lower = float(settings.get("longshot_lower", 0.20))
+    upper = float(settings.get("longshot_upper", 0.80))
+    theme = structural_theme or ""
+    theme_thresholds = settings.get("theme_longshot_thresholds", {}).get(theme)
+    if isinstance(theme_thresholds, (list, tuple)) and len(theme_thresholds) == 2:
+        return float(theme_thresholds[0]), float(theme_thresholds[1])
+    return lower, upper
+
+
 def efficiency_gap_for_theme(structural_theme: str | None, config: dict | None = None) -> float:
     theme = structural_theme or ""
     gaps = copy.deepcopy(EFFICIENCY_GAPS)
@@ -33,9 +44,7 @@ def shrink_toward_center(probability: float, gap: float) -> float:
 
 
 def calibrate_probability(probability: float, structural_theme: str | None, config: dict | None = None) -> tuple[float, dict]:
-    settings = becker_config(config)
-    lower = float(settings.get("longshot_lower", 0.20))
-    upper = float(settings.get("longshot_upper", 0.80))
+    lower, upper = longshot_thresholds_for_theme(structural_theme, config)
     gap = efficiency_gap_for_theme(structural_theme, config)
     original = clamp(float(probability), 0.0, 1.0)
 

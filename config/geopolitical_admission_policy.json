@@ -1,0 +1,18 @@
+{
+  "becker_correction": 0.0732,
+  "longshot_threshold": [
+    0.15,
+    0.85
+  ],
+  "max_bucket_events": 8,
+  "bucket_cap": 0.25,
+  "min_volume_usd": 500000,
+  "resolution_type": "binary",
+  "macro_relevant": true,
+  "historical_backtest_window_end": "2025-01-10",
+  "notes": [
+    "Use this as the forward-looking admission policy for new Polymarket geopolitical contracts.",
+    "Keep 2026 active Gamma markets out of the historical backtest window ending 2025-01-10.",
+    "Run Becker calibration at ingestion, then apply bucket-cap governance only after event admission."
+  ]
+}

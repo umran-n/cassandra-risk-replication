@@ -1,0 +1,15 @@
+version,event_id,question,cumulative_hazard,first_date,last_date,total_hazard_share,geopolitical_hazard_share
+V5_Becker_top5_cap_geo,geopolitical_israel_x_hamas_ceasefire_before_september_2024,Israel x Hamas ceasefire before September?,189.38225630275917,2024-05-30,2024-08-30,0.055381584847321384,0.10139598714151599
+V5_Becker_top5_cap_geo,geopolitical_will_israel_invade_lebanon_before_november_2024,Will Israel invade Lebanon before November?,131.98363254755793,2024-08-08,2024-10-04,0.03859634417231185,0.07066454360586145
+V5_Becker_top5_cap_geo,geopolitical_another_israeli_military_action_against_iran_in_2024_2025,Another Israeli military action against Iran in 2024?,110.25803354587931,2024-10-29,2024-12-31,0.03224306626782415,0.05903257448677855
+V5_Becker_top5_cap_geo,geopolitical_russia_x_ukraine_ceasefire_in_2024_2025,Russia x Ukraine Ceasefire in 2024?,97.75702968943759,2024-09-17,2024-12-31,0.028587362617079698,0.05233948902550168
+V5_Becker_top5_cap_geo,geopolitical_israel_withdraws_from_gaza_in_2024_2025,Israel withdraws from Gaza in 2024?,60.09349685615423,2024-10-21,2024-12-31,0.01757330998100934,0.032174288940640165
+V5_Becker_top5_cap_geo,geopolitical_iran_strike_on_israel_before_december_2024,Iran strike on Israel before December?,47.683994099425426,2024-11-01,2024-11-29,0.013944364253717187,0.025530193519460263
+V5_Becker_top5_cap_geo,geopolitical_u_s_military_action_against_iran_before_november_2024,U.S. military action against Iran before November?,32.15790429961325,2024-09-24,2024-11-01,0.009404026228486354,0.017217465429543416
+V5_Becker_top5_cap_geo_calibrated,geopolitical_israel_x_hamas_ceasefire_before_september_2024,Israel x Hamas ceasefire before September?,94.80165893751838,2024-05-30,2024-08-30,0.04411708515543366,0.15873843340571836
+V5_Becker_top5_cap_geo_calibrated,geopolitical_will_israel_invade_lebanon_before_november_2024,Will Israel invade Lebanon before November?,40.70587878620322,2024-08-08,2024-10-04,0.01894296725251691,0.06815901220867505
+V5_Becker_top5_cap_geo_calibrated,geopolitical_another_israeli_military_action_against_iran_in_2024_2025,Another Israeli military action against Iran in 2024?,28.17968990269385,2024-10-29,2024-12-31,0.01311375552942831,0.04718482650140907
+V5_Becker_top5_cap_geo_calibrated,geopolitical_russia_x_ukraine_ceasefire_in_2024_2025,Russia x Ukraine Ceasefire in 2024?,25.282053456715158,2024-09-17,2024-12-31,0.011765305773702165,0.042332946532545615
+V5_Becker_top5_cap_geo_calibrated,geopolitical_israel_withdraws_from_gaza_in_2024_2025,Israel withdraws from Gaza in 2024?,14.975380555282982,2024-10-21,2024-12-31,0.006968972342856124,0.025075177751549844
+V5_Becker_top5_cap_geo_calibrated,geopolitical_iran_strike_on_israel_before_december_2024,Iran strike on Israel before December?,12.205004604939946,2024-11-01,2024-11-29,0.00567974477992495,0.02043638616044308
+V5_Becker_top5_cap_geo_calibrated,geopolitical_u_s_military_action_against_iran_before_november_2024,U.S. military action against Iran before November?,8.673217685302584,2024-09-24,2024-11-01,0.004036185521250157,0.014522667676723914

@@ -54,6 +54,22 @@ class BeckerCalibrationTests(unittest.TestCase):
         self.assertLess(updated["2024-01-02"]["event-1"]["probability"], 0.90)
         self.assertEqual(updated["2024-01-02"]["event-1"]["becker_calibration"], "enabled")
 
+    def test_calibrate_probability_supports_theme_specific_longshot_thresholds(self) -> None:
+        config = {
+            "becker_calibration": {
+                "enabled": True,
+                "longshot_lower": 0.2,
+                "longshot_upper": 0.8,
+                "theme_longshot_thresholds": {
+                    "geopolitical": [0.15, 0.85],
+                },
+            }
+        }
+        calibrated, metadata = calibrate_probability(0.18, "geopolitical", config)
+        expected = 0.5 + (0.18 - 0.5) * (1.0 - EFFICIENCY_GAPS["geopolitical"])
+        self.assertAlmostEqual(calibrated, expected)
+        self.assertFalse(metadata["becker_longshot_compressed"])
+
 
 if __name__ == "__main__":
     unittest.main()
