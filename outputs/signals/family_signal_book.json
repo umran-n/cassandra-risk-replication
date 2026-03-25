@@ -122,11 +122,11 @@
     ],
     "selected_source": "kalshi",
     "selected_market_id": "KXPRESPERSON-28-KHAR",
-    "selected_probability_raw": 0.025,
-    "selected_quality_score": 0.6675,
+    "selected_probability_raw": 0.028,
+    "selected_quality_score": 0.6684,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.025,
+    "selected_probability_governed": 0.028,
     "calibration_applied": "none",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -166,11 +166,11 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "562828",
-    "selected_probability_raw": 0.48,
-    "selected_quality_score": 0.682589,
+    "selected_probability_raw": 0.47,
+    "selected_quality_score": 0.679455,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.48,
+    "selected_probability_governed": 0.47,
     "calibration_applied": "none",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -198,20 +198,14 @@
     "category": "Sovereign",
     "governance_source": "polymarket_approved",
     "discovered": false,
-    "candidate_count": 1,
-    "source_options": [
-      "kalshi"
-    ],
-    "selected_source": "kalshi",
-    "selected_market_id": "KXAFRICALEADEROUT-35-CR",
-    "selected_probability_raw": 0.06,
-    "selected_quality_score": 0.234427,
-    "selection_state": "suppressed_by_theme_limit",
-    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal.",
-    "selected_probability_governed": 0.06,
-    "calibration_applied": "none",
-    "theme_cap_applied": false,
-    "theme_cap_scale": 1.0
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Approved from the final curated Polymarket universe as a capped electoral governance signal."
   },
   {
     "event_family_id": "electoral_will_nigel_farage_win_election_to_uk_parliament_2024",
@@ -496,28 +490,6 @@
     "notes": "Paper lists China-Taiwan escalation as an August 2024 false positive; no matching public archive was cleanly recoverable."
   },
   {
-    "event_family_id": "discovered_polymarket_1466015",
-    "title": "US x Iran ceasefire by March 31?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 1,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "1466015",
-    "selected_probability_raw": 0.15,
-    "selected_quality_score": 0.657323,
-    "selection_state": "candidate_only",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.06284723799959471,
-    "calibration_applied": "none",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
-  },
-  {
     "event_family_id": "discovered_polymarket_1466016",
     "title": "US x Iran ceasefire by April 30?",
     "structural_theme": "geopolitical",
@@ -530,14 +502,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1466016",
-    "selected_probability_raw": 0.48,
-    "selected_quality_score": 0.689308,
+    "selected_probability_raw": 0.5,
+    "selected_quality_score": 0.700727,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.20111116159870307,
+    "selected_probability_governed": 0.252292446122823,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
+    "theme_cap_scale": 0.504584892245646
   },
   {
     "event_family_id": "discovered_polymarket_1466148",
@@ -584,14 +556,46 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1484914",
-    "selected_probability_raw": 0.56,
-    "selected_quality_score": 0.729211,
+    "selected_probability_raw": 0.55,
+    "selected_quality_score": 0.731771,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.23462968853182029,
+    "selected_probability_governed": 0.2775216907351053,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
+    "theme_cap_scale": 0.504584892245646
+  },
+  {
+    "event_family_id": "discovered_polymarket_1628471",
+    "title": "Will Iran conduct a military action against Israel on March 18, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
+  },
+  {
+    "event_family_id": "discovered_polymarket_1628473",
+    "title": "Will Iran conduct a military action against Israel on March 20, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
   },
   {
     "event_family_id": "discovered_polymarket_561829",
@@ -610,10 +614,10 @@
     "selected_quality_score": 0.729895,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.002094907933319824,
+    "selected_probability_governed": 0.00252292446122823,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
+    "theme_cap_scale": 0.504584892245646
   },
   {
     "event_family_id": "discovered_polymarket_567621",
@@ -632,32 +636,10 @@
     "selected_quality_score": 0.7634,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.04315510342638836,
+    "selected_probability_governed": 0.05197224390130153,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
-  },
-  {
-    "event_family_id": "discovered_polymarket_701290",
-    "title": "Will China invade Taiwan by March 31, 2026?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 1,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "701290",
-    "selected_probability_raw": 0.003,
-    "selected_quality_score": 0.65317,
-    "selection_state": "candidate_only",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.0012569447599918941,
-    "calibration_applied": "none",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
+    "theme_cap_scale": 0.504584892245646
   },
   {
     "event_family_id": "geopolitical_another_iran_strike_on_israel_in_october_2024",
@@ -714,20 +696,14 @@
     "category": "Kinetic",
     "governance_source": "polymarket_approved",
     "discovered": false,
-    "candidate_count": 21,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "1628472",
-    "selected_probability_raw": 0.001,
-    "selected_quality_score": 0.656671,
-    "selection_state": "selected",
-    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts.",
-    "selected_probability_governed": 0.00041898158666396477,
-    "calibration_applied": "none",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.41898158666396473
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Retained under the Israel-arc cap as one of five anchor geopolitical contracts."
   },
   {
     "event_family_id": "geopolitical_israel_withdraws_from_gaza_in_2024_2025",
@@ -902,14 +878,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1168140",
-    "selected_probability_raw": 0.085,
-    "selected_quality_score": 0.525616,
+    "selected_probability_raw": 0.086,
+    "selected_quality_score": 0.525799,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.08420419715201267,
+    "selected_probability_governed": 0.06312379864410941,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
     "event_family_id": "discovered_polymarket_616902",
@@ -925,13 +901,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "616902",
     "selected_probability_raw": 0.283,
-    "selected_quality_score": 0.600818,
+    "selected_quality_score": 0.600748,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.27613593067986036,
+    "selected_probability_governed": 0.20464543398604607,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
     "event_family_id": "discovered_polymarket_616903",
@@ -947,17 +923,17 @@
     "selected_source": "polymarket",
     "selected_market_id": "616903",
     "selected_probability_raw": 0.25,
-    "selected_quality_score": 0.637155,
+    "selected_quality_score": 0.637617,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.2440329211868488,
+    "selected_probability_governed": 0.18085376626000801,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
-    "event_family_id": "discovered_polymarket_616904",
-    "title": "Will 2 Fed rate cuts happen in 2026?",
+    "event_family_id": "discovered_polymarket_669660",
+    "title": "Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "governance_source": "autonomous_discovery",
@@ -967,19 +943,19 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "616904",
-    "selected_probability_raw": 0.18,
-    "selected_quality_score": 0.517442,
+    "selected_market_id": "669660",
+    "selected_probability_raw": 0.004,
+    "selected_quality_score": 0.6462,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.17646484157028475,
+    "selected_probability_governed": 0.004105610915197015,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
-    "event_family_id": "discovered_polymarket_616905",
-    "title": "Will 3 Fed rate cuts happen in 2026?",
+    "event_family_id": "discovered_polymarket_669661",
+    "title": "Will the Fed decrease interest rates by 25 bps after the April 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "governance_source": "autonomous_discovery",
@@ -989,19 +965,19 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "616905",
-    "selected_probability_raw": 0.14,
-    "selected_quality_score": 0.498425,
+    "selected_market_id": "669661",
+    "selected_probability_raw": 0.013,
+    "selected_quality_score": 0.6489,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.13761825444680179,
+    "selected_probability_governed": 0.010583216885443465,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
-    "event_family_id": "discovered_polymarket_616908",
-    "title": "Will 6 Fed rate cuts happen in 2026?",
+    "event_family_id": "discovered_polymarket_669662",
+    "title": "Will there be no change in Fed interest rates after the April 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "governance_source": "autonomous_discovery",
@@ -1011,19 +987,19 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "616908",
-    "selected_probability_raw": 0.018,
-    "selected_quality_score": 0.525373,
+    "selected_market_id": "669662",
+    "selected_probability_raw": 0.953,
+    "selected_quality_score": 0.6591,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.01913616372017867,
+    "selected_probability_governed": 0.6871331737778542,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
-    "event_family_id": "discovered_polymarket_616913",
-    "title": "Will 11 Fed rate cuts happen in 2026?",
+    "event_family_id": "discovered_polymarket_669663",
+    "title": "Will the Fed increase interest rates by 25+ bps after the April 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "governance_source": "autonomous_discovery",
@@ -1033,19 +1009,19 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "616913",
-    "selected_probability_raw": 0.002,
-    "selected_quality_score": 0.503755,
+    "selected_market_id": "669663",
+    "selected_probability_raw": 0.029,
+    "selected_quality_score": 0.642146,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.003597528870785474,
+    "selected_probability_governed": 0.022098960832548368,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
-    "event_family_id": "discovered_polymarket_616914",
-    "title": "Will 12 or more Fed rate cuts happen in 2026?",
+    "event_family_id": "discovered_polymarket_906974",
+    "title": "Will there be no change in Fed interest rates after the June 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "governance_source": "autonomous_discovery",
@@ -1055,15 +1031,15 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "616914",
-    "selected_probability_raw": 0.011,
-    "selected_quality_score": 0.521434,
+    "selected_market_id": "906974",
+    "selected_probability_raw": 0.86,
+    "selected_quality_score": 0.551231,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.01233801097356915,
+    "selected_probability_governed": 0.6201979120853073,
     "calibration_applied": "becker",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "theme_cap_scale": 0.7221873465508956
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_december_2024_meeting_2024",
@@ -1200,20 +1176,14 @@
     "category": "Monetary",
     "governance_source": "polymarket_approved",
     "discovered": false,
-    "candidate_count": 3,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "669662",
-    "selected_probability_raw": 0.952,
-    "selected_quality_score": 0.6594,
-    "selection_state": "selected",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage.",
-    "selected_probability_governed": 0.9262039730535064,
-    "calibration_applied": "becker",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
@@ -1222,20 +1192,14 @@
     "category": "Monetary",
     "governance_source": "polymarket_approved",
     "discovered": false,
-    "candidate_count": 6,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "669661",
-    "selected_probability_raw": 0.013,
-    "selected_quality_score": 0.6489,
-    "selection_state": "selected",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage.",
-    "selected_probability_governed": 0.014280340329743254,
-    "calibration_applied": "becker",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
@@ -1244,20 +1208,14 @@
     "category": "Monetary",
     "governance_source": "polymarket_approved",
     "discovered": false,
-    "candidate_count": 5,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "669663",
-    "selected_probability_raw": 0.029,
-    "selected_quality_score": 0.642214,
-    "selection_state": "selected",
-    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage.",
-    "selected_probability_governed": 0.029818975179136505,
-    "calibration_applied": "becker",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.9744750771162974
+    "candidate_count": 0,
+    "source_options": [],
+    "selected_source": "",
+    "selected_market_id": "",
+    "selected_probability_raw": "",
+    "selected_quality_score": "",
+    "selection_state": "no_live_candidate",
+    "notes": "Approved from the final curated Polymarket universe for liquid macro-policy coverage."
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_march_meeting_2023",

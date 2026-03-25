@@ -83,11 +83,16 @@ python api/app.py --host 127.0.0.1 --port 8765
 Available endpoints:
 
 - `/health`
+- `/v1/meta/registry`
 - `/v1/sources/status`
+- `/v1/sources/markets`
 - `/v1/events/families`
+- `/v1/events/families/{event_family_id}`
 - `/v1/candidates/discovered`
 - `/v1/signals/latest`
+- `/v1/signals/latest/{event_family_id}`
 - `/v1/rsi/latest`
 - `/v1/graph/link-audit`
+- `POST /v1/admin/refresh`
 
 Generated outputs are written under `outputs/signals/`.

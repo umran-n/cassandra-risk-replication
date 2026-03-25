@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from .events import infer_category_from_theme
@@ -97,6 +98,43 @@ def _family_tokens(family: dict) -> set[str]:
     return normalize_tokens(family.get("title"), family.get("event_family_id"), family.get("notes"))
 
 
+def _extract_year(value: object) -> int | None:
+    if value is None:
+        return None
+    match = re.search(r"(19|20)\d{2}", str(value))
+    if not match:
+        return None
+    return int(match.group(0))
+
+
+def _family_reference_years(family: dict) -> set[int]:
+    years: set[int] = set()
+    years.add(_extract_year(family.get("event_family_id")) or 0)
+    years.add(_extract_year(family.get("title")) or 0)
+    for candidate in family.get("source_candidates", []):
+        year = _extract_year(candidate.get("resolution_date"))
+        if year is not None:
+            years.add(year)
+    years.discard(0)
+    return years
+
+
+def _market_reference_year(market: dict) -> int | None:
+    for key in ("resolution_time", "close_time", "open_time", "title"):
+        year = _extract_year(market.get(key))
+        if year is not None:
+            return year
+    return None
+
+
+def _temporal_link_allowed(family: dict, market: dict) -> bool:
+    family_years = _family_reference_years(family)
+    market_year = _market_reference_year(market)
+    if not family_years or market_year is None:
+        return True
+    return min(abs(year - market_year) for year in family_years) <= 1
+
+
 def _link_score(family: dict, market: dict) -> float:
     tokens_family = _family_tokens(family)
     tokens_market = normalize_tokens(market.get("title"), market.get("metadata", {}).get("subtitle"))
@@ -128,6 +166,8 @@ def build_event_graph(
                 best_score = 1.0
                 break
             if market.get("structural_theme") != family.get("structural_theme"):
+                continue
+            if not _temporal_link_allowed(family, market):
                 continue
             score = _link_score(family, market)
             if score > best_score:
