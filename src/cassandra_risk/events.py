@@ -10,6 +10,16 @@ from .taxonomy import infer_structural_theme
 from .utils import date_range, epoch_millis_to_date, format_date, parse_date, smoothstep
 
 
+THEME_CATEGORY_MAP = {
+    "geopolitical": "Kinetic",
+    "monetary_policy": "Monetary",
+    "fiscal_debt": "Sovereign",
+    "electoral": "Sovereign",
+    "systemic_credit": "Sovereign",
+    "trade_technology": "Trade",
+}
+
+
 def normalize_proxy_metadata(seed: dict) -> dict:
     normalized = seed.copy()
     normalized["structural_theme"] = infer_structural_theme(normalized)
@@ -38,6 +48,8 @@ def build_event_panel(config: dict, seeds: list[dict], raw_dir: Path, refresh: b
         seed = normalize_proxy_metadata(seed)
         if seed["source"] == "Manifold" and seed.get("market_id"):
             rows.extend(build_manifold_event_rows(config, seed, raw_dir, refresh=refresh))
+        elif seed["source"] == "Polymarket" and seed.get("probability_timeseries"):
+            rows.extend(build_polymarket_event_rows(config, seed))
         else:
             rows.extend(build_manual_event_rows(seed))
     rows.sort(key=lambda row: (row["date"], row["event_id"], row["source"]))
@@ -50,6 +62,91 @@ def load_curated_shortlist(path: Path) -> list[dict]:
     with path.open("r", encoding="utf-8") as handle:
         payload = json.load(handle)
     return [normalize_proxy_metadata(entry) for entry in payload]
+
+
+def normalize_title(value: str) -> str:
+    return " ".join((value or "").split())
+
+
+def infer_category_from_theme(theme: str | None) -> str:
+    return THEME_CATEGORY_MAP.get(str(theme or ""), "Sovereign")
+
+
+def load_polymarket_approved_universe(approved_path: Path, candidates_path: Path) -> tuple[list[dict], list[dict]]:
+    if not approved_path.exists() or not candidates_path.exists():
+        return [], []
+
+    with approved_path.open("r", encoding="utf-8") as handle:
+        approved_payload = json.load(handle)
+    with candidates_path.open("r", encoding="utf-8") as handle:
+        candidates_payload = json.load(handle)
+
+    candidates_by_title = {
+        normalize_title(candidate.get("title") or candidate.get("question") or ""): candidate
+        for candidate in candidates_payload
+    }
+
+    seeds: list[dict] = []
+    audit_rows: list[dict] = []
+    for entry in approved_payload:
+        title = normalize_title(entry.get("title", ""))
+        source = entry.get("source", "")
+        theme = entry.get("theme")
+        if source == "polymarket":
+            candidate = candidates_by_title.get(title)
+            if candidate is None:
+                audit_rows.append(
+                    {
+                        "event_id": entry.get("event_id"),
+                        "title": title,
+                        "source": source,
+                        "status": "candidate_not_found",
+                    }
+                )
+                continue
+            seeds.append(
+                normalize_proxy_metadata(
+                    {
+                        "event_id": entry["event_id"],
+                        "question": candidate.get("question") or title,
+                        "source": "Polymarket",
+                        "category": candidate.get("category") or infer_category_from_theme(theme),
+                        "provenance": "polymarket_curated",
+                        "event_date": entry.get("resolution_date"),
+                        "resolution_date": entry.get("resolution_date"),
+                        "resolved_outcome": "YES" if float(candidate.get("resolved_outcome") or 0.0) >= 0.5 else "NO",
+                        "analysis_bucket": "background",
+                        "structural_theme": theme,
+                        "notes": entry.get("approval_reason"),
+                        "market_id": candidate.get("market_id"),
+                        "proxy_family_id": entry.get("proxy_family_id") or candidate.get("proxy_family_id") or entry["event_id"],
+                        "proxy_relation": "substitute",
+                        "aggregation_policy": "weighted_average",
+                        "event_window_start": candidate.get("event_window_start") or candidate.get("resolution_date"),
+                        "event_window_end": candidate.get("event_window_end") or candidate.get("resolution_date"),
+                        "quality_score": float(candidate.get("quality_score", 0.5)),
+                        "probability_timeseries": candidate.get("probability_timeseries", []),
+                    }
+                )
+            )
+            audit_rows.append(
+                {
+                    "event_id": entry.get("event_id"),
+                    "title": title,
+                    "source": source,
+                    "status": "loaded_polymarket_history",
+                }
+            )
+        else:
+            audit_rows.append(
+                {
+                    "event_id": entry.get("event_id"),
+                    "title": title,
+                    "source": source,
+                    "status": "skipped_no_history",
+                }
+            )
+    return seeds, audit_rows
 
 
 def merge_seeds_with_shortlist(seeds: list[dict], shortlist: list[dict]) -> tuple[list[dict], list[dict]]:
@@ -202,6 +299,36 @@ def build_manual_event_rows(seed: dict) -> list[dict]:
                 "analysis_bucket": seed["analysis_bucket"],
                 "event_date": seed["event_date"],
                 "source_brier": 0.25,
+                "market_id": seed.get("market_id"),
+                "proxy_family_id": seed["proxy_family_id"],
+                "proxy_relation": seed["proxy_relation"],
+                "aggregation_policy": seed["aggregation_policy"],
+                "event_window_start": seed["event_window_start"],
+                "event_window_end": seed["event_window_end"],
+                "quality_score": seed["quality_score"],
+            }
+        )
+    return rows
+
+
+def build_polymarket_event_rows(config: dict, seed: dict) -> list[dict]:
+    rows: list[dict] = []
+    for point in seed.get("probability_timeseries", []):
+        rows.append(
+            {
+                "date": point["date"],
+                "event_id": seed["event_id"],
+                "question": seed["question"],
+                "source": "Polymarket",
+                "category": seed["category"],
+                "structural_theme": seed["structural_theme"],
+                "probability": round(float(point["probability"]), 6),
+                "resolution_date": seed["resolution_date"],
+                "resolved_outcome": seed["resolved_outcome"],
+                "provenance": seed["provenance"],
+                "analysis_bucket": seed["analysis_bucket"],
+                "event_date": seed["event_date"],
+                "source_brier": float(config["cassandra"]["source_brier_scores"].get("Polymarket", 0.31)),
                 "market_id": seed.get("market_id"),
                 "proxy_family_id": seed["proxy_family_id"],
                 "proxy_relation": seed["proxy_relation"],

@@ -47,7 +47,9 @@
     },
     "source_brier_scores": {
       "Manifold": 0.21,
-      "Manual": 0.25
+      "Manual": 0.25,
+      "Polymarket": 0.31,
+      "Metaculus": 0.17
     },
     "robustness_scenarios": [
       {

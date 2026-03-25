@@ -32,6 +32,7 @@ from cassandra_risk.events import (  # noqa: E402
     build_event_metadata,
     build_event_panel,
     load_curated_shortlist,
+    load_polymarket_approved_universe,
     merge_seeds_with_shortlist,
     normalize_proxy_metadata,
     resolve_proxy_aggregation_policy,
@@ -520,9 +521,27 @@ def run_version(
     fred_rows: list[dict],
     fallback_annual_rate: float,
     fred_fetch_succeeded: bool,
+    extra_curated_seeds: list[dict] | None = None,
+    extra_curated_audit: list[dict] | None = None,
 ) -> dict:
     config = configure_version(base_config, version)
     resolved_seeds, shortlist_merge_audit = merge_seeds_with_shortlist(base_seeds, shortlist)
+    if extra_curated_seeds:
+        resolved_seeds.extend(copy.deepcopy(extra_curated_seeds))
+        resolved_seeds.sort(key=lambda item: (item["event_id"], item.get("market_id") or "", item["source"]))
+        shortlist_merge_audit.extend(
+            extra_curated_audit
+            or [
+                {
+                    "event_id": seed["event_id"],
+                    "merge_action": "added_curated_event",
+                    "source": seed["source"],
+                    "market_id": seed.get("market_id"),
+                    "selection_reason": seed.get("notes", "Approved curated expansion event."),
+                }
+                for seed in extra_curated_seeds
+            ]
+        )
     event_rows = build_event_panel(config, resolved_seeds, raw_dir, refresh=refresh)
     event_metadata = build_event_metadata(event_rows)
     daily_events = aggregate_daily_probabilities(event_rows, config)
@@ -671,11 +690,20 @@ def write_version_outputs(version: str, output_dir: Path, result: dict) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Refresh raw data from public APIs")
+    parser.add_argument(
+        "--include-polymarket-approved",
+        action="store_true",
+        help="Include the Phase 5 approved Polymarket universe in the event panel.",
+    )
     args = parser.parse_args()
 
     base_config = load_json(ROOT / "config" / "backtest_config.json")
     base_seeds = load_json(ROOT / "data" / "seeds" / "event_seeds.json")
     shortlist = load_curated_shortlist(ROOT / "data" / "curated" / "manifold_shortlist.json")
+    approved_seeds, approved_audit = load_polymarket_approved_universe(
+        ROOT / "data" / "curated" / "polymarket_approved.json",
+        ROOT / "data" / "candidates" / "polymarket_candidates.json",
+    )
 
     raw_dir = ensure_dir(ROOT / "data" / "raw")
     processed_dir = ensure_dir(ROOT / "data" / "processed")
@@ -707,6 +735,8 @@ def main() -> int:
             fred_rows=fred_rows,
             fallback_annual_rate=fallback_annual_rate,
             fred_fetch_succeeded=fred_fetch_succeeded,
+            extra_curated_seeds=approved_seeds if args.include_polymarket_approved else None,
+            extra_curated_audit=approved_audit if args.include_polymarket_approved else None,
         )
 
     for version, folder in (("v1", "v1"), ("v2", "v2"), ("v3", "latest")):

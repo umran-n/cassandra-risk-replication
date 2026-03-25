@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,7 +17,12 @@ from cassandra_risk.backtest import (
     compute_vol_target_positions,
     simulate_strategy,
 )
-from cassandra_risk.events import aggregate_daily_probabilities, resolve_event_sources
+from cassandra_risk.events import (
+    aggregate_daily_probabilities,
+    build_event_panel,
+    load_polymarket_approved_universe,
+    resolve_event_sources,
+)
 
 
 class BacktestTests(unittest.TestCase):
@@ -243,6 +249,94 @@ class BacktestTests(unittest.TestCase):
         )
         self.assertEqual(resolved_seeds[0]["source"], "Manual")
         self.assertEqual(audit_rows[0]["replacement_status"], "post_event_market_rejected")
+
+    def test_load_polymarket_approved_universe_joins_histories(self) -> None:
+        with TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            approved_path = tmp / "approved.json"
+            candidates_path = tmp / "candidates.json"
+            approved_path.write_text(
+                """
+[
+  {
+    "event_id": "geopolitical_test_event_2024",
+    "title": "Test Event",
+    "theme": "geopolitical",
+    "resolution_date": "2024-01-05",
+    "proxy_family_id": "polymarket_test_event_2024",
+    "source": "polymarket"
+  },
+  {
+    "event_id": "metaculus_placeholder",
+    "title": "Manual Placeholder",
+    "theme": "fiscal_debt",
+    "resolution_date": "2024-01-05",
+    "proxy_family_id": "metaculus_placeholder",
+    "source": "metaculus"
+  }
+]
+                """.strip(),
+                encoding="utf-8",
+            )
+            candidates_path.write_text(
+                """
+[
+  {
+    "market_id": "123",
+    "title": "Test Event",
+    "question": "Test Event",
+    "category": "Kinetic",
+    "resolved_outcome": 1.0,
+    "event_window_start": "2024-01-01",
+    "event_window_end": "2024-01-05",
+    "quality_score": 0.8,
+    "probability_timeseries": [
+      {"date": "2024-01-01", "probability": 0.2},
+      {"date": "2024-01-02", "probability": 0.4}
+    ]
+  }
+]
+                """.strip(),
+                encoding="utf-8",
+            )
+
+            seeds, audit = load_polymarket_approved_universe(approved_path, candidates_path)
+            self.assertEqual(len(seeds), 1)
+            self.assertEqual(seeds[0]["source"], "Polymarket")
+            self.assertEqual(audit[0]["status"], "loaded_polymarket_history")
+            self.assertEqual(audit[1]["status"], "skipped_no_history")
+
+    def test_build_event_panel_supports_polymarket_histories(self) -> None:
+        config = {"cassandra": {"source_brier_scores": {"Polymarket": 0.31}}}
+        seeds = [
+            {
+                "event_id": "geopolitical_test_event_2024",
+                "question": "Test Event",
+                "source": "Polymarket",
+                "category": "Kinetic",
+                "provenance": "polymarket_curated",
+                "event_date": "2024-01-05",
+                "resolution_date": "2024-01-05",
+                "resolved_outcome": "YES",
+                "analysis_bucket": "background",
+                "structural_theme": "geopolitical",
+                "market_id": "123",
+                "proxy_family_id": "polymarket_test_event_2024",
+                "proxy_relation": "substitute",
+                "aggregation_policy": "weighted_average",
+                "event_window_start": "2024-01-01",
+                "event_window_end": "2024-01-05",
+                "quality_score": 0.8,
+                "probability_timeseries": [
+                    {"date": "2024-01-01", "probability": 0.2},
+                    {"date": "2024-01-02", "probability": 0.4},
+                ],
+            }
+        ]
+        rows = build_event_panel(config, seeds, ROOT, refresh=False)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]["source"], "Polymarket")
+        self.assertAlmostEqual(rows[1]["probability"], 0.4, places=6)
 
 
 if __name__ == "__main__":

@@ -15,3 +15,9 @@ outputs/ablation/*
 !outputs/ablation/*.md
 !outputs/ablation/*.png
 !outputs/latest/*.md
+!outputs/expansion/
+outputs/expansion/*
+!outputs/expansion/*.csv
+!outputs/expansion/*.json
+!outputs/expansion/*.md
+!outputs/expansion/*.png
