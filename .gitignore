@@ -27,3 +27,9 @@ outputs/becker/*
 !outputs/becker/*.json
 !outputs/becker/*.md
 !outputs/becker/*.png
+!outputs/monte_carlo/
+outputs/monte_carlo/*
+!outputs/monte_carlo/*.csv
+!outputs/monte_carlo/*.json
+!outputs/monte_carlo/*.md
+!outputs/monte_carlo/*.png
