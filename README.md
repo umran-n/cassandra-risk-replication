@@ -16,12 +16,12 @@ DOI: `10.13140/RG.2.2.17209.12644`
 License: `CC BY-NC-ND 4.0`
 
 Paper 3 - Nayani (2026c)  
-`Cassandra-Risk Paper 3: From Forecast Overlay to Governed Signal Infrastructure`  
-Status: `GitHub preprint draft`  
+`Cassandra-Risk Paper 3: Cross-Platform Prediction Market Ensembles and Governed Signal Infrastructure`  
+Status: `PDF archived in repo`  
 Code milestone: `v0.6.4-market-ready`
 
-Published PDFs for Paper 1 and Paper 2 are stored under `paper/pdfs/`.
-The current Paper 3 manuscript draft is `paper/Cassandra_Risk_Paper_3_SSRN_Ready.md`.
+Published PDFs for Papers 1-3 are stored under `paper/pdfs/`.
+The current Paper 3 source manuscript draft is `paper/Cassandra_Risk_Paper_3_SSRN_Ready.md`.
 
 ## Historical Replication
 
