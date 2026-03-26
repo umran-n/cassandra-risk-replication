@@ -1,11 +1,12 @@
-# Cassandra-Risk Paper 3: From Forecast Overlay to Governed Signal Infrastructure
+# Cassandra-Risk Paper 3: Cross-Platform Prediction Market Ensembles and Governed Signal Infrastructure
 
 ## SSRN Preprint Draft
 
 **Author:** Umran Nayani  
-**Citation:** Nayani, U. (2026c). *Cassandra-Risk Paper 3: From Forecast Overlay to Governed Signal Infrastructure.* Working paper. GitHub preprint draft.  
+**Citation:** Nayani, U. (2026c). *Cassandra-Risk Paper 3: Cross-Platform Prediction Market Ensembles and Governed Signal Infrastructure.* ResearchGate.  
+**DOI:** 10.13140/RG.2.2.22910.75848  
 **Codebase milestone:** `v0.6.4-market-ready` (`407f472`)  
-**License:** Manuscript draft pending publication venue
+**License:** CC BY-NC-ND 4.0
 
 ## Abstract
 

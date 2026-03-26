@@ -17,6 +17,8 @@ License: `CC BY-NC-ND 4.0`
 
 Paper 3 - Nayani (2026c)  
 `Cassandra-Risk Paper 3: Cross-Platform Prediction Market Ensembles and Governed Signal Infrastructure`  
+DOI: `10.13140/RG.2.2.22910.75848`  
+License: `CC BY-NC-ND 4.0`  
 Status: `PDF archived in repo`  
 Code milestone: `v0.6.4-market-ready`
 

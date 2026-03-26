@@ -16,3 +16,7 @@ references:
     title: "Cassandra-Risk Paper 2: Beyond the Backtest"
     doi: 10.13140/RG.2.2.17209.12644
     year: 2026
+  - type: article
+    title: "Cassandra-Risk Paper 3: Cross-Platform Prediction Market Ensembles and Governed Signal Infrastructure"
+    doi: 10.13140/RG.2.2.22910.75848
+    year: 2026
