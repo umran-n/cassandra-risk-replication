@@ -2,7 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import threading
+import time
+from collections import defaultdict, deque
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -30,6 +34,9 @@ from cassandra_risk.promotion_workflow import build_promotion_queue, find_promot
 
 
 OUTPUT_DIR = signal_output_dir(ROOT)
+API_VERSION = "0.6.4"
+PUBLIC_API_KEY_ENV = "CASSANDRA_API_KEY"
+OPERATOR_API_KEY_ENV = "CASSANDRA_OPERATOR_KEY"
 
 
 def _query_value(query: dict[str, list[str]], key: str, default: str = "") -> str:
@@ -69,7 +76,17 @@ def _query_bool(query: dict[str, list[str]], key: str) -> bool | None:
 
 
 class SignalAPIHandler(BaseHTTPRequestHandler):
-    server_version = "CassandraSignalAPI/0.6.1"
+    server_version = "CassandraSignalAPI/0.6.4"
+    public_rate_limits = {
+        "/v1/meta": 200,
+        "/v1/rsi/latest": 100,
+        "/v1/signals/latest": 100,
+        "/v1/registry/governed": 50,
+        "/v1/sources/status": 100,
+    }
+    rate_limit_window_seconds = 60
+    _rate_limit_lock = threading.Lock()
+    _rate_limit_state: dict[tuple[str, str], deque[float]] = defaultdict(deque)
 
     def _send_json(self, payload: object, status: int = 200) -> None:
         body = json.dumps(payload, indent=2).encode("utf-8")
@@ -88,6 +105,69 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
         except json.JSONDecodeError:
             return {}
 
+    def _header_value(self, key: str) -> str:
+        return str(self.headers.get(key) or "").strip()
+
+    def _configured_key(self, env_name: str) -> str:
+        return str(os.environ.get(env_name) or "").strip()
+
+    def _public_key_valid(self) -> bool:
+        configured = self._configured_key(PUBLIC_API_KEY_ENV)
+        if not configured:
+            return True
+        presented_public = self._header_value("X-API-Key")
+        presented_operator = self._header_value("X-Operator-Key")
+        operator_key = self._configured_key(OPERATOR_API_KEY_ENV)
+        return presented_public == configured or (operator_key and presented_operator == operator_key)
+
+    def _operator_key_valid(self) -> bool:
+        configured = self._configured_key(OPERATOR_API_KEY_ENV)
+        if not configured:
+            return True
+        return self._header_value("X-Operator-Key") == configured
+
+    def _rate_limit_token(self) -> str:
+        return self._header_value("X-API-Key") or self._header_value("X-Operator-Key") or self.client_address[0]
+
+    def _match_public_rate_limit(self, path: str) -> tuple[str, int] | None:
+        for prefix, limit in self.public_rate_limits.items():
+            if path == prefix or path.startswith(prefix + "/"):
+                return prefix, limit
+        return None
+
+    def _check_rate_limit(self, path: str) -> bool:
+        matched = self._match_public_rate_limit(path)
+        if matched is None:
+            return True
+        route_key, limit = matched
+        now = time.monotonic()
+        window = float(self.rate_limit_window_seconds)
+        token = self._rate_limit_token()
+        key = (route_key, token)
+        with self._rate_limit_lock:
+            bucket = self._rate_limit_state[key]
+            while bucket and now - bucket[0] > window:
+                bucket.popleft()
+            if len(bucket) >= limit:
+                return False
+            bucket.append(now)
+        return True
+
+    def _require_public_access(self, path: str) -> bool:
+        if not self._public_key_valid():
+            self._send_json({"error": "unauthorized", "message": "Valid X-API-Key required."}, 401)
+            return False
+        if not self._check_rate_limit(path):
+            self._send_json({"error": "rate_limited", "message": "Public rate limit exceeded."}, 429)
+            return False
+        return True
+
+    def _require_operator_access(self) -> bool:
+        if not self._operator_key_valid():
+            self._send_json({"error": "unauthorized", "message": "Valid X-Operator-Key required."}, 401)
+            return False
+        return True
+
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)
         query = parse_qs(parsed.query)
@@ -96,12 +176,38 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
         if path == "/health":
             summary = load_payload(ROOT, "rsi_snapshot.json")
             return self._send_json({"status": "ok", "artifact_dir": str(OUTPUT_DIR), "has_rsi_snapshot": bool(summary)})
+        if path == "/v1/meta":
+            if not self._require_public_access(path):
+                return
+            registry_rows = load_signal_registry(ROOT)
+            snapshots = load_payload(ROOT, "signal_snapshots.json") or []
+            rsi_snapshot = load_payload(ROOT, "rsi_snapshot.json") or {}
+            return self._send_json(
+                {
+                    "version": API_VERSION,
+                    "governed_families": len(registry_rows),
+                    "active_signals": len(snapshots),
+                    "rsi_asof": rsi_snapshot.get("asof", ""),
+                    "current_rsi": rsi_snapshot.get("rsi"),
+                }
+            )
+        if path == "/v1/registry/governed":
+            if not self._require_public_access(path):
+                return
+            payload = load_signal_registry(ROOT)
+            return self._send_json({"count": len(payload), "families": payload})
         if path == "/v1/meta/registry":
+            if not self._require_operator_access():
+                return
             return self._send_json(registry_meta(ROOT))
         if path == "/v1/sources/status":
+            if not self._require_public_access(path):
+                return
             payload = load_payload(ROOT, "source_status.json")
             return self._send_json(payload or [], 200 if payload is not None else 404)
         if path == "/v1/sources/markets":
+            if not self._require_operator_access():
+                return
             payload = list_source_markets(
                 ROOT,
                 source=_query_value(query, "source"),
@@ -112,6 +218,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
             )
             return self._send_json(payload)
         if path == "/v1/events/families":
+            if not self._require_operator_access():
+                return
             payload = list_event_families(
                 ROOT,
                 theme=_query_value(query, "theme"),
@@ -120,26 +228,40 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
             )
             return self._send_json(payload)
         if path.startswith("/v1/events/families/"):
+            if not self._require_operator_access():
+                return
             event_family_id = path.split("/v1/events/families/", 1)[1]
             payload = get_event_family_detail(ROOT, event_family_id)
             return self._send_json(payload or {"error": "event_family_not_found", "event_family_id": event_family_id}, 200 if payload else 404)
         if path == "/v1/candidates/discovered":
+            if not self._require_operator_access():
+                return
             payload = list_event_families(ROOT, theme=_query_value(query, "theme"), discovered=True)
             return self._send_json(payload)
         if path == "/v1/signals/latest":
+            if not self._require_public_access(path):
+                return
             payload = list_signal_snapshots(ROOT, theme=_query_value(query, "theme"), source=_query_value(query, "source"))
             return self._send_json(payload)
         if path.startswith("/v1/signals/latest/"):
+            if not self._require_public_access("/v1/signals/latest"):
+                return
             event_family_id = path.split("/v1/signals/latest/", 1)[1]
             payload = get_signal_snapshot(ROOT, event_family_id)
             return self._send_json(payload or {"error": "signal_snapshot_not_found", "event_family_id": event_family_id}, 200 if payload else 404)
         if path == "/v1/rsi/latest":
+            if not self._require_public_access(path):
+                return
             payload = load_payload(ROOT, "rsi_snapshot.json")
             return self._send_json(payload or {"error": "rsi_snapshot.json not found"}, 200 if payload is not None else 404)
         if path == "/v1/graph/link-audit":
+            if not self._require_operator_access():
+                return
             payload = list_link_audit(ROOT, source=_query_value(query, "source"), status=_query_value(query, "status"))
             return self._send_json(payload)
         if path == "/v1/admin/promotion/queue":
+            if not self._require_operator_access():
+                return
             load_signal_registry(ROOT)
             decisions = latest_decisions_map(ROOT)
             payload = build_promotion_queue(
@@ -152,6 +274,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
             )
             return self._send_json([candidate.to_dict() for candidate in payload])
         if path == "/v1/admin/promotion/audit":
+            if not self._require_operator_access():
+                return
             payload = load_promotion_audit(ROOT)
             return self._send_json(payload)
 
@@ -160,6 +284,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 "error": "not_found",
                 "available_endpoints": [
                     "/health",
+                    "/v1/meta",
+                    "/v1/registry/governed",
                     "/v1/meta/registry",
                     "/v1/sources/status",
                     "/v1/sources/markets",
@@ -184,6 +310,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
         path = parsed.path.rstrip("/") or "/"
 
         if path == "/v1/admin/refresh":
+            if not self._require_operator_access():
+                return
             body = self._read_json_body()
             refresh_sources = body.get("refresh_sources")
             if refresh_sources is None:
@@ -199,6 +327,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 }
             )
         if path == "/v1/admin/promotion/decide":
+            if not self._require_operator_access():
+                return
             body = self._read_json_body()
             load_signal_registry(ROOT)
             contract_id = str(body.get("contract_id") or "")
@@ -211,8 +341,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 decision=str(body.get("decision") or "REJECTED"),
                 reason=str(body.get("reason") or ""),
                 decided_by=str(body.get("decided_by") or "operator"),
-                proxy_family_id=str(body.get("proxy_family_id") or candidate.get("proxy_family_id") or ""),
-                aggregation_policy=str(body.get("aggregation_policy") or "max"),
+                proxy_family_id=str(body.get("proxy_family_id") or candidate.proxy_family_id or ""),
+                aggregation_policy=str(body.get("aggregation_policy") or candidate.contract.aggregation_policy or "max"),
                 event_family_id=str(body.get("event_family_id") or ""),
             )
             payload = build_live_signal_artifacts(ROOT, refresh=False)
@@ -225,6 +355,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 }
             )
         if path == "/v1/admin/promotion/decide/batch":
+            if not self._require_operator_access():
+                return
             body = self._read_json_body()
             if not isinstance(body, list):
                 return self._send_json({"error": "expected_array_body"}, 400)
@@ -243,8 +375,8 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                     decision=str(item.get("decision") or "REJECTED"),
                     reason=str(item.get("reason") or ""),
                     decided_by=str(item.get("decided_by") or "operator"),
-                    proxy_family_id=str(item.get("proxy_family_id") or candidate.get("proxy_family_id") or ""),
-                    aggregation_policy=str(item.get("aggregation_policy") or "max"),
+                    proxy_family_id=str(item.get("proxy_family_id") or candidate.proxy_family_id or ""),
+                    aggregation_policy=str(item.get("aggregation_policy") or candidate.contract.aggregation_policy or "max"),
                     event_family_id=str(item.get("event_family_id") or ""),
                 )
                 results.append({"contract_id": contract_id, "status": "ok", "decision": audit_row["decision"]})

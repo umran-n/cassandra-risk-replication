@@ -7,9 +7,9 @@
     "category": "Kinetic",
     "selected_source": "polymarket",
     "selected_market_id": "1551490",
-    "selected_probability_raw": 0.86,
-    "selected_probability_governed": 0.86,
-    "quality_score": 0.426919,
+    "selected_probability_raw": 0.88,
+    "selected_probability_governed": 0.88,
+    "quality_score": 0.425129,
     "source_priority": 3,
     "candidate_count": 15,
     "source_options": [
@@ -47,7 +47,7 @@
     "selected_market_id": "616903",
     "selected_probability_raw": 0.26,
     "selected_probability_governed": 0.26,
-    "quality_score": 0.63946,
+    "quality_score": 0.638627,
     "source_priority": 3,
     "candidate_count": 1,
     "source_options": [

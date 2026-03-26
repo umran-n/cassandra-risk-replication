@@ -4466,6 +4466,14 @@
   {
     "event_family_id": "",
     "source": "manifold",
+    "market_id": "0URCtL9uNC",
+    "title": "Will a serious war break out between two of the major military powers (NATO, US, China, Russia, Europe) before 2028?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "manifold",
     "market_id": "2LzSAhsQNs",
     "title": "If Israel strikes Iran by March 31, 2026, will the Iranian regime fall in 2026?",
     "link_score": 0.155556,
@@ -4474,17 +4482,17 @@
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "8QSI5ptgyL",
-    "title": "Will the US-Iran war be over by April 23rd?",
-    "link_score": 0.158824,
+    "market_id": "600ZpcE695",
+    "title": "Will Joe Biden live to see the end of the US-Iran war?",
+    "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "EQtdtSLuph",
-    "title": "Will America declare war on Iran before the end of 2026",
-    "link_score": 0.152632,
+    "market_id": "8QSI5ptgyL",
+    "title": "Will the US-Iran war be over by April 23rd?",
+    "link_score": 0.158824,
     "link_status": "unlinked"
   },
   {
@@ -4506,22 +4514,6 @@
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "Uy556NdlPg",
-    "title": "Will Trump abandon the Iran war?",
-    "link_score": 0.158824,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "manifold",
-    "market_id": "ZEhZugy0nz",
-    "title": "Will the US invade Iran's Kharg Island  by the end of 2026?",
-    "link_score": 0.152632,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "manifold",
     "market_id": "ZctCIAhQsu",
     "title": "Will Iran shoot down a US military plane/helicopter by end of March?",
     "link_score": 0.2,
@@ -4530,9 +4522,25 @@
   {
     "event_family_id": "",
     "source": "manifold",
+    "market_id": "dIqA0dEQlh",
+    "title": "Is Iran a forever war?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "manifold",
     "market_id": "gCgzdyOZ2A",
     "title": "Will the war with Iran affect USD reserve currency status relative to yuan?",
     "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "manifold",
+    "market_id": "l5udNQ920p",
+    "title": "Will the US and Iran announce a formal bilateral ceasefire or de-escalation agreement before June 30, 2026?",
+    "link_score": 0.152632,
     "link_status": "unlinked"
   },
   {

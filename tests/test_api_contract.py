@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import threading
 import unittest
@@ -8,6 +9,7 @@ import urllib.request
 from http.server import ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
+from urllib.error import HTTPError
 from uuid import uuid4
 
 from api import app as api_app
@@ -153,8 +155,15 @@ class TestAPIContract(unittest.TestCase):
 
         self.original_root = api_app.ROOT
         self.original_output_dir = api_app.OUTPUT_DIR
+        self.original_public_key = os.environ.get("CASSANDRA_API_KEY")
+        self.original_operator_key = os.environ.get("CASSANDRA_OPERATOR_KEY")
+        os.environ["CASSANDRA_API_KEY"] = "public-test-key"
+        os.environ["CASSANDRA_OPERATOR_KEY"] = "operator-test-key"
         api_app.ROOT = self.root
         api_app.OUTPUT_DIR = api_app.signal_output_dir(self.root)
+        api_app.SignalAPIHandler._rate_limit_state.clear()
+        self.original_public_rate_limits = dict(api_app.SignalAPIHandler.public_rate_limits)
+        self.original_rate_limit_window_seconds = api_app.SignalAPIHandler.rate_limit_window_seconds
         build_live_signal_artifacts(self.root, refresh=False)
 
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), api_app.SignalAPIHandler)
@@ -168,25 +177,52 @@ class TestAPIContract(unittest.TestCase):
         self.thread.join(timeout=5)
         api_app.ROOT = self.original_root
         api_app.OUTPUT_DIR = self.original_output_dir
+        api_app.SignalAPIHandler.public_rate_limits = self.original_public_rate_limits
+        api_app.SignalAPIHandler.rate_limit_window_seconds = self.original_rate_limit_window_seconds
+        api_app.SignalAPIHandler._rate_limit_state.clear()
+        if self.original_public_key is None:
+            os.environ.pop("CASSANDRA_API_KEY", None)
+        else:
+            os.environ["CASSANDRA_API_KEY"] = self.original_public_key
+        if self.original_operator_key is None:
+            os.environ.pop("CASSANDRA_OPERATOR_KEY", None)
+        else:
+            os.environ["CASSANDRA_OPERATOR_KEY"] = self.original_operator_key
         self.collect_patcher.stop()
         shutil.rmtree(self.root, ignore_errors=True)
 
-    def _get_json(self, path: str) -> tuple[int, dict | list]:
-        with urllib.request.urlopen(f"{self.base_url}{path}") as response:
-            return response.status, json.loads(response.read().decode("utf-8"))
+    def _get_json(self, path: str, headers: dict[str, str] | None = None) -> tuple[int, dict | list]:
+        request = urllib.request.Request(f"{self.base_url}{path}", headers=headers or {})
+        try:
+            with urllib.request.urlopen(request) as response:
+                return response.status, json.loads(response.read().decode("utf-8"))
+        except HTTPError as error:
+            return error.code, json.loads(error.read().decode("utf-8"))
 
-    def _post_json(self, path: str, payload: dict | list) -> tuple[int, dict | list]:
+    def _post_json(self, path: str, payload: dict | list, headers: dict[str, str] | None = None) -> tuple[int, dict | list]:
+        request_headers = {"Content-Type": "application/json"}
+        if headers:
+            request_headers.update(headers)
         request = urllib.request.Request(
             f"{self.base_url}{path}",
             data=json.dumps(payload).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
+            headers=request_headers,
             method="POST",
         )
-        with urllib.request.urlopen(request) as response:
-            return response.status, json.loads(response.read().decode("utf-8"))
+        try:
+            with urllib.request.urlopen(request) as response:
+                return response.status, json.loads(response.read().decode("utf-8"))
+        except HTTPError as error:
+            return error.code, json.loads(error.read().decode("utf-8"))
+
+    def _public_headers(self) -> dict[str, str]:
+        return {"X-API-Key": "public-test-key"}
+
+    def _operator_headers(self) -> dict[str, str]:
+        return {"X-Operator-Key": "operator-test-key"}
 
     def _first_candidate_id(self) -> str:
-        _status, payload = self._get_json("/v1/admin/promotion/queue")
+        _status, payload = self._get_json("/v1/admin/promotion/queue", headers=self._operator_headers())
         return payload[0]["contract_id"]
 
     def test_registry_endpoint_returns_signal_contracts(self) -> None:
@@ -200,8 +236,9 @@ class TestAPIContract(unittest.TestCase):
                 "proxy_family_id": "test_family",
                 "aggregation_policy": "max",
             },
+            headers=self._operator_headers(),
         )
-        status, data = self._get_json("/v1/meta/registry")
+        status, data = self._get_json("/v1/meta/registry", headers=self._operator_headers())
         self.assertEqual(status, 200)
         required_fields = {
             "contract_id",
@@ -232,13 +269,14 @@ class TestAPIContract(unittest.TestCase):
                 "proxy_family_id": "test_family",
                 "aggregation_policy": "max",
             },
+            headers=self._operator_headers(),
         )
-        _status, data = self._get_json("/v1/meta/registry")
+        _status, data = self._get_json("/v1/meta/registry", headers=self._operator_headers())
         ids = [contract["contract_id"] for contract in data["contracts"]]
         self.assertIn(candidate_id, ids)
 
     def test_promotion_changes_rsi_from_unity(self) -> None:
-        _status, before = self._get_json("/v1/rsi/latest")
+        _status, before = self._get_json("/v1/rsi/latest", headers=self._public_headers())
         self.assertEqual(before["rsi"], 1.0)
         self._post_json(
             "/v1/admin/promotion/decide",
@@ -249,12 +287,13 @@ class TestAPIContract(unittest.TestCase):
                 "proxy_family_id": "test_family",
                 "aggregation_policy": "max",
             },
+            headers=self._operator_headers(),
         )
-        _status, after = self._get_json("/v1/rsi/latest")
+        _status, after = self._get_json("/v1/rsi/latest", headers=self._public_headers())
         self.assertLess(after["rsi"], 1.0)
 
     def test_audit_trail_records_every_decision(self) -> None:
-        _status, before = self._get_json("/v1/admin/promotion/audit")
+        _status, before = self._get_json("/v1/admin/promotion/audit", headers=self._operator_headers())
         count_before = len(before)
         candidate_id = self._first_candidate_id()
         self._post_json(
@@ -266,6 +305,7 @@ class TestAPIContract(unittest.TestCase):
                 "proxy_family_id": "test_family",
                 "aggregation_policy": "max",
             },
+            headers=self._operator_headers(),
         )
         self._post_json(
             "/v1/admin/promotion/decide",
@@ -276,14 +316,49 @@ class TestAPIContract(unittest.TestCase):
                 "proxy_family_id": "test_family",
                 "aggregation_policy": "max",
             },
+            headers=self._operator_headers(),
         )
-        _status, after = self._get_json("/v1/admin/promotion/audit")
+        _status, after = self._get_json("/v1/admin/promotion/audit", headers=self._operator_headers())
         self.assertEqual(len(after), count_before + 2)
 
     def test_sources_markets_returns_all_active_sources(self) -> None:
-        _status, data = self._get_json("/v1/sources/markets")
+        _status, data = self._get_json("/v1/sources/markets", headers=self._operator_headers())
         sources = {market["source"] for market in data}
         self.assertIn("polymarket", sources)
+
+    def test_public_meta_requires_api_key(self) -> None:
+        status, payload = self._get_json("/v1/meta")
+        self.assertEqual(401, status)
+        self.assertEqual("unauthorized", payload["error"])
+
+    def test_admin_queue_requires_operator_key(self) -> None:
+        status, payload = self._get_json("/v1/admin/promotion/queue", headers=self._public_headers())
+        self.assertEqual(401, status)
+        self.assertEqual("unauthorized", payload["error"])
+
+    def test_public_meta_reports_version_and_counts(self) -> None:
+        status, payload = self._get_json("/v1/meta", headers=self._public_headers())
+        self.assertEqual(200, status)
+        self.assertEqual("0.6.4", payload["version"])
+        self.assertIn("governed_families", payload)
+        self.assertIn("active_signals", payload)
+        self.assertIn("current_rsi", payload)
+
+    def test_public_registry_returns_governed_rows(self) -> None:
+        status, payload = self._get_json("/v1/registry/governed", headers=self._public_headers())
+        self.assertEqual(200, status)
+        self.assertIn("count", payload)
+        self.assertIn("families", payload)
+        self.assertEqual(payload["count"], len(payload["families"]))
+
+    def test_public_rsi_endpoint_rate_limits(self) -> None:
+        api_app.SignalAPIHandler.public_rate_limits["/v1/rsi/latest"] = 1
+        api_app.SignalAPIHandler._rate_limit_state.clear()
+        first_status, _first = self._get_json("/v1/rsi/latest", headers=self._public_headers())
+        second_status, second = self._get_json("/v1/rsi/latest", headers=self._public_headers())
+        self.assertEqual(200, first_status)
+        self.assertEqual(429, second_status)
+        self.assertEqual("rate_limited", second["error"])
 
 
 if __name__ == "__main__":

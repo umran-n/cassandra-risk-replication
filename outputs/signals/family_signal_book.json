@@ -266,7 +266,7 @@
     "selected_source": "kalshi",
     "selected_market_id": "KXGREENLAND-29",
     "selected_probability_raw": 0.26,
-    "selected_quality_score": 0.572846,
+    "selected_quality_score": 0.572868,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.26,
@@ -380,11 +380,11 @@
     ],
     "selected_source": "kalshi",
     "selected_market_id": "KXIMPEACHCABINET-28JAN01",
-    "selected_probability_raw": 0.52,
-    "selected_quality_score": 0.452962,
+    "selected_probability_raw": 0.51,
+    "selected_quality_score": 0.455962,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.52,
+    "selected_probability_governed": 0.51,
     "calibration_applied": "none",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -528,14 +528,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1466015",
-    "selected_probability_raw": 0.12,
-    "selected_quality_score": 0.681,
+    "selected_probability_raw": 0.13,
+    "selected_quality_score": 0.684,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.12,
+    "selected_probability_governed": 0.13,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "discovered_polymarket_1466016",
@@ -551,14 +551,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1466016",
-    "selected_probability_raw": 0.44,
-    "selected_quality_score": 0.714106,
+    "selected_probability_raw": 0.45,
+    "selected_quality_score": 0.707067,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.44,
+    "selected_probability_governed": 0.45,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "discovered_polymarket_1466148",
@@ -595,29 +595,6 @@
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe."
   },
   {
-    "event_family_id": "discovered_polymarket_1484894",
-    "title": "US x Iran ceasefire by May 31?",
-    "structural_theme": "geopolitical",
-    "category": "Kinetic",
-    "aggregation_policy": "weighted_average",
-    "governance_source": "autonomous_discovery",
-    "discovered": true,
-    "candidate_count": 1,
-    "source_options": [
-      "polymarket"
-    ],
-    "selected_source": "polymarket",
-    "selected_market_id": "1484894",
-    "selected_probability_raw": 0.57,
-    "selected_quality_score": 0.675572,
-    "selection_state": "candidate_only",
-    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.57,
-    "calibration_applied": "none",
-    "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
-  },
-  {
     "event_family_id": "discovered_polymarket_1484895",
     "title": "US x Iran ceasefire by June 30?",
     "structural_theme": "geopolitical",
@@ -631,14 +608,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1484895",
-    "selected_probability_raw": 0.64,
-    "selected_quality_score": 0.676519,
+    "selected_probability_raw": 0.65,
+    "selected_quality_score": 0.674479,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.64,
+    "selected_probability_governed": 0.65,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "discovered_polymarket_1484914",
@@ -655,13 +632,13 @@
     "selected_source": "polymarket",
     "selected_market_id": "1484914",
     "selected_probability_raw": 0.48,
-    "selected_quality_score": 0.740272,
+    "selected_quality_score": 0.741203,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.48,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "discovered_polymarket_567621",
@@ -684,7 +661,30 @@
     "selected_probability_governed": 0.107,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
+  },
+  {
+    "event_family_id": "discovered_polymarket_701290",
+    "title": "Will China invade Taiwan by March 31, 2026?",
+    "structural_theme": "geopolitical",
+    "category": "Kinetic",
+    "aggregation_policy": "weighted_average",
+    "governance_source": "autonomous_discovery",
+    "discovered": true,
+    "candidate_count": 1,
+    "source_options": [
+      "polymarket"
+    ],
+    "selected_source": "polymarket",
+    "selected_market_id": "701290",
+    "selected_probability_raw": 0.001,
+    "selected_quality_score": 0.657175,
+    "selection_state": "candidate_only",
+    "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
+    "selected_probability_governed": 0.001,
+    "calibration_applied": "none",
+    "theme_cap_applied": true,
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "geopolitical_another_iran_strike_on_israel_in_october_2024",
@@ -717,14 +717,14 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "1551490",
-    "selected_probability_raw": 0.86,
-    "selected_quality_score": 0.426919,
+    "selected_probability_raw": 0.88,
+    "selected_quality_score": 0.425129,
     "selection_state": "selected",
     "notes": "Bootstrap imported from legacy governed universe.",
-    "selected_probability_governed": 0.86,
+    "selected_probability_governed": 0.88,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "geopolitical_iran_strike_on_israel_before_december_2024",
@@ -849,7 +849,7 @@
     "selected_probability_governed": 0.005,
     "calibration_applied": "none",
     "theme_cap_applied": true,
-    "theme_cap_scale": 0.33124590756519967
+    "theme_cap_scale": 0.3454553076907334
   },
   {
     "event_family_id": "geopolitical_u_s_military_action_against_iran_before_november_2024",
@@ -937,8 +937,8 @@
     "notes": "Bootstrap imported from legacy governed universe."
   },
   {
-    "event_family_id": "discovered_polymarket_1168140",
-    "title": "Will the upper bound of the target federal funds rate be 4.0% at the end of 2026?",
+    "event_family_id": "discovered_polymarket_1654959",
+    "title": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "aggregation_policy": "max",
@@ -949,12 +949,12 @@
       "polymarket"
     ],
     "selected_source": "polymarket",
-    "selected_market_id": "1168140",
-    "selected_probability_raw": 0.082,
-    "selected_quality_score": 0.524629,
+    "selected_market_id": "1654959",
+    "selected_probability_raw": 0.053,
+    "selected_quality_score": 0.524693,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.082,
+    "selected_probability_governed": 0.053,
     "calibration_applied": "becker",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -974,7 +974,7 @@
     "selected_source": "polymarket",
     "selected_market_id": "616902",
     "selected_probability_raw": 0.279,
-    "selected_quality_score": 0.599139,
+    "selected_quality_score": 0.598564,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.279,
@@ -997,7 +997,7 @@
     "selected_source": "polymarket",
     "selected_market_id": "616908",
     "selected_probability_raw": 0.018,
-    "selected_quality_score": 0.523873,
+    "selected_quality_score": 0.524881,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.018,
@@ -1019,11 +1019,11 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "669660",
-    "selected_probability_raw": 0.005,
-    "selected_quality_score": 0.6465,
+    "selected_probability_raw": 0.004,
+    "selected_quality_score": 0.6462,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.005,
+    "selected_probability_governed": 0.004,
     "calibration_applied": "becker",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -1088,11 +1088,11 @@
     ],
     "selected_source": "polymarket",
     "selected_market_id": "669663",
-    "selected_probability_raw": 0.024,
-    "selected_quality_score": 0.630428,
+    "selected_probability_raw": 0.026,
+    "selected_quality_score": 0.630862,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
-    "selected_probability_governed": 0.024,
+    "selected_probability_governed": 0.026,
     "calibration_applied": "becker",
     "theme_cap_applied": false,
     "theme_cap_scale": 1.0
@@ -1112,7 +1112,7 @@
     "selected_source": "polymarket",
     "selected_market_id": "906974",
     "selected_probability_raw": 0.85,
-    "selected_quality_score": 0.548223,
+    "selected_quality_score": 0.546851,
     "selection_state": "candidate_only",
     "notes": "Autonomously discovered live market candidate not yet promoted into the governed universe.",
     "selected_probability_governed": 0.85,
@@ -1169,7 +1169,7 @@
     "selected_source": "polymarket",
     "selected_market_id": "616903",
     "selected_probability_raw": 0.26,
-    "selected_quality_score": 0.63946,
+    "selected_quality_score": 0.638627,
     "selection_state": "selected",
     "notes": "Bootstrap imported from legacy governed universe.",
     "selected_probability_governed": 0.26,

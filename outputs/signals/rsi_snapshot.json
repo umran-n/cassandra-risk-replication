@@ -1,13 +1,13 @@
 {
   "asof": "2026-03-26",
-  "rsi": 0.10069284928495392,
-  "total_hazard": 8.931191808566942,
+  "rsi": 0.09873728734627346,
+  "total_hazard": 9.127886099331267,
   "event_count": 3,
   "dominant_theme": "geopolitical",
   "dominant_event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
   "theme_hazard_shares": {
-    "geopolitical": 0.9525076000939665,
-    "monetary_policy": 0.047492399906033454
+    "geopolitical": 0.9535310006726501,
+    "monetary_policy": 0.04646899932734992
   },
   "signal_count_by_source": {
     "polymarket": 3
@@ -20,8 +20,8 @@
       "market_id": "1551490",
       "structural_theme": "geopolitical",
       "category": "Kinetic",
-      "selected_probability_governed": 0.86,
-      "hazard_contribution": 8.45785450286591,
+      "selected_probability_governed": 0.88,
+      "hazard_contribution": 8.654548793630235,
       "theme_cap_applied": true,
       "calibration_applied": "none"
     },
