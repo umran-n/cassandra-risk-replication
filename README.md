@@ -90,6 +90,15 @@ Serve the local API:
 python api/app.py --host 127.0.0.1 --port 8765
 ```
 
+Deploy the same API to Railway or Render with the included `Dockerfile`.
+The container binds to `0.0.0.0` and reads `PORT` from the host environment, which matches Render's port-binding requirement and Railway's configurable start/runtime model.
+
+Recommended deployment environment variables:
+
+- `CASSANDRA_API_KEY`
+- `CASSANDRA_OPERATOR_KEY`
+- `CASSANDRA_BOOTSTRAP_ON_START=1`
+
 ## Current API Surface
 
 Public Tier 1 routes:

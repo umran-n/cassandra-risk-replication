@@ -37,6 +37,7 @@ OUTPUT_DIR = signal_output_dir(ROOT)
 API_VERSION = "0.6.4"
 PUBLIC_API_KEY_ENV = "CASSANDRA_API_KEY"
 OPERATOR_API_KEY_ENV = "CASSANDRA_OPERATOR_KEY"
+BOOTSTRAP_ON_START_ENV = "CASSANDRA_BOOTSTRAP_ON_START"
 
 
 def _query_value(query: dict[str, list[str]], key: str, default: str = "") -> str:
@@ -395,9 +396,18 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Serve the Cassandra unified signal API from generated JSON artifacts.")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--host", default=str(os.environ.get("HOST") or "0.0.0.0"))
+    parser.add_argument("--port", type=int, default=int(str(os.environ.get("PORT") or "8765")))
     args = parser.parse_args()
+
+    should_bootstrap = str(os.environ.get(BOOTSTRAP_ON_START_ENV, "1")).lower() not in {"0", "false", "no"}
+    rsi_snapshot_path = OUTPUT_DIR / "rsi_snapshot.json"
+    if should_bootstrap and not rsi_snapshot_path.exists():
+        try:
+            build_live_signal_artifacts(ROOT, refresh=False)
+            print(f"Bootstrapped live signal artifacts into {OUTPUT_DIR}")
+        except Exception as error:  # pragma: no cover - startup logging only
+            print(f"Warning: startup bootstrap failed: {error}", file=sys.stderr)
 
     server = ThreadingHTTPServer((args.host, args.port), SignalAPIHandler)
     print(f"Serving Cassandra unified signal API on http://{args.host}:{args.port}")
