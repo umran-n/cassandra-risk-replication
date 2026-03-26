@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .event_graph import build_event_graph, load_governed_event_families
+from .event_graph import build_event_graph, load_governed_event_families, serialize_families
 from .signal_engine import build_signal_book
 from .source_registry import load_source_registry
 from .source_sync import collect_source_catalogs, write_source_outputs
@@ -78,7 +78,7 @@ def build_live_signal_artifacts(root: Path, refresh: bool = False) -> dict:
     family_rows, snapshots, rsi_snapshot = build_signal_book(families, registry, root)
 
     output_dir = ensure_dir(signal_output_dir(root))
-    write_json(output_dir / "canonical_event_families.json", families)
+    write_json(output_dir / "canonical_event_families.json", serialize_families(families))
     write_json(output_dir / "link_audit.json", link_audit)
     write_json(output_dir / "family_signal_book.json", family_rows)
     write_json(output_dir / "signal_snapshots.json", snapshots)
@@ -113,8 +113,16 @@ def registry_meta(root: Path) -> dict:
                 "token_env_var": settings.get("token_env_var", ""),
             }
         )
+    contracts = []
+    canonical_families = load_payload(root, "canonical_event_families.json") or []
+    for family in canonical_families:
+        if bool(family.get("discovered")):
+            continue
+        for contract in family.get("linked_markets", []):
+            contracts.append(contract)
     return {
         "sources": sources,
+        "contracts": contracts,
         "theme_policies": registry.get("theme_policies", {}),
         "selection_policy": registry.get("selection_policy", {}),
     }

@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .signal_contract import SignalContract, ensure_signal_contract
+
 
 def _load_json(path: Path) -> list[dict]:
     if not path.exists():
@@ -21,8 +23,10 @@ def _load_signal_artifact(root: Path, name: str) -> list[dict]:
 
 
 def _parse_datetime(value: object) -> datetime | None:
-    if not value:
+    if value in (None, ""):
         return None
+    if isinstance(value, datetime):
+        return value.astimezone(timezone.utc) if value.tzinfo else value.replace(tzinfo=timezone.utc)
     text = str(value).strip()
     if not text:
         return None
@@ -31,16 +35,16 @@ def _parse_datetime(value: object) -> datetime | None:
             parsed = datetime.strptime(text, fmt)
             if parsed.tzinfo is None:
                 parsed = parsed.replace(tzinfo=timezone.utc)
-            return parsed
+            return parsed.astimezone(timezone.utc)
         except ValueError:
             continue
     try:
         parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        return parsed
     except ValueError:
         return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
 
 
 def _days_to_resolution(value: object, asof: datetime | None = None) -> int | None:
@@ -65,28 +69,6 @@ def slugify(value: str) -> str:
     return lowered.strip("_") or "candidate"
 
 
-def macro_relevance_score(title: str, theme: str) -> float:
-    title_lower = title.lower()
-    theme_bonus = {
-        "monetary_policy": 0.55,
-        "geopolitical": 0.55,
-        "fiscal_debt": 0.5,
-        "systemic_credit": 0.5,
-        "trade_technology": 0.45,
-        "electoral": 0.35,
-    }.get(theme, 0.25)
-    keywords = {
-        "monetary_policy": ["fed", "rate", "fomc", "ecb", "cpi", "inflation", "cut", "hike"],
-        "geopolitical": ["war", "strike", "ceasefire", "iran", "israel", "ukraine", "taiwan", "nato", "military"],
-        "fiscal_debt": ["debt", "default", "shutdown", "treasury", "ceiling", "bond"],
-        "systemic_credit": ["bank", "credit", "svb", "contagion", "liquidity"],
-        "trade_technology": ["tariff", "sanction", "chips", "crypto", "sec", "ai"],
-        "electoral": ["election", "president", "senate", "house", "prime minister", "ballot"],
-    }
-    hits = sum(1 for keyword in keywords.get(theme, []) if keyword in title_lower)
-    return min(theme_bonus + 0.1 * hits, 1.0)
-
-
 def derive_proxy_family_id(title: str, theme: str, resolution_time: object) -> str:
     year = ""
     parsed = _parse_datetime(resolution_time)
@@ -97,19 +79,7 @@ def derive_proxy_family_id(title: str, theme: str, resolution_time: object) -> s
 
 @dataclass
 class PromotionCandidate:
-    contract_id: str
-    source: str
-    market_id: str
-    question_text: str
-    structural_theme: str
-    category: str
-    proxy_family_id: str | None
-    current_probability: float | None
-    resolution_date: str | None
-    open_time: str | None
-    total_volume_usd: float | None
-    num_traders: int | None
-    num_history_points: int
+    contract: SignalContract
     gate1_probability_history: bool
     gate2_resolution_horizon: bool
     gate3_category_assigned: bool
@@ -123,15 +93,70 @@ class PromotionCandidate:
     decision: str | None
     decision_reason: str | None
     decided_by: str | None
-    decided_at: str | None
-    source_url: str = ""
-    liquidity_usd: float | None = None
-    macro_relevance_score: float = 0.0
-    days_to_resolution: int | None = None
+    decided_at: datetime | None
     family_event_id: str = ""
 
+    @property
+    def contract_id(self) -> str:
+        return self.contract.contract_id
+
+    @property
+    def proxy_family_id(self) -> str:
+        return self.contract.proxy_family_id or derive_proxy_family_id(
+            self.contract.question_text,
+            self.contract.structural_theme,
+            self.contract.resolution_time,
+        )
+
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        payload = {
+            "contract": self.contract.to_dict(include_aliases=True),
+            "contract_id": self.contract.contract_id,
+            "source": self.contract.source.value,
+            "market_id": self.contract.native_id,
+            "question_text": self.contract.question_text,
+            "structural_theme": self.contract.structural_theme,
+            "category": self.contract.category,
+            "proxy_family_id": self.proxy_family_id,
+            "current_probability": self.contract.probability_raw,
+            "resolution_date": self.contract.resolution_time,
+            "open_time": self.contract.open_time,
+            "total_volume_usd": self.contract.volume_usd,
+            "num_traders": self.contract.num_traders,
+            "num_history_points": int(self.contract.metadata.get("history_points") or 1),
+            "source_url": self.contract.url,
+            "liquidity_usd": self.contract.liquidity_usd,
+            "days_to_resolution": _days_to_resolution(self.contract.resolution_time),
+            "family_event_id": self.family_event_id,
+        }
+        payload.update(
+            {
+                "gate1_probability_history": self.gate1_probability_history,
+                "gate2_resolution_horizon": self.gate2_resolution_horizon,
+                "gate3_category_assigned": self.gate3_category_assigned,
+                "gate4_volume_floor": self.gate4_volume_floor,
+                "gate5_binary": self.gate5_binary,
+                "gate6_macro_relevant": self.gate6_macro_relevant,
+                "gate7_no_lookahead": self.gate7_no_lookahead,
+                "quality_score": self.quality_score,
+                "gates_passed": self.gates_passed,
+                "auto_recommendation": self.auto_recommendation,
+                "decision": self.decision,
+                "decision_reason": self.decision_reason,
+                "decided_by": self.decided_by,
+                "decided_at": self.decided_at.astimezone(timezone.utc).isoformat() if self.decided_at else None,
+            }
+        )
+        return payload
+
+
+def _source_contract_lookup(root: Path) -> dict[tuple[str, str], SignalContract]:
+    source_markets = _load_signal_artifact(root, "source_markets.json")
+    lookup: dict[tuple[str, str], SignalContract] = {}
+    for row in source_markets:
+        contract = ensure_signal_contract(row)
+        lookup[(contract.source.value, contract.native_id)] = contract
+    return lookup
 
 
 def build_promotion_queue(
@@ -141,28 +166,27 @@ def build_promotion_queue(
     include_rejected: bool = False,
     decision_state: str = "pending",
     decisions_map: dict[str, dict] | None = None,
-) -> list[dict]:
+) -> list[PromotionCandidate]:
     family_rows = _load_signal_artifact(root, "family_signal_book.json")
-    source_markets = _load_signal_artifact(root, "source_markets.json")
-    source_lookup = {(row.get("source"), row.get("market_id")): row for row in source_markets}
+    source_lookup = _source_contract_lookup(root)
     decisions_map = decisions_map or {}
 
-    candidates: list[dict] = []
+    candidates: list[PromotionCandidate] = []
     for family in family_rows:
         if not bool(family.get("discovered")):
             continue
         if theme and family.get("structural_theme") != theme:
             continue
+
         source = str(family.get("selected_source") or "")
         market_id = str(family.get("selected_market_id") or "")
         if not source or not market_id:
             continue
-        source_market = dict(source_lookup.get((source, market_id), {}))
-        if not source_market:
+        contract = source_lookup.get((source, market_id))
+        if contract is None:
             continue
 
-        contract_id = contract_id_for_market(source, market_id)
-        decision_record = decisions_map.get(contract_id, {})
+        decision_record = decisions_map.get(contract.contract_id, {})
         decision = decision_record.get("decision")
         if decision_state == "pending" and decision in {"APPROVED", "REJECTED"}:
             if decision == "REJECTED" and include_rejected:
@@ -176,23 +200,30 @@ def build_promotion_queue(
         if decision == "REJECTED" and not include_rejected and decision_state == "pending":
             continue
 
-        gates = {
-            "gate1_probability_history": source_market.get("current_probability") is not None,
-            "gate2_resolution_horizon": ((_days_to_resolution(source_market.get("resolution_time") or source_market.get("close_time")) or 10**9) <= 180),
-            "gate3_category_assigned": bool(source_market.get("structural_theme")) and str(source_market.get("structural_theme")) != "noise",
-            "gate4_volume_floor": float(source_market.get("volume_usd") or 0.0) >= volume_floor_for_theme(str(source_market.get("structural_theme") or "")),
-            "gate5_binary": str(source_market.get("outcome_type") or "").upper() == "BINARY",
-            "gate6_macro_relevant": False,
-            "gate7_no_lookahead": False,
-        }
-        macro_score = macro_relevance_score(str(source_market.get("title") or ""), str(source_market.get("structural_theme") or ""))
-        gates["gate6_macro_relevant"] = macro_score >= 0.55
-        open_time = _parse_datetime(source_market.get("open_time"))
-        resolution_time = _parse_datetime(source_market.get("resolution_time") or source_market.get("close_time"))
-        gates["gate7_no_lookahead"] = bool(open_time and resolution_time and open_time <= resolution_time)
+        gate1_probability_history = contract.probability_raw is not None
+        gate2_resolution_horizon = ((_days_to_resolution(contract.resolution_time) or 10**9) <= 180)
+        gate3_category_assigned = bool(contract.structural_theme) and contract.structural_theme != "noise"
+        gate4_volume_floor = float(contract.volume_usd or 0.0) >= volume_floor_for_theme(contract.structural_theme)
+        gate5_binary = bool(contract.is_binary)
+        gate6_macro_relevant = bool(contract.is_macro_relevant)
+        open_time = _parse_datetime(contract.open_time)
+        resolution_time = _parse_datetime(contract.resolution_time)
+        gate7_no_lookahead = bool(open_time and resolution_time and open_time <= resolution_time)
 
-        gates_passed = sum(1 for value in gates.values() if value)
-        quality_score = min(1.0, 0.6 * float(source_market.get("quality_score") or 0.0) + 0.4 * (gates_passed / 7.0))
+        gates_passed = sum(
+            1
+            for value in (
+                gate1_probability_history,
+                gate2_resolution_horizon,
+                gate3_category_assigned,
+                gate4_volume_floor,
+                gate5_binary,
+                gate6_macro_relevant,
+                gate7_no_lookahead,
+            )
+            if value
+        )
+        quality_score = min(1.0, 0.6 * float(contract.quality_score or 0.0) + 0.4 * (gates_passed / 7.0))
         if gates_passed == 7 and quality_score >= 0.80:
             recommendation = "APPROVE"
         elif gates_passed >= 5 and quality_score >= 0.50:
@@ -203,48 +234,35 @@ def build_promotion_queue(
         if gates_passed < min_gates:
             continue
 
-        candidate = PromotionCandidate(
-            contract_id=contract_id,
-            source=source,
-            market_id=market_id,
-            question_text=str(source_market.get("title") or family.get("title") or ""),
-            structural_theme=str(source_market.get("structural_theme") or family.get("structural_theme") or ""),
-            category=str(source_market.get("category") or family.get("category") or ""),
-            proxy_family_id=derive_proxy_family_id(
-                str(source_market.get("title") or family.get("title") or ""),
-                str(source_market.get("structural_theme") or family.get("structural_theme") or ""),
-                source_market.get("resolution_time") or source_market.get("close_time"),
-            ),
-            current_probability=source_market.get("current_probability"),
-            resolution_date=str(source_market.get("resolution_time") or source_market.get("close_time") or ""),
-            open_time=str(source_market.get("open_time") or ""),
-            total_volume_usd=source_market.get("volume_usd"),
-            num_traders=source_market.get("num_traders"),
-            num_history_points=int(source_market.get("metadata", {}).get("history_points") or 1),
-            quality_score=quality_score,
-            gates_passed=gates_passed,
-            auto_recommendation=recommendation,
-            decision=decision_record.get("decision"),
-            decision_reason=decision_record.get("decision_reason"),
-            decided_by=decision_record.get("decided_by"),
-            decided_at=decision_record.get("decided_at"),
-            source_url=str(source_market.get("url") or ""),
-            liquidity_usd=source_market.get("liquidity_usd"),
-            macro_relevance_score=macro_score,
-            days_to_resolution=_days_to_resolution(source_market.get("resolution_time") or source_market.get("close_time")),
-            family_event_id=str(family.get("event_family_id") or ""),
-            **gates,
+        candidates.append(
+            PromotionCandidate(
+                contract=contract,
+                gate1_probability_history=gate1_probability_history,
+                gate2_resolution_horizon=gate2_resolution_horizon,
+                gate3_category_assigned=gate3_category_assigned,
+                gate4_volume_floor=gate4_volume_floor,
+                gate5_binary=gate5_binary,
+                gate6_macro_relevant=gate6_macro_relevant,
+                gate7_no_lookahead=gate7_no_lookahead,
+                quality_score=quality_score,
+                gates_passed=gates_passed,
+                auto_recommendation=recommendation,
+                decision=decision_record.get("decision"),
+                decision_reason=decision_record.get("decision_reason"),
+                decided_by=decision_record.get("decided_by"),
+                decided_at=_parse_datetime(decision_record.get("decided_at")),
+                family_event_id=str(family.get("event_family_id") or ""),
+            )
         )
-        candidates.append(candidate.to_dict())
 
     priority = {"APPROVE": 0, "REVIEW": 1, "REJECT": 2}
     candidates.sort(
-        key=lambda row: (
-            priority.get(row["auto_recommendation"], 9),
-            -int(row["gates_passed"]),
-            -float(row["quality_score"]),
-            -(float(row.get("total_volume_usd") or 0.0)),
-            row["contract_id"],
+        key=lambda candidate: (
+            priority.get(candidate.auto_recommendation, 9),
+            -int(candidate.gates_passed),
+            -float(candidate.quality_score),
+            -(float(candidate.contract.volume_usd or 0.0)),
+            candidate.contract.contract_id,
         )
     )
     return candidates
@@ -254,11 +272,11 @@ def find_promotion_candidate(
     root: Path,
     contract_id: str,
     decisions_map: dict[str, dict] | None = None,
-) -> dict | None:
+) -> PromotionCandidate | None:
     queue = build_promotion_queue(
         root,
         include_rejected=True,
         decision_state="all",
         decisions_map=decisions_map or {},
     )
-    return next((row for row in queue if row.get("contract_id") == contract_id), None)
+    return next((row for row in queue if row.contract_id == contract_id), None)

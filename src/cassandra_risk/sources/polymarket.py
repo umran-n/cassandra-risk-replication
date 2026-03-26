@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from ..polymarket import infer_theme_and_category
+from ..signal_contract import DefaultContractNormaliser
 from ..signal_types import SourceMarket
 from .base import (
     adapter_credentials_state,
@@ -39,7 +40,8 @@ def fetch_polymarket_catalog(settings: dict, raw_dir: Path, limit: int | None = 
         status = status_record("polymarket", settings, reachable=False, has_credentials=has_credentials, notes=str(error))
         return [], status.to_dict()
 
-    markets: list[dict] = []
+    normaliser = DefaultContractNormaliser()
+    markets = []
     source_priority = int(settings.get("priority", 999))
     for event in list(payload):
         event_title = str(event.get("title") or "")
@@ -96,7 +98,7 @@ def fetch_polymarket_catalog(settings: dict, raw_dir: Path, limit: int | None = 
                 probability=market.current_probability,
                 source_priority=source_priority,
             )
-            markets.append(market.to_dict())
+            markets.append(normaliser.normalise(market))
 
     status = status_record(
         "polymarket",

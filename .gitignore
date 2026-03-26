@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.tmp_tests/
+vendor_pytest/
+.codex_deps/
 data/raw/
 data/processed/
 outputs/*

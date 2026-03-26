@@ -58,6 +58,7 @@ class EventFamily:
     category: str
     governance_source: str
     proxy_family_id: str
+    aggregation_policy: str = "max"
     source_candidates: list[dict[str, Any]] = field(default_factory=list)
     discovered: bool = False
     notes: str = ""

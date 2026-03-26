@@ -10,7 +10,7 @@
     "role": "regulated_market",
     "notes": "Public live catalog fetched from Kalshi /trade-api/v2/events with nested markets.",
     "market_count": 519,
-    "fetched_at": "2026-03-25T22:03:44Z"
+    "fetched_at": "2026-03-26T12:07:56Z"
   },
   {
     "source": "manifold",
@@ -22,8 +22,8 @@
     "quality_tier": "C",
     "role": "longtail_coverage",
     "notes": "Public live catalog fetched from /v0/markets.",
-    "market_count": 14,
-    "fetched_at": "2026-03-25T22:03:51Z"
+    "market_count": 12,
+    "fetched_at": "2026-03-26T12:08:04Z"
   },
   {
     "source": "metaculus",
@@ -36,7 +36,7 @@
     "role": "primary_calibrated",
     "notes": "Missing credentials in env var METACULUS_API_TOKEN.",
     "market_count": 0,
-    "fetched_at": "2026-03-25T22:03:42Z"
+    "fetched_at": "2026-03-26T12:07:54Z"
   },
   {
     "source": "polymarket",
@@ -48,7 +48,7 @@
     "quality_tier": "B",
     "role": "liquidity_coverage",
     "notes": "Public live catalog fetched from Gamma /events ordered by 24h volume.",
-    "market_count": 270,
-    "fetched_at": "2026-03-25T22:03:50Z"
+    "market_count": 275,
+    "fetched_at": "2026-03-26T12:08:03Z"
   }
 ]

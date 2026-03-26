@@ -150,7 +150,7 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 decision_state=_query_value(query, "decision_state", "pending"),
                 decisions_map=decisions,
             )
-            return self._send_json(payload)
+            return self._send_json([candidate.to_dict() for candidate in payload])
         if path == "/v1/admin/promotion/audit":
             payload = load_promotion_audit(ROOT)
             return self._send_json(payload)

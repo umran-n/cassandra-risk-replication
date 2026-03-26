@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .source_registry import load_source_registry
+from .signal_contract import SignalContract, ensure_signal_contract
 from .sources import (
     fetch_kalshi_catalog,
     fetch_manifold_catalog,
@@ -20,12 +21,12 @@ ADAPTERS = {
 }
 
 
-def collect_source_catalogs(root: Path, refresh: bool = False) -> tuple[dict, list[dict], list[dict]]:
+def collect_source_catalogs(root: Path, refresh: bool = False) -> tuple[dict, list[SignalContract], list[dict]]:
     registry = load_source_registry(root)
     raw_dir = ensure_dir(root / "data" / "raw")
 
     source_status_rows: list[dict] = []
-    source_markets: list[dict] = []
+    source_markets: list[SignalContract] = []
     for source_name in registry.get("selection_policy", {}).get("source_priority", []):
         settings = dict(registry.get("sources", {}).get(source_name, {}))
         if not settings.get("enabled", True):
@@ -33,21 +34,25 @@ def collect_source_catalogs(root: Path, refresh: bool = False) -> tuple[dict, li
         adapter = ADAPTERS[source_name]
         markets, status = adapter(settings, raw_dir, refresh=refresh)
         source_status_rows.append(status)
-        source_markets.extend(markets)
+        source_markets.extend(ensure_signal_contract(market) for market in markets)
 
     source_markets.sort(
-        key=lambda row: (
-            row.get("structural_theme", ""),
-            row.get("source", ""),
-            -(float(row.get("quality_score") or 0.0)),
-            row.get("market_id", ""),
+        key=lambda contract: (
+            contract.structural_theme,
+            contract.source.value,
+            -float(contract.quality_score or 0.0),
+            contract.native_id,
         )
     )
     source_status_rows.sort(key=lambda row: row["source"])
     return registry, source_markets, source_status_rows
 
 
-def write_source_outputs(root: Path, source_markets: list[dict], source_status_rows: list[dict]) -> None:
+def write_source_outputs(root: Path, source_markets: list[SignalContract | dict], source_status_rows: list[dict]) -> None:
     output_dir = ensure_dir(root / "outputs" / "signals")
-    write_json(output_dir / "source_markets.json", source_markets)
+    serializable = []
+    for contract in source_markets:
+        typed = ensure_signal_contract(contract)
+        serializable.append(typed.to_dict(include_aliases=True))
+    write_json(output_dir / "source_markets.json", serializable)
     write_json(output_dir / "source_status.json", source_status_rows)

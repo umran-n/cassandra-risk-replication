@@ -1,17 +1,17 @@
 [
   {
-    "asof": "2026-03-25",
+    "asof": "2026-03-26",
     "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
-    "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+    "title": "Another Israeli military action against Iran in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
     "selected_source": "polymarket",
-    "selected_market_id": "1628472",
-    "selected_probability_raw": 0.002,
-    "selected_probability_governed": 0.0008167907886294863,
-    "quality_score": 0.65568,
+    "selected_market_id": "1551490",
+    "selected_probability_raw": 0.86,
+    "selected_probability_governed": 0.86,
+    "quality_score": 0.426919,
     "source_priority": 3,
-    "candidate_count": 16,
+    "candidate_count": 15,
     "source_options": [
       "polymarket"
     ],
@@ -19,16 +19,16 @@
     "notes": "Bootstrap imported from legacy governed universe."
   },
   {
-    "asof": "2026-03-25",
+    "asof": "2026-03-26",
     "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
-    "title": "Russia x Ukraine ceasefire by March 31, 2026?",
+    "title": "Russia x Ukraine Ceasefire in 2024?",
     "structural_theme": "geopolitical",
     "category": "Kinetic",
     "selected_source": "polymarket",
     "selected_market_id": "561829",
     "selected_probability_raw": 0.005,
-    "selected_probability_governed": 0.0020419769715737156,
-    "quality_score": 0.729895,
+    "selected_probability_governed": 0.005,
+    "quality_score": 0.660989,
     "source_priority": 3,
     "candidate_count": 1,
     "source_options": [
@@ -38,16 +38,16 @@
     "notes": "Bootstrap imported from legacy governed universe."
   },
   {
-    "asof": "2026-03-25",
+    "asof": "2026-03-26",
     "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
-    "title": "Will 1 Fed rate cut happen in 2026?",
+    "title": "Fed emergency rate cut in 2024?",
     "structural_theme": "monetary_policy",
     "category": "Monetary",
     "selected_source": "polymarket",
     "selected_market_id": "616903",
-    "selected_probability_raw": 0.25,
-    "selected_probability_governed": 0.23464959687257633,
-    "quality_score": 0.637005,
+    "selected_probability_raw": 0.26,
+    "selected_probability_governed": 0.26,
+    "quality_score": 0.63946,
     "source_priority": 3,
     "candidate_count": 1,
     "source_options": [

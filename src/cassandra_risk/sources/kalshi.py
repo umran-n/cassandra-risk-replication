@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from ..polymarket import infer_theme_and_category
+from ..signal_contract import DefaultContractNormaliser
 from ..signal_types import SourceMarket
 from .base import (
     adapter_credentials_state,
@@ -51,7 +52,8 @@ def fetch_kalshi_catalog(settings: dict, raw_dir: Path, limit: int | None = None
             item["_event_subtitle"] = event_subtitle
             item["_event_category"] = event_category
             rows.append(item)
-    markets: list[dict] = []
+    normaliser = DefaultContractNormaliser()
+    markets = []
     for item in rows:
         market_type = str(item.get("market_type") or item.get("marketType") or "binary").lower()
         if "binary" not in market_type:
@@ -101,7 +103,7 @@ def fetch_kalshi_catalog(settings: dict, raw_dir: Path, limit: int | None = None
             probability=market.current_probability,
             source_priority=source_priority,
         )
-        markets.append(market.to_dict())
+        markets.append(normaliser.normalise(market))
 
     status = status_record(
         "kalshi",

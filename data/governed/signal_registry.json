@@ -14,7 +14,8 @@
         "market_id": "",
         "title": "Trump sentenced to house arrest?",
         "resolution_date": "2024-11-05",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -22,7 +23,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "electoral_will_cyril_ramaphosa_be_the_next_president_of_south_africa_2024",
@@ -39,7 +42,8 @@
         "market_id": "",
         "title": "Will Cyril Ramaphosa be the next President of South Africa?",
         "resolution_date": "2024-06-15",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -47,7 +51,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "electoral_will_nigel_farage_win_election_to_uk_parliament_2024",
@@ -64,7 +70,8 @@
         "market_id": "",
         "title": "Will Nigel Farage win election to UK parliament?",
         "resolution_date": "2024-07-05",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -72,7 +79,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "electoral_will_u_s_supreme_court_vote_to_reinstate_trump_on_colorado_s_2024_ballot_2024",
@@ -89,7 +98,8 @@
         "market_id": "",
         "title": "Will U.S. Supreme Court vote to reinstate Trump on Colorado's 2024 ballot?",
         "resolution_date": "2024-03-04",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -97,7 +107,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "fiscal_debt_us_debt_ceiling_hike_by_july_1_2023",
@@ -114,7 +126,8 @@
         "market_id": "",
         "title": "US debt ceiling hike by July 1?",
         "resolution_date": "2023-06-03",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -122,7 +135,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_debt_ceiling_2023",
@@ -139,7 +154,8 @@
         "market_id": "",
         "title": "US debt ceiling resolution risk in 2023",
         "resolution_date": "2023-06-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -147,7 +163,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_debt_default_risk_2023",
@@ -164,7 +182,8 @@
         "market_id": "",
         "title": "US debt default risk in 2023",
         "resolution_date": "2023-06-30",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -172,7 +191,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_government_shutdown_2025",
@@ -189,7 +210,8 @@
         "market_id": "",
         "title": "US government shutdown risk in 2025",
         "resolution_date": "2025-12-31",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -197,7 +219,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "us_debt_ceiling_2023",
@@ -214,7 +238,8 @@
         "market_id": "69D7abJaaEexCxQ2BOZB",
         "title": "Will the US debt ceiling be raised by the end of May 2023?",
         "resolution_date": "2023-05-31",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       },
       {
         "link_type": "governed_reference",
@@ -222,7 +247,8 @@
         "market_id": "69D7abJaaEexCxQ2BOZB",
         "title": "Will the US debt ceiling be raised by the end of May 2023?",
         "resolution_date": "2023-05-31",
-        "quality_score": 0.79
+        "quality_score": 0.79,
+        "aggregation_policy": "max"
       },
       {
         "link_type": "governed_reference",
@@ -230,7 +256,8 @@
         "market_id": "3szs86zpyB4QQY4zzP2S",
         "title": "Will the US debt ceiling be raised by the end of June 2023? (M$10,000 subsidy)",
         "resolution_date": "2023-05-31",
-        "quality_score": 0.76
+        "quality_score": 0.76,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -238,7 +265,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "china_taiwan_2024",
@@ -255,7 +284,8 @@
         "market_id": "",
         "title": "Will China-Taiwan escalation trigger an August 2024 risk-off move?",
         "resolution_date": "2024-08-05",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       },
       {
         "link_type": "governed_reference",
@@ -263,7 +293,8 @@
         "market_id": "UjzOb7pBZuVnZvuKzR8n",
         "title": "[ACX 2024] Will there be 10 or more armed forces conflict deaths between China and Taiwan in 2024?",
         "resolution_date": "2024-08-05",
-        "quality_score": 0.77
+        "quality_score": 0.77,
+        "aggregation_policy": "weighted_average"
       },
       {
         "link_type": "governed_reference",
@@ -271,7 +302,8 @@
         "market_id": "bB0Zbz10f5aqWn3JIAju",
         "title": "Will China inspecting ships in the Taiwan strait escalate to an armed conflict before 2024?",
         "resolution_date": "2024-08-05",
-        "quality_score": 0.73
+        "quality_score": 0.73,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -279,7 +311,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_another_iran_strike_on_israel_in_october_2024",
@@ -296,7 +330,8 @@
         "market_id": "",
         "title": "Another Iran strike on Israel in October?",
         "resolution_date": "2024-11-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -304,7 +339,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
@@ -321,7 +358,8 @@
         "market_id": "511043",
         "title": "Another Israeli military action against Iran in 2024?",
         "resolution_date": "2025-01-01",
-        "quality_score": 0.672365
+        "quality_score": 0.672365,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -329,7 +367,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_iran_strike_on_israel_before_december_2024",
@@ -346,7 +386,8 @@
         "market_id": "511520",
         "title": "Iran strike on Israel before December?",
         "resolution_date": "2024-12-01",
-        "quality_score": 0.605553
+        "quality_score": 0.605553,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -354,7 +395,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_israel_military_action_against_iran_by_end_of_2024_2024",
@@ -371,7 +414,8 @@
         "market_id": "",
         "title": "Israel military action against Iran by end of 2024?",
         "resolution_date": "2024-10-26",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -379,7 +423,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_israel_withdraws_from_gaza_in_2024_2025",
@@ -396,7 +442,8 @@
         "market_id": "510132",
         "title": "Israel withdraws from Gaza in 2024?",
         "resolution_date": "2025-01-01",
-        "quality_score": 0.473629
+        "quality_score": 0.473629,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -404,7 +451,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_before_september_2024",
@@ -421,7 +470,8 @@
         "market_id": "501863",
         "title": "Israel x Hamas ceasefire before September?",
         "resolution_date": "2024-09-01",
-        "quality_score": 0.734008
+        "quality_score": 0.734008,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -429,7 +479,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_israel_x_hamas_ceasefire_in_2024_2025",
@@ -446,7 +498,8 @@
         "market_id": "",
         "title": "Israel x Hamas ceasefire in 2024?",
         "resolution_date": "2025-01-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -454,7 +507,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_israel_x_hezbollah_ceasefire_in_2024_2024",
@@ -471,7 +526,8 @@
         "market_id": "",
         "title": "Israel x Hezbollah Ceasefire in 2024?",
         "resolution_date": "2024-12-05",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -479,7 +535,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
@@ -496,7 +554,8 @@
         "market_id": "507115",
         "title": "Russia x Ukraine Ceasefire in 2024?",
         "resolution_date": "2025-01-01",
-        "quality_score": 0.542919
+        "quality_score": 0.542919,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -504,7 +563,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_u_s_military_action_against_iran_before_november_2024",
@@ -521,7 +582,8 @@
         "market_id": "507749",
         "title": "U.S. military action against Iran before November?",
         "resolution_date": "2024-11-01",
-        "quality_score": 0.405963
+        "quality_score": 0.405963,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -529,7 +591,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_lebanon_before_november_2024",
@@ -546,7 +610,8 @@
         "market_id": "504664",
         "title": "Will Israel invade Lebanon before November?",
         "resolution_date": "2024-10-06",
-        "quality_score": 0.733333
+        "quality_score": 0.733333,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -554,7 +619,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_will_israel_invade_syria_in_2024_2024",
@@ -571,7 +638,8 @@
         "market_id": "",
         "title": "Will Israel invade Syria in 2024?",
         "resolution_date": "2024-12-21",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -579,7 +647,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "geopolitical_will_ukraine_sever_the_land_bridge_between_crimea_and_russia_before_nov_1_2023",
@@ -596,7 +666,8 @@
         "market_id": "",
         "title": "Will Ukraine sever the land bridge between Crimea and Russia before Nov 1?",
         "resolution_date": "2023-11-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -604,7 +675,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "ukraine_invasion_2022",
@@ -621,7 +694,8 @@
         "market_id": "Ec5AX7QQHNOvWN8rv1l9",
         "title": "Will Russia invade any parts of Ukraine besides Donetsk and Luhansk oblast before March 8?",
         "resolution_date": "2022-02-24",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "weighted_average"
       },
       {
         "link_type": "governed_reference",
@@ -629,7 +703,8 @@
         "market_id": "Ec5AX7QQHNOvWN8rv1l9",
         "title": "Will Russia invade any parts of Ukraine besides Donetsk and Luhansk oblast before March 8?",
         "resolution_date": "2022-02-24",
-        "quality_score": 0.85
+        "quality_score": 0.85,
+        "aggregation_policy": "weighted_average"
       }
     ],
     "discovered": false,
@@ -637,7 +712,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "weighted_average",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_december_2024_meeting_2024",
@@ -654,7 +731,8 @@
         "market_id": "",
         "title": "Fed decreases interest rates by 50 bps after December 2024 meeting?",
         "resolution_date": "2024-12-18",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -662,7 +740,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_decreases_interest_rates_by_50_bps_after_november_2024_meeting_2024",
@@ -679,7 +759,8 @@
         "market_id": "",
         "title": "Fed decreases interest rates by 50 bps after November 2024 meeting?",
         "resolution_date": "2024-11-07",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -687,7 +768,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
@@ -704,7 +787,8 @@
         "market_id": "",
         "title": "Fed emergency rate cut in 2024?",
         "resolution_date": "2025-01-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -712,7 +796,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_july_31_2024",
@@ -729,7 +815,8 @@
         "market_id": "",
         "title": "Fed rate cut by July 31?",
         "resolution_date": "2024-08-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -737,7 +824,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_june_12_2024",
@@ -754,7 +843,8 @@
         "market_id": "",
         "title": "Fed rate cut by June 12?",
         "resolution_date": "2024-06-13",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -762,7 +852,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_march_20_2024",
@@ -779,7 +871,8 @@
         "market_id": "",
         "title": "Fed rate cut by March 20?",
         "resolution_date": "2024-03-21",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -787,7 +880,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_fed_rate_cut_by_may_1_2024",
@@ -804,7 +899,8 @@
         "market_id": "",
         "title": "Fed rate cut by May 1?",
         "resolution_date": "2024-05-02",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -812,7 +908,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_increase_in_ecb_interest_rates_after_2024_december_meeting_2024",
@@ -829,7 +927,8 @@
         "market_id": "",
         "title": "Increase in ECB interest rates after 2024 December meeting?",
         "resolution_date": "2024-12-12",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -837,7 +936,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_no_change_in_fed_interest_rates_after_2024_september_meeting_2024",
@@ -854,7 +955,8 @@
         "market_id": "",
         "title": "No change in Fed interest rates after 2024 September meeting?",
         "resolution_date": "2024-09-18",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -862,7 +964,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_decrease_interest_rates_by_25_bps_after_its_january_meeting_2024",
@@ -879,7 +983,8 @@
         "market_id": "",
         "title": "Will the Fed decrease interest rates by 25 bps after its January meeting?",
         "resolution_date": "2024-01-31",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -887,7 +992,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_0_bps_after_its_june_meeting_2023",
@@ -904,7 +1011,8 @@
         "market_id": "",
         "title": "Will the Fed increase interest rates by 0 bps after its June meeting?",
         "resolution_date": "2023-06-14",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -912,7 +1020,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_march_meeting_2023",
@@ -929,7 +1039,8 @@
         "market_id": "",
         "title": "Will the Fed increase interest rates by 25 bps after its March meeting?",
         "resolution_date": "2023-03-22",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -937,7 +1048,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_25_bps_after_its_may_meeting_2023",
@@ -954,7 +1067,8 @@
         "market_id": "",
         "title": "Will the Fed increase interest rates by 25 bps after its May meeting?",
         "resolution_date": "2023-05-03",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -962,7 +1076,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_increase_interest_rates_by_50_bps_after_its_february_meeting_2023",
@@ -979,7 +1095,8 @@
         "market_id": "",
         "title": "Will the Fed increase interest rates by 50 bps after its February meeting?",
         "resolution_date": "2023-02-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -987,7 +1104,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_december_meeting_2023",
@@ -1004,7 +1123,8 @@
         "market_id": "",
         "title": "Will the Fed raise interest rates by 0 bps after its December meeting?",
         "resolution_date": "2023-12-13",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1012,7 +1132,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_0_bps_after_its_september_meeting_2023",
@@ -1029,7 +1151,8 @@
         "market_id": "",
         "title": "Will the Fed raise interest rates by 0 bps after its September meeting?",
         "resolution_date": "2023-09-20",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1037,7 +1160,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_2024_march_meeting_2024",
@@ -1054,7 +1179,8 @@
         "market_id": "",
         "title": "Will the Fed raise interest rates by 25+ bps after its 2024 March meeting?",
         "resolution_date": "2024-03-20",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1062,7 +1188,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_july_meeting_2023",
@@ -1079,7 +1207,8 @@
         "market_id": "",
         "title": "Will the Fed raise interest rates by 25 bps after its July meeting?",
         "resolution_date": "2023-07-26",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1087,7 +1216,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_interest_rates_by_25_bps_after_its_november_meeting_2023",
@@ -1104,7 +1235,8 @@
         "market_id": "",
         "title": "Will the Fed raise interest rates by 25 bps after its November meeting?",
         "resolution_date": "2023-11-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1112,7 +1244,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "monetary_policy_will_the_fed_raise_rates_again_in_2023_2024",
@@ -1129,7 +1263,8 @@
         "market_id": "",
         "title": "Will the Fed raise rates again in 2023?",
         "resolution_date": "2024-01-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1137,7 +1272,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "oct_selloff_2023",
@@ -1154,7 +1291,8 @@
         "market_id": "",
         "title": "Will a higher-for-longer rate scare trigger the October 2023 selloff?",
         "resolution_date": "2023-10-27",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       },
       {
         "link_type": "governed_reference",
@@ -1162,7 +1300,8 @@
         "market_id": "EHCpVy2PXpeA0LdG0jEx",
         "title": "Will the 10-year Treasury rate hit 5% by the end of 2023?",
         "resolution_date": "2023-10-27",
-        "quality_score": 0.74
+        "quality_score": 0.74,
+        "aggregation_policy": "max"
       },
       {
         "link_type": "governed_reference",
@@ -1170,7 +1309,8 @@
         "market_id": "rK52OtlkjovFyTcxPrxJ",
         "title": "Will the Real-time Sahm Rule Recession Indicator read above 0.5 percentage points by the end of 2023?",
         "resolution_date": "2023-10-27",
-        "quality_score": 0.36
+        "quality_score": 0.36,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1178,7 +1318,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "rate_hike_shock_2022",
@@ -1195,7 +1337,8 @@
         "market_id": "",
         "title": "Will aggressive Fed tightening trigger an equity selloff by mid-2022?",
         "resolution_date": "2022-06-15",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1203,7 +1346,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "covid_crash_2020",
@@ -1220,7 +1365,8 @@
         "market_id": "",
         "title": "Will COVID-19 trigger a global market panic by March 2020?",
         "resolution_date": "2020-03-16",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1228,7 +1374,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "eu_banking_contagion_2024",
@@ -1245,7 +1393,8 @@
         "market_id": "",
         "title": "Will EU banking contagion trigger a November 2024 equity drawdown?",
         "resolution_date": "2024-11-15",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1253,7 +1402,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_svb_contagion_2023",
@@ -1270,7 +1421,8 @@
         "market_id": "",
         "title": "SVB contagion risk in 2023",
         "resolution_date": "2023-03-31",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1278,7 +1430,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "svb_contagion_2023",
@@ -1295,7 +1449,8 @@
         "market_id": "",
         "title": "Will a major US bank failure trigger a March 2023 equity drawdown?",
         "resolution_date": "2023-03-10",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1303,7 +1458,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "aug_volatility_2024",
@@ -1320,7 +1477,8 @@
         "market_id": "",
         "title": "Will the August 2024 volatility spike produce a short equity drawdown?",
         "resolution_date": "2024-08-05",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1328,7 +1486,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_eu_ai_act_enforcement_2024",
@@ -1345,7 +1505,8 @@
         "market_id": "",
         "title": "EU AI Act enforcement in 2024",
         "resolution_date": "2024-08-01",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1353,7 +1514,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "metaculus_sec_crypto_action_2024",
@@ -1370,7 +1533,8 @@
         "market_id": "",
         "title": "SEC crypto enforcement action in 2024",
         "resolution_date": "2024-12-31",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1378,7 +1542,9 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   },
   {
     "event_family_id": "trade_technology_will_the_ethereum_merge_eip_3675_occur_by_october_1_2022_2022",
@@ -1395,7 +1561,8 @@
         "market_id": "",
         "title": "Will the Ethereum Merge (EIP-3675) occur by October 1, 2022?",
         "resolution_date": "2022-09-15",
-        "quality_score": null
+        "quality_score": null,
+        "aggregation_policy": "max"
       }
     ],
     "discovered": false,
@@ -1403,6 +1570,8 @@
     "approval_status": "APPROVED",
     "approval_reason": "Bootstrap imported from legacy governed universe.",
     "decided_by": "bootstrap",
-    "decided_at": "2026-03-25T22:03:29+00:00"
+    "decided_at": "2026-03-25T22:03:29+00:00",
+    "aggregation_policy": "max",
+    "_policy_backfilled": true
   }
 ]

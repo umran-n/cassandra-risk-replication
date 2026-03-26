@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from cassandra_risk.event_graph import build_event_graph
+from cassandra_risk.signal_contract import SignalContract
 
 
 class EventGraphTests(unittest.TestCase):
@@ -35,7 +36,8 @@ class EventGraphTests(unittest.TestCase):
         registry = {"selection_policy": {"minimum_text_overlap_score": 0.3, "minimum_quality_score": 0.4, "max_unlinked_candidates_per_theme": 8}}
         built, audit = build_event_graph(families, markets, registry)
         self.assertEqual(len(built[0]["linked_markets"]), 1)
-        self.assertEqual(built[0]["linked_markets"][0]["link_type"], "explicit_market_id")
+        self.assertIsInstance(built[0]["linked_markets"][0], SignalContract)
+        self.assertEqual(built[0]["linked_markets"][0].link_type, "explicit_market_id")
         self.assertEqual(audit[0]["event_family_id"], "us_debt_ceiling_2023")
 
     def test_build_event_graph_promotes_high_quality_unlinked_market_to_discovered_family(self) -> None:
@@ -56,7 +58,8 @@ class EventGraphTests(unittest.TestCase):
         built, _audit = build_event_graph(families, markets, registry)
         self.assertEqual(len(built), 1)
         self.assertTrue(built[0]["discovered"])
-        self.assertEqual(built[0]["linked_markets"][0]["link_type"], "autonomous_discovery")
+        self.assertIsInstance(built[0]["linked_markets"][0], SignalContract)
+        self.assertEqual(built[0]["linked_markets"][0].link_type, "autonomous_discovery")
 
     def test_build_event_graph_does_not_similarity_link_far_future_market_to_historical_family(self) -> None:
         families = [

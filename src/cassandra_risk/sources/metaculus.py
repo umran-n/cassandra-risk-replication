@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 from ..polymarket import infer_theme_and_category
+from ..signal_contract import DefaultContractNormaliser
 from ..signal_types import SourceMarket
 from .base import (
     adapter_credentials_state,
@@ -67,7 +68,8 @@ def fetch_metaculus_catalog(settings: dict, raw_dir: Path, limit: int | None = N
 
     rows = list(payload.get("results", payload if isinstance(payload, list) else []))
     source_priority = int(settings.get("priority", 999))
-    markets: list[dict] = []
+    normaliser = DefaultContractNormaliser()
+    markets = []
     for item in rows:
         question = item.get("question") or {}
         title = str(item.get("title") or question.get("title") or "").strip()
@@ -107,7 +109,7 @@ def fetch_metaculus_catalog(settings: dict, raw_dir: Path, limit: int | None = N
             probability=market.current_probability,
             source_priority=source_priority,
         )
-        markets.append(market.to_dict())
+        markets.append(normaliser.normalise(market))
 
     status = status_record(
         "metaculus",

@@ -1,51 +1,51 @@
 {
-  "asof": "2026-03-25",
-  "rsi": 0.7095718536183392,
-  "total_hazard": 0.409300544970425,
+  "asof": "2026-03-26",
+  "rsi": 0.10069284928495392,
+  "total_hazard": 8.931191808566942,
   "event_count": 3,
-  "dominant_theme": "monetary_policy",
-  "dominant_event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
+  "dominant_theme": "geopolitical",
+  "dominant_event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
   "theme_hazard_shares": {
-    "geopolitical": 0.06846217040941832,
-    "monetary_policy": 0.9315378295905816
+    "geopolitical": 0.9525076000939665,
+    "monetary_policy": 0.047492399906033454
   },
   "signal_count_by_source": {
     "polymarket": 3
   },
   "events": [
     {
-      "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
-      "title": "Will 1 Fed rate cut happen in 2026?",
+      "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
+      "title": "Another Israeli military action against Iran in 2024?",
       "source": "polymarket",
-      "market_id": "616903",
-      "structural_theme": "monetary_policy",
-      "category": "Monetary",
-      "selected_probability_governed": 0.23464959687257633,
-      "hazard_contribution": 0.38127894131199197,
-      "theme_cap_applied": true,
-      "calibration_applied": "becker"
-    },
-    {
-      "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
-      "title": "Russia x Ukraine ceasefire by March 31, 2026?",
-      "source": "polymarket",
-      "market_id": "561829",
+      "market_id": "1551490",
       "structural_theme": "geopolitical",
       "category": "Kinetic",
-      "selected_probability_governed": 0.0020419769715737156,
-      "hazard_contribution": 0.020015431184595017,
+      "selected_probability_governed": 0.86,
+      "hazard_contribution": 8.45785450286591,
       "theme_cap_applied": true,
       "calibration_applied": "none"
     },
     {
-      "event_family_id": "geopolitical_another_israeli_military_action_against_iran_in_2024_2025",
-      "title": "Will Iran conduct a military action against Israel on March 19, 2026?",
+      "event_family_id": "monetary_policy_fed_emergency_rate_cut_in_2024_2025",
+      "title": "Fed emergency rate cut in 2024?",
       "source": "polymarket",
-      "market_id": "1628472",
+      "market_id": "616903",
+      "structural_theme": "monetary_policy",
+      "category": "Monetary",
+      "selected_probability_governed": 0.26,
+      "hazard_contribution": 0.42416373300995136,
+      "theme_cap_applied": false,
+      "calibration_applied": "becker"
+    },
+    {
+      "event_family_id": "geopolitical_russia_x_ukraine_ceasefire_in_2024_2025",
+      "title": "Russia x Ukraine Ceasefire in 2024?",
+      "source": "polymarket",
+      "market_id": "561829",
       "structural_theme": "geopolitical",
       "category": "Kinetic",
-      "selected_probability_governed": 0.0008167907886294863,
-      "hazard_contribution": 0.008006172473838008,
+      "selected_probability_governed": 0.005,
+      "hazard_contribution": 0.04917357269108088,
       "theme_cap_applied": true,
       "calibration_applied": "none"
     }

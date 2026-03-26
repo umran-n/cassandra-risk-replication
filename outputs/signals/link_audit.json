@@ -4458,17 +4458,17 @@
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "0lS8Ql5Pps",
-    "title": "If James Talarico is the Democratic nominee, will he win the Texas Senate race in 2026?",
+    "market_id": "0PNtC5yg5u",
+    "title": "Will there be any significant legislation or executive orders cancelling vote-by-mail in the 2026 federal elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "2lZdlsyUPh",
-    "title": "Will Democrats control both the House and the Senate after the 2026 midterms?",
-    "link_score": 0.0,
+    "market_id": "2LzSAhsQNs",
+    "title": "If Israel strikes Iran by March 31, 2026, will the Iranian regime fall in 2026?",
+    "link_score": 0.155556,
     "link_status": "unlinked"
   },
   {
@@ -4482,6 +4482,14 @@
   {
     "event_family_id": "",
     "source": "manifold",
+    "market_id": "EQtdtSLuph",
+    "title": "Will America declare war on Iran before the end of 2026",
+    "link_score": 0.152632,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "manifold",
     "market_id": "NstCUAzyt2",
     "title": "USA x Iran ceasefire by end of march 31?",
     "link_score": 0.166667,
@@ -4490,17 +4498,17 @@
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "SyhgEZC68s",
-    "title": "Will the Democrats win the 2026 Texas Senate Election?",
+    "market_id": "OgUy9yu6Zy",
+    "title": "Will the Russia-Ukraine war end before the end of 2026?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "UlZEC6Rys2",
-    "title": "Russia-Ukraine ceasefire before end of Iran War",
-    "link_score": 0.0,
+    "market_id": "Uy556NdlPg",
+    "title": "Will Trump abandon the Iran war?",
+    "link_score": 0.158824,
     "link_status": "unlinked"
   },
   {
@@ -4522,24 +4530,16 @@
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "h2ZUPPQCgn",
-    "title": "Will Crude oil supply impact due to Persian Gulf military conflict exceed 10 million barrels/day on May 31, 2026?",
-    "link_score": 0.135714,
+    "market_id": "gCgzdyOZ2A",
+    "title": "Will the war with Iran affect USD reserve currency status relative to yuan?",
+    "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "manifold",
-    "market_id": "qSR6cZh028",
-    "title": "Israel x Turkey military clash before 2027?",
-    "link_score": 0.166667,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "manifold",
-    "market_id": "s6IEnP0Ig8",
-    "title": "Will the Democrats win a majority in the House of Representatives in the 2026 elections?",
+    "market_id": "q2CZUhn500",
+    "title": "Will the US invade Iran before the end of 2026?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
@@ -4548,22 +4548,6 @@
     "source": "manifold",
     "market_id": "sQSLCEuqIO",
     "title": "Trump impeached before Iran war's end?",
-    "link_score": 0.0,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "manifold",
-    "market_id": "uIuzuCUILu",
-    "title": "If Gavin Newsome is the Democratic nominee for 2028 will he win the election?",
-    "link_score": 0.0,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "manifold",
-    "market_id": "zq2COQ5Qzq",
-    "title": "100 military deaths in a conflict between Israel and Turkey before 2030?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
@@ -4685,6 +4669,22 @@
     "market_id": "1168844",
     "title": "Will the upper bound of the target federal funds rate be 2.0% at the end of 2026?",
     "link_score": 0.15,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "1170143",
+    "title": "Will the US officially declare war on Iran by March 31, 2026?",
+    "link_score": 0.152632,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "1170144",
+    "title": "Will the US officially declare war on Iran by December 31, 2026?",
+    "link_score": 0.152632,
     "link_status": "unlinked"
   },
   {
@@ -5866,41 +5866,17 @@
   {
     "event_family_id": "",
     "source": "polymarket",
+    "market_id": "1707316",
+    "title": "Will the US officially declare war on Iran by April 30, 2026?",
+    "link_score": 0.152632,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
     "market_id": "1709275",
     "title": "Will the next diplomatic US-Iran meeting be in Russia?",
     "link_score": 0.166667,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "polymarket",
-    "market_id": "562828",
-    "title": "2026 Balance of Power: D Senate, D House",
-    "link_score": 0.0,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "polymarket",
-    "market_id": "562829",
-    "title": "2026 Balance of Power: D Senate, R House",
-    "link_score": 0.0,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "polymarket",
-    "market_id": "562830",
-    "title": "2026 Balance of Power: R Senate, D House",
-    "link_score": 0.0,
-    "link_status": "unlinked"
-  },
-  {
-    "event_family_id": "",
-    "source": "polymarket",
-    "market_id": "562831",
-    "title": "2026 Balance of Power: R Senate, R House",
-    "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
@@ -6050,144 +6026,192 @@
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708764",
-    "title": "Will Bryce Reeves be the Republican nominee for Senate in Virginia?",
+    "market_id": "789952",
+    "title": "Will CDU win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708765",
-    "title": "Will Kim Farington be the Republican nominee for Senate in Virginia?",
+    "market_id": "789953",
+    "title": "Will AfD win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708766",
-    "title": "Will Al Mina be the Republican nominee for Senate in Virginia?",
+    "market_id": "789954",
+    "title": "Will Gr\u00fcne win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708767",
-    "title": "Will David Williams be the Republican nominee for Senate in Virginia?",
+    "market_id": "789955",
+    "title": "Will SPD win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708768",
-    "title": "Will Jason Miyares be the Republican nominee for Senate in Virginia?",
+    "market_id": "789956",
+    "title": "Will FDP win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708769",
-    "title": "Will Winsome Earle-Sears be the Republican nominee for Senate in Virginia?",
+    "market_id": "789957",
+    "title": "Will Linke win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708770",
-    "title": "Will Bert Mizusawa be the Republican nominee for Senate in Virginia?",
+    "market_id": "789958",
+    "title": "Will FW win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708771",
-    "title": "Will Chuck Smith be the Republican nominee for Senate in Virginia?",
+    "market_id": "789959",
+    "title": "Will BSW win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708772",
-    "title": "Will Alex De Paula be the Republican nominee for Senate in Virginia?",
+    "market_id": "789972",
+    "title": "Will Party A win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708773",
-    "title": "Will Candidate H be the Republican nominee for Senate in Virginia?",
+    "market_id": "789973",
+    "title": "Will Party B win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708774",
-    "title": "Will Candidate I be the Republican nominee for Senate in Virginia?",
+    "market_id": "789974",
+    "title": "Will Party C win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708775",
-    "title": "Will Candidate J be the Republican nominee for Senate in Virginia?",
+    "market_id": "789975",
+    "title": "Will Party D win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708776",
-    "title": "Will Candidate K be the Republican nominee for Senate in Virginia?",
+    "market_id": "789976",
+    "title": "Will Party E win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708777",
-    "title": "Will Candidate L be the Republican nominee for Senate in Virginia?",
+    "market_id": "789977",
+    "title": "Will Party F win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708778",
-    "title": "Will Candidate M be the Republican nominee for Senate in Virginia?",
+    "market_id": "789978",
+    "title": "Will Party G win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708779",
-    "title": "Will Candidate N be the Republican nominee for Senate in Virginia?",
+    "market_id": "789979",
+    "title": "Will Party H win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708780",
-    "title": "Will Candidate O be the Republican nominee for Senate in Virginia?",
+    "market_id": "789980",
+    "title": "Will Party I win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },
   {
     "event_family_id": "",
     "source": "polymarket",
-    "market_id": "708781",
-    "title": "Will another candidate be the Republican nominee for Senate in Virginia?",
+    "market_id": "789981",
+    "title": "Will Party J win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789982",
+    "title": "Will Party K win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789983",
+    "title": "Will Party L win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789984",
+    "title": "Will Party M win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789985",
+    "title": "Will Party N win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789986",
+    "title": "Will Party O win the most seats in the 2026 Berlin state elections?",
+    "link_score": 0.0,
+    "link_status": "unlinked"
+  },
+  {
+    "event_family_id": "",
+    "source": "polymarket",
+    "market_id": "789987",
+    "title": "Will another party win the most seats in the 2026 Berlin state elections?",
     "link_score": 0.0,
     "link_status": "unlinked"
   },

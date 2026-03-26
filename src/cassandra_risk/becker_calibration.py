@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 
+from .signal_contract import SignalContract, ensure_signal_contract
 from .utils import clamp
 
 
@@ -133,3 +134,15 @@ def apply_becker_calibration(
             day_events[event_id] = item
         updated[day_string] = day_events
     return updated
+
+
+class BeckerCalibrationLayer:
+    @staticmethod
+    def apply(contract: SignalContract | dict, config: dict | None = None) -> SignalContract:
+        typed = ensure_signal_contract(contract)
+        calibrated, metadata = calibrate_probability(float(typed.probability_raw or 0.0), typed.structural_theme, config or {})
+        return typed.with_updates(
+            probability_calibrated=calibrated,
+            efficiency_gap_applied=float(metadata.get("becker_efficiency_gap") or 0.0),
+            calibration_applied="becker",
+        )
