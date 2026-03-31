@@ -24,6 +24,7 @@ It also distinguishes what appears to be:
 Cassandra-Risk is already live on:
 
 - [RapidAPI](https://rapidapi.com/umran-jkXU3nEmi/api/cassandra-risk-governed-macro-fragility-signal-api)
+- [Zyla](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
 - [GitHub](https://github.com/umran-n/cassandra-risk-replication)
 
 The next goal is wider distribution without losing:
@@ -47,7 +48,7 @@ not just brand appeal.
 
 ### 1. Zyla API Hub
 
-Status: `High priority / immediate`
+Status: `Live now`
 
 Best role:
 
@@ -84,11 +85,21 @@ Implication for Cassandra:
   - clear endpoint catalog
   - marketplace-ready branding
 
-Recommendation:
+What was launched:
 
-- mirror the RapidAPI listing to Zyla first
-- keep the same public positioning
-- keep the same price anchor for the first pass
+- six public endpoints mirrored and tested live against Railway
+- three active public plans
+- seven-day trial enabled
+- public listing now live on Zyla
+
+Launch notes:
+
+- Zyla fixed the plan price ladder; Cassandra controls quotas and RPM
+- active Zyla plans at launch:
+  - `Basic`: `$24.99`, `500/month`, `60 rpm`
+  - `Pro`: `$49.99`, `2,000/month`, `60 rpm`
+  - `ProPlus`: `$99.99`, `5,000/month`, `60 rpm`
+- current category displays as `Other`
 
 ### 2. Postman API Network
 

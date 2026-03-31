@@ -99,6 +99,13 @@ Recommended deployment environment variables:
 - `CASSANDRA_OPERATOR_KEY`
 - `CASSANDRA_BOOTSTRAP_ON_START=1`
 
+## Public Marketplace Listings
+
+Cassandra-Risk is currently listed publicly on:
+
+- [RapidAPI listing](https://rapidapi.com/umran-jkXU3nEmi/api/cassandra-risk-governed-macro-fragility-signal-api)
+- [Zyla listing](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
+
 ## Current API Surface
 
 Public Tier 1 routes:

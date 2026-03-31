@@ -24,11 +24,13 @@ Cassandra-Risk has now crossed the full research-to-product line:
 - a public GitHub repository with code, artifacts, and archived PDFs
 - a governed live signal engine deployed to Railway
 - a commercial RapidAPI listing with public plans
+- a public Zyla listing with mirrored public endpoints and plans
 - PayPal linked for payouts
 
 The result is a live sellable API:
 
 - public listing: [RapidAPI listing](https://rapidapi.com/umran-jkXU3nEmi/api/cassandra-risk-governed-macro-fragility-signal-api)
+- secondary listing: [Zyla listing](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
 - canonical repo: [GitHub repository](https://github.com/umran-n/cassandra-risk-replication)
 - live backend domain: [Railway backend](https://cassandra-risk.up.railway.app)
 - health check: [Railway health](https://cassandra-risk.up.railway.app/health)
@@ -70,6 +72,7 @@ fragility, Cassandra-Risk exposes a forward-looking event-driven overlay with:
 ### Marketplace and Product Links
 
 - [RapidAPI public listing](https://rapidapi.com/umran-jkXU3nEmi/api/cassandra-risk-governed-macro-fragility-signal-api)
+- [Zyla public listing](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
 - [GitHub repository](https://github.com/umran-n/cassandra-risk-replication)
 
 ### Live Backend Links
@@ -96,6 +99,9 @@ The public Tier 1 surface currently exposed through RapidAPI is:
 - `GET /v1/signals/latest`
 - `GET /v1/signals/latest/{event_family_id}`
 - `GET /v1/sources/status`
+
+The same public surface is now mirrored on Zyla, with a concrete example URL
+used for the event-family endpoint in the marketplace tester.
 
 ### Canonical Rapid Base URL
 
@@ -134,6 +140,27 @@ https://cassandra-risk.up.railway.app
 - `ULTRA`: off
 - `MEGA`: off
 
+## Secondary Marketplace Structure
+
+### Zyla
+
+- public listing: [Zyla public listing](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
+- status: `Public / moderator review path active`
+- backend target: Railway direct proxy
+- hidden upstream auth: `X-API-Key`
+
+Active Zyla plans:
+
+- `Basic`: `$24.99/month`, `500/month`, `60 rpm`
+- `Pro`: `$49.99/month`, `2,000/month`, `60 rpm`
+- `ProPlus`: `$99.99/month`, `5,000/month`, `60 rpm`
+
+Notes:
+
+- seven-day trial enabled
+- annual plans not enabled at launch
+- listing currently appears under category `Other`
+
 ## Launch-State Checklist
 
 ### Product and Research
@@ -162,6 +189,9 @@ https://cassandra-risk.up.railway.app
 - [x] all public endpoints tested successfully through Rapid
 - [x] public plans configured
 - [x] PayPal payouts linked
+- [x] Zyla project created
+- [x] six public endpoints mirrored and tested through Zyla
+- [x] Zyla plans configured and public listing submitted
 
 ## Infrastructure and Moving Parts
 
@@ -171,6 +201,7 @@ https://cassandra-risk.up.railway.app
 GitHub repo
   -> Railway deployment
   -> RapidAPI gateway
+  -> Zyla gateway
   -> End users / subscribers
 ```
 
@@ -351,6 +382,16 @@ Role:
 - public discovery
 - quick developer onboarding
 
+### 1b. Zyla API Hub
+
+Status: `Live now`
+
+Role:
+
+- secondary commercial marketplace
+- additional discovery surface
+- redundant public distribution path
+
 ### 2. Postman API Network
 
 Role:
@@ -430,11 +471,12 @@ commercial listings, not as an assumed green light.
 2. publish LinkedIn launch post
 3. publish X / Twitter launch post
 4. share the RapidAPI listing URL
-5. share the GitHub repo URL
-6. monitor first usage and subscriptions
-7. decide whether to add RapidAPI docs page content immediately
-8. plan Postman API Network listing
-9. plan AWS Data Exchange feasibility separately
+5. share the Zyla listing URL
+6. share the GitHub repo URL
+7. monitor first usage and subscriptions
+8. decide whether to add RapidAPI docs page content immediately
+9. plan Postman API Network listing
+10. plan AWS Data Exchange feasibility separately
 
 ## Closing Note
 
