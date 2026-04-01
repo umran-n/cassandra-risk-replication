@@ -75,6 +75,12 @@ fragility, Cassandra-Risk exposes a forward-looking event-driven overlay with:
 - [Zyla public listing](https://zylalabs.com/api-marketplace/other/cassandra+risk+-+governed+macro-fragility+signal+api/12289)
 - [GitHub repository](https://github.com/umran-n/cassandra-risk-replication)
 
+### Distribution State
+
+Current marketplace and discovery-channel status is tracked in:
+
+- [Distribution state summary](Cassandra_Risk_Distribution_State.md)
+
 ### Live Backend Links
 
 These are infrastructure/operator links, not the canonical commercial entry
@@ -192,6 +198,7 @@ Notes:
 - [x] Zyla project created
 - [x] six public endpoints mirrored and tested through Zyla
 - [x] Zyla plans configured and public listing submitted
+- [x] Postman collection path configured and validated through Rapid-backed auth
 
 ## Infrastructure and Moving Parts
 
