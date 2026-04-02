@@ -1,0 +1,77 @@
+{
+  "manual_events": [
+    {
+      "ticker": "GOOGL",
+      "announcement_date": "2024-04-25",
+      "event_family": "dual_announcement",
+      "event_title": "Alphabet first dividend and $70B buyback",
+      "authorization_amount": 70000000000,
+      "dividend_per_share": 0.20,
+      "manual_source_urls": [
+        "https://abc.xyz/investor/"
+      ]
+    },
+    {
+      "ticker": "META",
+      "announcement_date": "2024-02-01",
+      "event_family": "dual_announcement",
+      "event_title": "Meta initiates dividend and expands buyback authorization",
+      "authorization_amount": 50000000000,
+      "dividend_per_share": 0.50,
+      "manual_source_urls": [
+        "https://investor.fb.com/"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "announcement_date": "2021-09-14",
+      "event_family": "buyback_authorization",
+      "event_title": "Microsoft $60B repurchase authorization",
+      "authorization_amount": 60000000000,
+      "manual_source_urls": [
+        "https://www.microsoft.com/en-us/Investor/"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "announcement_date": "2024-09-16",
+      "event_family": "buyback_authorization",
+      "event_title": "Microsoft renews $60B repurchase authorization",
+      "authorization_amount": 60000000000,
+      "manual_source_urls": [
+        "https://www.microsoft.com/en-us/Investor/"
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "announcement_date": "2024-05-02",
+      "event_family": "dual_announcement",
+      "event_title": "Apple $110B repurchase authorization and dividend increase",
+      "authorization_amount": 110000000000,
+      "dividend_per_share": 0.25,
+      "manual_source_urls": [
+        "https://investor.apple.com/"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "announcement_date": "2025-10-30",
+      "event_family": "internal_reallocation",
+      "event_title": "Amazon AI capex acceleration / internal reallocation signal",
+      "manual_source_urls": [
+        "https://www.aboutamazon.com/news/company-news"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "announcement_date": "2024-05-22",
+      "event_family": "signal_reset",
+      "event_title": "NVIDIA stock split and dividend increase signal reset",
+      "dividend_per_share": 0.01,
+      "manual_source_urls": [
+        "https://investor.nvidia.com/"
+      ]
+    }
+  ],
+  "exclusions": []
+}

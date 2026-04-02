@@ -3,4 +3,9 @@ __pycache__/
 .pytest_cache/
 data/raw/
 data/processed/
+data/qca/raw/
 outputs/
+.vendor/
+vendorpkgs/
+.venvqca/
+tmp*/

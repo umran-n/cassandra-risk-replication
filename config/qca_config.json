@@ -1,0 +1,221 @@
+{
+  "data_tier": "public_proxy",
+  "sample": {
+    "start": "2019-01-01",
+    "end": "2025-12-15",
+    "lookback_start": "2018-01-01",
+    "oos_start": "2025-01-01"
+  },
+  "sec": {
+    "user_agent": "Codex QCA Replication openai@example.com"
+  },
+  "market_data": {
+    "provider": "Yahoo Finance",
+    "chart_url_template": "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?period1={period1}&period2={period2}&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+    "options_url_template": "https://query2.finance.yahoo.com/v7/finance/options/{symbol}?date={expiry_epoch}",
+    "market_symbol": "SPY",
+    "sector_symbol": "XLK",
+    "vix_symbol": "^VIX"
+  },
+  "firms": [
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "cik": "0001652044",
+      "archetype": "Two-Particle Interference",
+      "target_count": 5,
+      "particle_variant": "standard"
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms, Inc.",
+      "cik": "0001326801",
+      "archetype": "Phase Transition Engineering",
+      "target_count": 4,
+      "particle_variant": "standard"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "cik": "0000789019",
+      "archetype": "Regime-Sensitive",
+      "target_count": 19,
+      "particle_variant": "standard"
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "cik": "0000320193",
+      "archetype": "Particle-Dominant",
+      "target_count": 23,
+      "particle_variant": "standard"
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "cik": "0001018724",
+      "archetype": "Transducer",
+      "target_count": 23,
+      "particle_variant": "internal_reallocation"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "cik": "0001045810",
+      "archetype": "Wave-Dominant",
+      "target_count": 18,
+      "particle_variant": "standard"
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "cik": "0001341439",
+      "archetype": "Entangled State",
+      "target_count": 16,
+      "particle_variant": "standard"
+    }
+  ],
+  "discovery": {
+    "manual_overlay_path": "data/qca/seeds/manual_event_overrides.json",
+    "forms": [
+      "8-K"
+    ],
+    "keyword_groups": {
+      "buyback": [
+        "share repurchase",
+        "repurchase program",
+        "repurchase authorization",
+        "stock repurchase",
+        "buyback",
+        "authorized to repurchase"
+      ],
+      "dividend": [
+        "cash dividend",
+        "quarterly dividend",
+        "dividend of",
+        "dividend increase",
+        "first-ever dividend"
+      ],
+      "split": [
+        "stock split",
+        "split",
+        "10-for-1",
+        "4-for-1"
+      ],
+      "internal_reallocation": [
+        "capital expenditures",
+        "capex",
+        "ai infrastructure",
+        "reallocation",
+        "investment guidance",
+        "weaponized capex"
+      ]
+    },
+    "selection_score_threshold": 4
+  },
+  "management_sentiment": {
+    "lookback_days": 120,
+    "model_preference": "finbert",
+    "fallback_model": "lexical_public_proxy",
+    "positive_terms": [
+      "accelerate",
+      "aligned",
+      "benefit",
+      "confidence",
+      "constructive",
+      "disciplined",
+      "durable",
+      "efficient",
+      "expansion",
+      "growth",
+      "improve",
+      "leadership",
+      "opportunity",
+      "optimize",
+      "returning",
+      "strength",
+      "strong",
+      "support",
+      "tailwind"
+    ],
+    "negative_terms": [
+      "challenge",
+      "constrained",
+      "decline",
+      "decelerate",
+      "depressed",
+      "destructive",
+      "difficult",
+      "headwind",
+      "impairment",
+      "misalignment",
+      "pressure",
+      "restructuring",
+      "risk",
+      "softness",
+      "uncertain",
+      "volatility",
+      "weakness"
+    ]
+  },
+  "market_sentiment": {
+    "price_proxy_window_days": 20,
+    "scale": 0.15
+  },
+  "options_sentiment": {
+    "realized_skew_window_days": 20,
+    "min_expiry_offset_days": 20
+  },
+  "theta": {
+    "h_t_default": 1.0
+  },
+  "regression": {
+    "bootstrap_resamples": 1000,
+    "seed": 20260402,
+    "time_splits": [
+      {
+        "name": "2019_2021",
+        "start": "2019-01-01",
+        "end": "2021-12-31"
+      },
+      {
+        "name": "2022_2023",
+        "start": "2022-01-01",
+        "end": "2023-12-31"
+      },
+      {
+        "name": "2024_2025",
+        "start": "2024-01-01",
+        "end": "2025-12-15"
+      }
+    ]
+  },
+  "coherence": {
+    "horizons": [
+      1,
+      2,
+      3,
+      5,
+      10,
+      20,
+      40,
+      60,
+      90,
+      120
+    ],
+    "tau_min": 0.5,
+    "tau_max": 300.0,
+    "tau_step": 0.5,
+    "min_post_days": 60,
+    "min_fit_r2": 0.8
+  },
+  "entanglement": {
+    "tail_horizon_days": 50,
+    "catastrophic_threshold": -0.3,
+    "major_drawdown_threshold": -0.2,
+    "contagion_threshold": 0.3
+  },
+  "outputs": {
+    "latest_dir": "outputs/qca/latest"
+  }
+}

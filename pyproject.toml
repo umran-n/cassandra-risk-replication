@@ -1,5 +1,30 @@
 [project]
 name = "cassandra-risk-replication"
 version = "0.1.0"
-description = "Closest-public replication of the Cassandra-Risk backtests"
+description = "Closest-public replication pipelines for Cassandra-Risk and Quantum Capital Allocation research"
 requires-python = ">=3.13"
+dependencies = []
+
+[project.optional-dependencies]
+analysis = [
+  "numpy>=2.2",
+  "scipy>=1.16",
+  "scikit-learn>=1.8",
+]
+scraping = [
+  "beautifulsoup4>=4.14",
+  "lxml>=6.0",
+]
+finbert = [
+  "transformers>=4.48",
+  "torch>=2.6",
+]
+full = [
+  "beautifulsoup4>=4.14",
+  "lxml>=6.0",
+  "numpy>=2.2",
+  "scipy>=1.16",
+  "scikit-learn>=1.8",
+  "torch>=2.6",
+  "transformers>=4.48",
+]
