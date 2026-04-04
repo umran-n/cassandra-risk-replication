@@ -20,11 +20,15 @@ if str(SRC) not in sys.path:
 from cassandra_risk.api_service import (  # noqa: E402
     build_live_signal_artifacts,
     get_event_family_detail,
+    list_family_breakdown,
     get_signal_snapshot,
     list_event_families,
     list_link_audit,
+    list_latest_theme_decomposition,
+    list_rsi_history,
     list_signal_snapshots,
     list_source_markets,
+    list_theme_decomposition_history,
     load_payload,
     registry_meta,
     signal_output_dir,
@@ -37,6 +41,7 @@ OUTPUT_DIR = signal_output_dir(ROOT)
 API_VERSION = "0.6.4"
 PUBLIC_API_KEY_ENV = "CASSANDRA_API_KEY"
 OPERATOR_API_KEY_ENV = "CASSANDRA_OPERATOR_KEY"
+ENTERPRISE_API_KEY_ENV = "CASSANDRA_ENTERPRISE_KEY"
 BOOTSTRAP_ON_START_ENV = "CASSANDRA_BOOTSTRAP_ON_START"
 
 
@@ -127,6 +132,15 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
             return True
         return self._header_value("X-Operator-Key") == configured
 
+    def _enterprise_key_valid(self) -> bool:
+        enterprise_key = self._configured_key(ENTERPRISE_API_KEY_ENV)
+        operator_key = self._configured_key(OPERATOR_API_KEY_ENV)
+        presented_enterprise = self._header_value("X-Enterprise-Key")
+        presented_operator = self._header_value("X-Operator-Key")
+        if enterprise_key:
+            return presented_enterprise == enterprise_key or (operator_key and presented_operator == operator_key)
+        return self._operator_key_valid()
+
     def _rate_limit_token(self) -> str:
         return self._header_value("X-API-Key") or self._header_value("X-Operator-Key") or self.client_address[0]
 
@@ -166,6 +180,12 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
     def _require_operator_access(self) -> bool:
         if not self._operator_key_valid():
             self._send_json({"error": "unauthorized", "message": "Valid X-Operator-Key required."}, 401)
+            return False
+        return True
+
+    def _require_enterprise_access(self) -> bool:
+        if not self._enterprise_key_valid():
+            self._send_json({"error": "unauthorized", "message": "Valid X-Enterprise-Key required."}, 401)
             return False
         return True
 
@@ -255,6 +275,42 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                 return
             payload = load_payload(ROOT, "rsi_snapshot.json")
             return self._send_json(payload or {"error": "rsi_snapshot.json not found"}, 200 if payload is not None else 404)
+        if path == "/v1/enterprise/rsi/history":
+            if not self._require_enterprise_access():
+                return
+            payload = list_rsi_history(
+                ROOT,
+                start=_query_value(query, "start"),
+                end=_query_value(query, "end"),
+                limit=_query_int(query, "limit"),
+            )
+            return self._send_json(payload)
+        if path == "/v1/enterprise/themes/latest":
+            if not self._require_enterprise_access():
+                return
+            return self._send_json(list_latest_theme_decomposition(ROOT))
+        if path == "/v1/enterprise/themes/history":
+            if not self._require_enterprise_access():
+                return
+            payload = list_theme_decomposition_history(
+                ROOT,
+                start=_query_value(query, "start"),
+                end=_query_value(query, "end"),
+                theme=_query_value(query, "theme"),
+                limit=_query_int(query, "limit"),
+            )
+            return self._send_json(payload)
+        if path == "/v1/enterprise/families/latest":
+            if not self._require_enterprise_access():
+                return
+            payload = list_family_breakdown(
+                ROOT,
+                theme=_query_value(query, "theme"),
+                selection_state=_query_value(query, "selection_state"),
+                discovered=_query_bool(query, "discovered"),
+                limit=_query_int(query, "limit"),
+            )
+            return self._send_json(payload)
         if path == "/v1/graph/link-audit":
             if not self._require_operator_access():
                 return
@@ -296,6 +352,10 @@ class SignalAPIHandler(BaseHTTPRequestHandler):
                     "/v1/signals/latest",
                     "/v1/signals/latest/{event_family_id}",
                     "/v1/rsi/latest",
+                    "/v1/enterprise/rsi/history",
+                    "/v1/enterprise/themes/latest",
+                    "/v1/enterprise/themes/history",
+                    "/v1/enterprise/families/latest",
                     "/v1/graph/link-audit",
                     "/v1/admin/promotion/queue",
                     "/v1/admin/promotion/audit",

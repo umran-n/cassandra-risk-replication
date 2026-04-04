@@ -157,8 +157,10 @@ class TestAPIContract(unittest.TestCase):
         self.original_output_dir = api_app.OUTPUT_DIR
         self.original_public_key = os.environ.get("CASSANDRA_API_KEY")
         self.original_operator_key = os.environ.get("CASSANDRA_OPERATOR_KEY")
+        self.original_enterprise_key = os.environ.get("CASSANDRA_ENTERPRISE_KEY")
         os.environ["CASSANDRA_API_KEY"] = "public-test-key"
         os.environ["CASSANDRA_OPERATOR_KEY"] = "operator-test-key"
+        os.environ["CASSANDRA_ENTERPRISE_KEY"] = "enterprise-test-key"
         api_app.ROOT = self.root
         api_app.OUTPUT_DIR = api_app.signal_output_dir(self.root)
         api_app.SignalAPIHandler._rate_limit_state.clear()
@@ -188,6 +190,10 @@ class TestAPIContract(unittest.TestCase):
             os.environ.pop("CASSANDRA_OPERATOR_KEY", None)
         else:
             os.environ["CASSANDRA_OPERATOR_KEY"] = self.original_operator_key
+        if self.original_enterprise_key is None:
+            os.environ.pop("CASSANDRA_ENTERPRISE_KEY", None)
+        else:
+            os.environ["CASSANDRA_ENTERPRISE_KEY"] = self.original_enterprise_key
         self.collect_patcher.stop()
         shutil.rmtree(self.root, ignore_errors=True)
 
@@ -220,6 +226,9 @@ class TestAPIContract(unittest.TestCase):
 
     def _operator_headers(self) -> dict[str, str]:
         return {"X-Operator-Key": "operator-test-key"}
+
+    def _enterprise_headers(self) -> dict[str, str]:
+        return {"X-Enterprise-Key": "enterprise-test-key"}
 
     def _first_candidate_id(self) -> str:
         _status, payload = self._get_json("/v1/admin/promotion/queue", headers=self._operator_headers())
@@ -359,6 +368,146 @@ class TestAPIContract(unittest.TestCase):
         self.assertEqual(200, first_status)
         self.assertEqual(429, second_status)
         self.assertEqual("rate_limited", second["error"])
+
+    def test_enterprise_endpoints_require_enterprise_key(self) -> None:
+        status, payload = self._get_json("/v1/enterprise/rsi/history", headers=self._public_headers())
+        self.assertEqual(401, status)
+        self.assertEqual("unauthorized", payload["error"])
+
+    def test_enterprise_rsi_history_returns_filtered_rows(self) -> None:
+        latest_dir = self.root / "outputs" / "latest"
+        latest_dir.mkdir(parents=True, exist_ok=True)
+        (latest_dir / "daily_rsi_decomposition.csv").write_text(
+            "\n".join(
+                [
+                    "date,total_hazard,rsi,rsi_drag,active_event_count,dominant_event_id,dominant_category,dominant_theme,probability_component_hazard,severity_component_hazard,velocity_component_hazard,persistence_component_hazard,probability_share_of_hazard,severity_share_of_hazard,velocity_share_of_hazard,persistence_share_of_hazard",
+                    "2026-03-24,1.2,0.9,0.1,2,event_a,Kinetic,geopolitical,0.1,0.3,0.4,0.4,0.1,0.25,0.33,0.33",
+                    "2026-03-25,2.4,0.7,0.3,3,event_b,Monetary,monetary_policy,0.2,0.6,0.7,0.9,0.08,0.25,0.29,0.38",
+                ]
+            ),
+            encoding="utf-8",
+        )
+
+        status, payload = self._get_json(
+            "/v1/enterprise/rsi/history?start=2026-03-25&limit=1",
+            headers=self._enterprise_headers(),
+        )
+        self.assertEqual(200, status)
+        self.assertEqual(1, len(payload))
+        self.assertEqual("2026-03-25", payload[0]["date"])
+        self.assertEqual("event_b", payload[0]["dominant_event_id"])
+
+    def test_operator_key_can_access_enterprise_history(self) -> None:
+        latest_dir = self.root / "outputs" / "latest"
+        latest_dir.mkdir(parents=True, exist_ok=True)
+        (latest_dir / "daily_rsi_decomposition.csv").write_text(
+            "\n".join(
+                [
+                    "date,total_hazard,rsi,rsi_drag,active_event_count,dominant_event_id,dominant_category,dominant_theme,probability_component_hazard,severity_component_hazard,velocity_component_hazard,persistence_component_hazard,probability_share_of_hazard,severity_share_of_hazard,velocity_share_of_hazard,persistence_share_of_hazard",
+                    "2026-03-26,3.1,0.5,0.2,4,event_z,Kinetic,geopolitical,0.4,0.8,1.0,0.9,0.13,0.26,0.32,0.29",
+                ]
+            ),
+            encoding="utf-8",
+        )
+
+        status, payload = self._get_json("/v1/enterprise/rsi/history", headers=self._operator_headers())
+        self.assertEqual(200, status)
+        self.assertEqual(1, len(payload))
+        self.assertEqual("event_z", payload[0]["dominant_event_id"])
+
+    def test_enterprise_themes_latest_returns_current_theme_groups(self) -> None:
+        _write_json(
+            self.root / "outputs" / "signals" / "rsi_snapshot.json",
+            {
+                "asof": "2026-03-26",
+                "theme_hazard_shares": {"geopolitical": 0.75, "monetary_policy": 0.25},
+                "events": [
+                    {
+                        "event_family_id": "geo_family",
+                        "title": "Geo event",
+                        "structural_theme": "geopolitical",
+                        "category": "Kinetic",
+                        "source": "polymarket",
+                        "market_id": "m1",
+                        "selected_probability_governed": 0.8,
+                        "hazard_contribution": 3.0,
+                        "theme_cap_applied": True,
+                        "calibration_applied": "none",
+                    },
+                    {
+                        "event_family_id": "mon_family",
+                        "title": "Mon event",
+                        "structural_theme": "monetary_policy",
+                        "category": "Monetary",
+                        "source": "polymarket",
+                        "market_id": "m2",
+                        "selected_probability_governed": 0.3,
+                        "hazard_contribution": 1.0,
+                        "theme_cap_applied": False,
+                        "calibration_applied": "becker",
+                    },
+                ],
+            },
+        )
+        _write_json(
+            self.root / "outputs" / "signals" / "signal_snapshots.json",
+            [
+                {"event_family_id": "geo_family", "quality_score": 0.7, "candidate_count": 2, "source_options": ["polymarket"]},
+                {"event_family_id": "mon_family", "quality_score": 0.8, "candidate_count": 1, "source_options": ["polymarket"]},
+            ],
+        )
+
+        status, payload = self._get_json("/v1/enterprise/themes/latest", headers=self._enterprise_headers())
+        self.assertEqual(200, status)
+        self.assertEqual(2, len(payload))
+        self.assertEqual("geopolitical", payload[0]["theme"])
+        self.assertEqual("geo_family", payload[0]["dominant_event_family_id"])
+
+    def test_enterprise_families_latest_returns_breakdown(self) -> None:
+        family_id = "geo_family"
+        _write_json(
+            self.root / "outputs" / "signals" / "family_signal_book.json",
+            [
+                {
+                    "event_family_id": family_id,
+                    "title": "Geo family",
+                    "structural_theme": "geopolitical",
+                    "category": "Kinetic",
+                    "selection_state": "selected",
+                    "discovered": False,
+                    "governance_source": "signal_registry",
+                }
+            ],
+        )
+        _write_json(
+            self.root / "outputs" / "signals" / "canonical_event_families.json",
+            [{"event_family_id": family_id, "linked_markets": [{"market_id": "m1"}]}],
+        )
+        _write_json(
+            self.root / "outputs" / "signals" / "signal_snapshots.json",
+            [
+                {
+                    "event_family_id": family_id,
+                    "selected_source": "polymarket",
+                    "selected_market_id": "m1",
+                    "selected_probability_governed": 0.8,
+                    "selected_probability_raw": 0.82,
+                    "quality_score": 0.75,
+                    "candidate_count": 3,
+                    "source_options": ["polymarket"],
+                    "calibration_applied": "none",
+                }
+            ],
+        )
+
+        status, payload = self._get_json(
+            "/v1/enterprise/families/latest?selection_state=selected",
+            headers=self._enterprise_headers(),
+        )
+        self.assertEqual(200, status)
+        self.assertEqual(1, len(payload))
+        self.assertEqual("polymarket", payload[0]["selected_source"])
+        self.assertEqual(1, payload[0]["linked_market_count"])
 
 
 if __name__ == "__main__":
