@@ -104,7 +104,7 @@ def main() -> int:
         extra_curated_audit=approved_audit,
         include_robustness=False,
         include_bootstrap=False,
-        daily_events_transform=compose_daily_transform(enable_becker=True, bucket_cap=None, enable_kelly=False),
+        daily_events_transform=compose_daily_transform(enable_becker=True, bucket_cap=None, kelly_scale=None),
     )
 
     rows = [
@@ -136,7 +136,7 @@ def main() -> int:
             daily_events_transform=compose_daily_transform(
                 enable_becker=settings["becker"],
                 bucket_cap=settings["bucket_cap"],
-                enable_kelly=settings["kelly"],
+                kelly_scale=settings["kelly_scale"],
             ),
         )
         rows.append(risk_row(version, result))
