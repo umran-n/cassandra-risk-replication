@@ -28,9 +28,14 @@ def asymmetric_kelly_multiplier(kelly_value: float) -> float:
     return clamp(float(kelly_value), 0.0, 1.0)
 
 
-def asymmetric_kelly_probability(becker_probability: float, kelly_value: float) -> float:
+def asymmetric_kelly_probability(
+    becker_probability: float,
+    kelly_value: float,
+    fraction_scale: float = 1.0,
+) -> float:
     probability = clamp(float(becker_probability), 0.0, 1.0)
-    return probability * asymmetric_kelly_multiplier(kelly_value)
+    scaled_fraction = float(kelly_value) * float(fraction_scale)
+    return probability * asymmetric_kelly_multiplier(scaled_fraction)
 
 
 def apply_kelly_weighting(
@@ -69,6 +74,8 @@ def apply_asymmetric_kelly_weighting(
     daily_events: dict[str, dict[str, dict]],
     config: dict,
     _dates: list[str] | None = None,
+    *,
+    fraction_scale: float = 1.0,
 ) -> dict[str, dict[str, dict]]:
     updated: dict[str, dict[str, dict]] = {}
     for day_string, events in daily_events.items():
@@ -80,11 +87,17 @@ def apply_asymmetric_kelly_weighting(
             gap = 0.0 if params is None else float(params["gap"])
             becker_probability = becker_corrected_probability(original, gap)
             raw_fraction = kelly_fraction(becker_probability)
-            clamped_fraction = asymmetric_kelly_multiplier(raw_fraction)
-            weighted_probability = asymmetric_kelly_probability(becker_probability, raw_fraction)
+            scaled_fraction = raw_fraction * float(fraction_scale)
+            clamped_fraction = asymmetric_kelly_multiplier(scaled_fraction)
+            weighted_probability = asymmetric_kelly_probability(
+                becker_probability,
+                raw_fraction,
+                fraction_scale=float(fraction_scale),
+            )
 
             item["probability"] = weighted_probability
             item["kelly_weighting"] = "asymmetric"
+            item["kelly_fraction_scale"] = float(fraction_scale)
             item["kelly_original_probability"] = original
             item["kelly_becker_probability"] = becker_probability
             item["kelly_efficiency_gap"] = gap

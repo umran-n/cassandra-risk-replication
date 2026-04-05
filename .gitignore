@@ -4,6 +4,8 @@ __pycache__/
 .tmp_tests/
 vendor_pytest/
 .codex_deps/
+deps/
+tools/vendor_py/
 data/raw/
 data/processed/
 outputs/*
@@ -36,6 +38,12 @@ outputs/monte_carlo/*
 !outputs/monte_carlo/*.json
 !outputs/monte_carlo/*.md
 !outputs/monte_carlo/*.png
+!outputs/kelly/
+outputs/kelly/*
+!outputs/kelly/*.csv
+!outputs/kelly/*.json
+!outputs/kelly/*.md
+!outputs/kelly/*.png
 !outputs/signals/
 outputs/signals/*
 !outputs/signals/*.csv

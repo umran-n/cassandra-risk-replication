@@ -48,7 +48,12 @@ def compose_daily_transform(
         if kelly_mode == "fractional" and kelly_scale is not None:
             transformed = apply_kelly_weighting(transformed, config, dates, fraction_scale=float(kelly_scale))
         elif kelly_mode == "asymmetric":
-            transformed = apply_asymmetric_kelly_weighting(transformed, config, dates)
+            transformed = apply_asymmetric_kelly_weighting(
+                transformed,
+                config,
+                dates,
+                fraction_scale=1.0 if kelly_scale is None else float(kelly_scale),
+            )
         if bucket_cap is not None:
             transformed = apply_theme_hazard_cap(
                 transformed,

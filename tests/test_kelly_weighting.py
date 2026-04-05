@@ -84,6 +84,7 @@ class KellyWeightingTests(unittest.TestCase):
         self.assertEqual(asymmetric_kelly_multiplier(1.5), 1.0)
         self.assertEqual(asymmetric_kelly_probability(0.4, -0.2), 0.0)
         self.assertAlmostEqual(asymmetric_kelly_probability(0.5268, 0.0536), 0.02823648, places=8)
+        self.assertAlmostEqual(asymmetric_kelly_probability(0.5268, 0.0536, 0.50), 0.01411824, places=8)
 
     def test_apply_asymmetric_kelly_weighting_preserves_non_negative_probability(self) -> None:
         config = {"becker_calibration": {"enabled": True}}
@@ -116,6 +117,27 @@ class KellyWeightingTests(unittest.TestCase):
         self.assertEqual(high_row["kelly_weighting"], "asymmetric")
         self.assertGreaterEqual(high_row["probability"], 0.0)
         self.assertLessEqual(high_row["probability"], high_row["kelly_becker_probability"])
+
+    def test_apply_asymmetric_kelly_weighting_supports_fractional_scale(self) -> None:
+        config = {"becker_calibration": {"enabled": True}}
+        daily_events = {
+            "2024-01-02": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "category": "Kinetic",
+                    "probability": 0.60,
+                    "resolution_date": "2024-01-17",
+                    "structural_theme": "geopolitical",
+                    "question": "Test question",
+                }
+            }
+        }
+        weighted = apply_asymmetric_kelly_weighting(daily_events, config, fraction_scale=0.50)
+        row = weighted["2024-01-02"]["event-1"]
+        self.assertAlmostEqual(row["kelly_fraction_scale"], 0.50, places=6)
+        self.assertAlmostEqual(row["kelly_fraction_raw"], 0.0536, places=6)
+        self.assertAlmostEqual(row["kelly_fraction"], 0.0268, places=6)
+        self.assertAlmostEqual(row["probability"], 0.01411824, places=8)
 
     def test_hazard_components_allow_signed_probability_for_kelly_rows(self) -> None:
         config = {
