@@ -106,6 +106,37 @@ Architecture layers:
 
 ---
 
+## 4A. ENTERPRISE TIER 1 SHIPPING BOX (Locked 2026-04-05)
+
+**Enterprise Tier 1 is not Becker alone.** It is the full stacked V5 production signal:
+
+```text
+Base V5 universe         38 events, governed admission
++ Top-5 removal          ADR-003
++ 30% bucket cap        ADR-003
++ Becker calibration    theme-specific epsilon layer
++ Geo adjustment        ADR-005
++ Asymmetric Kelly      internal numerator weighting only
+                         (not exposed as a client parameter)
+= Enterprise Tier 1
+```
+
+**Current Enterprise Tier 1 result:** Sortino `0.361`
+
+**Interpretation:**
+- Paper 1 / V4 remains the public proof-of-concept signal
+- Enterprise Tier 1 is the private production signal on the governed V5 universe
+- Asymmetric Kelly belongs inside the production stack as an internal weighting layer, not as a marketplace knob
+
+**Release tag sequence when shipping Tier 1:**
+
+```powershell
+git tag v1.0.0-enterprise-tier1
+git push origin v1.0.0-enterprise-tier1
+```
+
+---
+
 ## 5. BUILD VERSION HISTORY (Key Milestones)
 
 | Version | Description | Sortino | CAGR |
@@ -135,6 +166,20 @@ Architecture layers:
 **MCP Access:** Zyla auto-exposes MCP endpoint — usable with Claude Desktop, Cursor, Windsurf, Cline today.  
 ```
 mcp.zylalabs.com/mcp?apikey=YOUR_ZYLA_API_KEY
+```
+
+### Product Positioning Split
+
+```text
+Free / public tier:
+  V4 signal (Paper 1 proof of concept)
+  Open source, public framing
+
+Enterprise Tier 1:
+  Full stacked V5 production signal
+  Becker + geo + asymmetric Kelly internals
+  Private endpoint, API key gated
+  Sortino 0.361 on governed V5 universe
 ```
 
 ---
@@ -478,6 +523,12 @@ Active papers:
 Next tag:          v0.7.0-tier2-endpoints
 Next session goal: Tier 2 API build (history + ensemble + decomposition)
 ```
+
+### Enterprise Tier 1 Note
+
+- Shipping box is the full stacked V5 signal, not Becker-only
+- Client message: **Paper 1 is the proof of concept. Enterprise Tier 1 is the production signal.**
+- Enterprise release tag to use when promoted: `v1.0.0-enterprise-tier1`
 
 ---
 
