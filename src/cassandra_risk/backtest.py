@@ -108,7 +108,11 @@ def hazard_components_for_row(
     category = row["category"]
     weight = float(weights.get(category, 0.0))
     severity = 0.0 if max_weight <= 0 else weight / max_weight
-    probability = clamp(float(row["probability"]) * probability_scale, 0.0, 1.0)
+    raw_probability = float(row["probability"]) * probability_scale
+    if row.get("kelly_weighting") == "enabled":
+        probability = clamp(raw_probability, -1.0, 1.0)
+    else:
+        probability = clamp(raw_probability, 0.0, 1.0)
     current_date = parse_date(day_string)
     resolution_date = parse_date(row["resolution_date"])
     days_to_resolution = max((resolution_date - current_date).days, 1)

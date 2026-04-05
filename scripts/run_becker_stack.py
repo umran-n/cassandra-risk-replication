@@ -14,26 +14,30 @@ for path in (SRC, SCRIPTS):
 from cassandra_risk.becker_calibration import apply_becker_calibration  # noqa: E402
 from cassandra_risk.config import load_json  # noqa: E402
 from cassandra_risk.events import load_polymarket_approved_universe  # noqa: E402
+from cassandra_risk.kelly_weighting import apply_kelly_weighting  # noqa: E402
 from cassandra_risk.monetary_subablation import apply_theme_hazard_cap, remove_event_ids  # noqa: E402
 from cassandra_risk.utils import ensure_dir, write_csv  # noqa: E402
 from run_backtest import compute_price_returns, fetch_fred_tb3ms, fetch_spy_prices, run_version  # noqa: E402
 
 
 STACK_CONFIGS = {
-    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None},
-    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30},
-    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30},
+    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None, "kelly": False},
+    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30, "kelly": False},
+    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly": False},
+    "V5+Becker+Kelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly": True},
 }
 
 
-def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None):
-    if not enable_becker and bucket_cap is None:
+def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None, enable_kelly: bool = False):
+    if not enable_becker and bucket_cap is None and not enable_kelly:
         return None
 
     def transform(daily_events: dict[str, dict[str, dict]], config: dict, dates: list[str]):
         transformed = daily_events
         if enable_becker:
             transformed = apply_becker_calibration(transformed, config, dates)
+        if enable_kelly:
+            transformed = apply_kelly_weighting(transformed, config, dates)
         if bucket_cap is not None:
             transformed = apply_theme_hazard_cap(
                 transformed,
@@ -46,13 +50,22 @@ def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None):
     return transform
 
 
-def stack_summary_row(version: str, *, calibration: str, top5_removal: bool, bucket_cap: float | None, result: dict) -> dict:
+def stack_summary_row(
+    version: str,
+    *,
+    calibration: str,
+    top5_removal: bool,
+    bucket_cap: float | None,
+    kelly_weighting: bool,
+    result: dict,
+) -> dict:
     summary = result["summaries"]["cassandra"]
     return {
         "version": version,
         "calibration": calibration,
         "top5_removal": top5_removal,
         "bucket_cap": "" if bucket_cap is None else bucket_cap,
+        "kelly_weighting": kelly_weighting,
         "n_events": len(result["resolved_seeds"]),
         "sortino": summary["sortino"],
         "cagr": summary["cagr"],
@@ -133,8 +146,22 @@ def main() -> int:
     )
 
     rows = [
-        stack_summary_row("V5", calibration="off", top5_removal=False, bucket_cap=None, result=v5_result),
-        stack_summary_row("V5_Becker", calibration="enabled", top5_removal=False, bucket_cap=None, result=v5_becker_result),
+        stack_summary_row(
+            "V5",
+            calibration="off",
+            top5_removal=False,
+            bucket_cap=None,
+            kelly_weighting=False,
+            result=v5_result,
+        ),
+        stack_summary_row(
+            "V5_Becker",
+            calibration="enabled",
+            top5_removal=False,
+            bucket_cap=None,
+            kelly_weighting=False,
+            result=v5_becker_result,
+        ),
     ]
 
     for version, settings in STACK_CONFIGS.items():
@@ -161,6 +188,7 @@ def main() -> int:
             daily_events_transform=compose_daily_transform(
                 enable_becker=settings["becker"],
                 bucket_cap=settings["bucket_cap"],
+                enable_kelly=settings["kelly"],
             ),
         )
         rows.append(
@@ -169,6 +197,7 @@ def main() -> int:
                 calibration="enabled" if settings["becker"] else "off",
                 top5_removal=settings["top5_removal"],
                 bucket_cap=settings["bucket_cap"],
+                kelly_weighting=settings["kelly"],
                 result=result,
             )
         )
