@@ -6,6 +6,37 @@
 
 ---
 
+## 0. SESSION OPERATING RULES
+
+### Git Workflow Rule
+
+All standard git backup actions are user-executed in PowerShell. Codex should provide the exact commands to run, but should not default to GitHub MCP for normal commit or push flows unless the user explicitly asks for a fallback.
+
+### Branch Safety Rule
+
+Do not push active research work to `main`. `main` is Railway-stable and deploy-sensitive. Active research, enterprise-tier work, and experimental findings should be committed and pushed through PowerShell to `dev` or the relevant feature branch first.
+
+### Default PowerShell Git Commands
+
+```powershell
+git status
+git add .
+git commit -m "YOUR_COMMIT_MESSAGE"
+git push origin feature/enterprise-tier-v1
+```
+
+### Tag Push Command
+
+```powershell
+git push origin research/paper2-findings-snapshot-v0.5.9
+```
+
+### Fallback Rule
+
+Use GitHub MCP only if PowerShell git fails and the user explicitly wants a non-shell backup path.
+
+---
+
 ## 1. PROJECT IDENTITY
 
 **Project Name:** Cassandra Risk  
