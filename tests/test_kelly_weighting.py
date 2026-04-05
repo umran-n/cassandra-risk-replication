@@ -12,6 +12,9 @@ if str(SRC) not in sys.path:
 from cassandra_risk.backtest import hazard_components_for_row
 from cassandra_risk.kelly_weighting import (
     apply_kelly_weighting,
+    apply_asymmetric_kelly_weighting,
+    asymmetric_kelly_multiplier,
+    asymmetric_kelly_probability,
     becker_corrected_probability,
     kelly_fraction,
     scaled_kelly_fraction,
@@ -74,6 +77,45 @@ class KellyWeightingTests(unittest.TestCase):
         self.assertAlmostEqual(row["kelly_fraction_scale"], 0.50, places=6)
         self.assertAlmostEqual(row["kelly_fraction"], 0.0268, places=6)
         self.assertAlmostEqual(row["probability"], 0.01411824, places=8)
+
+    def test_asymmetric_kelly_clamps_signed_fraction_to_non_negative_multiplier(self) -> None:
+        self.assertEqual(asymmetric_kelly_multiplier(-0.2), 0.0)
+        self.assertAlmostEqual(asymmetric_kelly_multiplier(0.4), 0.4, places=6)
+        self.assertEqual(asymmetric_kelly_multiplier(1.5), 1.0)
+        self.assertEqual(asymmetric_kelly_probability(0.4, -0.2), 0.0)
+        self.assertAlmostEqual(asymmetric_kelly_probability(0.5268, 0.0536), 0.02823648, places=8)
+
+    def test_apply_asymmetric_kelly_weighting_preserves_non_negative_probability(self) -> None:
+        config = {"becker_calibration": {"enabled": True}}
+        daily_events = {
+            "2024-01-02": {
+                "event-low": {
+                    "event_id": "event-low",
+                    "category": "Kinetic",
+                    "probability": 0.40,
+                    "resolution_date": "2024-01-17",
+                    "structural_theme": "geopolitical",
+                    "question": "Low edge",
+                },
+                "event-high": {
+                    "event_id": "event-high",
+                    "category": "Kinetic",
+                    "probability": 0.60,
+                    "resolution_date": "2024-01-17",
+                    "structural_theme": "geopolitical",
+                    "question": "High edge",
+                },
+            }
+        }
+        weighted = apply_asymmetric_kelly_weighting(daily_events, config)
+        low_row = weighted["2024-01-02"]["event-low"]
+        high_row = weighted["2024-01-02"]["event-high"]
+        self.assertEqual(low_row["kelly_weighting"], "asymmetric")
+        self.assertEqual(low_row["probability"], 0.0)
+        self.assertGreaterEqual(low_row["kelly_fraction"], 0.0)
+        self.assertEqual(high_row["kelly_weighting"], "asymmetric")
+        self.assertGreaterEqual(high_row["probability"], 0.0)
+        self.assertLessEqual(high_row["probability"], high_row["kelly_becker_probability"])
 
     def test_hazard_components_allow_signed_probability_for_kelly_rows(self) -> None:
         config = {
