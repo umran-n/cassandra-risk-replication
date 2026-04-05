@@ -21,23 +21,25 @@ from run_backtest import compute_price_returns, fetch_fred_tb3ms, fetch_spy_pric
 
 
 STACK_CONFIGS = {
-    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None, "kelly": False},
-    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30, "kelly": False},
-    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly": False},
-    "V5+Becker+Kelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly": True},
+    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None, "kelly_scale": None},
+    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30, "kelly_scale": None},
+    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": None},
+    "V5+Becker+Kelly25": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.25},
+    "V5+Becker+Kelly50": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.50},
+    "V5+Becker+Kelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 1.00},
 }
 
 
-def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None, enable_kelly: bool = False):
-    if not enable_becker and bucket_cap is None and not enable_kelly:
+def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None, kelly_scale: float | None = None):
+    if not enable_becker and bucket_cap is None and kelly_scale is None:
         return None
 
     def transform(daily_events: dict[str, dict[str, dict]], config: dict, dates: list[str]):
         transformed = daily_events
         if enable_becker:
             transformed = apply_becker_calibration(transformed, config, dates)
-        if enable_kelly:
-            transformed = apply_kelly_weighting(transformed, config, dates)
+        if kelly_scale is not None:
+            transformed = apply_kelly_weighting(transformed, config, dates, fraction_scale=float(kelly_scale))
         if bucket_cap is not None:
             transformed = apply_theme_hazard_cap(
                 transformed,
@@ -56,7 +58,7 @@ def stack_summary_row(
     calibration: str,
     top5_removal: bool,
     bucket_cap: float | None,
-    kelly_weighting: bool,
+    kelly_scale: float | None,
     result: dict,
 ) -> dict:
     summary = result["summaries"]["cassandra"]
@@ -65,7 +67,8 @@ def stack_summary_row(
         "calibration": calibration,
         "top5_removal": top5_removal,
         "bucket_cap": "" if bucket_cap is None else bucket_cap,
-        "kelly_weighting": kelly_weighting,
+        "kelly_weighting": kelly_scale is not None,
+        "kelly_scale": "" if kelly_scale is None else kelly_scale,
         "n_events": len(result["resolved_seeds"]),
         "sortino": summary["sortino"],
         "cagr": summary["cagr"],
@@ -151,7 +154,7 @@ def main() -> int:
             calibration="off",
             top5_removal=False,
             bucket_cap=None,
-            kelly_weighting=False,
+            kelly_scale=None,
             result=v5_result,
         ),
         stack_summary_row(
@@ -159,7 +162,7 @@ def main() -> int:
             calibration="enabled",
             top5_removal=False,
             bucket_cap=None,
-            kelly_weighting=False,
+            kelly_scale=None,
             result=v5_becker_result,
         ),
     ]
@@ -188,7 +191,7 @@ def main() -> int:
             daily_events_transform=compose_daily_transform(
                 enable_becker=settings["becker"],
                 bucket_cap=settings["bucket_cap"],
-                enable_kelly=settings["kelly"],
+                kelly_scale=settings["kelly_scale"],
             ),
         )
         rows.append(
@@ -197,7 +200,7 @@ def main() -> int:
                 calibration="enabled" if settings["becker"] else "off",
                 top5_removal=settings["top5_removal"],
                 bucket_cap=settings["bucket_cap"],
-                kelly_weighting=settings["kelly"],
+                kelly_scale=settings["kelly_scale"],
                 result=result,
             )
         )
