@@ -14,32 +14,41 @@ for path in (SRC, SCRIPTS):
 from cassandra_risk.becker_calibration import apply_becker_calibration  # noqa: E402
 from cassandra_risk.config import load_json  # noqa: E402
 from cassandra_risk.events import load_polymarket_approved_universe  # noqa: E402
-from cassandra_risk.kelly_weighting import apply_kelly_weighting  # noqa: E402
+from cassandra_risk.kelly_weighting import apply_asymmetric_kelly_weighting, apply_kelly_weighting  # noqa: E402
 from cassandra_risk.monetary_subablation import apply_theme_hazard_cap, remove_event_ids  # noqa: E402
 from cassandra_risk.utils import ensure_dir, write_csv  # noqa: E402
 from run_backtest import compute_price_returns, fetch_fred_tb3ms, fetch_spy_prices, run_version  # noqa: E402
 
 
 STACK_CONFIGS = {
-    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None, "kelly_scale": None},
-    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30, "kelly_scale": None},
-    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": None},
-    "V5+Becker+Kelly25": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.25},
-    "V5+Becker+Kelly50": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.50},
-    "V5+Becker+Kelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 1.00},
+    "V5_Becker_top5": {"becker": True, "top5_removal": True, "bucket_cap": None, "kelly_scale": None, "kelly_mode": None},
+    "V5_Becker_cap30": {"becker": True, "top5_removal": False, "bucket_cap": 0.30, "kelly_scale": None, "kelly_mode": None},
+    "V5_Becker_top5_cap": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": None, "kelly_mode": None},
+    "V5+Becker+Kelly25": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.25, "kelly_mode": "fractional"},
+    "V5+Becker+Kelly50": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 0.50, "kelly_mode": "fractional"},
+    "V5+Becker+Kelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": 1.00, "kelly_mode": "fractional"},
+    "V5+Becker+AsymKelly": {"becker": True, "top5_removal": True, "bucket_cap": 0.30, "kelly_scale": None, "kelly_mode": "asymmetric"},
 }
 
 
-def compose_daily_transform(*, enable_becker: bool, bucket_cap: float | None, kelly_scale: float | None = None):
-    if not enable_becker and bucket_cap is None and kelly_scale is None:
+def compose_daily_transform(
+    *,
+    enable_becker: bool,
+    bucket_cap: float | None,
+    kelly_scale: float | None = None,
+    kelly_mode: str | None = None,
+):
+    if not enable_becker and bucket_cap is None and kelly_scale is None and kelly_mode is None:
         return None
 
     def transform(daily_events: dict[str, dict[str, dict]], config: dict, dates: list[str]):
         transformed = daily_events
         if enable_becker:
             transformed = apply_becker_calibration(transformed, config, dates)
-        if kelly_scale is not None:
+        if kelly_mode == "fractional" and kelly_scale is not None:
             transformed = apply_kelly_weighting(transformed, config, dates, fraction_scale=float(kelly_scale))
+        elif kelly_mode == "asymmetric":
+            transformed = apply_asymmetric_kelly_weighting(transformed, config, dates)
         if bucket_cap is not None:
             transformed = apply_theme_hazard_cap(
                 transformed,
@@ -59,6 +68,7 @@ def stack_summary_row(
     top5_removal: bool,
     bucket_cap: float | None,
     kelly_scale: float | None,
+    kelly_mode: str | None,
     result: dict,
 ) -> dict:
     summary = result["summaries"]["cassandra"]
@@ -67,7 +77,8 @@ def stack_summary_row(
         "calibration": calibration,
         "top5_removal": top5_removal,
         "bucket_cap": "" if bucket_cap is None else bucket_cap,
-        "kelly_weighting": kelly_scale is not None,
+        "kelly_weighting": kelly_scale is not None or kelly_mode is not None,
+        "kelly_mode": "" if kelly_mode is None else kelly_mode,
         "kelly_scale": "" if kelly_scale is None else kelly_scale,
         "n_events": len(result["resolved_seeds"]),
         "sortino": summary["sortino"],
@@ -155,6 +166,7 @@ def main() -> int:
             top5_removal=False,
             bucket_cap=None,
             kelly_scale=None,
+            kelly_mode=None,
             result=v5_result,
         ),
         stack_summary_row(
@@ -163,6 +175,7 @@ def main() -> int:
             top5_removal=False,
             bucket_cap=None,
             kelly_scale=None,
+            kelly_mode=None,
             result=v5_becker_result,
         ),
     ]
@@ -192,6 +205,7 @@ def main() -> int:
                 enable_becker=settings["becker"],
                 bucket_cap=settings["bucket_cap"],
                 kelly_scale=settings["kelly_scale"],
+                kelly_mode=settings["kelly_mode"],
             ),
         )
         rows.append(
@@ -201,6 +215,7 @@ def main() -> int:
                 top5_removal=settings["top5_removal"],
                 bucket_cap=settings["bucket_cap"],
                 kelly_scale=settings["kelly_scale"],
+                kelly_mode=settings["kelly_mode"],
                 result=result,
             )
         )
