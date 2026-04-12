@@ -529,6 +529,15 @@ Next session goal: Tier 2 API build (history + ensemble + decomposition)
 - Shipping box is the full stacked V5 signal, not Becker-only
 - Client message: **Paper 1 is the proof of concept. Enterprise Tier 1 is the production signal.**
 - Enterprise release tag to use when promoted: `v1.0.0-enterprise-tier1`
+- Azure Marketplace posture: use a near-zero Azure architecture for Enterprise
+  Tier 1, separate from the Railway consumer surface
+- Near-zero Azure default:
+  - Static Web Apps for landing page
+  - Azure Functions Consumption for webhook and fulfillment
+  - Azure Container Apps Consumption for enterprise API
+  - minimal storage + Key Vault for subscription state and secrets
+- Goal: keep enterprise listing purchasable off the shelf with minimal idle
+  spend until real buyers arrive
 
 ---
 
