@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+sdk/.deps_test/
+sdk/.venv/
+sdk/.pytest_cache/
 .tmp_tests/
 vendor_pytest/
 .codex_deps/

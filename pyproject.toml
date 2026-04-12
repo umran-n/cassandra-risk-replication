@@ -3,3 +3,6 @@ name = "cassandra-risk-replication"
 version = "0.1.0"
 description = "Closest-public replication of the Cassandra-Risk backtests"
 requires-python = ">=3.13"
+
+[project.optional-dependencies]
+sdk = ["requests>=2.28"]
