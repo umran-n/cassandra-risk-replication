@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cassandra-risk"
+version = "0.1.0"
+description = "Python SDK for the Cassandra Risk governed macro-fragility signal API"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Umran Nayani"}]
+keywords = ["macro risk", "prediction markets", "regime detection",
+            "RSI", "portfolio risk", "quant finance", "fragility signal"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = ["requests>=2.28"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-mock"]
+
+[project.urls]
+Homepage = "https://github.com/umran-n/cassandra-risk-replication"
+"API Docs" = "https://cassandra-risk.up.railway.app/v1/meta"
+"Paper 1" = "https://doi.org/10.13140/RG.2.2.21272.05124"
+"Paper 2" = "https://doi.org/10.13140/RG.2.2.17209.12644"
